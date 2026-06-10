@@ -1,0 +1,103 @@
+# Research State — Central Project Tracking
+
+project:
+  title: "Estruturas de oportunidades políticas e discursivas nos ciclos de protesto brasileiros (1984–2016)"
+  question: >
+    Como as estruturas de oportunidades políticas (EOP) e as oportunidades
+    discursivas moldaram a emergência, a forma e os desfechos de quatro ciclos
+    de protesto no Brasil: Diretas Já (1983–84), Fora Collor (1992),
+    Junho de 2013 e as mobilizações pró-impeachment de Dilma Rousseff (2015–16)?
+  status: active
+  started: "2026-06-10"
+  domain: "sociologia política — teoria do processo político / movimentos sociais"
+  method: "comparação qualitativa de casos (small-N, ciclos de protesto)"
+
+literature:
+  key_papers: []
+  open_problems: []
+  evidence_gaps: []
+
+hypotheses:
+  - id: H1
+    statement: >
+      Ciclos de protesto de grande escala no Brasil emergem quando divisões
+      intra-elite (EOP) coincidem com uma oportunidade discursiva ressonante
+      (master frame de democracia ou anticorrupção); nenhuma das condições
+      isoladamente é suficiente. Predição: nos 4 casos as duas condições
+      estarão presentes na fase de pico; em momentos de mobilização frustrada
+      (e.g. protestos anti-Collor pré-CPI, protestos pós-2013 de menor escala)
+      faltará pelo menos uma.
+    status: pending
+    motivation: "Testa a complementaridade EOP+DOS contra explicações monocausais."
+    parent: null
+    priority: high
+  - id: H2
+    statement: >
+      O alinhamento da grande mídia (componente da DOS: visibilidade+legitimidade)
+      condiciona o desfecho institucional do ciclo: ciclos com cobertura
+      legitimadora (Fora Collor, impeachment Dilma; Diretas Já tardiamente)
+      desembocam em desfechos institucionais canalizados; Junho de 2013, com
+      DOS instável e frames difusos, não produz desfecho institucional unificado.
+    status: pending
+    motivation: "Sistematiza o papel variável da mídia nos 4 ciclos — lacuna 3 do survey."
+    parent: null
+    priority: high
+  - id: H3
+    statement: >
+      Entre 1984 e 2016 ocorre deslocamento do master frame dos ciclos: de
+      democratização/participação (1984) para ética/anticorrupção (1992),
+      híbrido e disperso (2013) e anticorrupção com valência antipetista (2015-16).
+      Predição: análise dos frames dominantes em cada ciclo mostrará essa sequência.
+    status: pending
+    motivation: "Dimensão diacrônica da DOS; conecta os ciclos como série histórica."
+    parent: null
+    priority: medium
+  - id: H4
+    statement: >
+      A configuração da EOP molda a FORMA do ciclo: acesso institucional fechado +
+      aliados de elite influentes produzem ciclos canalizados por organizações
+      (1984, 1992); acesso aberto/participativo sem aliados de elite unificados
+      produz ciclo difuso e antipartidário (2013); aliados de elite + infraestrutura
+      digital produzem ciclo organizado de novo tipo (2015-16).
+    status: pending
+    motivation: "Liga EOP a repertório/organização, dialogando com Alonso & Mische 2017."
+    parent: null
+    priority: medium
+
+cases:
+  - id: C1
+    name: "Diretas Já (1983–1984)"
+  - id: C2
+    name: "Fora Collor (1992)"
+  - id: C3
+    name: "Jornadas de Junho (2013)"
+  - id: C4
+    name: "Mobilizações pró-impeachment de Dilma Rousseff (2015–2016)"
+
+analysis:
+  framework_dimensions:
+    political_opportunities:
+      - "abertura/fechamento do acesso institucional"
+      - "instabilidade de alinhamentos de elite"
+      - "presença de aliados influentes"
+      - "capacidade/propensão repressiva do Estado"
+      - "divisões intra-elite"
+    discursive_opportunities:
+      - "visibilidade na esfera pública midiática"
+      - "ressonância dos enquadramentos (frames)"
+      - "legitimidade dos atores e demandas"
+      - "alinhamento com discursos hegemônicos (anticorrupção, democracia)"
+  total_case_analyses: 0
+
+outer_loop:
+  cycle: 0
+  last_direction: null
+  last_reflection: ""
+
+workspace:
+  findings: "findings.md"
+  log: "research-log.md"
+  literature_dir: "literature/"
+  experiments_dir: "experiments/"
+  to_human_dir: "to_human/"
+  paper_dir: "paper/"
