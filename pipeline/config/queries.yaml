@@ -1,0 +1,35 @@
+# Protocolo de busca no Acervo Folha (acervo.folha.com.br)
+# Usado por 01_scraper.py
+
+search_terms:
+  - "manifestação"
+  - "protesto"
+  - "passeata"
+  - "marcha"
+  - "comício"
+  - "greve"
+  - "ocupação"
+  - "ato público"
+  - "mobilização"
+  - "bloqueio"
+
+# Janelas temporais por ciclo (prioridade) + varredura geral 1985–presente
+date_ranges:
+  - {label: diretas_ja,        start: "1983-01-01", end: "1985-03-31"}
+  - {label: fora_collor,       start: "1992-04-01", end: "1993-01-31"}
+  - {label: junho_2013,        start: "2013-05-01", end: "2013-12-31"}
+  - {label: impeachment_dilma, start: "2014-10-01", end: "2016-09-30"}
+  - {label: serie_geral,       start: "1985-01-01", end: "2026-12-31"}
+
+# Seções a incluir/excluir (nomes conforme o Acervo)
+sections_include: ["Poder", "Cotidiano", "Brasil", "Política", "Primeira Página"]
+sections_exclude: ["Esporte", "Mercado", "Ilustrada", "Classificados", "Turismo"]
+
+# Critério de pré-triagem DoCA (aplicado pelo coder, registrado aqui para documentação):
+# evento elegível = ação coletiva + espaço público + expressão contenciosa de demanda
+scraper:
+  results_per_page: 20
+  delay_seconds: 2          # respeitar o servidor
+  max_retries: 3
+  output_dir: "pipeline/data/raw"
+  state_file: "pipeline/data/scrape_state.json"   # rastreamento incremental

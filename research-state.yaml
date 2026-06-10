@@ -30,8 +30,8 @@ components:
     status: "H1.2 com desenho de teste detalhado (process tracing + casos Coreia/Paraguai/Belarus)"
   pipeline_pea:
     descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
-    local: "a incorporar (pipeline/)"
-    status: "projetada em sessão anterior; scripts e configs fora do repo; aguarda credenciais"
+    local: "pipeline/"
+    status: "reconstruída no repo (pipeline/); codebook DoCA em rascunho a validar; execução aguarda credenciais"
 
 frentes_abertas:
   - id: B

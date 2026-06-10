@@ -1,0 +1,89 @@
+# Codebook DoCA — protest_events
+# ⚠️ RASCUNHO RECONSTRUÍDO (2026-06-10): o codebook original (doca_codebook.yaml
+# da sessão anterior) não está no repositório. Esta versão reconstrói a estrutura
+# documentada (claim codes de 4 dígitos em 9 domínios; repertórios de Tilly;
+# escala de multidão) e DEVE ser validada/substituída pelo original.
+
+claim_codes:
+  # Domínio 1xxx — Político-institucional
+  "1100": "Democratização / eleições diretas"
+  "1200": "Impeachment / saída de governante"
+  "1300": "Reforma política / sistema eleitoral"
+  "1400": "Contra golpe / defesa do mandato"
+  "1500": "Antipartidarismo / contra a classe política"
+  # Domínio 2xxx — Anticorrupção / ética
+  "2100": "Anticorrupção genérica"
+  "2200": "Apoio a operações judiciais (CPI, Lava Jato)"
+  "2300": "Ética na política / moralização"
+  # Domínio 3xxx — Direitos sociais e serviços públicos
+  "3100": "Transporte público / tarifa"
+  "3200": "Educação"
+  "3300": "Saúde"
+  "3400": "Moradia / reforma urbana"
+  "3500": "Gastos públicos (Copa, megaeventos)"
+  # Domínio 4xxx — Trabalho e economia
+  "4100": "Salário / condições de trabalho"
+  "4200": "Greve geral / pauta sindical"
+  "4300": "Contra reformas (previdência, trabalhista)"
+  "4400": "Custo de vida / inflação"
+  # Domínio 5xxx — Terra e meio rural
+  "5100": "Reforma agrária"
+  "5200": "Conflitos fundiários / indígenas / quilombolas"
+  # Domínio 6xxx — Identidades e direitos civis
+  "6100": "Movimento negro / antirracismo"
+  "6200": "Feminismo / direitos das mulheres"
+  "6300": "LGBTQIA+"
+  "6400": "Direitos humanos / contra violência policial"
+  # Domínio 7xxx — Meio ambiente
+  "7100": "Meio ambiente / clima"
+  # Domínio 8xxx — Pautas conservadoras / direita
+  "8100": "Antipetismo"
+  "8200": "Pauta moral-conservadora (família, religião)"
+  "8300": "Intervenção militar / autoritarismo"
+  "8400": "Liberalismo econômico / menos Estado"
+  # Domínio 9xxx — Outros
+  "9100": "Solidariedade / apoio a outro movimento"
+  "9900": "Outra demanda (especificar em claim_text)"
+
+repertoires:   # Tilly / Alonso
+  - "passeata/marcha"
+  - "comício"
+  - "concentração/ato público"
+  - "greve"
+  - "ocupação de prédio/terra"
+  - "bloqueio de via"
+  - "panelaço/buzinaço"
+  - "vigília"
+  - "ação direta/confronto"
+  - "abaixo-assinado/petição"
+  - "carreata"
+  - "performance/ato simbólico"
+
+crowd_size_scale:
+  "0": "não informado"
+  "1": "até 100"
+  "2": "101–1.000"
+  "3": "1.001–10.000"
+  "4": "10.001–100.000"
+  "5": "mais de 100.000"
+
+event_schema:   # campos do JSON de saída do coder (ver 02_doca_coder.py)
+  - event_id            # UUID5 determinístico (url+data)
+  - event_date          # YYYY-MM-DD (data do EVENTO, não da publicação)
+  - location_city
+  - location_state
+  - actors              # lista de atores coletivos organizadores/participantes
+  - targets             # alvo da reivindicação (governo federal, prefeitura, empresa...)
+  - claim_code          # código de 4 dígitos do codebook
+  - claim_text          # demanda em texto livre
+  - repertoire          # um dos repertórios acima
+  - crowd_size_reported # número informado pela fonte (ou null)
+  - crowd_size_scale    # escala 0-5
+  - police_presence     # bool
+  - repression          # none | dispersão | prisões | violência
+  - arrests_reported    # int ou null
+  - injuries_reported   # int ou null
+  - source_url
+  - source_date         # data de publicação da matéria
+  - eligible            # bool — passou no critério DoCA
+  - notes

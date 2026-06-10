@@ -64,3 +64,12 @@
   teórico-metodológica .docx; cycle_phases.xlsx original; ZIP da pipeline.
 - Próximas frentes: (B) refinamento da periodização; (C) inferência causal /
   teste de H1.2; (D) pipeline protest_events.
+
+## 2026-06-10 — Frente D: pipeline protest_events reconstruída
+- pipeline/ criada: 01_scraper.py (Playwright/Acervo Folha, incremental),
+  02_doca_coder.py (API Anthropic: structured outputs + prompt caching +
+  UUID5 determinístico), 03_build_dataset.py (dedupe, CSV/XLSX 4 abas),
+  04_intercoder_reliability.py (Cohen's Kappa), run_pipeline.py, configs
+  (queries.yaml; doca_codebook.yaml RECONSTRUÍDO — validar contra o original)
+  e docs/TUTORIAL.md.
+- Execução pendente de credenciais do Acervo Folha e ANTHROPIC_API_KEY (.env).
