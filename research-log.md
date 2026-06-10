@@ -73,3 +73,14 @@
   (queries.yaml; doca_codebook.yaml RECONSTRUÍDO — validar contra o original)
   e docs/TUTORIAL.md.
 - Execução pendente de credenciais do Acervo Folha e ANTHROPIC_API_KEY (.env).
+
+## 2026-06-10 — Frente B: revisão da periodização (PROPOSTA)
+- docs/periodizacao-revisao.md + data/cycle_phases_v2_proposta.csv (v1 intacta).
+- J13: fase RADICALIZAÇÃO (21/06–31/07) inserida entre pico (encurtado p/
+  18–20/06) e declínio (ago–out, cobrindo cauda da greve dos professores/RJ);
+  captura a 2ª inversão da DOS (recriminalização) — reforça padrão 2 e H2.2.
+- Impeachment: expansão estendida até 30/11/15 (TCU 02/10, pauta-bomba,
+  articulação Temer = construção institucional da janela); pico estendido até
+  11/05/16 (tramitação no Senado); início em 26/10/14 validado (padrão 3 —
+  construção deliberada exige incluir a fase formativa).
+- Aguardando validação do usuário para substituir a v1.
