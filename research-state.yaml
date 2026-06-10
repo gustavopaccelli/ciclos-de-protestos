@@ -87,7 +87,7 @@ analysis:
       - "ressonância dos enquadramentos (frames)"
       - "legitimidade dos atores e demandas"
       - "alinhamento com discursos hegemônicos (anticorrupção, democracia)"
-  total_case_analyses: 1
+  total_case_analyses: 2
 
 outer_loop:
   cycle: 0

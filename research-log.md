@@ -23,3 +23,12 @@
 - Achados exploratórios: endogeneidade das oportunidades (E1); distinção
   demanda atendida vs. realinhamento produzido na variável desfecho (E2).
 - Próximo: protocolo e análise C2 (Fora Collor).
+
+## 2026-06-10 — Inner loop 2: C2 Fora Collor
+- Análise C2 concluída; P1–P4 todas suportadas.
+- Contraste-chave com C1: ordem causal invertida (divisão de elite PRECEDE o ciclo
+  em 1992; em 1984 o ciclo aprofunda a divisão) e mídia como produtora ativa de
+  frames (vs. gatekeeper tardio em 1984).
+- Exploratórios: E3 (via institucional disponível encurta o ciclo — candidata a H4.1);
+  E4 (DOS como terreno de disputa simbólica).
+- Próximo: protocolo e análise C3 (Junho de 2013).
