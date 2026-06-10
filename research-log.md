@@ -32,3 +32,10 @@
 - Exploratórios: E3 (via institucional disponível encurta o ciclo — candidata a H4.1);
   E4 (DOS como terreno de disputa simbólica).
 - Próximo: protocolo e análise C3 (Junho de 2013).
+
+## 2026-06-10 — Inner loop 3: C3 Junho 2013 (caso desviante)
+- H1 REFUTADA como enunciada: 2013 emerge sem divisão de elite. Reformulação:
+  divisão de elite é condição do desfecho institucional, não da emergência.
+- P2–P4 suportadas. Exploratórios: E5 (repressão abre a DOS); E6 (ciclos como
+  série conectada — desfecho de 2013 é insumo de 2015-16).
+- Próximo: protocolo e análise C4 (impeachment Dilma); depois outer loop 1.
