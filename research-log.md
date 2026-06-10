@@ -48,3 +48,19 @@
   produz ciclos curtos e canalizados. Quadro comparativo 4 casos em findings.md.
 - Pendências antes de CONCLUDE: survey de legal opportunity structure; verificação
   de citações de memória; fichamento de Tatagiba 2014.
+
+## 2026-06-10 — Outer loop 2: PIVOT para o desenho consolidado do projeto
+- Usuário trouxe 4 documentos das sessões claude.ai (abr–jun/2026) com o estado
+  real do projeto: artigo do triângulo EOP–DOS–Análise de Conjuntura (seções
+  redigidas), codebook cycle_phases (8 variáveis, 0–3, 5 fases), scores dos 4
+  ciclos validados em 2026-06-05, quadro de 14 hipóteses (3 famílias) e pipeline
+  PEA do Acervo Folha.
+- Repositório reorganizado: codebook/ (codebook YAML), data/cycle_phases.csv
+  (scores formalizados), artigo/secoes/ (textos extraídos dos documentos),
+  artigo/referencias-abnt.md, docs/projeto.md (visão geral e frentes abertas).
+- Framework bootstrap da sessão rebaixado a material exploratório
+  (experiments/README.md).
+- Pendências de incorporação: .docx do quadro de 14 hipóteses; nota
+  teórico-metodológica .docx; cycle_phases.xlsx original; ZIP da pipeline.
+- Próximas frentes: (B) refinamento da periodização; (C) inferência causal /
+  teste de H1.2; (D) pipeline protest_events.

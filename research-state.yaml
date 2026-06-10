@@ -1,108 +1,73 @@
 # Research State — Central Project Tracking
 
 project:
-  title: "Estruturas de oportunidades políticas e discursivas nos ciclos de protesto brasileiros (1984–2016)"
+  title: "Ciclos de Protesto no Brasil — EOP, DOS e Análise de Conjuntura"
   question: >
-    Como as estruturas de oportunidades políticas (EOP) e as oportunidades
-    discursivas moldaram a emergência, a forma e os desfechos de quatro ciclos
-    de protesto no Brasil: Diretas Já (1983–84), Fora Collor (1992),
-    Junho de 2013 e as mobilizações pró-impeachment de Dilma Rousseff (2015–16)?
+    Como as configurações de estruturas de oportunidades políticas (EOP) e
+    discursivas (DOS), lidas conjunturalmente pelos atores, condicionam a
+    emergência, a dinâmica de fases e os desfechos dos ciclos de protesto no
+    Brasil (Diretas Já, Fora Collor, Junho 2013, Impeachment Dilma)?
   status: active
-  started: "2026-06-10"
-  domain: "sociologia política — teoria do processo político / movimentos sociais"
-  method: "comparação qualitativa de casos (small-N, ciclos de protesto)"
+  started: "2026-04-01"   # início real do projeto (sessões anteriores); repo desde 2026-06-10
+  domain: "sociologia política — TPP / movimentos sociais / análise de conjuntura"
+  method: >
+    Comparação qualitativa de casos + codificação ordinal cycle_phases (8 variáveis,
+    escala 0-3, 5 fases) + process tracing analítico; futuramente PEA via Acervo Folha.
+  pi: "Gustavo Paccelli Costa (tese UFJF 2024 como fonte primária)"
 
-literature:
-  key_papers: []
-  open_problems: []
-  evidence_gaps: []
+components:
+  artigo_triangulo:
+    descricao: "Artigo teórico EOP–DOS–Análise de Conjuntura com estudo de caso (3 ciclos da tese)"
+    local: "artigo/"
+    status: "seções principais redigidas; falta consolidação final, diagrama/stepper e revisão"
+  cycle_phases:
+    descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
+    local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
+    status: "scores fixados; periodização sob revisão (frente B)"
+  quadro_hipoteses:
+    descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
+    local: "docs/projeto.md (síntese); .docx completo a incorporar"
+    status: "H1.2 com desenho de teste detalhado (process tracing + casos Coreia/Paraguai/Belarus)"
+  pipeline_pea:
+    descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
+    local: "a incorporar (pipeline/)"
+    status: "projetada em sessão anterior; scripts e configs fora do repo; aguarda credenciais"
 
-hypotheses:
-  - id: H1
-    statement: >
-      Ciclos de protesto de grande escala no Brasil emergem quando divisões
-      intra-elite (EOP) coincidem com uma oportunidade discursiva ressonante
-      (master frame de democracia ou anticorrupção); nenhuma das condições
-      isoladamente é suficiente. Predição: nos 4 casos as duas condições
-      estarão presentes na fase de pico; em momentos de mobilização frustrada
-      (e.g. protestos anti-Collor pré-CPI, protestos pós-2013 de menor escala)
-      faltará pelo menos uma.
-    status: refuted-reformulated
-    motivation: "Testa a complementaridade EOP+DOS contra explicações monocausais."
-    parent: null
-    priority: high
-    note: "Reformulada como H1' após refutação em C3 — ver findings.md"
-  - id: H2
-    statement: >
-      O alinhamento da grande mídia (componente da DOS: visibilidade+legitimidade)
-      condiciona o desfecho institucional do ciclo: ciclos com cobertura
-      legitimadora (Fora Collor, impeachment Dilma; Diretas Já tardiamente)
-      desembocam em desfechos institucionais canalizados; Junho de 2013, com
-      DOS instável e frames difusos, não produz desfecho institucional unificado.
-    status: supported
-    motivation: "Sistematiza o papel variável da mídia nos 4 ciclos — lacuna 3 do survey."
-    parent: null
-    priority: high
-  - id: H3
-    statement: >
-      Entre 1984 e 2016 ocorre deslocamento do master frame dos ciclos: de
-      democratização/participação (1984) para ética/anticorrupção (1992),
-      híbrido e disperso (2013) e anticorrupção com valência antipetista (2015-16).
-      Predição: análise dos frames dominantes em cada ciclo mostrará essa sequência.
-    status: supported
-    motivation: "Dimensão diacrônica da DOS; conecta os ciclos como série histórica."
-    parent: null
-    priority: medium
-  - id: H4
-    statement: >
-      A configuração da EOP molda a FORMA do ciclo: acesso institucional fechado +
-      aliados de elite influentes produzem ciclos canalizados por organizações
-      (1984, 1992); acesso aberto/participativo sem aliados de elite unificados
-      produz ciclo difuso e antipartidário (2013); aliados de elite + infraestrutura
-      digital produzem ciclo organizado de novo tipo (2015-16).
-    status: supported
-    motivation: "Liga EOP a repertório/organização, dialogando com Alonso & Mische 2017."
-    parent: null
-    priority: medium
-
-cases:
-  - id: C1
-    name: "Diretas Já (1983–1984)"
-  - id: C2
-    name: "Fora Collor (1992)"
-  - id: C3
-    name: "Jornadas de Junho (2013)"
-  - id: C4
-    name: "Mobilizações pró-impeachment de Dilma Rousseff (2015–2016)"
-
-analysis:
-  framework_dimensions:
-    political_opportunities:
-      - "abertura/fechamento do acesso institucional"
-      - "instabilidade de alinhamentos de elite"
-      - "presença de aliados influentes"
-      - "capacidade/propensão repressiva do Estado"
-      - "divisões intra-elite"
-    discursive_opportunities:
-      - "visibilidade na esfera pública midiática"
-      - "ressonância dos enquadramentos (frames)"
-      - "legitimidade dos atores e demandas"
-      - "alinhamento com discursos hegemônicos (anticorrupção, democracia)"
-  total_case_analyses: 4
+frentes_abertas:
+  - id: B
+    titulo: "Refinamento da periodização"
+    detalhe: >
+      Junho 2013: avaliar fase de radicalização entre expansão e pico.
+      Impeachment Dilma: cobrir lacunas 2015-09→2015-11 e 2016-04-18→2016-05-11;
+      validar início em 2014-10-26.
+    prioridade: alta
+  - id: C
+    titulo: "Estratégia de inferência causal"
+    detalhe: "Process tracing por caso + comparação sistemática; operacionalizar teste de H1.2"
+    prioridade: alta
+  - id: D
+    titulo: "Construção do banco protest_events"
+    detalhe: "Incorporar scripts da pipeline ao repo; executar quando houver credenciais do Acervo Folha"
+    prioridade: media
 
 outer_loop:
-  cycle: 1
-  last_direction: deepen
+  cycle: 2
+  last_direction: pivot
   last_reflection: >
-    C1-C4 concluídos. H1 refutada como enunciada e reformulada (H1': DOS explica
-    emergência/escala; divisão de elite explica desfecho institucional). H2-H4
-    suportadas. Próximos passos: mini-survey de legal opportunity structure,
-    verificação de citações, fichamento de Tatagiba 2014; então avaliar CONCLUDE.
+    2026-06-10: PIVOT — abandono do framework bootstrap da sessão (matrizes
+    qualitativas próprias) em favor do desenho já consolidado do pesquisador
+    (codebook cycle_phases, periodização 5 fases, 14 hipóteses, artigo do
+    triângulo, pipeline PEA), trazido via documentos das sessões claude.ai.
+    Os memorandos C1-C4 da sessão ficam como material exploratório de apoio
+    (justificativas de scores e fontes verificadas) em experiments/.
 
 workspace:
+  projeto: "docs/projeto.md"
   findings: "findings.md"
   log: "research-log.md"
+  artigo: "artigo/"
+  codebook: "codebook/"
+  data: "data/"
   literature_dir: "literature/"
   experiments_dir: "experiments/"
   to_human_dir: "to_human/"
-  paper_dir: "paper/"

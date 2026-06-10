@@ -2,6 +2,13 @@
 
 Última atualização: 2026-06-10 (outer loop 1 — após análises C1–C4)
 
+## AVISO — Pivô de 2026-06-10
+O projeto agora segue o desenho consolidado do pesquisador (ver docs/projeto.md
+e research-state.yaml). A síntese abaixo foi produzida no framework exploratório
+da sessão e permanece como apoio; a tese central dela (DOS explica emergência/
+escala; divisão de elite explica desfecho institucional) converge com H1.2 e
+com os padrões 1–4 do artigo, e deve ser absorvida pelo quadro de 14 hipóteses.
+
 ## Pergunta de pesquisa
 Como as estruturas de oportunidades políticas (EOP) e as oportunidades discursivas
 moldaram a emergência, a forma e os desfechos de quatro ciclos de protesto no Brasil:
