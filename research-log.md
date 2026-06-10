@@ -15,3 +15,11 @@
   bibliográfica via WebSearch.
 - Próximo passo: análise de caso C1 (Diretas Já) com a matriz EOP+DOS
   (experiments/c1-diretas-ja/).
+
+## 2026-06-10 — Inner loop 1: C1 Diretas Já
+- Análise C1 concluída (experiments/c1-diretas-ja/analysis.md).
+- P1 (H1) suportada; P3 (H4) suportada; P2 (H2) parcialmente suportada — em 1984
+  a mídia foi gatekeeper tardio, não produtora de frames; H2 será refinada.
+- Achados exploratórios: endogeneidade das oportunidades (E1); distinção
+  demanda atendida vs. realinhamento produzido na variável desfecho (E2).
+- Próximo: protocolo e análise C2 (Fora Collor).
