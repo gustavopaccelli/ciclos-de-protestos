@@ -27,10 +27,11 @@ hypotheses:
       estarão presentes na fase de pico; em momentos de mobilização frustrada
       (e.g. protestos anti-Collor pré-CPI, protestos pós-2013 de menor escala)
       faltará pelo menos uma.
-    status: pending
+    status: refuted-reformulated
     motivation: "Testa a complementaridade EOP+DOS contra explicações monocausais."
     parent: null
     priority: high
+    note: "Reformulada como H1' após refutação em C3 — ver findings.md"
   - id: H2
     statement: >
       O alinhamento da grande mídia (componente da DOS: visibilidade+legitimidade)
@@ -38,7 +39,7 @@ hypotheses:
       legitimadora (Fora Collor, impeachment Dilma; Diretas Já tardiamente)
       desembocam em desfechos institucionais canalizados; Junho de 2013, com
       DOS instável e frames difusos, não produz desfecho institucional unificado.
-    status: pending
+    status: supported
     motivation: "Sistematiza o papel variável da mídia nos 4 ciclos — lacuna 3 do survey."
     parent: null
     priority: high
@@ -48,7 +49,7 @@ hypotheses:
       democratização/participação (1984) para ética/anticorrupção (1992),
       híbrido e disperso (2013) e anticorrupção com valência antipetista (2015-16).
       Predição: análise dos frames dominantes em cada ciclo mostrará essa sequência.
-    status: pending
+    status: supported
     motivation: "Dimensão diacrônica da DOS; conecta os ciclos como série histórica."
     parent: null
     priority: medium
@@ -59,7 +60,7 @@ hypotheses:
       (1984, 1992); acesso aberto/participativo sem aliados de elite unificados
       produz ciclo difuso e antipartidário (2013); aliados de elite + infraestrutura
       digital produzem ciclo organizado de novo tipo (2015-16).
-    status: pending
+    status: supported
     motivation: "Liga EOP a repertório/organização, dialogando com Alonso & Mische 2017."
     parent: null
     priority: medium
@@ -87,12 +88,16 @@ analysis:
       - "ressonância dos enquadramentos (frames)"
       - "legitimidade dos atores e demandas"
       - "alinhamento com discursos hegemônicos (anticorrupção, democracia)"
-  total_case_analyses: 3
+  total_case_analyses: 4
 
 outer_loop:
-  cycle: 0
-  last_direction: null
-  last_reflection: ""
+  cycle: 1
+  last_direction: deepen
+  last_reflection: >
+    C1-C4 concluídos. H1 refutada como enunciada e reformulada (H1': DOS explica
+    emergência/escala; divisão de elite explica desfecho institucional). H2-H4
+    suportadas. Próximos passos: mini-survey de legal opportunity structure,
+    verificação de citações, fichamento de Tatagiba 2014; então avaliar CONCLUDE.
 
 workspace:
   findings: "findings.md"

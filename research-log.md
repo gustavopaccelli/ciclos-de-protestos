@@ -39,3 +39,12 @@
 - P2–P4 suportadas. Exploratórios: E5 (repressão abre a DOS); E6 (ciclos como
   série conectada — desfecho de 2013 é insumo de 2015-16).
 - Próximo: protocolo e análise C4 (impeachment Dilma); depois outer loop 1.
+
+## 2026-06-10 — Inner loop 4: C4 impeachment Dilma + Outer loop 1
+- C4: P1–P4 suportadas (com H1 reformulada). Exploratórios: E7 (contra-ciclo
+  disputando a DOS), E8 (oportunidades judiciais — Lava Jato).
+- Outer loop 1 (DEEPEN): tese central formulada — DOS explica emergência/escala,
+  divisão de elite explica desfecho institucional; alinhamento estável das duas
+  produz ciclos curtos e canalizados. Quadro comparativo 4 casos em findings.md.
+- Pendências antes de CONCLUDE: survey de legal opportunity structure; verificação
+  de citações de memória; fichamento de Tatagiba 2014.
