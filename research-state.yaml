@@ -40,8 +40,11 @@ frentes_abertas:
     prioridade: concluida
   - id: C
     titulo: "Estratégia de inferência causal"
-    detalhe: "Process tracing por caso + comparação sistemática; operacionalizar teste de H1.2"
-    prioridade: alta
+    detalhe: >
+      EM ESPERA por decisão do usuário (2026-06-10) — ele está reavaliando a
+      abordagem das inferências causais. Não iniciar sem instrução explícita.
+      Material de referência: desenho de teste de H1.2 em docs/projeto.md.
+    prioridade: aguardando-usuario
   - id: D
     titulo: "Construção do banco protest_events"
     detalhe: "Incorporar scripts da pipeline ao repo; executar quando houver credenciais do Acervo Folha"

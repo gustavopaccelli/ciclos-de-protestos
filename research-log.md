@@ -90,3 +90,8 @@
   codebook atualizado com a fase radicalizacao e a nota de periodização.
 - Pendência menor: conferir datas dos comícios de abr/1984 e dos atos de
   out/2013 na redação final.
+
+## 2026-06-10 — Frente C em espera
+- Usuário validou a periodização v2 integralmente, mas pediu para NÃO iniciar
+  a inferência causal por enquanto — está reavaliando a abordagem. Aguardar
+  decisão antes de qualquer trabalho na frente C.
