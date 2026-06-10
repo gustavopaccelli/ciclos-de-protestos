@@ -84,3 +84,9 @@
   11/05/16 (tramitação no Senado); início em 26/10/14 validado (padrão 3 —
   construção deliberada exige incluir a fase formativa).
 - Aguardando validação do usuário para substituir a v1.
+
+## 2026-06-10 — Frente B VALIDADA pelo usuário
+- v2 adotada integralmente: data/cycle_phases.csv substituído (21 fases);
+  codebook atualizado com a fase radicalizacao e a nota de periodização.
+- Pendência menor: conferir datas dos comícios de abr/1984 e dos atos de
+  out/2013 na redação final.

@@ -23,7 +23,7 @@ components:
   cycle_phases:
     descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
     local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
-    status: "scores fixados; periodização sob revisão (frente B)"
+    status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/projeto.md (síntese); .docx completo a incorporar"
@@ -36,11 +36,8 @@ components:
 frentes_abertas:
   - id: B
     titulo: "Refinamento da periodização"
-    detalhe: >
-      Junho 2013: avaliar fase de radicalização entre expansão e pico.
-      Impeachment Dilma: cobrir lacunas 2015-09→2015-11 e 2016-04-18→2016-05-11;
-      validar início em 2014-10-26.
-    prioridade: alta
+    detalhe: "CONCLUÍDA — v2 validada (docs/periodizacao-revisao.md); pendência menor: conferir datas dos comícios de abr/84 e atos de out/13 na redação final"
+    prioridade: concluida
   - id: C
     titulo: "Estratégia de inferência causal"
     detalhe: "Process tracing por caso + comparação sistemática; operacionalizar teste de H1.2"
