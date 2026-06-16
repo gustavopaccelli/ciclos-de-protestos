@@ -95,3 +95,46 @@
 - Usuário validou a periodização v2 integralmente, mas pediu para NÃO iniciar
   a inferência causal por enquanto — está reavaliando a abordagem. Aguardar
   decisão antes de qualquer trabalho na frente C.
+
+## 2026-06-16 — Incorporação do Protocolo BEP-CEBRAP (Alonso et al. 2024)
+
+**Artigo incorporado:** Alonso, A.; Rezende, P. J.; Souza, R. de; Souza, V. B. de.
+"Análise de Eventos de Protesto: decisões metodológicas na organização do Banco de
+Eventos de Protesto (BEP) 2013-2016." *Plural*, v. 31.2, 2024, p. 288-323.
+DOI: 10.11606/issn.2176-8099.pcso.2024.233335
+
+**Aplicabilidades metodológicas (Frente D — pipeline protest_events):**
+- Definição operacional de evento de protesto formalizada: 4 critérios de inclusão
+  (ação pública coletiva / não estatal / contestatória / com reivindicações) e
+  exclusões explícitas (individual, lúdico, rotineiro, virtual, não-confirmado).
+- Critérios de continuidade espaço-temporal para delimitação da unidade analítica
+  (evento ≠ notícia): regra das 24h; continuidade espacial; separação por pautas opostas.
+- Validação das palavras-chave do `queries.yaml` (conjunto testado pelo BEP em 17.752
+  notícias de Junho 2013).
+- Estratégia de fonte primária (Folha de S.Paulo) + secundária (G1/portais regionais)
+  para controle dos vieses de seleção e descrição.
+- 5 blocos de variáveis BEP mapeados para o `event_schema` do codebook DoCA; novos
+  campos incorporados: `location_venue_type`, `location_conventional`, `city_size`,
+  `crowd_size_bep`, `actor_org_type`, `actor_formalization`, `action_object`,
+  `action_instrument`, `symbols`, `slogans`, `conflict_inter_group`.
+- Verbos canônicos de ação (dicionário BEP) incorporados ao `repertoires`.
+- Limiar de confiabilidade inter-codificadores: Cohen's Kappa ≥ 0,75.
+- Threshold de exclusão para variáveis com excesso de missings: >30%.
+- Legitimidade metodológica explicitada pelos autores para uso de IA/NLP em
+  codificação semi-automática — desde que ancorada em bom desenho de pesquisa.
+
+**Contribuições epistemológico-teóricas (projeto geral):**
+- Neutralidade axiológica da AEP: banco captura tanto ciclos progressistas quanto
+  conservadores — essencial para o desenho comparativo dos 4 ciclos do projeto.
+- Filiação à TCP (McAdam, Tarrow, Tilly): confirma coerência teórica entre o quadro
+  EOP+DOS do projeto e o método empírico da AEP.
+- Articulação sintaxe (Franzosi: ator–ação–objeto) + semântica (Benford & Snow: frames)
+  — mapeia diretamente para EOP (estrutural) e DOS (discursiva).
+- Bloco V (respostas das autoridades): codifica a dimensão repressiva — variável
+  central para teste de H1 (efeito da repressão sobre escala e resultado do ciclo).
+
+**Arquivos criados/modificados:**
+- `docs/aep-protocol-bep.md` — memo metodológico canônico (CRIADO)
+- `pipeline/config/doca_codebook.yaml` — alinhado ao BEP (5 blocos, novos campos)
+- `docs/projeto.md` — referência a Alonso et al. e aep-protocol-bep.md adicionada
+- `research-state.yaml` — método e Frente D atualizados

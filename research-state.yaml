@@ -12,7 +12,8 @@ project:
   domain: "sociologia política — TPP / movimentos sociais / análise de conjuntura"
   method: >
     Comparação qualitativa de casos + codificação ordinal cycle_phases (8 variáveis,
-    escala 0-3, 5 fases) + process tracing analítico; futuramente PEA via Acervo Folha.
+    escala 0-3, 5 fases) + process tracing analítico; PEA via Acervo Folha (Protocolo
+    BEP-CEBRAP — Alonso et al. 2024, Plural 31.2).
   pi: "Gustavo Paccelli Costa (tese UFJF 2024 como fonte primária)"
 
 components:
@@ -31,7 +32,13 @@ components:
   pipeline_pea:
     descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
     local: "pipeline/"
-    status: "reconstruída no repo (pipeline/); codebook DoCA em rascunho a validar; execução aguarda credenciais"
+    status: >
+      Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md
+      documenta definição de evento, 5 blocos de variáveis, critérios de
+      continuidade e codificação mista alinhados a Alonso et al. (2024).
+      Codebook DoCA atualizado com campos BEP (location_venue_type,
+      location_conventional, actor_org_type, actor_formalization, symbols,
+      slogans, conflict_inter_group). Execução aguarda credenciais Acervo Folha.
 
 frentes_abertas:
   - id: B
@@ -47,7 +54,11 @@ frentes_abertas:
     prioridade: aguardando-usuario
   - id: D
     titulo: "Construção do banco protest_events"
-    detalhe: "Incorporar scripts da pipeline ao repo; executar quando houver credenciais do Acervo Folha"
+    detalhe: >
+      Protocolo BEP-CEBRAP incorporado como âncora metodológica (2026-06-16).
+      Codebook DoCA alinhado aos 5 blocos do BEP (docs/aep-protocol-bep.md).
+      Próximos passos: (1) incorporar scripts pipeline ao repo; (2) validar
+      codebook com usuário; (3) executar quando houver credenciais Acervo Folha.
     prioridade: media
 
 outer_loop:

@@ -1,8 +1,100 @@
 # Codebook DoCA — protest_events
-# ⚠️ RASCUNHO RECONSTRUÍDO (2026-06-10): o codebook original (doca_codebook.yaml
-# da sessão anterior) não está no repositório. Esta versão reconstrói a estrutura
-# documentada (claim codes de 4 dígitos em 9 domínios; repertórios de Tilly;
-# escala de multidão) e DEVE ser validada/substituída pelo original.
+# Âncora metodológica: Alonso et al. (2024) — Protocolo BEP-CEBRAP
+# Ver docs/aep-protocol-bep.md para mapeamento completo BEP → DoCA
+
+# ---------------------------------------------------------------------------
+# BLOCO I — Identificação do evento
+# ---------------------------------------------------------------------------
+
+location_venue_types:
+  - "estabelecimento-comercial"
+  - "instituição-cultural-ensino"
+  - "instituição-religiosa"
+  - "órgão-sistema-viário"
+  - "órgão-poder-público"
+  - "praça-via-pública"
+  - "rodovia"
+  - "sede-partido-político"
+  - "SI"   # sem informação
+
+location_conventional:
+  convencional:
+    - "praça-via-pública"
+    - "instituição-cultural-ensino"
+    - "órgão-poder-público"
+    - "sede-partido-político"
+  nao_convencional:
+    - "estabelecimento-comercial"
+    - "instituição-religiosa"
+    - "rodovia"
+    - "órgão-sistema-viário"
+
+city_size_classes:   # Estatuto da Cidade, Lei 10.257/01
+  pequeno: "população < 20.000"
+  medio:   "população 20.000–50.000"
+  grande:  "população > 100.000"
+
+crowd_size_scale:   # escala ordinal para saída do LLM
+  "0": "não informado"
+  "1": "até 100"
+  "2": "101–1.000"
+  "3": "1.001–10.000"
+  "4": "10.001–100.000"
+  "5": "mais de 100.000"
+
+crowd_size_bep:   # categorias nominais BEP (derivadas do valor numérico reportado)
+  pequena: "até 2.000 manifestantes"
+  media:   "2.001–10.000 manifestantes"
+  grande:  "10.001–100.000 manifestantes"
+  mega:    "mais de 100.000 manifestantes"
+
+# ---------------------------------------------------------------------------
+# BLOCO II — Atores coletivos
+# ---------------------------------------------------------------------------
+
+actor_org_types:   # var. 13 BEP — forma de organização
+  - "associação-civil"
+  - "associação-empresarial"
+  - "igreja"
+  - "movimento-social"
+  - "partido-político"
+  - "sindicato"
+  - "manifestantes"   # sem organização identificada
+
+actor_formalization:   # var. 14 BEP
+  formal:   "Agrupamento formalizado/institucionalizado, identificado pelo nome"
+  informal: "Agrupamento reconhecível, mas sem indício de institucionalização"
+
+# ---------------------------------------------------------------------------
+# BLOCO III — Performances políticas
+# ---------------------------------------------------------------------------
+
+repertoires:   # verbos canônicos BEP/Tilly; usar infinitivo; sinônimos convergem para o mais geral
+  - "agredir"
+  - "arremessar"
+  - "assembleia"        # exceção: substantivo canônico
+  - "barricada"         # exceção: substantivo canônico
+  - "bloquear"
+  - "concentrar"        # padrão quando não há forma específica de ação
+  - "greve"             # exceção: substantivo canônico
+  - "incendiar"
+  - "marchar"
+  - "ocupar"
+  - "panfletar"
+  - "passeata"          # exceção: substantivo canônico
+  - "peticionar"
+  - "pichar"
+  - "quebrar"
+  - "saquear"
+  - "vigília"
+  - "panelaço/buzinaço"
+  - "carreata"
+  - "comício"
+  - "performance/ato-simbólico"
+
+# ---------------------------------------------------------------------------
+# BLOCO IV — Temas e slogans
+# ---------------------------------------------------------------------------
 
 claim_codes:
   # Domínio 1xxx — Político-institucional
@@ -45,45 +137,63 @@ claim_codes:
   "9100": "Solidariedade / apoio a outro movimento"
   "9900": "Outra demanda (especificar em claim_text)"
 
-repertoires:   # Tilly / Alonso
-  - "passeata/marcha"
-  - "comício"
-  - "concentração/ato público"
-  - "greve"
-  - "ocupação de prédio/terra"
-  - "bloqueio de via"
-  - "panelaço/buzinaço"
-  - "vigília"
-  - "ação direta/confronto"
-  - "abaixo-assinado/petição"
-  - "carreata"
-  - "performance/ato simbólico"
+# ---------------------------------------------------------------------------
+# BLOCO V — Resposta das autoridades / interação entre manifestantes
+# ---------------------------------------------------------------------------
 
-crowd_size_scale:
-  "0": "não informado"
-  "1": "até 100"
-  "2": "101–1.000"
-  "3": "1.001–10.000"
-  "4": "10.001–100.000"
-  "5": "mais de 100.000"
+repression_levels:
+  none:       "Sem conflito reportado"
+  dispersão:  "Ação policial de dispersão (gás, spray, cavalaria)"
+  prisões:    "Detenções/prisões de manifestantes"
+  violência:  "Violência física com feridos"
 
-event_schema:   # campos do JSON de saída do coder (ver 02_doca_coder.py)
-  - event_id            # UUID5 determinístico (url+data)
-  - event_date          # YYYY-MM-DD (data do EVENTO, não da publicação)
+# ---------------------------------------------------------------------------
+# Schema do evento — campos do JSON de saída do 02_doca_coder.py
+# ---------------------------------------------------------------------------
+
+event_schema:
+  # Bloco I — identificação
+  - event_id              # UUID5 determinístico (source_url + event_date + location_city)
+  - event_date            # YYYY-MM-DD (data do EVENTO, não da publicação)
+  - location_venue        # lista: todos os locais/trajetos do evento
+  - location_venue_type   # tipo do local principal (ver location_venue_types)
+  - location_conventional # bool: uso convencional do local
   - location_city
-  - location_state
-  - actors              # lista de atores coletivos organizadores/participantes
-  - targets             # alvo da reivindicação (governo federal, prefeitura, empresa...)
-  - claim_code          # código de 4 dígitos do codebook
-  - claim_text          # demanda em texto livre
-  - repertoire          # um dos repertórios acima
-  - crowd_size_reported # número informado pela fonte (ou null)
-  - crowd_size_scale    # escala 0-5
-  - police_presence     # bool
-  - repression          # none | dispersão | prisões | violência
-  - arrests_reported    # int ou null
-  - injuries_reported   # int ou null
+  - city_size             # pequeno | medio | grande
+  - location_state        # sigla (SP, RJ, ...)
+  - crowd_size_reported   # número bruto conforme fonte (int ou null); usar o maior valor
+  - crowd_size_scale      # escala 0–5 (ver crowd_size_scale)
+  - crowd_size_bep        # pequena | media | grande | mega (derivado de crowd_size_reported)
+  # Bloco II — atores
+  - actors                # lista de objetos:
+    #   name:             nome/sigla do ator (prioridade: sigla+nome > cat.MS > "manifestantes")
+    #   specification:    subgrupos, indivíduos nomeados (str ou null)
+    #   org_type:         ver actor_org_types
+    #   formalization:    formal | informal
+  # Bloco III — performances
+  - repertoire            # verbo/substantivo canônico (ver repertoires)
+  - action_object         # objeto da ação (str ou null)
+  - action_instrument     # instrumento da ação (str ou null)
+  - symbols               # lista: bandeiras, signos visuais/corporais ostentados
+  # Bloco IV — temas e slogans
+  - claim_code            # código 4 dígitos (ver claim_codes)
+  - claim_text            # demanda em texto livre
+  - slogans               # lista: slogans verbatim (grafia original)
+  # Bloco V — respostas e interação
+  - conflict_present      # bool — TRUE se qualquer conflito reportado
+  - repression            # none | dispersão | prisões | violência
+  - conflict_police       # bool — conflito com forças de segurança
+  - conflict_inter_group  # bool — conflito entre grupos de manifestantes
+  - arrests_reported      # int ou null
+  - injuries_reported     # int ou null
+  # Metadados
   - source_url
-  - source_date         # data de publicação da matéria
-  - eligible            # bool — passou no critério DoCA
-  - notes
+  - source_date           # data de publicação da matéria (YYYY-MM-DD)
+  - eligible              # bool — passou nos 4 critérios de evento de protesto (§2)
+  - notes                 # justificativa se eligible=false; ambiguidades de codificação
+
+# ---------------------------------------------------------------------------
+# Limiar de confiabilidade inter-codificadores
+# ---------------------------------------------------------------------------
+intercoder_kappa_threshold: 0.75   # Cohen's Kappa mínimo aceitável (Krippendorff 2004)
+missing_exclusion_threshold: 0.30  # variáveis com >30% null são excluídas da análise

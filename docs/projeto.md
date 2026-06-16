@@ -49,8 +49,14 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
 - `01_scraper.py` (Playwright, login Acervo Folha, busca incremental)
 - `02_doca_coder.py` (API Anthropic, system prompt DoCA, JSON validado)
 - `03_build_dataset.py` (CSV/XLSX multi-aba)
-- `04_intercoder_reliability.py` (Cohen's Kappa)
+- `04_intercoder_reliability.py` (Cohen's Kappa ≥ 0,75)
 - Config: `.env`, `queries.yaml`, `doca_codebook.yaml`
+- **Âncora metodológica**: Alonso, A. et al. "Análise de Eventos de Protesto:
+  decisões metodológicas na organização do BEP 2013-2016." *Plural*, v. 31.2,
+  2024. DOI: 10.11606/issn.2176-8099.pcso.2024.233335.
+  Ver `docs/aep-protocol-bep.md` para mapeamento completo das decisões do
+  Protocolo BEP-CEBRAP (definição de evento, seleção de fontes, 5 blocos de
+  variáveis, critérios de continuidade espaço-temporal, codificação mista).
 > Pendência: scripts gerados em sessão anterior (ZIP) — incorporar ao
 > repositório; execução depende de credenciais do Acervo Folha.
 
