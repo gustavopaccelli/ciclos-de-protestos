@@ -27,8 +27,8 @@ components:
     status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
-    local: "docs/projeto.md (síntese); .docx completo a incorporar"
-    status: "H1.2 com desenho de teste detalhado (process tracing + casos Coreia/Paraguai/Belarus)"
+    local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"
+    status: "Quadro completo incorporado (2026-06-16); H1.2 com desenho de teste detalhado (process tracing + casos Coreia/Paraguai/Belarus)"
   pipeline_pea:
     descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
     local: "pipeline/"
