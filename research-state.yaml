@@ -1,0 +1,84 @@
+# Research State — Central Project Tracking
+
+project:
+  title: "Ciclos de Protesto no Brasil — EOP, DOS e Análise de Conjuntura"
+  question: >
+    Como as configurações de estruturas de oportunidades políticas (EOP) e
+    discursivas (DOS), lidas conjunturalmente pelos atores, condicionam a
+    emergência, a dinâmica de fases e os desfechos dos ciclos de protesto no
+    Brasil (Diretas Já, Fora Collor, Junho 2013, Impeachment Dilma)?
+  status: active
+  started: "2026-04-01"   # início real do projeto (sessões anteriores); repo desde 2026-06-10
+  domain: "sociologia política — TPP / movimentos sociais / análise de conjuntura"
+  method: >
+    Comparação qualitativa de casos + codificação ordinal cycle_phases (8 variáveis,
+    escala 0-3, 5 fases) + process tracing analítico; PEA via Acervo Folha (Protocolo
+    BEP-CEBRAP — Alonso et al. 2024, Plural 31.2).
+  pi: "Gustavo Paccelli Costa (tese UFJF 2024 como fonte primária)"
+
+components:
+  artigo_triangulo:
+    descricao: "Artigo teórico EOP–DOS–Análise de Conjuntura com estudo de caso (3 ciclos da tese)"
+    local: "artigo/"
+    status: "seções principais redigidas; falta consolidação final, diagrama/stepper e revisão"
+  cycle_phases:
+    descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
+    local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
+    status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
+  quadro_hipoteses:
+    descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
+    local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"
+    status: "Quadro completo incorporado (2026-06-16); H1.2 com desenho de teste detalhado (process tracing + casos Coreia/Paraguai/Belarus)"
+  pipeline_pea:
+    descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
+    local: "pipeline/"
+    status: >
+      Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md
+      documenta definição de evento, 5 blocos de variáveis, critérios de
+      continuidade e codificação mista alinhados a Alonso et al. (2024).
+      Codebook DoCA atualizado com campos BEP (location_venue_type,
+      location_conventional, actor_org_type, actor_formalization, symbols,
+      slogans, conflict_inter_group). Execução aguarda credenciais Acervo Folha.
+
+frentes_abertas:
+  - id: B
+    titulo: "Refinamento da periodização"
+    detalhe: "CONCLUÍDA — v2 validada (docs/periodizacao-revisao.md); pendência menor: conferir datas dos comícios de abr/84 e atos de out/13 na redação final"
+    prioridade: concluida
+  - id: C
+    titulo: "Estratégia de inferência causal"
+    detalhe: >
+      EM ESPERA por decisão do usuário (2026-06-10) — ele está reavaliando a
+      abordagem das inferências causais. Não iniciar sem instrução explícita.
+      Material de referência: desenho de teste de H1.2 em docs/projeto.md.
+    prioridade: aguardando-usuario
+  - id: D
+    titulo: "Construção do banco protest_events"
+    detalhe: >
+      Protocolo BEP-CEBRAP incorporado como âncora metodológica (2026-06-16).
+      Codebook DoCA alinhado aos 5 blocos do BEP (docs/aep-protocol-bep.md).
+      Próximos passos: (1) incorporar scripts pipeline ao repo; (2) validar
+      codebook com usuário; (3) executar quando houver credenciais Acervo Folha.
+    prioridade: media
+
+outer_loop:
+  cycle: 2
+  last_direction: pivot
+  last_reflection: >
+    2026-06-10: PIVOT — abandono do framework bootstrap da sessão (matrizes
+    qualitativas próprias) em favor do desenho já consolidado do pesquisador
+    (codebook cycle_phases, periodização 5 fases, 14 hipóteses, artigo do
+    triângulo, pipeline PEA), trazido via documentos das sessões claude.ai.
+    Os memorandos C1-C4 da sessão ficam como material exploratório de apoio
+    (justificativas de scores e fontes verificadas) em experiments/.
+
+workspace:
+  projeto: "docs/projeto.md"
+  findings: "findings.md"
+  log: "research-log.md"
+  artigo: "artigo/"
+  codebook: "codebook/"
+  data: "data/"
+  literature_dir: "literature/"
+  experiments_dir: "experiments/"
+  to_human_dir: "to_human/"

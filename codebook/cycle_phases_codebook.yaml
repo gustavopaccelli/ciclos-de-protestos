@@ -1,0 +1,68 @@
+# Codebook — cycle_phases
+# Projeto: Ciclos de Protesto no Brasil (agenda pós-defesa — Gustavo Paccelli Costa)
+# Fonte: desenho teórico-metodológico do projeto + sessão de scoring validada em 2026-06-05
+# Unidade de análise: fase de ciclo (cycle × phase)
+# Escala ordinal: 0 = ausente/nulo | 1 = baixo/incipiente | 2 = moderado/presente | 3 = alto/determinante
+
+periodizacao:
+  fases: [emergencia, expansao, pico, radicalizacao, declinio, desfecho]
+  nota: >
+    v2 validada em 2026-06-10 (ver docs/periodizacao-revisao.md).
+    A fase "radicalizacao" é específica de Junho 2013 (21/06–31/07: saída das
+    massas, predomínio black bloc, recriminalização midiática — 2ª inversão da
+    DOS no ciclo); nos demais ciclos é vazia e, em tabelas comparativas 4×5,
+    pode ser agregada ao declínio. Ciclo Dilma: expansão até 2015-11-30
+    (construção institucional da janela: TCU 02/10, pauta-bomba, articulação
+    Temer) e pico até 2016-05-11 (admissibilidade no Senado); início do ciclo
+    em 2014-10-26 validado (padrão de construção deliberada de EOP+DOS).
+
+blocos:
+  oportunidades_politicas:
+    op_abertura_institucional:
+      descricao: "Grau de abertura do sistema político a demandas externas"
+      fundamento: "Tarrow (2009); McAdam (1982); Kriesi et al. (1995)"
+    op_divisao_elites:
+      descricao: "Divisão ou dissensão entre elites governantes"
+      fundamento: "Tarrow (2009); McAdam, Tarrow & Tilly (2001) — defecção de elites"
+    op_aliados_influentes:
+      descricao: "Presença de aliados dentro do sistema político"
+      fundamento: "Tarrow (2009)"
+    op_crise_legitimidade:
+      descricao: "Crise de legitimidade do governo/regime"
+      fundamento: "Costa (2024); Weyland (1993)"
+    op_repressao:
+      descricao: "Nível de repressão estatal ao protesto (codificação NÃO invertida: 3 = repressão alta)"
+      fundamento: "Tarrow (2009); della Porta (2018) — repressão como detonador em 2013"
+  oportunidades_discursivas:
+    od_visibilidade_midia:
+      descricao: "Cobertura e enquadramento midiático favorável"
+      fundamento: "Koopmans & Olzak (2004) — visibilidade; Ferree et al. (2002) — mídia como gatekeeper"
+    od_ressonancia_discursiva:
+      descricao: "Ressonância dos frames do movimento junto ao público"
+      fundamento: "Koopmans & Statham (1999); Snow & Benford (1988); Ferree (2003)"
+    od_legitimidade_narrativa:
+      descricao: "Legitimidade pública da narrativa dos manifestantes"
+      fundamento: "Koopmans & Olzak (2004) — legitimidade; McCammon et al. (2007)"
+
+ciclos:
+  - id: diretas_ja
+    nome: "Diretas Já"
+    periodo: "1983-03 a 1985-03"
+  - id: fora_collor
+    nome: "Fora Collor"
+    periodo: "1992-05 a 1992-12"
+  - id: junho_2013
+    nome: "Junho de 2013"
+    periodo: "2013-06 a 2013-12"
+  - id: impeachment_dilma
+    nome: "Impeachment Dilma"
+    periodo: "2014-10 a 2016-09"
+
+dataset_irmao:
+  protest_events:
+    descricao: >
+      Dataset no nível do evento de protesto (PEA), a construir via Acervo Folha
+      com pipeline DoCA (scraper Playwright → coder via API Anthropic →
+      dataset builder → confiabilidade intercodificadores via Cohen's Kappa).
+    codebook: "doca_codebook.yaml (claim codes de 4 dígitos em 9 domínios; repertórios de Tilly; escalas de multidão)"
+    status: "pipeline projetada; scripts a incorporar ao repositório; extração pendente de credenciais do Acervo Folha"

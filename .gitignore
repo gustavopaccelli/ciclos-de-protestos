@@ -1,0 +1,5 @@
+.env
+pipeline/data/raw/
+pipeline/data/coded/
+pipeline/data/scrape_state.json
+__pycache__/
