@@ -47,12 +47,16 @@ frentes_abertas:
     detalhe: "CONCLUÍDA — v2 validada (docs/periodizacao-revisao.md); pendência menor: conferir datas dos comícios de abr/84 e atos de out/13 na redação final"
     prioridade: concluida
   - id: C
-    titulo: "Estratégia de inferência causal"
+    titulo: "Consolidação do artigo — preprint para publicação"
     detalhe: >
-      EM ESPERA por decisão do usuário (2026-06-10) — ele está reavaliando a
-      abordagem das inferências causais. Não iniciar sem instrução explícita.
-      Material de referência: desenho de teste de H1.2 em docs/projeto.md.
-    prioridade: aguardando-usuario
+      Consolidar as seções já redigidas (artigo/) em documento único para
+      submissão como preprint. Tarefas: (1) montagem e revisão das seções em
+      ordem lógica; (2) integração do quadro de 14 hipóteses como seção ou
+      apêndice de discussão; (3) diagrama/figura do triângulo EOP–DOS–Análise
+      de Conjuntura; (4) conferir datas dos comícios de abr/1984 e atos de
+      out/2013 na redação; (5) revisar referências ABNT e adequar às normas do
+      periódico-alvo; (6) elaborar abstract e palavras-chave.
+    prioridade: alta
   - id: D
     titulo: "Construção do banco protest_events"
     detalhe: >

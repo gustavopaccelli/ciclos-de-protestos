@@ -175,4 +175,6 @@ DOI: 10.11606/issn.2176-8099.pcso.2024.233335
 - Classificadores ML do MPEDS (inglês) e interface Flask NÃO incorporados — substituídos
   pelo LLM DoCA/Anthropic do pipeline existente.
 
-**Nota:** Frente C (inferência causal) permanece em espera por decisão do usuário.
+**Nota:** Frente C redefinida pelo usuário (2026-07-03): deixa de ser "estratégia
+de inferência causal" e passa a ser "consolidação do artigo para preprint",
+incluindo integração do quadro de 14 hipóteses como seção de discussão.

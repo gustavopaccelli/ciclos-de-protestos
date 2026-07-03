@@ -65,11 +65,10 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
    Junho 2013 (entre expansão e pico); lacunas no ciclo Dilma
    (2015-09→2015-11; 2016-04-18→2016-05-11); decidir início do ciclo Dilma
    (2014-10-26, dia seguinte à reeleição, vs. mar/2015).
-2. **(C) Estratégia de inferência causal** — process tracing por caso
-   (Bengtsson & Ruonavaara 2017; Mahoney 2001) + comparação sistemática
-   (most similar/most different); operacionalizar o teste de H1.2 com os
-   indicadores de vulnerabilidade (aprovação Datafolha/Ibope; votações nominais
-   da Câmara; declarações de aliados; posição do Judiciário/MP).
+2. **(C) Consolidação do artigo — preprint para publicação** — montar as
+   seções já redigidas (`artigo/`) em documento único; integrar o quadro de
+   14 hipóteses como seção de discussão; elaborar diagrama EOP–DOS–Análise
+   de Conjuntura; revisar referências ABNT; redigir abstract e palavras-chave.
 3. **(D) Construção do banco `protest_events`** — incorporar e executar a
    pipeline DoCA quando houver credenciais.
 
