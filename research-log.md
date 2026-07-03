@@ -138,3 +138,41 @@ DOI: 10.11606/issn.2176-8099.pcso.2024.233335
 - `pipeline/config/doca_codebook.yaml` — alinhado ao BEP (5 blocos, novos campos)
 - `docs/projeto.md` — referência a Alonso et al. e aep-protocol-bep.md adicionada
 - `research-state.yaml` — método e Frente D atualizados
+
+## 2026-07-03 — Consolidação: bibliografia, cronologia validada, integração MPEDS
+
+### Tarefa 1 — Enriquecimento bibliográfico (concluída)
+- `artigo/referencias-abnt.md` expandido de 34 para 64 entradas, adicionando:
+  - Núcleo teórico AEP/PEA: Earl et al. (2004), Fillieule & Jiménez (2003), Franzosi (2004),
+    Hanna (2017/MPEDS), Goodwin & Jasper (1999).
+  - Núcleo TCP completo: McAdam (1982), McAdam, Tarrow & Tilly (2001), Kriesi et al. (1995),
+    Snow & Benford (1988; 1992), Tilly (1978; 2006), Tilly & Tarrow (2015), Tarrow (2011).
+  - Casos brasileiros: Mische (2008), Saad-Filho (2013), Solano (2018), Tatagiba (2014),
+    Weyland (1993), Kotscho (1984), Rodrigues A. T. (2003), Alonso (2015).
+  - Infraestrutura: MPEDS (Hanna 2017), Vandenberghe (2025).
+
+### Tarefa 2 — Validação da cronologia (concluída)
+- **Fonte eliminada:** Terra.com.br substituído por Agência Brasil/EBC, Portal da Câmara,
+  Senado Federal, CPDOC/FGV e Fundação Perseu Abramo.
+- **Discrepância corrigida:** Comício de Goiânia (Diretas Já) era registrado como
+  "fevereiro de 1984" — confirmado como **12 de abril de 1984** (Praça Cívica, ~300 mil).
+- `docs/cronologia-validada.md` criado com tabela completa de datas-chave, público estimado
+  e fonte confirmadora para os 4 ciclos.
+- `data/cycle_phases.csv` não requer correção: a data de Goiânia não consta como data
+  explícita nas fases (fase DJ-3 cobre abr/1984 — compatível com a data corrigida).
+
+### Tarefa 3 — Integração MPEDS (concluída)
+- `pipeline/config/doca_codebook.yaml` — novos campos incorporados ao `event_schema`:
+  `end_date`, `duration_days`, `multi_event_article`, `canonical_event_id`, `article_desc`,
+  `event_desc`, `counter_protest`, `smo`, `target`. Novas seções: `mpeds_form_categories`
+  (mapeamento 11 formas MPEDS → verbos BEP) e `mpeds_target_categories` (7 alvos adaptados
+  para o Brasil).
+- `docs/aep-protocol-bep.md` — adicionadas §10 (evento canônico e deduplicação) e §11
+  (workflow multi-passagem: 5 passagens sequenciais scraper → triagem → codificação →
+  dataset → confiabilidade).
+- `literature/survey.md` — adicionadas seção §4 (AEP/PEA Metodologia) e §5
+  (Infraestrutura computacional — MPEDS e afins).
+- Classificadores ML do MPEDS (inglês) e interface Flask NÃO incorporados — substituídos
+  pelo LLM DoCA/Anthropic do pipeline existente.
+
+**Nota:** Frente C (inferência causal) permanece em espera por decisão do usuário.

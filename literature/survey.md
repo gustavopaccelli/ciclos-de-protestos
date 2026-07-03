@@ -55,7 +55,18 @@ Pesquisa: EOP e oportunidades discursivas em quatro ciclos de protesto brasileir
 3. Pouca atenção ao papel variável da grande mídia (Rede Globo em particular) como *componente da DOS* nos quatro ciclos — da recusa inicial às Diretas, ao papel ativo em 1992 e 2015-16, e à inflexão durante junho de 2013.
 4. O deslocamento do *master frame* (democratização → ética/anticorrupção) ao longo dos ciclos não está sistematizado comparativamente.
 
-## 4. Fontes verificadas nesta sessão
+## 4. AEP/PEA — Metodologia de Análise de Eventos de Protesto
+
+- **Alonso, A.; Rezende, P. J.; Souza, R.; Souza, V. B. (2024). "Análise de Eventos de Protesto: decisões metodológicas na organização do Banco de Eventos de Protesto (BEP) 2013-2016." *Plural*, v. 31.2, p. 288-323. DOI: 10.11606/issn.2176-8099.pcso.2024.233335.** Referência canônica do pipeline. Define evento de protesto (4 critérios), os 5 blocos BEP, critérios de continuidade espaço-temporal e estratégia de codificação mista. Legitima o uso de IA/LLM desde que ancorado em desenho de pesquisa informado teoricamente e validado por inter-coder reliability.
+- **Earl, J.; Martin, A.; McCarthy, J. D.; Soule, S. A. (2004). "The use of newspaper data in the study of collective action." *Annual Review of Sociology*, v. 30, p. 65-80.** Revisão metodológica clássica dos vieses de fonte jornalística (seleção + descrição) e estratégias de controle. Base para a justificativa da Folha como fonte primária.
+- **Fillieule, O.; Jiménez, M. (2003). "Appendix A: the methodology of protest event analysis." In: Rootes, C. (Ed.). *Environmental Protest in Western Europe.* Oxford: Oxford University Press.** Protocolo metodológico de referência para PEA europeia; discute critérios de codificação e confiabilidade.
+- **Franzosi, R. (2004). *From Words to Numbers: Narrative, Data, and Social Science.* Cambridge: Cambridge University Press.** Fundamento da estrutura sintática ator–ação–objeto usada pelo BEP e pelo DoCA coder.
+
+## 5. Infraestrutura computacional de AEP — MPEDS e afins
+
+- **Hanna, A. (2017). *MPEDS: Machine-Learning Protest Event Data System* (v1.0). Zenodo. DOI: 10.5281/zenodo.886459.** Sistema ML para extração de eventos de protesto de jornais em inglês. Contribuições incorporadas ao projeto: conceito de *evento canônico* (deduplicação entre fontes e artigos), flag `multi_event_article`, workflow multi-passagem (artigo → evento → canônico → adjudicação), variáveis fechadas de `form` (11 categorias), `issue` (17 categorias) e `target` (7 categorias). Os classificadores ML em inglês não são reutilizados diretamente — substituídos pelo LLM DoCA via API Anthropic. Ver `docs/aep-protocol-bep.md` §§ 10-11 e `pipeline/config/doca_codebook.yaml` para o mapeamento MPEDS → DoCA/BEP. Repositório: https://github.com/MPEDS/mpeds
+
+## 6. Fontes verificadas nesta sessão
 - [Changing Repertoires and Partisan Ambivalence in the New Brazilian Protests (Wiley)](https://onlinelibrary.wiley.com/doi/abs/10.1111/blar.12470)
 - [Discursive Opportunity Structure — McCammon (Wiley)](https://onlinelibrary.wiley.com/doi/abs/10.1002/9780470674871.wbespm073)
 - [McCammon et al. 2007, ASR (SAGE)](https://journals.sagepub.com/doi/10.1177/000312240707200504)

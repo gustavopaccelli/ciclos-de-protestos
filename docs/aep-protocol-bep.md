@@ -298,3 +298,94 @@ metodologicamente legítimo dentro do Protocolo BEP — desde que:
 | **Codificação de respostas das autoridades** | O Bloco V captura a dimensão repressiva que é variável-chave em H1 (efeito da repressão sobre escala do ciclo) |
 | **Escala de porte da manifestação** | Fornece medida de "densidade demográfica" dos eventos, essencial para testar hipóteses sobre a relação entre tamanho do ciclo e resultado institucional |
 | **Série histórica possibilitada pela IA** | Permite expandir o BEP para os ciclos anteriores (Diretas Já, Fora Collor) — hoje inviáveis manualmente — e produzir séries longas que fundamentam comparações temporais rigorosas |
+
+---
+
+## 10. Evento canônico e deduplicação entre fontes
+
+*Incorporado a partir de: Hanna, A. MPEDS: Machine-Learning Protest Event Data System (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459*
+
+### 10.1 O problema da deduplicação
+
+Um mesmo evento de protesto pode ser coberto por múltiplos artigos na mesma fonte (notícia do dia + cobertura posterior) ou por diferentes fontes. Sem deduplicação, o banco infla artificialmente a contagem de eventos e distorce variáveis de tamanho e intensidade.
+
+O MPEDS distingue três níveis:
+
+| Nível | Definição | Campo DoCA |
+|---|---|---|
+| **Artigo** | Texto jornalístico individual, unidade de entrada do scraper | `source_url` |
+| **Evento codificado** | Extração do LLM a partir de um artigo; pode haver múltiplos eventos por artigo | `event_id` (UUID5) |
+| **Evento canônico** | Evento único após agrupamento de registros que descrevem o mesmo episódio real | `canonical_event_id` |
+
+### 10.2 Critério de canonização
+
+Dois eventos codificados (possivelmente de artigos diferentes) são agrupados em um evento canônico quando:
+1. As datas coincidem ou se sobrepõem (critérios de continuidade temporal do §4.1).
+2. A localidade é a mesma ou contígua (critério espacial do §4.1).
+3. Os atores principais e as reivindicações são compatíveis.
+
+O `canonical_event_id` é atribuído manualmente pelo editor na etapa de validação (ver §10.4) ou por algoritmo de deduplicação no `03_build_dataset.py` (implementação futura).
+
+### 10.3 Artigos com múltiplos eventos
+
+Quando um artigo relata dois ou mais eventos de protesto distintos (ex.: "protestos simultâneos em SP e RJ"), o campo `multi_event_article: true` sinaliza que o `02_doca_coder.py` deve desmembrar a notícia e produzir múltiplos registros no JSON de saída, cada um com seu próprio `event_id`.
+
+### 10.4 Fluxo de canonização
+
+```
+Artigo → scraper → JSON bruto (event_id por linha)
+                           ↓
+           03_build_dataset.py — clustering por (data, cidade, ator_principal)
+                           ↓
+           Editor humano — revisão de conflitos de ID e atribuição de canonical_event_id
+                           ↓
+           Dataset final — uma linha por evento canônico
+```
+
+---
+
+## 11. Workflow multi-passagem
+
+*Adaptado do fluxo MPEDS (Hanna 2017) para o pipeline DoCA/BEP.*
+
+O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem entrada, processamento e saída definidos:
+
+### Passagem 1 — Captura (01_scraper.py)
+
+| Item | Descrição |
+|---|---|
+| Entrada | Palavras-chave de `queries.yaml`; período de busca |
+| Processamento | Login no Acervo Folha; busca incremental por data; captura de HTML/texto da notícia |
+| Saída | Arquivo JSONL com `{source_url, source_date, headline, body_text, query_used}` |
+
+### Passagem 2 — Triagem (02_doca_coder.py, step 1)
+
+| Item | Descrição |
+|---|---|
+| Entrada | JSONL da Passagem 1 |
+| Processamento | LLM aplica critérios §2: marca `eligible: bool`; se `false`, registra motivo em `notes` |
+| Saída | JSONL filtrado com campo `eligible` preenchido |
+
+### Passagem 3 — Codificação (02_doca_coder.py, step 2)
+
+| Item | Descrição |
+|---|---|
+| Entrada | Registros com `eligible: true` |
+| Processamento | LLM preenche todos os campos do `event_schema` (Blocos I–V + campos MPEDS) |
+| Saída | JSONL com event_schema completo; `multi_event_article` sinaliza desmembramento |
+
+### Passagem 4 — Construção do dataset (03_build_dataset.py)
+
+| Item | Descrição |
+|---|---|
+| Entrada | JSONL da Passagem 3 |
+| Processamento | Normalização contra dicionários do codebook; clustering para `canonical_event_id`; exportação CSV/XLSX |
+| Saída | `protest_events.csv` (uma linha por evento canônico) + `protest_events_raw.csv` (uma linha por extração) |
+
+### Passagem 5 — Confiabilidade (04_intercoder_reliability.py)
+
+| Item | Descrição |
+|---|---|
+| Entrada | Amostra aleatória (≥10% do corpus) recodificada por codificador humano independente |
+| Processamento | Cálculo de Cohen's Kappa por variável |
+| Saída | Relatório de confiabilidade; variáveis com Kappa < 0,75 ou missing > 30% são sinalizadas para revisão do system prompt ou exclusão da análise |

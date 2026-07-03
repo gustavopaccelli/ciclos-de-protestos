@@ -151,6 +151,38 @@ repression_levels:
 # Schema do evento — campos do JSON de saída do 02_doca_coder.py
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Campos complementares — MPEDS (Hanna 2017, DOI: 10.5281/zenodo.886459)
+# Incorporados ao schema para alinhamento com infraestrutura AEP internacional.
+# ---------------------------------------------------------------------------
+
+mpeds_form_categories:   # 11 formas canônicas MPEDS → mapeamento para repertoires BEP
+  "march":               "marchar"
+  "rally":               "concentrar"
+  "blockade/slowdown":   "bloquear"
+  "strike":              "greve"
+  "occupation/sit-in":   "ocupar"
+  "riot":                ["agredir", "quebrar", "incendiar"]
+  "boycott":             "performance/ato-simbólico"
+  "hunger strike":       "vigília"
+  "petition":            "peticionar"
+  "vigil":               "vigília"
+  "other":               "concentrar"   # padrão residual
+
+mpeds_target_categories:   # 7 alvos MPEDS → adaptados para o Brasil
+  - "governo-federal"
+  - "governo-estadual"
+  - "governo-municipal"
+  - "empresa-privada"
+  - "universidade-instituicao-ensino"
+  - "judiciario-ministerio-publico"
+  - "internacional-organismo-supranacional"
+  - "outro"
+
+# ---------------------------------------------------------------------------
+# Schema do evento — campos do JSON de saída do 02_doca_coder.py
+# ---------------------------------------------------------------------------
+
 event_schema:
   # Bloco I — identificação
   - event_id              # UUID5 determinístico (source_url + event_date + location_city)
@@ -191,6 +223,16 @@ event_schema:
   - source_date           # data de publicação da matéria (YYYY-MM-DD)
   - eligible              # bool — passou nos 4 critérios de evento de protesto (§2)
   - notes                 # justificativa se eligible=false; ambiguidades de codificação
+  # Campos MPEDS (Hanna 2017) — deduplicação e contexto do artigo
+  - end_date              # YYYY-MM-DD — data de término do evento (null se não informado)
+  - duration_days         # int — duração em dias (derivado de event_date + end_date)
+  - multi_event_article   # bool — o artigo fonte cobre múltiplos eventos de protesto?
+  - canonical_event_id    # UUID ou null — ID do evento canônico após deduplicação entre fontes
+  - article_desc          # str — descrição livre do conteúdo do artigo (max. 300 chars)
+  - event_desc            # str — descrição livre do evento extraído (max. 300 chars)
+  - counter_protest       # bool — há contra-protesto simultâneo registrado na fonte?
+  - smo                   # lista: Organizações de Movimento Social (SMOs) formais identificadas
+  - target                # ver mpeds_target_categories — alvo primário das reivindicações
 
 # ---------------------------------------------------------------------------
 # Limiar de confiabilidade inter-codificadores

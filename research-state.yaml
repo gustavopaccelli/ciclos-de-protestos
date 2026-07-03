@@ -33,12 +33,13 @@ components:
     descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
     local: "pipeline/"
     status: >
-      Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md
-      documenta definição de evento, 5 blocos de variáveis, critérios de
-      continuidade e codificação mista alinhados a Alonso et al. (2024).
-      Codebook DoCA atualizado com campos BEP (location_venue_type,
-      location_conventional, actor_org_type, actor_formalization, symbols,
-      slogans, conflict_inter_group). Execução aguarda credenciais Acervo Folha.
+      Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md.
+      Integração MPEDS concluída (2026-07-03): codebook DoCA atualizado com
+      campos BEP + campos MPEDS (end_date, duration_days, multi_event_article,
+      canonical_event_id, article_desc, event_desc, counter_protest, smo, target,
+      mpeds_form_categories, mpeds_target_categories). Protocolo BEP expandido
+      com §10 (evento canônico/deduplicação) e §11 (workflow multi-passagem 5
+      etapas). Execução aguarda credenciais Acervo Folha.
 
 frentes_abertas:
   - id: B
