@@ -178,3 +178,32 @@ DOI: 10.11606/issn.2176-8099.pcso.2024.233335
 **Nota:** Frente C redefinida pelo usuário (2026-07-03): deixa de ser "estratégia
 de inferência causal" e passa a ser "consolidação do artigo para preprint",
 incluindo integração do quadro de 14 hipóteses como seção de discussão.
+
+## 2026-07-04 — Frente C: alinhamento do artigo a 4 ciclos (inclusão das Diretas Já)
+
+**Decisão do usuário:** o estudo de caso do artigo cobria apenas 3 ciclos (Fora
+Collor, Junho 2013, Impeachment), enquanto o dataset/hipóteses/cronologia cobrem
+4. Optou-se por INCLUIR Diretas Já no artigo, alinhando-o à grade completa.
+
+**Alterações no artigo (`artigo/secoes/`):**
+- `04b-estudo-de-caso.md` — nova subseção empírica 4.2 "A campanha das Diretas Já
+  (1983–1984): EOP de transição, DOS de ressonância máxima e mídia como gatekeeper";
+  demais subseções renumeradas (Collor 4.3, Junho 2013 4.4, Impeachment 4.5,
+  síntese 4.6). Título atualizado (1992–2016 → 1984–2016). Apresentação (4.1) e
+  primeiro padrão da síntese reescritos para integrar Diretas Já; incorporada a
+  distinção mídia gatekeeper vs. produtora de frames e a tese da endogeneidade
+  das oportunidades (ciclo aprofunda a divisão de elite que o favorece).
+- `04a-introducao-estudo-caso.md` — passa de "três" para "quatro ciclos"; Diretas
+  Já como caso de origem da gramática contenciosa e do deslocamento do master frame.
+- `03-metodologia.md` — comparação estendida a 4 ciclos; Diretas Já como caso de
+  fronteira (regime autoritário em liberalização vs. democracia consolidada);
+  fontes das Diretas Já (Rodrigues 2003, Leonelli & Oliveira 2004, Bertoncelo 2007,
+  Markun 2014).
+- `05-discussao-conclusiva.md` — "quatro ciclos"; Diretas Já como exemplo inaugural
+  de leitura conjuntural acurada.
+
+**Base empírica da subseção:** experiments/c1-diretas-ja/analysis.md (matrizes
+EOP/DOS, teste de predições) + docs/cronologia-validada.md (datas e placares).
+
+**Pendências da Frente C:** consolidar seções em documento único; figura do
+triângulo; abstract e palavras-chave; revisão final ABNT ao periódico-alvo.

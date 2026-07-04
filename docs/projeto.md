@@ -11,10 +11,13 @@ trabalho desenvolvido nas sessões anteriores (abr–jun/2026).
 Integração da Teoria do Processo Político (EOP + DOS) com a tradição brasileira
 de análise de conjuntura, ancorada nos conceitos de conjunturas críticas
 (della Porta 2018, 2022; Mariano, Ferreira & Neves 2023) e conjunturas fluidas
-(Dobry 1986). Estudo de caso comparativo dos ciclos analisados na tese
-(Fora Collor, Junho 2013, Impeachment Dilma).
+(Dobry 1986). Estudo de caso comparativo dos quatro ciclos
+(Diretas Já, Fora Collor, Junho 2013, Impeachment Dilma) — os três do
+pós-1988 ancorados na tese de Costa (2024) e Diretas Já como caso de origem
+da gramática contenciosa democrática.
 Estado: seções redigidas (introdução, seção DOS, metodologia, estudo de caso
-4.1–4.5, discussão conclusiva, referências ABNT) — ver `artigo/`.
+4.1–4.6 com as quatro subseções empíricas, discussão conclusiva, referências
+ABNT) — ver `artigo/`.
 
 **Quatro padrões de articulação identificados:**
 1. Convergência EOP+DOS (Fora Collor) → mobilização massiva com resultado previsível
