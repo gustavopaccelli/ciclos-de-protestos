@@ -29,6 +29,13 @@ Cada banco externo ocupa uma **subpasta própria**, nomeada por
 
 ## Bancos incorporados
 
-| Subpasta | Fonte | Cobertura | Registros |
+| Subpasta | Fonte | Cobertura | Registros (Brasil) |
 |---|---|---|---|
 | `nepac-tatagiba-galvao-2019/` | Tatagiba & Galvão (NEPAC/CEMARX-UNICAMP) — Protestos no Brasil em tempos de crise | 2011–2016 | 2.548 registros / 1.284 eventos |
+| `mass-mobilization-clark-regan-2020/` | Clark & Regan — Mass Mobilization Protest Data (v16) | 1990–2020 | 224 protestos (só Brasil, ccode 140) |
+
+> **Importante:** os bancos são **fontes independentes** e **não somáveis** entre si
+> (limiares de inclusão, fontes primárias e definições de alvo distintos). O uso conjunto
+> é de **triangulação**, não de agregação. Cada subpasta traz seu próprio livro de código;
+> o banco MM inclui ainda um `crosswalk-codigos.md` que relaciona (sem mesclar) suas
+> categorias aos códigos do projeto.

@@ -26,14 +26,17 @@ components:
     local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
     status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
   bancos_externos:
-    descricao: "Bancos de dados de terceiros incorporados (microdados evento-a-evento)"
+    descricao: "Bancos de dados de terceiros incorporados (fontes independentes, não somáveis)"
     local: "data/bancos-externos/"
     status: >
-      Banco NEPAC/UNICAMP (Tatagiba & Galvão 2019) incorporado (2026-07-04):
-      2.548 registros / 1.284 eventos de protesto 2011-2016 (fonte Acervo Folha).
-      Estrutura organizada: fonte-original/ (xlsx+docx preservados), dados/ (CSV
-      UTF-8 datas ISO), livro-codigo/ (Markdown). Complementar ao cycle_phases e
-      ao pipeline AEP; base para validação empírica de J13 e Impeachment.
+      Dois bancos incorporados como fontes independentes (não mescladas):
+      (1) NEPAC/UNICAMP (Tatagiba & Galvão 2019, 2026-07-04): 2.548 registros /
+      1.284 eventos 2011-2016 (Acervo Folha).
+      (2) Mass Mobilization (Clark & Regan v16, 2026-07-04): 224 protestos do
+      Brasil 1990-2020 (ccode 140), extraídos do arquivo global; imprensa
+      internacional via Lexis-Nexis; inclui crosswalk-codigos.md relacionando
+      (sem mesclar) as categorias MM aos códigos DoCA/BEP e NEPAC. Série mais
+      longa disponível (cobre Fora Collor em diante). Uso conjunto = triangulação.
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"

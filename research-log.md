@@ -235,3 +235,37 @@ com padrão por subpasta (fonte-original/ + dados/ + livro-codigo/ + README):
 (ordinal fase×ciclo) e ao pipeline AEP. Definição de evento de Tatagiba & Galvão
 dialoga com o Protocolo BEP-CEBRAP (Alonso et al. 2024) — ambos usam Folha e evento
 como unidade. Base para validação empírica externa de J13 e Impeachment.
+
+## 2026-07-04 — Incorporação do banco Mass Mobilization (Clark & Regan) — só Brasil
+
+**Solicitação do usuário:** incorporar dados do projeto Mass Mobilization (MM),
+focando SOMENTE no Brasil, 1990 até a última data; verificar a tabela de códigos e
+adaptar aos códigos existentes; NÃO mesclar — tratar como fonte independente.
+
+**Verificação prévia:** MM não estava no repositório (fonte nova).
+
+**Arquivos-fonte:** `MM_users_manual_0515.pdf` (codebook 2015) + `mmALL_073120_csv.csv`
+(global, 15 MB) + `mmALL_073120_v16.dta` (29 MB). Arquivo de dados v16 estende a
+cobertura de 1990-2014 (manual) para **1990-2020**.
+
+**Recorte:** extraído SOMENTE Brasil (`ccode = 140`), todos os anos → **224 protestos**
+(todos protest=1). Arquivos globais (44 MB, 162 países) NÃO versionados — fora do
+escopo; extração reprodutível por filtro ccode==140. Manual PDF preservado.
+
+**Estrutura criada** — `data/bancos-externos/mass-mobilization-clark-regan-2020/`:
+- `fonte-original/MM_users_manual_0515.pdf` — codebook oficial.
+- `dados/protestos_brasil_1990-2020.csv` — 224 registros, 31 colunas, só Brasil.
+- `livro-codigo/livro-de-codigo.md` — variáveis + tabelas de código (7 demandas,
+  7 respostas estatais, faixas de participação); def. de protesto (≥50 pessoas,
+  antiestatal; exclui comícios, intercomunais, rebeldes).
+- `livro-codigo/crosswalk-codigos.md` — correspondência conceitual (SEM mesclar)
+  entre categorias MM e códigos DoCA/BEP (claim_codes, repression_levels) e NEPAC.
+
+**Distribuição:** picos em 2013, 2015 e 2016 (23 cada). Demanda primária dominante:
+political behavior/process (136/224). Resposta estatal dominante: ignore (140/224).
+
+**Princípio metodológico registrado:** MM, NEPAC e pipeline DoCA são fontes
+INDEPENDENTES e NÃO somáveis (limiares, fontes primárias e definições de alvo
+distintos). Uso conjunto = triangulação (comparar tendências, corroborar picos),
+nunca agregação. MM oferece a série mais longa (desde 1990, cobre Fora Collor) e a
+dimensão comparada internacional.
