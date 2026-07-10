@@ -80,3 +80,7 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
   com matrizes qualitativas EOP+DOS por ciclo e fontes verificadas; convergem
   com os padrões do artigo e alimentam as justificativas dos scores.
 - `literature/survey.md` — levantamento bibliográfico complementar.
+- `data/bancos-externos/` — bancos de dados de terceiros incorporados. Inclui o
+  banco NEPAC/UNICAMP (Tatagiba & Galvão 2019): 2.548 registros / 1.284 eventos
+  de protesto 2011-2016 (Acervo Folha), com livro de código. Microdados
+  evento-a-evento complementares ao `cycle_phases` e ao pipeline AEP.

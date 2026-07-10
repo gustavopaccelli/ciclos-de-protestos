@@ -18,13 +18,22 @@ project:
 
 components:
   artigo_triangulo:
-    descricao: "Artigo teórico EOP–DOS–Análise de Conjuntura com estudo de caso (3 ciclos da tese)"
+    descricao: "Artigo teórico EOP–DOS–Análise de Conjuntura com estudo de caso (4 ciclos)"
     local: "artigo/"
-    status: "seções principais redigidas; falta consolidação final, diagrama/stepper e revisão"
+    status: "seções redigidas; estudo de caso alinhado a 4 ciclos (Diretas Já incluída em 2026-07-04, subseções 4.1-4.6); falta consolidação final, diagrama/stepper, abstract e revisão"
   cycle_phases:
     descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
     local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
     status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
+  bancos_externos:
+    descricao: "Bancos de dados de terceiros incorporados (microdados evento-a-evento)"
+    local: "data/bancos-externos/"
+    status: >
+      Banco NEPAC/UNICAMP (Tatagiba & Galvão 2019) incorporado (2026-07-04):
+      2.548 registros / 1.284 eventos de protesto 2011-2016 (fonte Acervo Folha).
+      Estrutura organizada: fonte-original/ (xlsx+docx preservados), dados/ (CSV
+      UTF-8 datas ISO), livro-codigo/ (Markdown). Complementar ao cycle_phases e
+      ao pipeline AEP; base para validação empírica de J13 e Impeachment.
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"

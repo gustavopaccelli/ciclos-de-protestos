@@ -207,3 +207,31 @@ EOP/DOS, teste de predições) + docs/cronologia-validada.md (datas e placares).
 
 **Pendências da Frente C:** consolidar seções em documento único; figura do
 triângulo; abstract e palavras-chave; revisão final ABNT ao periódico-alvo.
+
+## 2026-07-04 — Incorporação do banco NEPAC/UNICAMP (Tatagiba & Galvão 2019)
+
+**Solicitação do usuário:** incorporar o banco de protestos 2011-2016 (NEPAC/UNICAMP,
+https://nepac.ifch.unicamp.br/banco-de-dados) e criar pasta organizada para bancos.
+
+**Estrutura criada** — `data/bancos-externos/` como raiz para bancos de terceiros,
+com padrão por subpasta (fonte-original/ + dados/ + livro-codigo/ + README):
+- `data/bancos-externos/README.md` — princípio de organização e regras (preservar
+  original, documentar conversões, atribuição, sem credenciais).
+- `data/bancos-externos/nepac-tatagiba-galvao-2019/`:
+  - `fonte-original/` — xlsx e docx originais preservados sem alteração.
+  - `dados/protestos_2011-2016.csv` — XLSX convertido p/ CSV UTF-8; única
+    transformação: datas seriais Excel → ISO 8601 (base 1899-12-30). 2.548 registros
+    cidade-evento / 1.284 eventos únicos; 27 variáveis.
+  - `livro-codigo/livro-de-codigo.md` — livro de código transcrito (definição de
+    evento Tilly 1978/Olzak 1989; códigos de base mobilizada; 15 grupos sociais;
+    11 categorias de reivindicação).
+  - `README.md` — manifesto (proveniência, dicionário de colunas, distribuição por
+    ano, relação com o projeto, referência ABNT).
+
+**Distribuição por ano:** 2011=209, 2012=407, 2013=729, 2014=268, 2015=454, 2016=481
+(pico em Junho 2013 e alta no ciclo do impeachment — cobre 2 dos 4 ciclos do projeto).
+
+**Relação com o projeto:** microdados evento-a-evento complementares ao cycle_phases
+(ordinal fase×ciclo) e ao pipeline AEP. Definição de evento de Tatagiba & Galvão
+dialoga com o Protocolo BEP-CEBRAP (Alonso et al. 2024) — ambos usam Folha e evento
+como unidade. Base para validação empírica externa de J13 e Impeachment.
