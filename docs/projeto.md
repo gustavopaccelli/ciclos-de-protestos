@@ -75,6 +75,9 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
 3. **(D) Construção do banco `protest_events`** — incorporar e executar a
    pipeline DoCA quando houver credenciais.
 
+## Acompanhamento de tarefas
+- `docs/tarefas.md` — inventário das tarefas pendentes e concluídas por frente.
+
 ## Materiais complementares
 - `experiments/` — memorandos analíticos exploratórios (sessão 2026-06-10)
   com matrizes qualitativas EOP+DOS por ciclo e fontes verificadas; convergem
