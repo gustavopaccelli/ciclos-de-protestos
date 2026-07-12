@@ -11,10 +11,13 @@ trabalho desenvolvido nas sessões anteriores (abr–jun/2026).
 Integração da Teoria do Processo Político (EOP + DOS) com a tradição brasileira
 de análise de conjuntura, ancorada nos conceitos de conjunturas críticas
 (della Porta 2018, 2022; Mariano, Ferreira & Neves 2023) e conjunturas fluidas
-(Dobry 1986). Estudo de caso comparativo dos ciclos analisados na tese
-(Fora Collor, Junho 2013, Impeachment Dilma).
+(Dobry 1986). Estudo de caso comparativo dos quatro ciclos
+(Diretas Já, Fora Collor, Junho 2013, Impeachment Dilma) — os três do
+pós-1988 ancorados na tese de Costa (2024) e Diretas Já como caso de origem
+da gramática contenciosa democrática.
 Estado: seções redigidas (introdução, seção DOS, metodologia, estudo de caso
-4.1–4.5, discussão conclusiva, referências ABNT) — ver `artigo/`.
+4.1–4.6 com as quatro subseções empíricas, discussão conclusiva, referências
+ABNT) — ver `artigo/`.
 
 **Quatro padrões de articulação identificados:**
 1. Convergência EOP+DOS (Fora Collor) → mobilização massiva com resultado previsível
@@ -65,16 +68,26 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
    Junho 2013 (entre expansão e pico); lacunas no ciclo Dilma
    (2015-09→2015-11; 2016-04-18→2016-05-11); decidir início do ciclo Dilma
    (2014-10-26, dia seguinte à reeleição, vs. mar/2015).
-2. **(C) Estratégia de inferência causal** — process tracing por caso
-   (Bengtsson & Ruonavaara 2017; Mahoney 2001) + comparação sistemática
-   (most similar/most different); operacionalizar o teste de H1.2 com os
-   indicadores de vulnerabilidade (aprovação Datafolha/Ibope; votações nominais
-   da Câmara; declarações de aliados; posição do Judiciário/MP).
+2. **(C) Consolidação do artigo — preprint para publicação** — montar as
+   seções já redigidas (`artigo/`) em documento único; integrar o quadro de
+   14 hipóteses como seção de discussão; elaborar diagrama EOP–DOS–Análise
+   de Conjuntura; revisar referências ABNT; redigir abstract e palavras-chave.
 3. **(D) Construção do banco `protest_events`** — incorporar e executar a
    pipeline DoCA quando houver credenciais.
+
+## Acompanhamento de tarefas
+- `docs/tarefas.md` — inventário das tarefas pendentes e concluídas por frente.
 
 ## Materiais complementares
 - `experiments/` — memorandos analíticos exploratórios (sessão 2026-06-10)
   com matrizes qualitativas EOP+DOS por ciclo e fontes verificadas; convergem
   com os padrões do artigo e alimentam as justificativas dos scores.
 - `literature/survey.md` — levantamento bibliográfico complementar.
+- `data/bancos-externos/` — bancos de dados de terceiros incorporados como
+  **fontes independentes** (não mescladas; uso = triangulação):
+  - **NEPAC/UNICAMP** (Tatagiba & Galvão 2019): 2.548 registros / 1.284 eventos
+    2011-2016 (Acervo Folha) — microdados nacionais densos.
+  - **Mass Mobilization** (Clark & Regan v16): 224 protestos do Brasil 1990-2020
+    (imprensa internacional/Lexis-Nexis) — série temporal mais longa, com
+    `crosswalk-codigos.md` relacionando suas categorias aos códigos do projeto.
+  Complementares ao `cycle_phases` e ao pipeline AEP.

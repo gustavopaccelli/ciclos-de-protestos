@@ -18,13 +18,25 @@ project:
 
 components:
   artigo_triangulo:
-    descricao: "Artigo teórico EOP–DOS–Análise de Conjuntura com estudo de caso (3 ciclos da tese)"
+    descricao: "Artigo teórico EOP–DOS–Análise de Conjuntura com estudo de caso (4 ciclos)"
     local: "artigo/"
-    status: "seções principais redigidas; falta consolidação final, diagrama/stepper e revisão"
+    status: "seções redigidas; estudo de caso alinhado a 4 ciclos (Diretas Já incluída em 2026-07-04, subseções 4.1-4.6); falta consolidação final, diagrama/stepper, abstract e revisão"
   cycle_phases:
     descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
     local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
     status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
+  bancos_externos:
+    descricao: "Bancos de dados de terceiros incorporados (fontes independentes, não somáveis)"
+    local: "data/bancos-externos/"
+    status: >
+      Dois bancos incorporados como fontes independentes (não mescladas):
+      (1) NEPAC/UNICAMP (Tatagiba & Galvão 2019, 2026-07-04): 2.548 registros /
+      1.284 eventos 2011-2016 (Acervo Folha).
+      (2) Mass Mobilization (Clark & Regan v16, 2026-07-04): 224 protestos do
+      Brasil 1990-2020 (ccode 140), extraídos do arquivo global; imprensa
+      internacional via Lexis-Nexis; inclui crosswalk-codigos.md relacionando
+      (sem mesclar) as categorias MM aos códigos DoCA/BEP e NEPAC. Série mais
+      longa disponível (cobre Fora Collor em diante). Uso conjunto = triangulação.
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"
@@ -33,12 +45,13 @@ components:
     descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
     local: "pipeline/"
     status: >
-      Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md
-      documenta definição de evento, 5 blocos de variáveis, critérios de
-      continuidade e codificação mista alinhados a Alonso et al. (2024).
-      Codebook DoCA atualizado com campos BEP (location_venue_type,
-      location_conventional, actor_org_type, actor_formalization, symbols,
-      slogans, conflict_inter_group). Execução aguarda credenciais Acervo Folha.
+      Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md.
+      Integração MPEDS concluída (2026-07-03): codebook DoCA atualizado com
+      campos BEP + campos MPEDS (end_date, duration_days, multi_event_article,
+      canonical_event_id, article_desc, event_desc, counter_protest, smo, target,
+      mpeds_form_categories, mpeds_target_categories). Protocolo BEP expandido
+      com §10 (evento canônico/deduplicação) e §11 (workflow multi-passagem 5
+      etapas). Execução aguarda credenciais Acervo Folha.
 
 frentes_abertas:
   - id: B
@@ -46,12 +59,16 @@ frentes_abertas:
     detalhe: "CONCLUÍDA — v2 validada (docs/periodizacao-revisao.md); pendência menor: conferir datas dos comícios de abr/84 e atos de out/13 na redação final"
     prioridade: concluida
   - id: C
-    titulo: "Estratégia de inferência causal"
+    titulo: "Consolidação do artigo — preprint para publicação"
     detalhe: >
-      EM ESPERA por decisão do usuário (2026-06-10) — ele está reavaliando a
-      abordagem das inferências causais. Não iniciar sem instrução explícita.
-      Material de referência: desenho de teste de H1.2 em docs/projeto.md.
-    prioridade: aguardando-usuario
+      Consolidar as seções já redigidas (artigo/) em documento único para
+      submissão como preprint. Tarefas: (1) montagem e revisão das seções em
+      ordem lógica; (2) integração do quadro de 14 hipóteses como seção ou
+      apêndice de discussão; (3) diagrama/figura do triângulo EOP–DOS–Análise
+      de Conjuntura; (4) conferir datas dos comícios de abr/1984 e atos de
+      out/2013 na redação; (5) revisar referências ABNT e adequar às normas do
+      periódico-alvo; (6) elaborar abstract e palavras-chave.
+    prioridade: alta
   - id: D
     titulo: "Construção do banco protest_events"
     detalhe: >

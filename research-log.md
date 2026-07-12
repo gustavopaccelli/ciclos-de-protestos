@@ -138,3 +138,134 @@ DOI: 10.11606/issn.2176-8099.pcso.2024.233335
 - `pipeline/config/doca_codebook.yaml` — alinhado ao BEP (5 blocos, novos campos)
 - `docs/projeto.md` — referência a Alonso et al. e aep-protocol-bep.md adicionada
 - `research-state.yaml` — método e Frente D atualizados
+
+## 2026-07-03 — Consolidação: bibliografia, cronologia validada, integração MPEDS
+
+### Tarefa 1 — Enriquecimento bibliográfico (concluída)
+- `artigo/referencias-abnt.md` expandido de 34 para 64 entradas, adicionando:
+  - Núcleo teórico AEP/PEA: Earl et al. (2004), Fillieule & Jiménez (2003), Franzosi (2004),
+    Hanna (2017/MPEDS), Goodwin & Jasper (1999).
+  - Núcleo TCP completo: McAdam (1982), McAdam, Tarrow & Tilly (2001), Kriesi et al. (1995),
+    Snow & Benford (1988; 1992), Tilly (1978; 2006), Tilly & Tarrow (2015), Tarrow (2011).
+  - Casos brasileiros: Mische (2008), Saad-Filho (2013), Solano (2018), Tatagiba (2014),
+    Weyland (1993), Kotscho (1984), Rodrigues A. T. (2003), Alonso (2015).
+  - Infraestrutura: MPEDS (Hanna 2017), Vandenberghe (2025).
+
+### Tarefa 2 — Validação da cronologia (concluída)
+- **Fonte eliminada:** Terra.com.br substituído por Agência Brasil/EBC, Portal da Câmara,
+  Senado Federal, CPDOC/FGV e Fundação Perseu Abramo.
+- **Discrepância corrigida:** Comício de Goiânia (Diretas Já) era registrado como
+  "fevereiro de 1984" — confirmado como **12 de abril de 1984** (Praça Cívica, ~300 mil).
+- `docs/cronologia-validada.md` criado com tabela completa de datas-chave, público estimado
+  e fonte confirmadora para os 4 ciclos.
+- `data/cycle_phases.csv` não requer correção: a data de Goiânia não consta como data
+  explícita nas fases (fase DJ-3 cobre abr/1984 — compatível com a data corrigida).
+
+### Tarefa 3 — Integração MPEDS (concluída)
+- `pipeline/config/doca_codebook.yaml` — novos campos incorporados ao `event_schema`:
+  `end_date`, `duration_days`, `multi_event_article`, `canonical_event_id`, `article_desc`,
+  `event_desc`, `counter_protest`, `smo`, `target`. Novas seções: `mpeds_form_categories`
+  (mapeamento 11 formas MPEDS → verbos BEP) e `mpeds_target_categories` (7 alvos adaptados
+  para o Brasil).
+- `docs/aep-protocol-bep.md` — adicionadas §10 (evento canônico e deduplicação) e §11
+  (workflow multi-passagem: 5 passagens sequenciais scraper → triagem → codificação →
+  dataset → confiabilidade).
+- `literature/survey.md` — adicionadas seção §4 (AEP/PEA Metodologia) e §5
+  (Infraestrutura computacional — MPEDS e afins).
+- Classificadores ML do MPEDS (inglês) e interface Flask NÃO incorporados — substituídos
+  pelo LLM DoCA/Anthropic do pipeline existente.
+
+**Nota:** Frente C redefinida pelo usuário (2026-07-03): deixa de ser "estratégia
+de inferência causal" e passa a ser "consolidação do artigo para preprint",
+incluindo integração do quadro de 14 hipóteses como seção de discussão.
+
+## 2026-07-04 — Frente C: alinhamento do artigo a 4 ciclos (inclusão das Diretas Já)
+
+**Decisão do usuário:** o estudo de caso do artigo cobria apenas 3 ciclos (Fora
+Collor, Junho 2013, Impeachment), enquanto o dataset/hipóteses/cronologia cobrem
+4. Optou-se por INCLUIR Diretas Já no artigo, alinhando-o à grade completa.
+
+**Alterações no artigo (`artigo/secoes/`):**
+- `04b-estudo-de-caso.md` — nova subseção empírica 4.2 "A campanha das Diretas Já
+  (1983–1984): EOP de transição, DOS de ressonância máxima e mídia como gatekeeper";
+  demais subseções renumeradas (Collor 4.3, Junho 2013 4.4, Impeachment 4.5,
+  síntese 4.6). Título atualizado (1992–2016 → 1984–2016). Apresentação (4.1) e
+  primeiro padrão da síntese reescritos para integrar Diretas Já; incorporada a
+  distinção mídia gatekeeper vs. produtora de frames e a tese da endogeneidade
+  das oportunidades (ciclo aprofunda a divisão de elite que o favorece).
+- `04a-introducao-estudo-caso.md` — passa de "três" para "quatro ciclos"; Diretas
+  Já como caso de origem da gramática contenciosa e do deslocamento do master frame.
+- `03-metodologia.md` — comparação estendida a 4 ciclos; Diretas Já como caso de
+  fronteira (regime autoritário em liberalização vs. democracia consolidada);
+  fontes das Diretas Já (Rodrigues 2003, Leonelli & Oliveira 2004, Bertoncelo 2007,
+  Markun 2014).
+- `05-discussao-conclusiva.md` — "quatro ciclos"; Diretas Já como exemplo inaugural
+  de leitura conjuntural acurada.
+
+**Base empírica da subseção:** experiments/c1-diretas-ja/analysis.md (matrizes
+EOP/DOS, teste de predições) + docs/cronologia-validada.md (datas e placares).
+
+**Pendências da Frente C:** consolidar seções em documento único; figura do
+triângulo; abstract e palavras-chave; revisão final ABNT ao periódico-alvo.
+
+## 2026-07-04 — Incorporação do banco NEPAC/UNICAMP (Tatagiba & Galvão 2019)
+
+**Solicitação do usuário:** incorporar o banco de protestos 2011-2016 (NEPAC/UNICAMP,
+https://nepac.ifch.unicamp.br/banco-de-dados) e criar pasta organizada para bancos.
+
+**Estrutura criada** — `data/bancos-externos/` como raiz para bancos de terceiros,
+com padrão por subpasta (fonte-original/ + dados/ + livro-codigo/ + README):
+- `data/bancos-externos/README.md` — princípio de organização e regras (preservar
+  original, documentar conversões, atribuição, sem credenciais).
+- `data/bancos-externos/nepac-tatagiba-galvao-2019/`:
+  - `fonte-original/` — xlsx e docx originais preservados sem alteração.
+  - `dados/protestos_2011-2016.csv` — XLSX convertido p/ CSV UTF-8; única
+    transformação: datas seriais Excel → ISO 8601 (base 1899-12-30). 2.548 registros
+    cidade-evento / 1.284 eventos únicos; 27 variáveis.
+  - `livro-codigo/livro-de-codigo.md` — livro de código transcrito (definição de
+    evento Tilly 1978/Olzak 1989; códigos de base mobilizada; 15 grupos sociais;
+    11 categorias de reivindicação).
+  - `README.md` — manifesto (proveniência, dicionário de colunas, distribuição por
+    ano, relação com o projeto, referência ABNT).
+
+**Distribuição por ano:** 2011=209, 2012=407, 2013=729, 2014=268, 2015=454, 2016=481
+(pico em Junho 2013 e alta no ciclo do impeachment — cobre 2 dos 4 ciclos do projeto).
+
+**Relação com o projeto:** microdados evento-a-evento complementares ao cycle_phases
+(ordinal fase×ciclo) e ao pipeline AEP. Definição de evento de Tatagiba & Galvão
+dialoga com o Protocolo BEP-CEBRAP (Alonso et al. 2024) — ambos usam Folha e evento
+como unidade. Base para validação empírica externa de J13 e Impeachment.
+
+## 2026-07-04 — Incorporação do banco Mass Mobilization (Clark & Regan) — só Brasil
+
+**Solicitação do usuário:** incorporar dados do projeto Mass Mobilization (MM),
+focando SOMENTE no Brasil, 1990 até a última data; verificar a tabela de códigos e
+adaptar aos códigos existentes; NÃO mesclar — tratar como fonte independente.
+
+**Verificação prévia:** MM não estava no repositório (fonte nova).
+
+**Arquivos-fonte:** `MM_users_manual_0515.pdf` (codebook 2015) + `mmALL_073120_csv.csv`
+(global, 15 MB) + `mmALL_073120_v16.dta` (29 MB). Arquivo de dados v16 estende a
+cobertura de 1990-2014 (manual) para **1990-2020**.
+
+**Recorte:** extraído SOMENTE Brasil (`ccode = 140`), todos os anos → **224 protestos**
+(todos protest=1). Arquivos globais (44 MB, 162 países) NÃO versionados — fora do
+escopo; extração reprodutível por filtro ccode==140. Manual PDF preservado.
+
+**Estrutura criada** — `data/bancos-externos/mass-mobilization-clark-regan-2020/`:
+- `fonte-original/MM_users_manual_0515.pdf` — codebook oficial.
+- `dados/protestos_brasil_1990-2020.csv` — 224 registros, 31 colunas, só Brasil.
+- `livro-codigo/livro-de-codigo.md` — variáveis + tabelas de código (7 demandas,
+  7 respostas estatais, faixas de participação); def. de protesto (≥50 pessoas,
+  antiestatal; exclui comícios, intercomunais, rebeldes).
+- `livro-codigo/crosswalk-codigos.md` — correspondência conceitual (SEM mesclar)
+  entre categorias MM e códigos DoCA/BEP (claim_codes, repression_levels) e NEPAC.
+
+**Distribuição:** picos em 2013, 2015 e 2016 (23 cada). Demanda primária dominante:
+political behavior/process (136/224). Resposta estatal dominante: ignore (140/224).
+
+**Princípio metodológico registrado:** MM, NEPAC e pipeline DoCA são fontes
+INDEPENDENTES e NÃO somáveis (limiares, fontes primárias e definições de alvo
+distintos). Uso conjunto = triangulação (comparar tendências, corroborar picos),
+nunca agregação. MM oferece a série mais longa (desde 1990, cobre Fora Collor) e a
+dimensão comparada internacional.
