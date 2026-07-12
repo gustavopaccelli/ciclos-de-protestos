@@ -269,3 +269,33 @@ INDEPENDENTES e NÃO somáveis (limiares, fontes primárias e definições de al
 distintos). Uso conjunto = triangulação (comparar tendências, corroborar picos),
 nunca agregação. MM oferece a série mais longa (desde 1990, cobre Fora Collor) e a
 dimensão comparada internacional.
+
+## 2026-07-04 — Incorporação da pasta artefatos/ (produtos do Projeto claude.ai)
+
+Revisão completa dos 31 arquivos em artefatos/ (3 subpastas). Parecer detalhado por
+arquivo em docs/artefatos-incorporacao.md. Regra: incorporar o que incrementa; ignorar
+o defasado; preservar tudo.
+
+**Incorporado:**
+- Sementes protest_events → data/protest_events_seeds/ (Diretas Já 59 eventos + Fora
+  Collor 15 eventos), com estimativas de público por fonte. Preenchem a lacuna dos
+  ciclos pré-2011 que MM/NEPAC não cobrem.
+- 14 referências ausentes do referencias_ciclos_protesto.bib → artigo/referencias-abnt.md
+  (Piven & Cloward, Entman, Habermas, Dobry, Beach & Pedersen, Davenport, Alexander,
+  Hutter, Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezini, Sørbøe).
+- Variável `valences` (pró/anti/indeterminado) do codebook DoCA original →
+  pipeline/config/doca_codebook.yaml (resolve a pendência "validar codebook contra o
+  original": nosso codebook cobre e supera o original, exceto pelas valences, agora incluídas).
+
+**Superado (preservado, não reincorporado):** quadro de hipóteses (já em docs/), pipeline
+original (já reconstruído e evoluído com BEP+MPEDS), notas metodológicas antigas.
+
+**Fonte para a Frente C (consolidação do artigo):** EOP_DOS_Conjuntura_Artigo_Completo_v1,
+artigo_H12_vulnerabilidade_elites, artigo_processo_politico_conjuntura, artigo_ciclos_
+protesto_brasil, relatorios AEP — a cotejar na redação final.
+
+**DECISÃO PENDENTE (não incorporada — conflita com validado):** cycle_phases_v4 +
+nota_consolidada_v2 trazem periodização revisada (variável traducao_institucional, código
+NA≠0, fase de articulação do Fora Collor nov/1991, fase de latência no Impeachment, remoção
+da radicalização em J13). Aguarda decisão do usuário (docs/tarefas.md P1) antes de substituir
+data/cycle_phases.csv validado.

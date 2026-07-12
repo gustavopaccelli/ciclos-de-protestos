@@ -27,12 +27,21 @@ Guardada em 2026-07-04. Ver diagnóstico completo do estado no `research-log.md`
 - [ ] **D3.** Validar o `pipeline/config/doca_codebook.yaml` reconstruído contra o original.
 - [ ] **D4.** Primeira execução de teste + aferição de Cohen's Kappa (≥ 0,75).
 
-## Frente E — Análise dos bancos incorporados · **nova, não iniciada**
+## Frente E — Análise dos bancos e sementes · **nova, não iniciada**
 
-Dois bancos prontos para uso, ainda sem exploração analítica: NEPAC (2011–2016) e Mass Mobilization (1990–2020).
+Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e as sementes `protest_events` das Diretas Já e Fora Collor (`data/protest_events_seeds/`).
 
 - [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `data/bancos-externos/mass-mobilization-clark-regan-2020/livro-codigo/crosswalk-codigos.md`).
 - [ ] **E2.** Usar os microdados como evidência para as hipóteses H1–H3 (repertórios, alvos, respostas estatais em Junho 2013 e Impeachment).
+- [ ] **E3.** Integrar as sementes `protest_events` (Diretas Já + Fora Collor) à análise dos ciclos pré-2011 que os bancos externos não cobrem.
+
+## Decisão pendente — periodização e esquema de codificação (dos artefatos)
+
+Ver `docs/artefatos-incorporacao.md` §4. Os artefatos trazem uma revisão (variável
+`traducao_institucional`, código NA≠0, fase de articulação do Fora Collor, fase de latência
+no Impeachment, remoção da radicalização em J13) que **conflita com a periodização validada**.
+
+- [ ] **P1.** Usuário decidir entre manter a periodização v2 validada (repo) ou adotar o `cycle_phases_v4` revisado dos artefatos + variável `traducao_institucional`.
 
 ---
 

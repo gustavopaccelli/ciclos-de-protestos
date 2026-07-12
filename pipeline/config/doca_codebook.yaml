@@ -3,6 +3,16 @@
 # Ver docs/aep-protocol-bep.md para mapeamento completo BEP → DoCA
 
 # ---------------------------------------------------------------------------
+# VALÊNCIAS — posição do protesto em relação à demanda
+# (incorporado do codebook DoCA original dos artefatos, 2026-07-04)
+# ---------------------------------------------------------------------------
+
+valences:
+  "01": "Pró-movimento / favorável à demanda"
+  "02": "Anti-movimento / oposição à demanda"
+  "03": "Indeterminado / ambíguo"
+
+# ---------------------------------------------------------------------------
 # BLOCO I — Identificação do evento
 # ---------------------------------------------------------------------------
 
@@ -210,6 +220,7 @@ event_schema:
   # Bloco IV — temas e slogans
   - claim_code            # código 4 dígitos (ver claim_codes)
   - claim_text            # demanda em texto livre
+  - valence               # 01 pró | 02 anti | 03 indeterminado (ver valences)
   - slogans               # lista: slogans verbatim (grafia original)
   # Bloco V — respostas e interação
   - conflict_present      # bool — TRUE se qualquer conflito reportado

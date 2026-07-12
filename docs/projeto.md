@@ -75,6 +75,11 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
 3. **(D) Construção do banco `protest_events`** — incorporar e executar a
    pipeline DoCA quando houver credenciais.
 
+## Incorporação dos artefatos
+- `docs/artefatos-incorporacao.md` — inventário e parecer sobre a pasta `artefatos/`
+  (produtos do Projeto claude.ai): o que foi incorporado, superado ou reservado para
+  a consolidação do artigo, e a decisão pendente de periodização.
+
 ## Acompanhamento de tarefas
 - `docs/tarefas.md` — inventário das tarefas pendentes e concluídas por frente.
 
@@ -83,6 +88,8 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
   com matrizes qualitativas EOP+DOS por ciclo e fontes verificadas; convergem
   com os padrões do artigo e alimentam as justificativas dos scores.
 - `literature/survey.md` — levantamento bibliográfico complementar.
+- `data/protest_events_seeds/` — sementes do banco `protest_events` (Diretas Já e
+  Fora Collor), codificação manual dos ciclos pré-2011.
 - `data/bancos-externos/` — bancos de dados de terceiros incorporados como
   **fontes independentes** (não mescladas; uso = triangulação):
   - **NEPAC/UNICAMP** (Tatagiba & Galvão 2019): 2.548 registros / 1.284 eventos

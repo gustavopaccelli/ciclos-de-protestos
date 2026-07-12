@@ -37,6 +37,13 @@ components:
       internacional via Lexis-Nexis; inclui crosswalk-codigos.md relacionando
       (sem mesclar) as categorias MM aos códigos DoCA/BEP e NEPAC. Série mais
       longa disponível (cobre Fora Collor em diante). Uso conjunto = triangulação.
+  protest_events_seeds:
+    descricao: "Sementes do banco protest_events (ciclos pré-2011, codificação manual)"
+    local: "data/protest_events_seeds/"
+    status: >
+      Incorporadas dos artefatos (2026-07-04): Diretas Já (59 eventos) e Fora Collor
+      (15 eventos), com estimativas de público por fonte. Preenchem a lacuna dos ciclos
+      que MM/NEPAC não cobrem; semente para o pipeline AEP (Frente D).
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"

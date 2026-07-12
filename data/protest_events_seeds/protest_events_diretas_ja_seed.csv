@@ -1,0 +1,60 @@
+seed_id,date,cycle,phase,city,state,local,estimativas_por_fonte,n_estimativas,est_min,est_max,est_mediana,fonte_primaria,doca_status,notes
+PE-DJ-001,1983-11-27,Diretas Já,emergencia,São Paulo,SP,Pacaembu,15.000 (Tosi),1,15000,15000,15000,Rodrigues (2003),pendente,Primeiro grande comício da campanha. Não consta em Bertoncelo (apêndice inicia jan/1984).
+PE-DJ-002,1984-01-12,Diretas Já,expansao,Curitiba,PR,,"30.000 (Veja, Tosi); 40.000 (IstoÉ); 50.000 (FSP); 50.000–60.000 (FSP, L&O, Senhor)",4,30000,60000,45000,Bertoncelo (2007),pendente,FSP aparece com duas estimativas na fonte (50 e 50–60 mil).
+PE-DJ-003,1984-01-13,Diretas Já,expansao,Porto Alegre,RS,,"3.000 (Veja); 5.000–10.000 (L&O, Tosi, Senhor)",2,3000,10000,5250,Bertoncelo (2007),pendente,
+PE-DJ-004,1984-01-13,Diretas Já,expansao,Cachoeira do Sul,RS,,5.000 (Senhor),1,5000,5000,5000,Bertoncelo (2007),pendente,
+PE-DJ-005,1984-01-14,Diretas Já,expansao,Camboriú,SC,,"5.000 (L&O, Veja); 15.000 (Tosi); 20.000 (Senhor)",3,5000,20000,15000,Bertoncelo (2007),pendente,
+PE-DJ-006,1984-01-18,Diretas Já,expansao,Rio Claro,SP,,"3.000 (Tosi, Kotscho, FSP)",1,3000,3000,3000,ambos,pendente,
+PE-DJ-007,1984-01-19,Diretas Já,expansao,Bauru,SP,,"3.000 (FSP, Tosi)",1,3000,3000,3000,ambos,pendente,
+PE-DJ-008,1984-01-20,Diretas Já,expansao,Salvador,BA,,"15.000 (Kotscho); 20.000 (FSP, Veja, Tosi); 25.000–35.000 (L&O)",3,15000,35000,20000,Bertoncelo (2007),pendente,
+PE-DJ-009,1984-01-21,Diretas Já,expansao,Campinas,SP,,"12.000 (FSP, Tosi, Kotscho, L&O)",1,12000,12000,12000,Bertoncelo (2007),pendente,
+PE-DJ-010,1984-01-21,Diretas Já,expansao,Vitória,ES,,"10.000 (Tosi, Kotscho)",1,10000,10000,10000,ambos,pendente,
+PE-DJ-011,1984-01-25,Diretas Já,expansao,São Paulo,SP,Praça da Sé,"200.000 (Veja); 250.000 (IstoÉ, Tosi); 300.000 (FSP, L&O); 400.000 (Kotscho)",4,200000,400000,275000,ambos,pendente,Grande salto de magnitude; marco da virada da expansão.
+PE-DJ-012,1984-01-26,Diretas Já,expansao,João Pessoa,PB,,"10.000 (FSP, Tosi, Kotscho, L&O)",1,10000,10000,10000,Bertoncelo (2007),pendente,
+PE-DJ-013,1984-01-26,Diretas Já,expansao,Santos,SP,,"6.000 (FSP, Tosi, Kotscho); 15.000 (L&O)",2,6000,15000,10500,Bertoncelo (2007),pendente,
+PE-DJ-014,1984-01-27,Diretas Já,expansao,Olinda,PE,,"15.000 (Veja); 20.000 (Tosi); 30.000 (FSP, L&O, Senhor)",3,15000,30000,20000,Bertoncelo (2007),pendente,Rodrigues data um comício em Olinda em 05/01/1984 (15 mil) — possível evento distinto ou divergência de datação.
+PE-DJ-015,1984-01-28,Diretas Já,expansao,Fortaleza,CE,,"15.000 (Senhor); 30.000 (FSP, L&O)",2,15000,30000,22500,Bertoncelo (2007),pendente,
+PE-DJ-016,1984-01-29,Diretas Já,expansao,Maceió,AL,,"20.000 (FSP, L&O, Tosi, Kotscho); 30.000 (Veja, Senhor)",2,20000,30000,25000,ambos,pendente,
+PE-DJ-017,1984-02-13,Diretas Já,expansao,Teresina,PI,,"25.000 (FSP, Tosi, L&O)",1,25000,25000,25000,ambos,pendente,
+PE-DJ-018,1984-02-14,Diretas Já,expansao,São Luís,MA,,"15.000 (Tosi, Kotscho, L&O)",1,15000,15000,15000,ambos,pendente,
+PE-DJ-019,1984-02-15,Diretas Já,expansao,Macapá,AP,,"10.000 (Tosi, L&O)",1,10000,10000,10000,ambos,pendente,
+PE-DJ-020,1984-02-16,Diretas Já,expansao,Rio de Janeiro,RJ,passeata,"40.000 (Veja); 50.000 (FSP, L&O, Tosi, IstoÉ, Senhor); 60.000 (Kotscho)",3,40000,60000,50000,ambos,pendente,
+PE-DJ-021,1984-02-16,Diretas Já,expansao,Belém,PA,,"50.000 (IstoÉ); 60.000 (Veja, L&O); 50.000–60.000 (Kotscho)",3,50000,60000,55000,Bertoncelo (2007),pendente,
+PE-DJ-022,1984-02-17,Diretas Já,expansao,Recife,PE,,"10.000 (Veja); 12.000 (Kotscho, L&O)",2,10000,12000,11000,Bertoncelo (2007),pendente,
+PE-DJ-023,1984-02-18,Diretas Já,expansao,Manaus,AM,,"6.000 (Kotscho, Veja, Tosi)",1,6000,6000,6000,ambos,pendente,
+PE-DJ-024,1984-02-19,Diretas Já,expansao,Caruaru,PE,,"25.000 (FSP, L&O)",1,25000,25000,25000,Bertoncelo (2007),pendente,
+PE-DJ-025,1984-02-19,Diretas Já,expansao,Capão da Canoa,RS,,"50.000 (FSP, Tosi, Kotscho, L&O)",1,50000,50000,50000,Bertoncelo (2007),pendente,
+PE-DJ-026,1984-02-19,Diretas Já,expansao,Osasco,SP,,"25.000 (FSP, Tosi, Kotscho, L&O)",1,25000,25000,25000,ambos,pendente,
+PE-DJ-027,1984-02-19,Diretas Já,expansao,Rio Branco,AC,,"7.000 (Tosi, L&O, Kotscho, FSP)",1,7000,7000,7000,ambos,pendente,
+PE-DJ-028,1984-02-19,Diretas Já,expansao,Juazeiro,BA,,8.000 (Senhor),1,8000,8000,8000,Bertoncelo (2007),pendente,
+PE-DJ-029,1984-02-20,Diretas Já,expansao,Cuiabá,MT,,"15.000 (Tosi, Kotscho); 16.000 (L&O)",2,15000,16000,15500,ambos,pendente,
+PE-DJ-030,1984-02-24,Diretas Já,expansao,Belo Horizonte,MG,,"200.000 (Senhor, IstoÉ); 250.000 (Veja); 300.000 (FSP, Tosi, Kotscho, L&O)",3,200000,300000,250000,ambos,pendente,Maior comício de fevereiro.
+PE-DJ-031,1984-02-25,Diretas Já,expansao,Taguatinga,DF,,"4.000 (Tosi, Kotscho)",1,4000,4000,4000,ambos,pendente,"DISCREPÂNCIA UF: Rodrigues=DF, Bertoncelo=GO. Taguatinga localiza-se no DF."
+PE-DJ-032,1984-02-26,Diretas Já,expansao,Aracaju,SE,,"30.000 (FSP, Tosi, Kotscho)",1,30000,30000,30000,ambos,pendente,
+PE-DJ-033,1984-02-29,Diretas Já,expansao,Juiz de Fora,MG,,"30.000 (FSP, Tosi, Kotscho)",1,30000,30000,30000,ambos,pendente,
+PE-DJ-034,1984-03-08,Diretas Já,expansao,Anápolis,GO,,"20.000 (Kotscho, Tosi)",1,20000,20000,20000,ambos,pendente,
+PE-DJ-035,1984-03-10,Diretas Já,expansao,Maringá,PR,,10.000 (FSP),1,10000,10000,10000,Bertoncelo (2007),pendente,
+PE-DJ-036,1984-03-10,Diretas Já,expansao,Dourados,MS,,10.000 (FSP),1,10000,10000,10000,Bertoncelo (2007),pendente,
+PE-DJ-037,1984-03-17,Diretas Já,expansao,Montes Claros,MG,,10.000 (FSP),1,10000,10000,10000,Bertoncelo (2007),pendente,
+PE-DJ-038,1984-03-17,Diretas Já,expansao,Três Rios,RJ,,15.000 (FSP),1,15000,15000,15000,Bertoncelo (2007),pendente,
+PE-DJ-039,1984-03-18,Diretas Já,expansao,Presidente Prudente,SP,,30.000 (Senhor),1,30000,30000,30000,Bertoncelo (2007),pendente,
+PE-DJ-040,1984-03-21,Diretas Já,expansao,Rio de Janeiro,RJ,,"150.000 (IstoÉ, Tosi, Veja); 200.000 (FSP, L&O)",2,150000,200000,175000,ambos,pendente,
+PE-DJ-041,1984-03-23,Diretas Já,expansao,São Bernardo do Campo,SP,,"15.000 (FSP, Tosi); 20.000 (Kotscho)",2,15000,20000,17500,ambos,pendente,
+PE-DJ-042,1984-03-23,Diretas Já,expansao,Uberlândia,MG,,"40.000 (FSP, Kotscho, Tosi)",1,40000,40000,40000,ambos,pendente,
+PE-DJ-043,1984-03-24,Diretas Já,expansao,Campo Grande,MS,,"40.000 (FSP, Kotscho, Tosi)",1,40000,40000,40000,ambos,pendente,
+PE-DJ-044,1984-03-25,Diretas Já,expansao,Campina Grande,PB,,"10.000 (FSP, Tosi)",1,10000,10000,10000,ambos,pendente,
+PE-DJ-045,1984-03-31,Diretas Já,expansao,Cascavel,PR,,"40.000 (Tosi, FSP, Veja, L&O)",1,40000,40000,40000,ambos,pendente,
+PE-DJ-046,1984-04-02,Diretas Já,pico,Londrina,PR,,"40.000 (Veja); 50.000 (FSP, Kotscho, Tosi, IstoÉ, L&O)",2,40000,50000,45000,ambos,pendente,
+PE-DJ-047,1984-04-05,Diretas Já,pico,Recife,PE,,"60.000 (Veja, IstoÉ); 80.000 (FSP, Kotscho, Tosi, L&O)",2,60000,80000,70000,ambos,pendente,
+PE-DJ-048,1984-04-06,Diretas Já,pico,Natal,RN,,"30.000 (FSP); 50.000 (Kotscho, Tosi, Senhor); 60.000 (IstoÉ); 100.000 (Veja, L&O)",4,30000,100000,55000,ambos,pendente,Amplitude de estimativas particularmente alta (30–100 mil).
+PE-DJ-049,1984-04-06,Diretas Já,pico,Ribeirão Preto,SP,,10.000 (FSP),1,10000,10000,10000,Bertoncelo (2007),pendente,
+PE-DJ-050,1984-04-07,Diretas Já,pico,Petrolina,PE,,"30.000 (FSP, Kotscho, Tosi); 40.000 (Senhor)",2,30000,40000,35000,ambos,pendente,
+PE-DJ-051,1984-04-10,Diretas Já,pico,Rio de Janeiro,RJ,Candelária/Centro,"1.000.000 (Veja, IstoÉ, Tosi); 1.100.000 (FSP, Kotscho)",2,1000000,1100000,1050000,ambos,pendente,Um dos maiores atos do ciclo.
+PE-DJ-052,1984-04-12,Diretas Já,pico,Goiânia,GO,,"200.000 (IstoÉ); 240.000 (Kotscho); 250.000 (FSP, Tosi); 300.000 (L&O)",4,200000,300000,245000,ambos,pendente,
+PE-DJ-053,1984-04-13,Diretas Já,pico,Porto Alegre,RS,,"200.000 (FSP, Kotscho, L&O, Tosi)",1,200000,200000,200000,ambos,pendente,
+PE-DJ-054,1984-04-13,Diretas Já,pico,Ipatinga,MG,,"50.000 (FSP, Tosi); 60.000 (L&O)",2,50000,60000,55000,ambos,pendente,
+PE-DJ-055,1984-04-16,Diretas Já,pico,São Paulo,SP,Anhangabaú,"1.500.000 (Kotscho, Tosi, FSP)",1,1500000,1500000,1500000,ambos,pendente,Maior comício da campanha. Folha (1992) questiona a viabilidade física de >1 mi no Anhangabaú — número possivelmente superdimensionado.
+PE-DJ-056,1984-04-18,Diretas Já,pico,Vitória,ES,,"80.000 (FSP, Tosi)",1,80000,80000,80000,ambos,pendente,
+PE-DJ-057,1984-06-25,Diretas Já,declinio,Curitiba,PR,,40.000 (Tosi),1,40000,40000,40000,Rodrigues (2003),pendente,Fase de declínio. Não consta em Bertoncelo (apêndice encerra 18/04).
+PE-DJ-058,1984-06-26,Diretas Já,declinio,São Paulo,SP,Praça da Sé,50.000 (Tosi),1,50000,50000,50000,Rodrigues (2003),pendente,Fase de declínio.
+PE-DJ-059,1984-06-27,Diretas Já,declinio,Rio de Janeiro,RJ,,30.000 (Tosi),1,30000,30000,30000,Rodrigues (2003),pendente,Fase de declínio; último ato registrado na cronologia de Rodrigues.

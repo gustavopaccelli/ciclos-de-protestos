@@ -1,7 +1,7 @@
 # Referências (ABNT) — estudo de caso e seção teórica
 
 Abaixo estão todas as referências utilizadas no artigo, formatadas em ABNT, em ordem alfabética.
-Última atualização: 2026-07-03 — adicionadas referências de movimentos sociais brasileiros, transição democrática e repertórios de ação coletiva.
+Última atualização: 2026-07-04 — incorporadas 14 referências dos artefatos (referencias_ciclos_protesto.bib): Piven & Cloward, Entman, Habermas, Dobry, Beach & Pedersen, Davenport, Alexander, Hutter, e casos brasileiros (Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezini, Sørbøe).
 
 ---
 
@@ -11,6 +11,9 @@ COSTA, Gustavo Paccelli. **Estruturas de mobilização e oportunidades política
 
 **Referências de terceiros:**
 
+ALEXANDER, Jeffrey C. **The Civil Sphere.** Oxford: Oxford University Press, 2006.
+
+
 ALONSO, Angela. **Flores, Votos e Balas: o movimento abolicionista brasileiro (1868-88).** São Paulo: Companhia das Letras, 2015.
 
 ALONSO, Angela. A política das ruas: protestos em São Paulo de Dilma a Temer. **Novos Estudos CEBRAP**, São Paulo, n. especial, p. 49-58, jun. 2017.
@@ -19,9 +22,15 @@ ALONSO, Angela. **Treze: a política de rua de Lula a Dilma.** São Paulo: Compa
 
 ALONSO, Angela; REZENDE, Patrícia Jimenez; SOUZA, Rafael de; SOUZA, Viviane Brito de. Análise de Eventos de Protesto: decisões metodológicas na organização do Banco de Eventos de Protesto (BEP) 2013-2016. **Plural — Revista do PPG em Sociologia da USP**, São Paulo, v. 31, n. 2, p. 288-323, jul./dez. 2024. DOI: 10.11606/issn.2176-8099.pcso.2024.233335.
 
+ANSELL, Aaron. Impeaching Dilma Rousseff: the double life of corruption allegations on Brazil's political right. **Culture, Theory and Critique**, v. 59, n. 4, p. 312-331, 2018.
+
+
 AVRITZER, Leonardo. **Participação e crise da representação.** In: NOVAIS, Fernando A.; SCHWARCZ, Lilia Moritz (Org.). **História da vida privada no Brasil.** São Paulo: Companhia das Letras, 2016. (Referência reconstituída a partir do uso em Costa, 2024.)
 
 AVRITZER, Leonardo. Participation in democratic Brazil: from popular hegemony and innovation to middle-class protest. **Opinião Pública**, Campinas, v. 23, n. 1, p. 43-59, 2017.
+
+BEACH, Derek; PEDERSEN, Rasmus Brun. **Process-Tracing Methods: Foundations and Guidelines.** Ann Arbor: University of Michigan Press, 2013.
+
 
 BECKER, C.; MOREIRA CESAR, C.; GALLAS, D.; WEBER, M. H. Manifestações e votos sobre impeachment de Dilma Rousseff na primeira página de jornais brasileiros. **Revista Latinoamericana de Ciencias de la Comunicación**, v. 13, n. 24, 2017.
 
@@ -47,15 +56,27 @@ CIOCCARI, Deysi. Operação Lava Jato: escândalo, agendamento e enquadramento. 
 
 CORSI, Francisco Luiz. **A política econômica do governo Dilma: baixo crescimento e recessão.** Marília: Oficina Universitária; São Paulo: Cultura Acadêmica, 2016.
 
+DAVENPORT, Christian. **State Repression and the Domestic Democratic Peace.** Cambridge: Cambridge University Press, 2007.
+
+
 DELLA PORTA, Donatella. Protests as critical junctures: some reflections towards a momentous approach to social movements. **Social Movement Studies**, v. 19, p. 556-575, 2018. DOI: 10.1080/14742837.2018.1555458.
 
 DELLA PORTA, Donatella. **Contentious Politics in Emergency Critical Junctures.** Cambridge: Cambridge University Press, 2022. DOI: 10.1017/9781009025638.
+
+DOBRY, Michel. **Sociologie des crises politiques: la dynamique des mobilisations multisectorielles.** Paris: Presses de Sciences Po, 1986.
+
 
 DOIMO, Ana Maria. **A vez e a voz do popular: movimentos sociais e participação política no Brasil pós-70.** Rio de Janeiro: Relume-Dumará, 1995.
 
 EARL, Jennifer; MARTIN, Andrew; McCARTHY, John D.; SOULE, Sarah A. The use of newspaper data in the study of collective action. **Annual Review of Sociology**, v. 30, p. 65-80, 2004.
 
+ENTMAN, Robert M. Framing: toward clarification of a fractured paradigm. **Journal of Communication**, v. 43, n. 4, p. 51-58, 1993.
+
+
 FANTINATTI, Marcia; MOURA, José. Mídia, censura e transição política no Brasil. **Comunicação & Sociedade**, São Paulo, v. 28, n. 2, p. 45-67, 2007.
+
+FERNANDES, Antonio et al. A longa conjuntura crítica brasileira desde 2013: crise e castigo. 2020. (Dados de publicação a confirmar.)
+
 
 FERREE, Myra Marx. Resonance and radicalism: feminist framing in the abortion debates of the United States and Germany. **American Journal of Sociology**, v. 109, n. 2, p. 304-344, 2003.
 
@@ -73,9 +94,15 @@ GOHN, Maria da Glória. Movimentos e mobilizações sociais no Brasil: de 2013 a
 
 GOODWIN, Jeff; JASPER, James M. Caught in a winding, snarling vine: the structural bias of political process theory. **Sociological Forum**, v. 14, n. 1, p. 27-54, 1999.
 
+HABERMAS, Jürgen. **Legitimation Crisis.** Boston: Beacon Press, 1973.
+
+
 HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
 
 HOLSTON, James. **Insurgent Citizenship: Disjunctions of Democracy and Modernity in Brazil.** Princeton: Princeton University Press, 2008.
+
+HUTTER, Swen. Protest event analysis and its offspring. In: DELLA PORTA, Donatella (Ed.). **Methodological Practices in Social Movement Research.** Oxford: Oxford University Press, 2014.
+
 
 JATOBÁ, Daniel. **Análise de conjuntura: o que é e como se faz?** Juiz de Fora: [s. n.], 16 jun. 2025.
 
@@ -119,6 +146,15 @@ MISCHE, Ann. **Partisan Publics: Communication and Contention across Brazilian Y
 
 MOISÉS, José Álvaro. **Democratização e cultura política no Brasil.** São Paulo: Lua Nova, 1989.
 
+NUNES, Felipe; MELO, Carlos Ranulfo. Impeachment, political crisis and democracy in Brazil. **Revista de Ciencia Política**, v. 37, n. 2, p. 281-304, 2017.
+
+
+ORTELLADO, Pablo; SOLANO, Esther; MORETTO, Márcio. Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015. 2016. (Dados de publicação a confirmar.)
+
+
+PIVEN, Frances Fox; CLOWARD, Richard A. **Poor People's Movements: Why They Succeed, How They Fail.** New York: Pantheon Books, 1977.
+
+
 RODRIGUES, Alberto Tosi. Democracia e mobilização social: participação autônoma e instituições políticas na transição brasileira. **Revista de Sociologia e Política**, Curitiba, n. 12, p. 99-119, jun. 1999.
 
 RODRIGUES, Alberto Tosi. **Brasil de Fernando a Fernando: neoliberalismo, corrupção e protesto na política brasileira de 1989 a 1994.** Ijuí: Editora Unijuí, 2000.
@@ -139,6 +175,9 @@ SANTANA, Marco Aurélio. **Trabalhadores, sindicatos e política no Brasil.** Ri
 
 SANTOS, Boaventura de Sousa; AVRITZER, Leonardo. Para ampliar o cânone democrático. In: SOUZA SANTOS, Boaventura de (Org.). **Democratizar a democracia: os caminhos da democracia participativa.** Rio de Janeiro: Civilização Brasileira, 2002. p. 39-82.
 
+SCARTEZINI, Natália. A fascistização da indignação: as manifestações de 2015 no Brasil. 2016. (Dados de publicação a confirmar.)
+
+
 SCHERER-WARREN, Ilse. **Movimentos sociais: um ensaio de interpretação sociológica.** Florianópolis: Editora da UFSC, 1987.
 
 SEVILLANO, Vitor. Juventude, política e transição democrática. **Tempo Social**, São Paulo, v. 22, n. 2, p. 87-110, 2010.
@@ -154,6 +193,9 @@ SNOW, David A.; BENFORD, Robert D. Ideology, frame resonance, and participant mo
 SNOW, David A.; BENFORD, Robert D. Master frames and cycles of protest. In: MORRIS, Aldon D.; McCLURG MUELLER, Carol (Ed.). **Frontiers in Social Movement Theory.** New Haven: Yale University Press, 1992. p. 133-155.
 
 SOLANO, Esther. Crise da democracia e extremismos de direita. **Análise**, São Paulo: Fundação Friedrich Ebert, n. 42, abr. 2018.
+
+SØRBØE, Celina Myrann. Urban uprisings between revolutionary openings and reactionary outcomes: making sense of the 2013 'June Days' in Brazil. **Urban Geography**, 2022. (Volume e páginas a confirmar.)
+
 
 TATAGIBA, Luciana. 1984, 1992 e 2013: sobre ciclos de protestos e democracia no Brasil. **Política & Sociedade**, Florianópolis, v. 13, n. 28, p. 35-61, 2014.
 
