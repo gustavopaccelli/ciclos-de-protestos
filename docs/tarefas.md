@@ -42,6 +42,7 @@ Ver `docs/artefatos-incorporacao.md` §4. Os artefatos trazem uma revisão (vari
 no Impeachment, remoção da radicalização em J13) que **conflita com a periodização validada**.
 
 - [ ] **P1.** Usuário decidir entre manter a periodização v2 validada (repo) ou adotar o `cycle_phases_v4` revisado dos artefatos + variável `traducao_institucional`.
+- [ ] **P2.** Confirmar a proposta de **fases de articulação** (`docs/periodizacao-articulacao.md`), fundamentada na tese: articulação forte no Fora Collor (nov/1991, Mische 2008) e no Impeachment Dilma (pós-eleições out/2014, Aécio contestando — McAdam & Tarrow 2011; Tatagiba 2018); Junho 2013 SEM articulação (ruptura, não articulação — confirmado pela tese); Diretas Já a decidir. Fronteira J13→Dilma redefinida.
 
 ---
 

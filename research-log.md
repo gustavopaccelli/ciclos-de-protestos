@@ -299,3 +299,23 @@ nota_consolidada_v2 trazem periodização revisada (variável traducao_instituci
 NA≠0, fase de articulação do Fora Collor nov/1991, fase de latência no Impeachment, remoção
 da radicalização em J13). Aguarda decisão do usuário (docs/tarefas.md P1) antes de substituir
 data/cycle_phases.csv validado.
+
+## 2026-07-04 — Tese de doutorado incorporada; proposta de fases de articulação
+
+Usuário anexou a tese (Costa 2024) como fonte primária → preservada em artefatos/tese/.
+Pergunta central: melhorar a fronteira Junho 2013 → Impeachment Dilma e as fases de articulação.
+
+Achados (fundamentados na tese):
+- A tese separa (Quadro 6): Ciclo Mosaico (jun/2013) → Ciclo das Eleições de 2014 →
+  Ciclo Patriota (mar-abr/2015) → Ciclo do Impeachment (dez/2015-mar/2016).
+- Fronteira J13→Dilma: J13 encerra em 2013; a ARTICULAÇÃO do impeachment começa após o
+  2º turno de 26/10/2014, com Aécio (PSDB) contestando as urnas — mobilização eleitoral
+  reativa (McAdam & Tarrow 2011; Tatagiba 2018).
+- Fora Collor: fase de articulação nov/1991–mai/1992 (Mische 2008); denúncia a partir de
+  01/06/1992 (CPMI PC Farias).
+- Junho 2013 SEM fase de articulação: MPL tem pré-história (Revolta do Buzu 2003; MPL-Brasil
+  no FSM 2005), mas as ações anteriores são "esporádicas"; a tese fixa o "divisor de águas"
+  (junho é ruptura de amplitude, não desdobramento articulado). Confirma a intuição do usuário.
+
+Proposta detalhada em docs/periodizacao-articulacao.md (não aplicada ao dataset — aguarda
+confirmação; ver docs/tarefas.md P1/P2).
