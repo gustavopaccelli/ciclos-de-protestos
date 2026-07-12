@@ -1,5 +1,13 @@
 # Proposta de periodização com fases de articulação
 
+> **APLICADO em 2026-07-04** (decisão do usuário): (1) fase de articulação adotada em
+> Diretas Já, Fora Collor e Impeachment Dilma; (2) fase de radicalização mantida em Junho
+> 2013 (após a violência policial de 13/06 e o confronto black bloc de 17/06 — confirmado na
+> tese, §3.3.3); (3) fase de latência adotada no Impeachment; (4) variável
+> `traducao_institucional` incorporada. Dataset: `data/cycle_phases.csv` (24 fases);
+> backup da v2 em `data/cycle_phases_v2_prearticulacao.csv`.
+
+
 Data: 2026-07-04. Fonte primária: **Costa (2024), Tese de Doutorado** (UFJF), seções 2.2.1,
 2.2.4, 3.2 e 3.3. Esta proposta refina as fronteiras entre ciclos — em especial **Junho 2013 →
 Impeachment Dilma** — e introduz a **fase de articulação** onde há base empírico-bibliográfica.

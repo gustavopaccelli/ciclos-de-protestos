@@ -24,7 +24,7 @@ components:
   cycle_phases:
     descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
     local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
-    status: "scores fixados; periodização v2 validada em 2026-06-10 (21 fases, com radicalização em J13)"
+    status: "periodização v3 validada em 2026-07-04 (24 fases): fases de articulação em Diretas Já, Fora Collor e Impeachment; radicalização mantida em J13; latência no Impeachment; variável traducao_institucional. Base: tese Costa 2024. Backup v2 em data/cycle_phases_v2_prearticulacao.csv"
   bancos_externos:
     descricao: "Bancos de dados de terceiros incorporados (fontes independentes, não somáveis)"
     local: "data/bancos-externos/"

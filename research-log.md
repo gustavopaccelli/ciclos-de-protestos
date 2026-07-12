@@ -319,3 +319,21 @@ Achados (fundamentados na tese):
 
 Proposta detalhada em docs/periodizacao-articulacao.md (não aplicada ao dataset — aguarda
 confirmação; ver docs/tarefas.md P1/P2).
+
+## 2026-07-04 — Periodização v3 aplicada (fases de articulação + latência + traducao_institucional)
+
+Decisão do usuário (confirmando docs/periodizacao-articulacao.md):
+1. Fase de ARTICULAÇÃO adotada em Diretas Já (1982-11→1983-02), Fora Collor
+   (1991-11→1992-05, Mische 2008) e Impeachment Dilma (2014-10-27→2015-03-14,
+   pós-eleição, Aécio contestando as urnas — McAdam & Tarrow 2011; Tatagiba 2018).
+2. Fase de RADICALIZAÇÃO mantida em Junho 2013 (21/06→31/07). Verificado na tese
+   (§3.3.3): a radicalização do repertório (black blocs) intensifica-se APÓS a
+   violência policial contra manifestantes (13/06) e o confronto de 17/06, após o
+   pico (20/06) e a retirada do MPL (21/06).
+3. Fase de LATÊNCIA adotada no Impeachment (2015-08-17→2015-12-01).
+4. Variável traducao_institucional (0-3) incorporada (9ª variável).
+
+data/cycle_phases.csv reescrito: 24 fases (6 por ciclo). v2 preservada em
+data/cycle_phases_v2_prearticulacao.csv. Codebook atualizado (fases articulacao/
+latencia, variável traducao_institucional). Fronteira J13→Dilma redefinida: J13
+encerra em 2013; articulação do impeachment inicia após 26/10/2014.

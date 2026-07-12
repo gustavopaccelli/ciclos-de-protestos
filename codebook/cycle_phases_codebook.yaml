@@ -5,16 +5,36 @@
 # Escala ordinal: 0 = ausente/nulo | 1 = baixo/incipiente | 2 = moderado/presente | 3 = alto/determinante
 
 periodizacao:
-  fases: [emergencia, expansao, pico, radicalizacao, declinio, desfecho]
+  fases: [articulacao, emergencia, expansao, pico, latencia, radicalizacao, declinio, desfecho]
   nota: >
-    v2 validada em 2026-06-10 (ver docs/periodizacao-revisao.md).
-    A fase "radicalizacao" é específica de Junho 2013 (21/06–31/07: saída das
-    massas, predomínio black bloc, recriminalização midiática — 2ª inversão da
-    DOS no ciclo); nos demais ciclos é vazia e, em tabelas comparativas 4×5,
-    pode ser agregada ao declínio. Ciclo Dilma: expansão até 2015-11-30
-    (construção institucional da janela: TCU 02/10, pauta-bomba, articulação
-    Temer) e pico até 2016-05-11 (admissibilidade no Senado); início do ciclo
-    em 2014-10-26 validado (padrão de construção deliberada de EOP+DOS).
+    v3 validada em 2026-07-04 (ver docs/periodizacao-articulacao.md), a partir da
+    tese Costa (2024). 24 fases (6 por ciclo). Duas fases não-canônicas específicas:
+    "articulacao" (construção prévia de estruturas de mobilização e oportunidades
+    antes da fase pública contenciosa) e "latencia" (vale entre expansão e pico).
+  fase_articulacao:
+    definicao: >
+      Fase em que estruturas de mobilização e oportunidades políticas são
+      construídas antes de o ciclo se tornar publicamente contencioso.
+    ocorrencia:
+      diretas_ja: "1982-11 a 1983-02 — eleições de 1982; governadores de oposição (Montoro/SP, Brizola/RJ); pré-campanha (grounding moderado)"
+      fora_collor: "1991-11 a 1992-05 — articulação estudantil/intersetorial (Mische 2008); denúncia a partir de 01/06/1992 (CPMI PC Farias)"
+      impeachment_dilma: "2014-10-27 a 2015-03-14 — pós-2º turno; Aécio (PSDB) contesta as urnas; mobilização eleitoral reativa (McAdam & Tarrow 2011; Tatagiba 2018)"
+      junho_2013: "AUSENTE — ações prévias do MPL (Revolta do Buzu 2003; MPL-Brasil/FSM 2005) são esporádicas; junho é ruptura de amplitude, não articulação (Costa 2024, §3.3.2)"
+  fase_radicalizacao:
+    definicao: >
+      Específica de Junho 2013 (21/06–31/07): após a violência policial contra
+      manifestantes (13/06) e o confronto com black blocs (17/06), e após o pico
+      (20/06) com a retirada do MPL (21/06), o repertório radicaliza (predomínio
+      black bloc) e a DOS se inverte pela 2ª vez (recriminalização midiática).
+      Fundamento: Costa (2024, §3.3.3); della Porta (2018); Dobry (2015).
+  fase_latencia:
+    definicao: >
+      Vale de mobilização entre expansão e pico. No ciclo Dilma: 2015-08-17 a
+      2015-12-01, entre o ato de 16/08/2015 e a admissibilidade do impeachment
+      (02/12/2015). Adotada da revisão dos artefatos (cycle_phases_v4).
+  nota_comparacao: >
+    Em tabelas comparativas 4×N, articulacao/latencia/radicalizacao podem ser
+    agregadas às fases canônicas vizinhas conforme a análise.
 
 blocos:
   oportunidades_politicas:
@@ -33,6 +53,10 @@ blocos:
     op_repressao:
       descricao: "Nível de repressão estatal ao protesto (codificação NÃO invertida: 3 = repressão alta)"
       fundamento: "Tarrow (2009); della Porta (2018) — repressão como detonador em 2013"
+  traducao_institucional:
+    traducao_institucional:
+      descricao: "Grau em que o resultado é obtido por canal institucional distinto do demandado (ex.: Diretas Já perde a emenda mas elege Tancredo no Colégio Eleitoral)"
+      fundamento: "Costa (2024); nota_consolidada_v2 dos artefatos (2026). Escala 0-3; incorporada em 2026-07-04"
   oportunidades_discursivas:
     od_visibilidade_midia:
       descricao: "Cobertura e enquadramento midiático favorável"
@@ -50,7 +74,7 @@ ciclos:
     periodo: "1983-03 a 1985-03"
   - id: fora_collor
     nome: "Fora Collor"
-    periodo: "1992-05 a 1992-12"
+    periodo: "1991-11 a 1992-12 (articulação desde nov/1991)"
   - id: junho_2013
     nome: "Junho de 2013"
     periodo: "2013-06 a 2013-12"
