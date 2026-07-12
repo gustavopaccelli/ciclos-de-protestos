@@ -1,0 +1,24 @@
+# requirements.txt — PEA Acervo Folha
+# Instalar com: pip install -r requirements.txt
+
+# Web scraping (browser headless)
+playwright>=1.42.0
+
+# HTTP e parsing HTML (fallback / pré-processamento)
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=5.1.0
+
+# API Anthropic
+anthropic>=0.25.0
+
+# Processamento de dados
+pandas>=2.2.0
+openpyxl>=3.1.2
+
+# Configuração
+python-dotenv>=1.0.0
+PyYAML>=6.0.1
+
+# Utilitários
+tqdm>=4.66.0

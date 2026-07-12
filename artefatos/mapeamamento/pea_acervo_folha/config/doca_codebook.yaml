@@ -1,0 +1,131 @@
+# =============================================================
+# config/doca_codebook.yaml
+# Codebook simplificado baseado no projeto Dynamics of
+# Collective Action (DoCA) — Stanford / McAdam, Tarrow, Tilly
+# Adaptado para o contexto político brasileiro (1985–atual)
+# =============================================================
+
+# --- VALÊNCIAS ---
+valences:
+  "01": "Pró-movimento / favorável à demanda"
+  "02": "Anti-movimento / oposição à demanda"
+  "03": "Indeterminado / ambíguo"
+
+# --- CÓDIGOS DE DEMANDA (claim_codes) ---
+# Estrutura: XXXX onde os dois primeiros dígitos = domínio temático,
+# os dois últimos = subtipo específico
+
+claim_codes:
+
+  # 10xx — DIREITOS POLÍTICOS E DEMOCRACIA
+  "1001": "Sufrágio / eleições diretas"
+  "1002": "Impeachment / cassação de mandato"
+  "1003": "Reforma política / sistema eleitoral"
+  "1004": "Anticorrupção / transparência pública"
+  "1005": "Liberdades civis / direito à manifestação"
+  "1006": "Independência do Judiciário / Estado de Direito"
+  "1007": "Defesa da democracia / anti-golpe"
+  "1008": "Autoritarismo / intervenção militar"
+
+  # 11xx — DIREITOS TRABALHISTAS E ECONÔMICOS
+  "1101": "Reajuste salarial / piso mínimo"
+  "1102": "Reforma trabalhista (contra)"
+  "1103": "Greve / direito de greve"
+  "1104": "Privatização (contra)"
+  "1105": "Reforma previdenciária (contra)"
+  "1106": "Política fiscal / cortes orçamentários"
+  "1107": "Informalidade e precarização"
+  "1108": "Política econômica / neoliberalismo"
+
+  # 12xx — TERRA, MORADIA E URBANISMO
+  "1201": "Reforma agrária"
+  "1202": "Moradia urbana / direito à cidade"
+  "1203": "Despejos e remoções forçadas"
+  "1204": "Transporte público / mobilidade urbana"
+  "1205": "Saneamento básico / infraestrutura"
+  "1206": "Megaeventos esportivos (contra)"
+
+  # 13xx — EDUCAÇÃO E CIÊNCIA
+  "1301": "Financiamento da educação pública"
+  "1302": "Gestão universitária / autonomia"
+  "1303": "Cortes em pesquisa e ciência"
+  "1304": "Passe livre estudantil"
+  "1305": "Escola sem partido / currículo"
+
+  # 14xx — SAÚDE E SEGURIDADE SOCIAL
+  "1401": "Financiamento do SUS"
+  "1402": "Gestão da pandemia / saúde pública"
+  "1403": "Previdência social"
+  "1404": "Acesso a medicamentos"
+
+  # 15xx — RAÇA, ETNIA E IDENTIDADE
+  "1501": "Racismo estrutural / anti-racismo"
+  "1502": "Cotas raciais / políticas afirmativas"
+  "1503": "Violência policial racializada"
+  "1504": "Demarcação de terras indígenas"
+  "1505": "Quilombolas / direitos territoriais"
+  "1506": "Crime de ódio racial ou étnico"
+
+  # 16xx — GÊNERO E SEXUALIDADE
+  "1601": "Direitos das mulheres / feminismo"
+  "1602": "Violência de gênero / feminicídio"
+  "1603": "Direitos LGBTQIA+"
+  "1604": "Criminalização do aborto"
+  "1605": "Assédio sexual / cultura do estupro"
+  "1606": "Crime de ódio de gênero"
+
+  # 17xx — MEIO AMBIENTE E DESENVOLVIMENTO
+  "1701": "Desmatamento / proteção florestal"
+  "1702": "Mudanças climáticas"
+  "1703": "Licenciamento ambiental"
+  "1704": "Energia nuclear / hidrelétrica"
+  "1705": "Agrotóxicos"
+  "1706": "Desastre socioambiental (Mariana, Brumadinho)"
+
+  # 18xx — SEGURANÇA PÚBLICA E VIOLÊNCIA
+  "1801": "Violência policial / execuções"
+  "1802": "Segurança pública / criminalidade"
+  "1803": "Milícias / crime organizado"
+  "1804": "Pena de morte / redução maioridade penal"
+  "1805": "Desarmamento / porte de armas"
+  "1806": "Presos políticos / anistia"
+
+  # 19xx — POLÍTICA EXTERNA E INTERNACIONAL
+  "1901": "Antiimperialismo / soberania nacional"
+  "1902": "ALCA / acordos comerciais"
+  "1903": "Solidariedade internacional"
+  "1904": "Refugiados e migrantes"
+
+# --- REPERTÓRIOS DE AÇÃO COLETIVA ---
+# Taxonomia baseada em Tilly (2008) "Contentious Performances"
+repertoires:
+  "march":            "Marcha / passeata"
+  "rally":            "Comício / concentração pública"
+  "strike":           "Greve / paralisação"
+  "blockade":         "Bloqueio de via / barricada"
+  "occupation":       "Ocupação de espaço / prédio"
+  "vigil":            "Vigília / ato simbólico noturno"
+  "petition":         "Abaixo-assinado / petição pública"
+  "sit_in":           "Sentada / desobediência civil passiva"
+  "riot":             "Motim / conflito urbano"
+  "digital_action":   "Ação digital / hashtag / petição online"
+  "symbolic_act":     "Ato simbólico (performance, instalação)"
+  "land_occupation":  "Ocupação de terra / assentamento"
+  "hunger_strike":    "Greve de fome"
+  "caravan":          "Caravana / caminhada"
+
+# --- ESCALA DE TAMANHO DE MULTIDÃO ---
+crowd_ranges:
+  "XS":   "menos de 50 participantes"
+  "S":    "50–499 participantes"
+  "M":    "500–4.999 participantes"
+  "L":    "5.000–49.999 participantes"
+  "XL":   "50.000–499.999 participantes"
+  "XXL":  "500.000 ou mais participantes"
+
+# --- CRITÉRIOS DE ELEGIBILIDADE DoCA ---
+eligibility:
+  min_participants: 2
+  must_be_public: true
+  must_have_claim_or_grievance: true
+  hate_crime_exception: true  # Regra 4: crimes de ódio são codificados sem demanda explícita

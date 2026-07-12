@@ -1,0 +1,93 @@
+# =============================================================
+# config/queries.yaml
+# Configuração das queries de busca para o Acervo Folha
+# Baseado no protocolo DoCA + BEP-Cebrap
+# =============================================================
+
+# Termos primários de busca (operador OR implícito dentro de cada grupo)
+# O scraper combina grupos com AND para refinar resultados
+query_groups:
+
+  # Grupo A: termos de evento contencioso
+  contention_terms:
+    - "manifestação"
+    - "protesto"
+    - "marcha"
+    - "passeata"
+    - "concentração pública"
+    - "ato público"
+    - "comício"
+    - "ocupação"
+    - "bloqueio"
+    - "barricada"
+    - "motim"
+
+  # Grupo B: termos de greve e paralisação (tratados com regra temporal especial)
+  strike_terms:
+    - "greve"
+    - "paralisação"
+    - "lockout"
+    - "greve geral"
+    - "greve de fome"
+    - "greve selvagem"
+
+  # Grupo C: termos de mobilização coletiva
+  mobilization_terms:
+    - "ato de rua"
+    - "mobilização"
+    - "convocação"
+    - "campanha de rua"
+    - "vigília"
+    - "caminhada"
+    - "panelaço"
+
+  # Grupo D: organizações frequentes (ampliam recall)
+  org_terms:
+    - "CUT"
+    - "MST"
+    - "MPL"
+    - "UNE"
+    - "MTST"
+    - "MBL"
+    - "Vem pra Rua"
+    - "Black Bloc"
+    - "movimento negro"
+
+# Termos de exclusão (NOT): reduzem falsos positivos
+exclusion_terms:
+  - "manifestação artística"
+  - "manifestação cultural"
+  - "manifestação esportiva"
+  - "protesto de jogador"
+  - "protesto de torcida"  # eventos de torcida organizada intraestádio
+  - "manifestação de amor"
+  - "nota de esclarecimento"
+
+# Seções do jornal a incluir (whitelist)
+# Acervo Folha classifica por caderno/editoria
+include_sections:
+  - "Poder"
+  - "Cotidiano"
+  - "Brasil"
+  - "São Paulo"
+  - "Mundo"   # para eventos internacionais com reflexo no Brasil
+  - "Especial"
+
+# Seções a excluir (blacklist)
+exclude_sections:
+  - "Esporte"
+  - "Mercado"
+  - "Folhinha"
+  - "Turismo"
+  - "Comida"
+  - "Equilíbrio"
+  - "Ilustrada"  # excluir cultura pop; manter se cobrir protestos de trabalhadores da cultura
+
+# Formato de data para query no Acervo Folha
+# Acervo usa dd/mm/yyyy no campo de busca
+date_format: "%d/%m/%Y"
+
+# URL base do Acervo Folha
+acervo_base_url: "https://acervo.folha.com.br"
+search_endpoint: "/busca"
+login_url: "https://login.folha.com.br/login"
