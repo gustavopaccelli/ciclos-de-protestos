@@ -44,6 +44,10 @@ components:
       Incorporadas dos artefatos (2026-07-04): Diretas Já (59 eventos) e Fora Collor
       (15 eventos), com estimativas de público por fonte. Preenchem a lacuna dos ciclos
       que MM/NEPAC não cobrem; semente para o pipeline AEP (Frente D).
+  metodologia:
+    descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
+    local: "metodologia/relatorio-metodologico.md"
+    status: "Criado em 2026-07-04: abordagem teórico-metodológica, prospecção/coleta (pipeline, bancos, sementes), governança, insights, cronologia. Documento vivo."
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"

@@ -337,3 +337,12 @@ data/cycle_phases.csv reescrito: 24 fases (6 por ciclo). v2 preservada em
 data/cycle_phases_v2_prearticulacao.csv. Codebook atualizado (fases articulacao/
 latencia, variável traducao_institucional). Fronteira J13→Dilma redefinida: J13
 encerra em 2013; articulação do impeachment inicia após 26/10/2014.
+
+## 2026-07-04 — Relatório metodológico
+
+Criada pasta metodologia/ com relatorio-metodologico.md: relatório acadêmico-científico
+descritivo e estruturado de todas as etapas do projeto — abordagem teórico-metodológica,
+desenho e periodização (v3, 24 fases), prospecção e coleta de dados (pipeline AEP/Acervo
+Folha, scraping, codebook DoCA/BEP/MPEDS, bancos NEPAC e Mass Mobilization, sementes,
+validação de cronologia), governança do repositório, insights produzidos, limitações e
+cronologia das etapas. Documento vivo.

@@ -80,6 +80,11 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
   (produtos do Projeto claude.ai): o que foi incorporado, superado ou reservado para
   a consolidação do artigo, e a decisão pendente de periodização.
 
+## Relatório metodológico
+- `metodologia/relatorio-metodologico.md` — relatório acadêmico descritivo de todas
+  as etapas metodológicas do projeto (abordagem teórica, coleta de dados, pipeline,
+  bancos, insights).
+
 ## Acompanhamento de tarefas
 - `docs/tarefas.md` — inventário das tarefas pendentes e concluídas por frente.
 
