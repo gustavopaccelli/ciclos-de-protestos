@@ -96,3 +96,13 @@ O `artefatos/mapeamamento/pea_acervo_folha/` é o **pipeline original**. Compara
 Isso resolve a pendência do `research-log` ("doca_codebook RECONSTRUÍDO — validar contra o
 original"): a validação foi feita; nosso codebook cobre e supera o original, exceto pelas
 `valences`, agora incorporadas.
+
+
+## 6. Arquivos adicionais das Diretas Já (upload 2026-07-14)
+
+| Artefato | Parecer | Ação |
+|---|---|---|
+| `Cronologia_Diretas_Ja.xlsx` (aba Cronologia Comícios) | **INCORPORADO** | → `data/diretas_ja/comicios_cronologia.csv` (50 comícios) |
+| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Roteiro por Estado) | **INCORPORADO** | → `data/diretas_ja/comicios_por_estado.csv` (490 comícios por UF) |
+| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Grupos e Associações) | **INCORPORADO** | → `data/diretas_ja/grupos_associacoes.csv` |
+| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Manifestações por Mês) | **DUPLICATA — ignorada** | sobrepõe `data/protest_events_seeds/protest_events_diretas_ja_seed.csv` (seed permanece canônico) |

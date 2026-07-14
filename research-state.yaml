@@ -44,6 +44,10 @@ components:
       Incorporadas dos artefatos (2026-07-04): Diretas Já (59 eventos) e Fora Collor
       (15 eventos), com estimativas de público por fonte. Preenchem a lacuna dos ciclos
       que MM/NEPAC não cobrem; semente para o pipeline AEP (Frente D).
+  dados_diretas_ja:
+    descricao: "Dados complementares das Diretas Já (cronologia de comícios, roteiro por estado, atores)"
+    local: "data/diretas_ja/"
+    status: "Incorporados em 2026-07-14: comicios_cronologia (50), comicios_por_estado (490 comícios, SP+MG = 52%), grupos_associacoes. Aba de eventos duplicava o seed (ignorada)."
   metodologia:
     descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
     local: "metodologia/relatorio-metodologico.md"

@@ -346,3 +346,19 @@ desenho e periodização (v3, 24 fases), prospecção e coleta de dados (pipelin
 Folha, scraping, codebook DoCA/BEP/MPEDS, bancos NEPAC e Mass Mobilization, sementes,
 validação de cronologia), governança do repositório, insights produzidos, limitações e
 cronologia das etapas. Documento vivo.
+
+## 2026-07-14 — Dados complementares das Diretas Já (upload do pesquisador)
+
+O pesquisador subiu dois xlsx à branch (Cronologia_Diretas_Ja e Manifestacoes_e_
+Dados_Diretas_Ja). Incorporados a data/diretas_ja/:
+- comicios_cronologia.csv (50 comícios: data/cidade/público, nov/1983–jun/1984)
+- comicios_por_estado.csv (distribuição de 490 comícios por UF; SP 34,7% + MG 17,3%)
+- grupos_associacoes.csv (atores da coalizão: CUT/CONCLAT, OAB, ABI, SBPC, UNE, CEBs,
+  PMDB/PT/PDT/PTB + dissidência pró-Diretas do PDS)
+A aba "Manifestações por Mês" duplicava data/protest_events_seeds/protest_events_
+diretas_ja_seed.csv (ignorada; seed permanece canônico). Reforça a correção da data
+do comício de Goiânia (12/04/1984, ~200-250 mil).
+
+Nota sobre branches: main e claude/nifty-einstein-ullub6 estavam idênticas; o upload
+avançou a nifty em 1 commit. Reunificadas por fast-forward. As branches NÃO contêm
+conteúdo divergente entre si — são a mesma linha de trabalho.
