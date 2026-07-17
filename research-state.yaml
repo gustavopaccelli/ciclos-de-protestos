@@ -48,6 +48,10 @@ components:
     descricao: "Dados complementares das Diretas Já (cronologia de comícios, roteiro por estado, atores)"
     local: "data/diretas_ja/"
     status: "Incorporados em 2026-07-14: comicios_cronologia (50), comicios_por_estado (490 comícios, SP+MG = 52%), grupos_associacoes. Aba de eventos duplicava o seed (ignorada)."
+  analise_triangulacao:
+    descricao: "Produtos da Frente E — triangulação NEPAC + Mass Mobilization + seeds vs. cycle_phases"
+    local: "data/analise-triangulacao/"
+    status: "Pasta criada em 2026-07-16 (README com escopo e produtos previstos); análise a iniciar."
   metodologia:
     descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
     local: "metodologia/relatorio-metodologico.md"
@@ -92,6 +96,14 @@ frentes_abertas:
       Próximos passos: (1) incorporar scripts pipeline ao repo; (2) validar
       codebook com usuário; (3) executar quando houver credenciais Acervo Folha.
     prioridade: media
+  - id: E
+    titulo: "Análise de triangulação"
+    detalhe: >
+      PRIORIZADA em 2026-07-16. Triangular NEPAC (1.284 eventos 2011-2016) e
+      Mass Mobilization (224 protestos 1990-2020) com cycle_phases v3 e seeds:
+      séries temporais por ciclo, teste das fronteiras de fase, convergência
+      entre fontes, memorando analítico. Produtos em data/analise-triangulacao/.
+    prioridade: alta
 
 outer_loop:
   cycle: 2
