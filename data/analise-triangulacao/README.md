@@ -17,14 +17,14 @@ periodização e os scores dos ciclos de protesto:
 4. Complementares: `data/protest_events_seeds/` (Diretas Já 59, Fora Collor 15)
    e `data/diretas_ja/` (cronologia e distribuição estadual dos comícios).
 
-## Produtos previstos
+## Produtos
 
-| Produto | Descrição |
-|---|---|
-| Séries temporais por ciclo | Contagem mensal de eventos por fonte, sobreposta às fases do `cycle_phases` |
-| Teste de fronteiras de fase | As datas de transição (emergência→expansão→pico→declínio) coincidem com inflexões nas séries? |
-| Convergência entre fontes | Onde NEPAC e MM concordam/divergem (cobertura, repertórios, participação) |
-| Memorando analítico | Síntese dos achados e implicações para os scores e para o artigo (Frente C) |
+| Produto | Status | Descrição |
+|---|---|---|
+| `series_temporais_eventos.csv` | ✅ 2026-07-17 | Contagem mensal de eventos por fonte (formato longo: `fonte, ano_mes, n_eventos`). **Deliberadamente sem as fases do `cycle_phases`** — a comparação com a periodização é etapa analítica posterior, para preservar a independência do elemento comparativo (decisão do usuário). Gerado por `build_series_temporais.py` (reprodutível). NEPAC deduplicado por `Codigo_evento` (2.548 registros → 1.284 eventos); MM filtrado a `protest=1` (224); seeds Diretas Já (59) e Fora Collor (15). |
+| Teste de fronteiras de fase | pendente | As datas de transição (emergência→expansão→pico→declínio) coincidem com inflexões nas séries? |
+| Convergência entre fontes | pendente | Onde NEPAC e MM concordam/divergem (cobertura, repertórios, participação) |
+| Memorando analítico | pendente | Síntese dos achados e implicações para os scores e para o artigo (Frente C) |
 
 Regra do projeto: os bancos permanecem **fontes independentes** — a triangulação
 compara, não soma nem mescla registros (ver `data/bancos-externos/crosswalk-codigos.md`).
