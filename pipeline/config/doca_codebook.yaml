@@ -75,6 +75,15 @@ actor_formalization:   # var. 14 BEP
   formal:   "Agrupamento formalizado/institucionalizado, identificado pelo nome"
   informal: "Agrupamento reconhecível, mas sem indício de institucionalização"
 
+# Estrutura de cada item da lista `actors` do event_schema.
+# Declarada como YAML real (antes era comentário indentado, ilegível por máquina,
+# o que obrigava qualquer normalizador a hardcodar estes campos).
+actor_schema:
+  name:           "Nome/sigla do ator. Prioridade: sigla+nome > categoria do movimento > 'manifestantes'"
+  specification:  "Subgrupos ou indivíduos nomeados (str ou null)"
+  org_type:       "Ver actor_org_types"
+  formalization:  "formal | informal (ver actor_formalization)"
+
 # ---------------------------------------------------------------------------
 # BLOCO III — Performances políticas
 # ---------------------------------------------------------------------------
@@ -158,10 +167,6 @@ repression_levels:
   violência:  "Violência física com feridos"
 
 # ---------------------------------------------------------------------------
-# Schema do evento — campos do JSON de saída do 02_doca_coder.py
-# ---------------------------------------------------------------------------
-
-# ---------------------------------------------------------------------------
 # Campos complementares — MPEDS (Hanna 2017, DOI: 10.5281/zenodo.886459)
 # Incorporados ao schema para alinhamento com infraestrutura AEP internacional.
 # ---------------------------------------------------------------------------
@@ -203,15 +208,13 @@ event_schema:
   - location_city
   - city_size             # pequeno | medio | grande
   - location_state        # sigla (SP, RJ, ...)
-  - crowd_size_reported   # número bruto conforme fonte (int ou null); usar o maior valor
+  - crowd_size_reported   # número bruto conforme fonte (int ou null); usar SEMPRE o MAIOR valor
+  - crowd_size_min        # menor estimativa, quando há divergência entre fontes (int ou null)
+  - crowd_size_max        # maior estimativa; idêntico a crowd_size_reported (int ou null)
   - crowd_size_scale      # escala 0–5 (ver crowd_size_scale)
   - crowd_size_bep        # pequena | media | grande | mega (derivado de crowd_size_reported)
   # Bloco II — atores
-  - actors                # lista de objetos:
-    #   name:             nome/sigla do ator (prioridade: sigla+nome > cat.MS > "manifestantes")
-    #   specification:    subgrupos, indivíduos nomeados (str ou null)
-    #   org_type:         ver actor_org_types
-    #   formalization:    formal | informal
+  - actors                # lista de objetos conforme `actor_schema` acima
   # Bloco III — performances
   - repertoire            # verbo/substantivo canônico (ver repertoires)
   - action_object         # objeto da ação (str ou null)

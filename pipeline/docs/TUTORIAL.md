@@ -55,10 +55,13 @@ eventos, agregação anual, frequência de claims, distribuição geográfica).
 2. Rode:
 
 ```bash
-python 04_intercoder_reliability.py amostra_manual.csv
+python 04_intercoder_reliability.py amostra_manual.csv --out kappa.csv
 ```
 
-Reporte o Kappa por variável no paper (alvo: ≥ 0,61 — "substancial").
+Reporte o Kappa por variável no paper. **Limiar do projeto: κ ≥ 0,75**
+(Krippendorff 2004), conforme `config/doca_codebook.yaml` e
+`docs/aep-protocol-bep.md` §8/§11. Variáveis abaixo do limiar exigem revisão do
+prompt ou exclusão da análise — não são reportadas como válidas.
 
 ## 6. Exportação para R/Stata
 

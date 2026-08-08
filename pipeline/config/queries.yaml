@@ -1,35 +1,57 @@
 # Protocolo de busca no Acervo Folha (acervo.folha.com.br)
 # Usado por 01_scraper.py
+#
+# O conjunto abaixo reproduz as palavras-chave validadas pelo BEP-CEBRAP
+# (docs/aep-protocol-bep.md §3.1). Antes desta revisão, queries.yaml trazia um
+# conjunto próprio que omitia os termos de enquadramento negativo (baderna,
+# vândalos, depredação, black bloc) — justamente os que capturam a cobertura
+# hostil, decisiva para a análise de DOS e para o Bloco V (repressão).
+# Ao expandir, testar em amostra antes de incorporar ao conjunto principal.
 
 search_terms:
+  # — núcleo BEP —
   - "manifestação"
+  - "manifestante"
   - "protesto"
-  - "passeata"
-  - "marcha"
-  - "comício"
+  - "reivindicação"
   - "greve"
-  - "ocupação"
+  - "paralisação"
+  - "passeata"
+  - "concentração"
   - "ato público"
+  - "baderna"
+  - "vândalos"
+  - "depredação"
+  - "black bloc"
+  # — termos adicionais do projeto (repertórios do período pré-2013) —
+  - "comício"
+  - "marcha"
+  - "ocupação"
   - "mobilização"
   - "bloqueio"
+  - "carreata"
+  - "panelaço"
 
-# Janelas temporais por ciclo (prioridade) + varredura geral 1985–presente
+# Janelas temporais por ciclo + varredura geral.
+# Alinhadas à periodização v3 (data/cycle_phases.csv): as janelas dos ciclos
+# começam na FASE DE ARTICULAÇÃO, não na emergência — do contrário o scraper
+# não coletaria material para as fases que a v3 acrescentou.
 date_ranges:
-  - {label: diretas_ja,        start: "1983-01-01", end: "1985-03-31"}
-  - {label: fora_collor,       start: "1992-04-01", end: "1993-01-31"}
-  - {label: junho_2013,        start: "2013-05-01", end: "2013-12-31"}
-  - {label: impeachment_dilma, start: "2014-10-01", end: "2016-09-30"}
+  - {label: diretas_ja,        start: "1982-11-01", end: "1985-03-31"}   # articulação desde 15/11/1982
+  - {label: fora_collor,       start: "1991-11-01", end: "1993-01-31"}   # articulação desde nov/1991 (Mische 2008)
+  - {label: junho_2013,        start: "2013-05-01", end: "2013-12-31"}   # sem fase de articulação
+  - {label: impeachment_dilma, start: "2014-10-01", end: "2016-09-30"}   # articulação desde 27/10/2014
   - {label: serie_geral,       start: "1985-01-01", end: "2026-12-31"}
 
-# Seções a incluir/excluir (nomes conforme o Acervo)
-sections_include: ["Poder", "Cotidiano", "Brasil", "Política", "Primeira Página"]
-sections_exclude: ["Esporte", "Mercado", "Ilustrada", "Classificados", "Turismo"]
-
-# Critério de pré-triagem DoCA (aplicado pelo coder, registrado aqui para documentação):
-# evento elegível = ação coletiva + espaço público + expressão contenciosa de demanda
+# Critério de pré-triagem (aplicado pelo coder, registrado aqui para documentação):
+# evento elegível = os 4 critérios do protocolo §2 — ação pública e coletiva,
+# atores não-estatais, caráter contencioso, demanda social ou política.
 scraper:
-  results_per_page: 20
   delay_seconds: 2          # respeitar o servidor
-  max_retries: 3
-  output_dir: "pipeline/data/raw"
   state_file: "pipeline/data/scrape_state.json"   # rastreamento incremental
+
+# NOTA: as chaves `sections_include`, `sections_exclude`, `results_per_page`,
+# `max_retries` e `scraper.output_dir` foram removidas nesta revisão porque
+# eram declaradas e NUNCA lidas por 01_scraper.py — davam a falsa impressão de
+# que a filtragem por editoria estava ativa. Reintroduzir apenas junto com a
+# implementação correspondente no scraper.
