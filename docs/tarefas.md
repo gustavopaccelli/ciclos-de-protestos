@@ -1,7 +1,7 @@
 # Tarefas do projeto — acompanhamento
 
 Inventário das tarefas pendentes e concluídas, organizado por frente.
-Última atualização: 2026-07-17.
+Última atualização: 2026-07-18.
 
 > Ver `research-state.yaml` (estado central) e `research-log.md` (linha do tempo de decisões).
 
@@ -18,10 +18,29 @@ Estudo de caso já alinhado a 4 ciclos (Diretas Já incluída em 2026-07-04, sub
 - [ ] **C5.** Revisão final ABNT e adequação às normas do periódico-alvo.
 - [ ] **C6.** Conferência de datas na redação (comícios de abr/1984 e atos de out/2013) contra `docs/cronologia-validada.md`.
 
-## Frente D — Pipeline `protest_events` (Acervo Folha) · **em pausa** (decisão do usuário)
+## Frente D — Pipeline `protest_events` (Acervo Folha) · **em pausa quanto à execução**
 
-Guardada em 2026-07-04. Ver diagnóstico completo do estado no `research-log.md`.
+Guardada em 2026-07-04 quanto à COLETA. Em 2026-07-18 o pipeline foi revisado e corrigido
+offline (não exige credenciais): ver `research-log.md`.
 
+- [x] **D0.** Correção de 11 defeitos de codificação e alinhamento ao codebook BEP (2026-07-18):
+      schema do coder de ~16 para 41 campos; regra de público corrigida (o prompt mandava
+      registrar o MENOR valor, contra o MAIOR do protocolo — enviesava toda variável derivada
+      de tamanho); UUID5 sobre (url, data, cidade); normalização e `canonical_event_id` no
+      build; `protest_events_raw.csv`; kappa com bool/str normalizado e 16 variáveis;
+      `queries.yaml` alinhado às palavras-chave BEP §3.1 e às janelas da periodização v3;
+      limiar de kappa unificado em 0,75. Novo teste `pipeline/check_schema_coverage.py`.
+- [x] **D5.** §12 do protocolo — validação da codificação por LLM (Halterman & Keith 2024;
+      PAPEA/Haunss et al. 2025): 5 estágios, gold standard estratificado por ciclo, tipologia
+      de erro, critério de escalada, registro obrigatório. 2026-07-18.
+- [x] **D6.** Duplicata do pipeline em `artefatos/mapeamamento/pea_acervo_folha/` congelada
+      com `ARQUIVO-MORTO.md`. 2026-07-18.
+- [x] **D7.** Parecer sobre fontes alternativas ao Acervo Folha (`docs/fontes-alternativas.md`):
+      recomenda investigar a Hemeroteca Digital para Diretas Já e Fora Collor — lacuna que os
+      bancos externos não cobrem; não adotar GDELT como fonte primária. 2026-07-18.
+- [ ] **D8.** Separar triagem e codificação em duas passagens no coder (protocolo §11 prevê
+      Passagens 2 e 3 distintas; o código faz uma só). Apontado por PAPEA.
+- [ ] **D9.** Reintroduzir o `validation_report.json` que a cópia antiga emitia e a vigente não.
 - [ ] **D1.** Validar os seletores CSS do `01_scraper.py` contra o site real (gargalo crítico — Acervo é React, seletores hoje são placeholders).
 - [ ] **D2.** Instalar dependências (`pip install -r pipeline/requirements.txt`) e configurar `.env` com credenciais (NUNCA commitar o `.env`).
 - [ ] **D3.** Validar o `pipeline/config/doca_codebook.yaml` reconstruído contra o original.
@@ -35,6 +54,19 @@ Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e 
 - [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `data/bancos-externos/mass-mobilization-clark-regan-2020/livro-codigo/crosswalk-codigos.md`).
 - [ ] **E2.** Usar os microdados como evidência para as hipóteses H1–H3 (repertórios, alvos, respostas estatais em Junho 2013 e Impeachment).
 - [ ] **E3.** Integrar as sementes `protest_events` (Diretas Já + Fora Collor) à análise dos ciclos pré-2011 que os bancos externos não cobrem.
+
+## Pendência de verificação bibliográfica — **bloqueia a redação final**
+
+26 entradas do `.bib` estão marcadas `VERIFICAR` (rodar `python artigo/check_bib.py` para a
+lista): 8 defeitos antigos ("Dados de publicação a confirmar" / "Referência reconstituída",
+incl. a divergência de título de Sallum Jr. 2015 entre `survey.md` e a lista ABNT) e 18 obras
+incorporadas em 2026-07-18 com metadados incompletos.
+
+- [ ] **V1.** Confirmar volume/número/páginas/DOI/coautoria via Scite ou Elicit. Os conectores
+      caíram durante a sessão de 2026-07-18 antes da checagem. **Registrar como não-verificada
+      qualquer entrada que não se confirme — não preencher por inferência.**
+- [ ] **V2.** Ler na íntegra as obras fichadas a partir de abstract (ver aviso em
+      `literature/fichamentos/README.md`) antes de citá-las no artigo.
 
 ## Decisão pendente — periodização e esquema de codificação (dos artefatos)
 
@@ -63,6 +95,11 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 - [x] Inventário de artefatos concluído (`docs/artefatos-incorporacao.md`, 31 itens, incl. §6 uploads das Diretas Já).
 - [x] Bibliografia ABNT expandida para ~94 referências (+14 do `.bib` dos artefatos).
 - [x] README principal em formato de preprint (introdução, quadro metodológico, 14 hipóteses — 2026-07-17).
+- [x] Bibliografia canônica máquina-legível: `artigo/referencias.bib` (116 entradas, biblatex),
+      unificando a lista ABNT, o .bib dos artefatos e 16 obras novas do levantamento de
+      2026-07-18 (AEP automatizada + DOS pós-2015). Verificador `artigo/check_bib.py`.
+- [x] Fichamentos analíticos de 10 obras-chave em `literature/fichamentos/`; `survey.md`
+      atualizado (estava defasado desde 2026-06-10).
 
 ## Em espera (sem ação até instrução) ⏸
 

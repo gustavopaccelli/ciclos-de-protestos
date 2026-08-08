@@ -1,7 +1,12 @@
 # Levantamento Bibliográfico — Survey
 
 Pesquisa: EOP e oportunidades discursivas em quatro ciclos de protesto brasileiros (1984–2016).
-Última atualização: 2026-06-10 (bootstrap)
+Última atualização: **2026-07-18** (levantamento AEP automatizada + DOS pós-2015).
+Atualização anterior: 2026-06-10 (bootstrap).
+
+> **Fonte canônica da bibliografia:** [`artigo/referencias.bib`](../artigo/referencias.bib).
+> **Fichamentos por obra:** [`literature/fichamentos/`](fichamentos/).
+> Este survey é o mapa temático; o `.bib` é o registro bibliográfico.
 
 ## 1. Núcleo teórico — Teoria do Processo Político
 
@@ -75,3 +80,65 @@ Pesquisa: EOP e oportunidades discursivas em quatro ciclos de protesto brasileir
 - [O que foi o Diretas Já? (Politize)](https://www.politize.com.br/diretas-ja/)
 
 > ⚠️ Referências das seções 1–2 sem marcação [Verificado] vêm do conhecimento de domínio e DEVEM ser verificadas (DOI/edição) antes da redação final — regra do fluxo de citação do ml-paper-writing.
+
+---
+
+## 7. Levantamento de 2026-07-18 — duas lacunas fechadas
+
+Levantamento feito nas bases Consensus e Firecrawl. Identificou duas ausências inteiras no
+repositório. Fichamentos individuais em [`fichamentos/`](fichamentos/); metadados completos
+(e o que falta neles) em `artigo/referencias.bib`.
+
+### 7.1 AEP automatizada e codificação por LLM — lacuna crítica
+
+O projeto codifica eventos com LLM (`pipeline/02_doca_coder.py`) apoiado unicamente em uma
+passagem de Alonso et al. (2024, p. 320) que **legitima** o uso de NLP. Faltava toda a
+literatura que diz **como fazer e como validar**:
+
+- **Haunss et al. (2025), PAPEA** (*PSRM*) — pipeline modular com LLMs afinados; acurácia
+  comparável à humana. Desenho de referência.
+- **Halterman & Keith (2024), Codebook LLMs** (*Political Analysis*) — framework de 5
+  estágios; achado decisivo: LLMs **não seguem codebooks de forma confiável em zero-shot**.
+  Operacionalizado na nova §12 de `docs/aep-protocol-bep.md`.
+- **Lorenzini et al. (2021, 2020)** — desenho semiautomatizado (30 mil eventos, 30 países);
+  discussão extensa de viés de fonte jornalística.
+- **Hanna (2014)** — antecede o MPEDS (2017) já usado no codebook.
+- **Hoffmann et al. (2022)** (*CMM*) — crítica ao GDELT; base para não adotá-lo como fonte
+  primária (ver `docs/fontes-alternativas.md`).
+- **GLOCON** (arXiv:2405.18613; manuais em 2206.10299) — gold standard multilíngue.
+- **Event coreference for contentious politics** (arXiv:2203.10123) — quase metade das
+  menções de evento coocorrem: é o problema do `canonical_event_id`.
+- **Few-shot upsampling for protest size** (arXiv:2105.11260) — estimativa de público.
+- **ProtestNews / CASE** (arXiv:2008.00345) — benchmarks de detecção.
+- **Mamaev (2025)** (*Post-Soviet Affairs*) — dedup semântica em contexto não-anglófono.
+
+### 7.2 DOS pós-2015 — a base parava em 2007
+
+A seção 1 deste survey ancora a DOS em Koopmans & Statham (1999), Koopmans & Olzak (2004),
+McCammon (2007, 2013) e Ferree (2003). Nada posterior, e nenhum caso latino-americano:
+
+- **Motta (2015)** (*Social Movement Studies*) — **prioridade máxima**: opera DOS
+  empiricamente com análise de conteúdo de jornais na **Argentina, Brasil e México**;
+  decompõe a DOS em componentes (discurso de política pública, timing de agenda, estrutura
+  e cultura da mídia).
+- **Cammaerts (2012)** (*EJC*) — *mediation opportunity structure*; ponte TPP ↔ estudos de
+  mídia. Dá vocabulário ao nosso achado sobre mídia gatekeeper vs. produtora de frames, e
+  acrescenta a mídia como infraestrutura material da ação (caso: Mídia Ninja, 2013).
+- **Wahlström & Törnberg (2019)** (*TPV*) — DOS **coproduzida** entre mídia tradicional e
+  redes; teorização que falta à H2.4 (construção deliberada da DOS).
+- **Li et al. (2024)** (*New Media & Society*) — *affordances* para oportunidades discursivas.
+- **Caiani (2023)** (*Discourse Studies*) — mapeia a lacuna de análise de frames aplicada a
+  atores **de direita**; converte nossa simetria de desenho em contribuição explicitável.
+- **Meyer & Staggenborg (1996)** (*AJS*) — interação movimento–contramovimento aumenta
+  quando o Estado **habilita mas não satisfaz**; descreve o mecanismo 2013 → 2015-16.
+
+### 7.3 Ressalvas do levantamento
+
+1. **Nível de leitura: abstract.** Nenhuma das obras de §7 foi lida na íntegra. Ver aviso no
+   topo de `fichamentos/README.md`.
+2. **Metadados incompletos.** Volume, número, páginas, DOI e coautoria estão por confirmar em
+   todas as 16. Marcadas `VERIFICAR` no `.bib`. Os conectores acadêmicos caíram durante a
+   sessão antes de concluir a checagem — pendência da Frente C.
+3. **Cobertura de base.** O Firecrawl (arXiv/PubMed) **não cobre bem sociologia política
+   brasileira** — a busca sobre ciclos brasileiros retornou majoritariamente trabalhos
+   computacionais e de saúde. Para o caso brasileiro, usar Scite/Elicit/Consensus.

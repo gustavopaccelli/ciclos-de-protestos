@@ -1,7 +1,26 @@
 # Referências (ABNT) — estudo de caso e seção teórica
 
+> **Este arquivo é a SAÍDA FORMATADA, não a fonte.** A bibliografia canônica e
+> máquina-legível é [`artigo/referencias.bib`](referencias.bib) (116 entradas, biblatex/abntex2).
+> Ao acrescentar ou corrigir uma referência, edite o `.bib` **primeiro** e reflita aqui.
+> `python artigo/check_bib.py` confere a paridade entre os dois arquivos.
+
 Abaixo estão todas as referências utilizadas no artigo, formatadas em ABNT, em ordem alfabética.
-Última atualização: 2026-07-04 — incorporadas 14 referências dos artefatos (referencias_ciclos_protesto.bib): Piven & Cloward, Entman, Habermas, Dobry, Beach & Pedersen, Davenport, Alexander, Hutter, e casos brasileiros (Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezini, Sørbøe).
+
+**Última atualização: 2026-07-18** — incorporadas 16 obras do levantamento bibliográfico:
+AEP automatizada / codificação por LLM (Haunss, Halterman & Keith, Lorenzini, Hanna 2014,
+Hoffmann, Mamaev, GLOCON, ProtestNews e correlatas) e DOS pós-2015 (Motta, Cammaerts,
+Wahlström & Törnberg, Li, Caiani, Meyer & Staggenborg). Fichamentos em
+[`literature/fichamentos/`](../literature/fichamentos/).
+Atualização anterior: 2026-07-04 — 14 referências dos artefatos (referencias_ciclos_protesto.bib):
+Piven & Cloward, Entman, Habermas, Dobry, Beach & Pedersen, Davenport, Alexander, Hutter, e casos
+brasileiros (Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezini, Sørbøe).
+
+> ⚠️ **Verificação pendente.** As 16 obras incorporadas em 2026-07-18 vieram de levantamento em
+> base bibliográfica e **têm metadados incompletos** (volume, número, páginas, DOI, coautoria).
+> Estão marcadas `[VERIFICAR]` abaixo e no `.bib`. Somam-se às 8 entradas antigas já marcadas
+> "(Dados de publicação a confirmar)" / "(Referência reconstituída)". Nenhuma deve ser citada em
+> versão final sem checagem na fonte.
 
 ---
 
@@ -50,6 +69,10 @@ BRINGEL, Breno; PLEYERS, Geoffrey (Org.). **Junho de 2013... a sociedade enfrent
 
 BRÖER, Christian; DUYVENDAK, Jan Willem. Emotions, emotionology and introspection in the study of social movements. **Mobilization: An International Quarterly**, v. 14, n. 4, p. 433-448, 2009.
 
+CAIANI, Manuela. Framing and social movements. **Discourse Studies**, 2023. [VERIFICAR: volume, número, páginas, DOI.]
+
+CAMMAERTS, Bart. Protest logics and the mediation opportunity structure. **European Journal of Communication**, 2012. [VERIFICAR: volume, número, páginas, DOI.]
+
 CARVALHO, José Murilo de. **Cidadania no Brasil: o longo caminho.** 15. ed. Rio de Janeiro: Civilização Brasileira, 2012.
 
 CIOCCARI, Deysi. Operação Lava Jato: escândalo, agendamento e enquadramento. **Revista Alterjor**, São Paulo, v. 12, n. 2, p. 58-78, 2015.
@@ -97,7 +120,15 @@ GOODWIN, Jeff; JASPER, James M. Caught in a winding, snarling vine: the structur
 HABERMAS, Jürgen. **Legitimation Crisis.** Boston: Beacon Press, 1973.
 
 
+HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measurement tools for political science concepts. **Political Analysis**, 2024. [VERIFICAR: coautoria, volume, páginas, DOI.]
+
+HANNA, Alex. Developing a system for the automated coding of protest event data. 2014. [VERIFICAR: veículo de publicação, volume, páginas, DOI.]
+
+HAUNSS, Sebastian et al. PAPEA: a modular pipeline for the automation of protest event analysis. **Political Science Research and Methods**, 2025. [VERIFICAR: coautores, volume, páginas, DOI.]
+
 HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
+
+HOFFMANN, Matthias et al. Lifting the veil on the use of big data news repositories: a documentation and critical discussion of a protest event analysis. **Communication Methods and Measures**, 2022. [VERIFICAR: coautores, volume, número, páginas, DOI.]
 
 HOLSTON, James. **Insurgent Citizenship: Disjunctions of Democracy and Modernity in Brazil.** Princeton: Princeton University Press, 2008.
 
@@ -120,7 +151,15 @@ KOOPMANS, Ruud; STATHAM, Paul. Ethnic and civic conceptions of nationhood and th
 
 LEONELLI, Domingos; OLIVEIRA, Wagner de. **Diretas Já: 15 meses que abalaram a ditadura.** São Paulo: Editora Fundação Perseu Abramo, 2004.
 
+LI, Mengyu et al. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, 2024. [VERIFICAR: coautores, volume, número, páginas, DOI.]
+
 LIMONGI, Fernando. **Impedindo Dilma: coalizão e conflito no impeachment.** São Paulo: CEBRAP; Rio de Janeiro: Fundação Heinrich Böll, 2023. (Referência reconstituída a partir do uso em Costa, 2024.)
+
+LORENZINI, Jasmine et al. Protest event analysis: developing a semiautomated NLP approach. **American Behavioral Scientist**, 2021. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
+
+LORENZINI, Jasmine et al. Design and methods of semi-automated protest event analysis. 2020. [VERIFICAR: livro, organizadores, editora, páginas.]
+
+MAMAEV, Bogdan. Collecting protest event data using natural language processing models. **Post-Soviet Affairs**, 2025. [VERIFICAR: volume, número, páginas, DOI.]
 
 MACIEL, Débora Alves. Repressão e mobilização política no regime militar brasileiro. **Revista Brasileira de Ciências Sociais**, São Paulo, v. 28, n. 83, p. 27-43, 2013.
 
@@ -140,11 +179,15 @@ McCAMMON, Holly J.; MUSE, Courtney S.; NEWMAN, Harmony D.; TERRELL, Teresa M. Mo
 
 MEDEIROS, Cintia Rodrigues de Oliveira; SILVEIRA, Rafael Alcadipani da. A Petrobras nas teias da corrupção: mecanismos discursivos da mídia brasileira na cobertura da Operação Lava Jato. **Revista de Contabilidade e Organizações**, v. 11, n. 31, p. 11-20, set./dez. 2017.
 
+MEYER, David S.; STAGGENBORG, Suzanne. Movements, countermovements, and the structure of political opportunity. **American Journal of Sociology**, 1996. [VERIFICAR: volume, número, páginas.]
+
 MISCHE, Ann. De estudantes a cidadãos: redes de jovens e participação política. **Citizenship Studies**, v. 10, n. 6, p. 597-611, 2006. (Referência reconstituída; o uso em Costa, 2024 remete à versão em português publicada originalmente em: MISCHE, Ann. De estudantes a cidadãos. **Revista Brasileira de Educação**, n. 5/6, 1997.)
 
 MISCHE, Ann. **Partisan Publics: Communication and Contention across Brazilian Youth Activist Networks.** Princeton: Princeton University Press, 2008.
 
 MOISÉS, José Álvaro. **Democratização e cultura política no Brasil.** São Paulo: Lua Nova, 1989.
+
+MOTTA, Renata. Transnational discursive opportunities and social movement risk frames opposing GMOs. **Social Movement Studies**, 2015. [VERIFICAR: volume, número, páginas, DOI.]
 
 NUNES, Felipe; MELO, Carlos Ranulfo. Impeachment, political crisis and democracy in Brazil. **Revista de Ciencia Política**, v. 37, n. 2, p. 281-304, 2017.
 
@@ -219,4 +262,19 @@ TILLY, Charles; TARROW, Sidney. **Contentious Politics.** 2. ed. Oxford: Oxford 
 
 VANDENBERGHE, Frédéric. Conjunctural analysis. **Revista Brasileira de Sociologia – RBS**, v. 13, 1 out. 2025. DOI: 10.20336/rbs.1118.
 
+WAHLSTRÖM, Mattias; TÖRNBERG, Anton. Social media mechanisms for right-wing political violence in the 21st century: discursive opportunities, group dynamics, and co-ordination. **Terrorism and Political Violence**, 2019. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
+
 WEYLAND, Kurt. The rise and fall of President Collor and its impact on Brazilian democracy. **Journal of Interamerican Studies and World Affairs**, v. 35, n. 1, p. 1-37, 1993.
+
+---
+
+**Fontes técnicas sem autoria consolidada** (bases e benchmarks de AEP automatizada;
+incorporadas em 2026-07-18, [VERIFICAR: lista de autores e publicação final]):
+
+GLOCON Database: design decisions and user manual (v1.0). arXiv:2405.18613, 2024. (Manuais de anotação: arXiv:2206.10299.)
+
+Event coreference resolution for contentious politics events. arXiv:2203.10123, 2022.
+
+Few-shot upsampling for protest size detection. arXiv:2105.11260, 2021.
+
+Overview of CLEF 2019 Lab ProtestNews: extracting protests from news in a cross-context setting. arXiv:2008.00345, 2019.

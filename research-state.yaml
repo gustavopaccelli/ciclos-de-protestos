@@ -56,6 +56,17 @@ components:
     descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
     local: "metodologia/relatorio-metodologico.md"
     status: "Criado em 2026-07-04: abordagem teórico-metodológica, prospecção/coleta (pipeline, bancos, sementes), governança, insights, cronologia. Documento vivo."
+  bibliografia:
+    descricao: "Bibliografia canônica máquina-legível + fichamentos analíticos"
+    local: "artigo/referencias.bib; literature/fichamentos/; literature/survey.md"
+    status: >
+      Criada em 2026-07-18: referencias.bib com 116 entradas (biblatex/abntex2), unificando
+      a lista ABNT (~99), o .bib dos artefatos (37) e 16 obras do levantamento — AEP
+      automatizada/codificação por LLM (Haunss, Halterman & Keith, Lorenzini, Hoffmann,
+      GLOCON) e DOS pós-2015 (Motta, Cammaerts, Wahlström & Törnberg, Li, Caiani, Meyer &
+      Staggenborg). 10 fichamentos. referencias-abnt.md passa a ser saída formatada, não
+      fonte. PENDÊNCIA: 26 entradas marcadas VERIFICAR (metadados por confirmar) e obras
+      fichadas apenas por abstract — ver docs/tarefas.md V1/V2.
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"

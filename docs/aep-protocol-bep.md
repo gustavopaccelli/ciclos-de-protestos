@@ -389,3 +389,100 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 | Entrada | Amostra aleatória (≥10% do corpus) recodificada por codificador humano independente |
 | Processamento | Cálculo de Cohen's Kappa por variável |
 | Saída | Relatório de confiabilidade; variáveis com Kappa < 0,75 ou missing > 30% são sinalizadas para revisão do system prompt ou exclusão da análise |
+
+---
+
+## 12. Validação da codificação assistida por LLM
+
+O §8 estabelece que a codificação por LLM é metodologicamente admissível — Alonso et al.
+(2024, p. 320) legitimam o recurso a NLP na organização do BEP. Legitimidade, porém, não é
+procedimento: esta seção define **como** a validade da codificação automática é medida neste
+projeto. Ela operacionaliza dois trabalhos de referência:
+
+- **Halterman & Keith (2024)**, *Codebook LLMs: Evaluating LLMs as Measurement Tools for
+  Political Science Concepts* (**Political Analysis**) — framework de cinco estágios para
+  medição codebook–LLM. O achado central é diretamente relevante: modelos **não seguem
+  codebooks de forma confiável em zero-shot**, e a acurácia melhora substancialmente com
+  preparação do codebook e ajuste supervisionado. Um dos três codebooks avaliados pelos
+  autores é justamente de eventos de protesto.
+- **Haunss et al. (2025)**, *PAPEA: A modular pipeline for the automation of protest event
+  analysis* (**Political Science Research and Methods**) — demonstra automação de AEP com
+  acurácia comparável à humana e desenho modular por tarefa.
+
+> Nota de status: referências incorporadas ao repositório a partir de levantamento
+> bibliográfico (2026-07-18) e **ainda não verificadas quanto a volume/página/DOI**. Ver
+> `literature/fichamentos/` e a marcação em `artigo/referencias.bib`.
+
+### 12.1 Estágio 1 — Preparação do codebook para leitura por máquina
+
+O codebook precisa ser legível **tanto por humano quanto por LLM**. Requisitos:
+
+- vocabulários fechados declarados como listas/dicionários YAML reais, nunca como comentário
+  (o `actor_schema` foi convertido por essa razão);
+- cada categoria com definição de uma linha, não apenas rótulo;
+- regras de decisão explícitas onde há ambiguidade previsível — notadamente a **regra de
+  público** (§5 Bloco I: registrar sempre o **maior** valor, preservando o intervalo em
+  `crowd_size_min`/`crowd_size_max`);
+- o teste `pipeline/check_schema_coverage.py` trava a correspondência entre o codebook e o
+  `EVENT_SCHEMA` do coder, e falha se algum campo declarado não for implementado ou se algum
+  enum divergir.
+
+### 12.2 Estágio 2 — Teste de capacidade básica
+
+Antes de qualquer execução sobre corpus, verificar que o modelo **recupera o codebook**:
+dado o system prompt, deve enumerar corretamente as categorias de um vocabulário solicitado e
+aplicar os quatro critérios de elegibilidade (§2) a casos-limite construídos à mão
+(ato fechado; evento apenas virtual; evento anunciado e não confirmado; ação individual).
+Falha aqui indica problema de prompt, não de codificação — e deve ser corrigida antes de
+gastar chamadas pagas.
+
+### 12.3 Estágio 3 — Gold standard anotado à mão
+
+Amostra **estratificada por ciclo** (Diretas Já, Fora Collor, Junho 2013, Impeachment), não
+aleatória simples: a distribuição de eventos é fortemente concentrada em 2013 e 2015–16, e
+uma amostra aleatória sub-representaria justamente os ciclos pré-2011, que são os mais
+difíceis de codificar (linguagem jornalística de época, fontes digitalizadas por OCR).
+
+- tamanho mínimo: ≥10% do corpus **ou** 100 artigos por ciclo, o que for maior;
+- anotação por codificador humano **cego** à saída do modelo;
+- o gold standard é versionado e serve de referência estável entre execuções — sem ele, não
+  há como distinguir melhora real de deriva de prompt.
+
+### 12.4 Estágio 4 — Medição e análise de erro por tipo
+
+Medir acurácia zero-shot contra o gold standard, e **classificar os erros**, não apenas
+contá-los. Tipologia adotada:
+
+| Tipo de erro | Descrição | Resposta |
+|---|---|---|
+| **Elegibilidade** | Falso positivo/negativo nos 4 critérios do §2 | revisar §2 no prompt |
+| **Unitização** | Fusão ou desmembramento indevido de eventos (§4) | revisar regras de continuidade |
+| **Categorização** | Campo correto, valor fora ou trocado no vocabulário | revisar definições do codebook |
+| **Extração numérica** | Público, detidos, feridos lidos errado | regra de público / few-shot |
+| **Alucinação** | Informação ausente da fonte | reforçar "não invente: use null" |
+
+A distinção importa porque cada tipo tem tratamento distinto: erro de unitização não se
+corrige com mais exemplos de categoria, e erro de categorização não se corrige mexendo na
+definição de evento.
+
+### 12.5 Estágio 5 — Decisão: prompt, few-shot ou ajuste supervisionado
+
+Critério de escalada, do mais barato ao mais caro:
+
+1. **κ ≥ 0,75 em todas as variáveis de interesse** → codificação aceita; segue para análise.
+2. **κ < 0,75 em variáveis isoladas** → revisão do system prompt no ponto indicado pela
+   análise de erro; nova medição sobre o mesmo gold standard.
+3. **κ < 0,75 persistente após revisão** → incluir exemplos few-shot extraídos do gold
+   standard (nunca do corpus de análise, para não contaminar a medição).
+4. **κ < 0,75 após few-shot** → ou ajuste supervisionado (caminho do PAPEA), ou **exclusão da
+   variável da análise**, registrada explicitamente nas limitações. Variável com
+   confiabilidade insuficiente não é reportada como válida.
+
+O mesmo se aplica ao critério de ausência: variáveis com >30% de `null` são excluídas (§7).
+
+### 12.6 Registro obrigatório
+
+Toda execução sobre corpus registra: modelo e versão, hash do system prompt, tamanho e
+composição do gold standard, κ por variável, e a tipologia de erro observada. Sem esse
+registro a codificação não é reproduzível — e a reprodutibilidade é a condição que torna a
+codificação por LLM defensável em publicação.

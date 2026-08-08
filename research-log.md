@@ -362,3 +362,75 @@ do comício de Goiânia (12/04/1984, ~200-250 mil).
 Nota sobre branches: main e claude/nifty-einstein-ullub6 estavam idênticas; o upload
 avançou a nifty em 1 commit. Reunificadas por fast-forward. As branches NÃO contêm
 conteúdo divergente entre si — são a mesma linha de trabalho.
+
+---
+
+## 2026-07-18 — Bibliografia analítica e revisão do pipeline de extração
+
+Sessão dirigida a dois objetivos do pesquisador: **incorporar bibliografia analítica** e
+**melhorar o processo de extração de dados**. Levantamento feito nas bases Consensus e
+Firecrawl (não existe ferramenta "hyperresearch" no ambiente; usados os equivalentes).
+
+### Bibliografia
+
+- **`artigo/referencias.bib` criado** — 116 entradas biblatex/abntex2, unificando a lista
+  ABNT (~99), o `.bib` encalhado em `artefatos/fases_ciclos/` (37) e 16 obras novas. Passa a
+  ser a **fonte canônica**; `referencias-abnt.md` vira saída formatada. Verificador de
+  paridade: `artigo/check_bib.py` (confirma que toda obra da ABNT tem entrada no `.bib`).
+- **Duas lacunas fechadas.** (1) *AEP automatizada / codificação por LLM* estava
+  **inteiramente ausente**, embora o projeto já codifique com LLM: Haunss et al. (2025,
+  PAPEA/PSRM), Halterman & Keith (2024, Political Analysis), Lorenzini et al. (2021/2020),
+  Hanna (2014), Hoffmann et al. (2022), GLOCON, correferência de eventos, ProtestNews,
+  Mamaev (2025). (2) *DOS pós-2015*: a base parava em McCammon 2007 — acrescentados Motta
+  (2015, **caso Brasil/Argentina/México**, prioridade máxima), Cammaerts (2012, mediation
+  opportunity structure), Wahlström & Törnberg (2019, DOS coproduzida), Li et al. (2024),
+  Caiani (2023, lacuna de framing à direita), Meyer & Staggenborg (1996).
+- **10 fichamentos** em `literature/fichamentos/`; `literature/survey.md` atualizado (estava
+  defasado desde 2026-06-10).
+- **Pendência declarada (V1/V2 em `docs/tarefas.md`):** 26 entradas marcadas `VERIFICAR`.
+  As obras novas foram fichadas **a partir de abstract**, e os conectores acadêmicos
+  (Scite/Elicit/Firecrawl) caíram durante a sessão antes de concluir a checagem de metadados.
+  Nada foi preenchido por inferência.
+
+### Pipeline de extração — 11 defeitos corrigidos (sem credenciais)
+
+Diagnóstico completo por exploração do repo. O mais grave: **a regra de tamanho de público
+se contradizia** — o system prompt do coder mandava registrar o *menor* valor, enquanto
+codebook e protocolo §5 mandam o *maior*. Enviesaria sistematicamente toda variável derivada
+de público. Corrigido, com o intervalo preservado em `crowd_size_min`/`crowd_size_max`.
+
+Demais correções: schema do coder de ~16 para **41 campos** (Blocos II–V do BEP com `actors`
+como objetos, e os campos MPEDS, antes inexistentes); UUID5 sobre `(url, data, cidade)` em
+vez do índice posicional (instável a reordenação); normalização contra o codebook e
+`canonical_event_id` no build (§10 do protocolo, antes só declarado); `location_state` na
+chave de dedup (cidades homônimas em UFs distintas colapsavam); `source_date` parseada antes
+de ordenar; `protest_events_raw.csv` emitido; kappa com bool/str normalizado (o `eligible`
+comparava `"TRUE"` com `"True"`) e ampliado de 5 para 16 variáveis; limiar de kappa unificado
+em 0,75 (o tutorial dizia 0,61); `queries.yaml` alinhado às palavras-chave do BEP §3.1 e às
+janelas da periodização v3 (começavam na emergência, ignorando as fases de articulação);
+passo kappa incluído no orquestrador.
+
+Novo teste **`pipeline/check_schema_coverage.py`** trava o alinhamento coder ↔ codebook — a
+divergência anterior era invisível. Verificado com fixtures: 3 extrações → 2 eventos
+canônicos, com São Paulo/SP colapsando entre duas fontes e São Paulo/MG **não** colapsando.
+
+### Documentação
+
+- **`docs/aep-protocol-bep.md` §12** (nova) — validação da codificação por LLM em 5 estágios,
+  operacionalizando Halterman & Keith e PAPEA: codebook legível por máquina, teste de
+  capacidade, **gold standard estratificado por ciclo** (não aleatório simples — a amostra
+  aleatória sub-representaria os ciclos pré-2011, os mais difíceis), tipologia de erro
+  (elegibilidade / unitização / categorização / extração numérica / alucinação), critério de
+  escalada e registro obrigatório. Fecha a lacuna do §8, que só invocava legitimidade.
+- **`docs/fontes-alternativas.md`** (novo) — parecer. Achado que motiva a busca: mesmo com
+  credenciais da Folha, **NEPAC e Mass Mobilization não cobrem Diretas Já**, e o Fora Collor
+  só parcialmente. Recomenda investigar a **Hemeroteca Digital/BN** para os ciclos pré-1993
+  (com a ressalva do OCR), **não adotar GDELT** como fonte primária (Hoffmann et al. 2022), e
+  ler os manuais de anotação do GLOCON para o gold standard. Nenhuma coleta realizada.
+- **`artefatos/mapeamamento/pea_acervo_folha/ARQUIVO-MORTO.md`** — congela a cópia divergente
+  do pipeline, que tinha um `doca_codebook.yaml` de mesmo nome e conteúdo diferente.
+
+### Não feito
+
+Coleta de dados (segue bloqueada por credenciais); separação de triagem e codificação em duas
+passagens no coder (D8); verificação dos metadados bibliográficos (V1).
