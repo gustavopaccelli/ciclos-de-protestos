@@ -1,0 +1,70 @@
+# Seletores CSS do Acervo Folha — EDITÁVEL SEM MEXER EM PYTHON
+#
+# O Acervo Folha é uma aplicação React e muda de layout sem aviso. Quando a
+# coleta parar de funcionar, é AQUI que se conserta.
+#
+# ⚠️ STATUS: NÃO VALIDADOS. Os valores abaixo são hipóteses, nunca testados
+# contra o site logado (falta assinatura). Trate-os como ponto de partida.
+#
+# COMO CONSERTAR
+#   1. Rode:  python 01_scraper.py --diagnose --headed
+#      O navegador abre visível, faz login, executa UMA busca e grava
+#      HTML + screenshot em pipeline/data/diagnose/.
+#   2. O relatório diz quantos elementos cada candidato encontrou.
+#      Candidato com 0 elementos = seletor errado.
+#   3. No navegador (F12 → Elements), clique com o botão direito no elemento
+#      certo → Copy → Copy selector. Cole como PRIMEIRO item da lista.
+#   4. Rode o --diagnose de novo até todos os grupos acusarem > 0.
+#
+# FORMATO: cada chave é uma LISTA de candidatos, tentados em ordem até um
+# deles casar. Isso permite manter o seletor antigo como reserva ao testar
+# um novo, e sobreviver a variações de layout entre seções do acervo.
+
+login:
+  email:
+    - 'input[name="email"]'
+    - 'input[type="email"]'
+    - '#email'
+  password:
+    - 'input[name="password"]'
+    - 'input[type="password"]'
+    - '#password'
+  submit:
+    - 'button[type="submit"]'
+    - 'input[type="submit"]'
+    - 'button:has-text("Entrar")'
+  # Como confirmar que o login DEU CERTO. Se nenhum casar, o script aborta
+  # em vez de coletar zero artigos silenciosamente.
+  logged_in_marker:
+    - 'a[href*="logout"]'
+    - '.usuario-logado'
+    - 'button:has-text("Sair")'
+
+search:
+  # Container de cada resultado na página de busca.
+  result_item:
+    - '.resultado-busca .item'
+    - 'article.result'
+    - '.busca-resultado li'
+  # Link do resultado (procurado DENTRO de result_item).
+  result_link:
+    - 'a[href]'
+  # Data exibida no resultado (opcional; null se não houver).
+  result_date:
+    - '.data'
+    - 'time'
+  # Botão/link de próxima página.
+  next_page:
+    - 'a[rel="next"]'
+    - '.paginacao .proxima'
+    - 'a:has-text("Próxima")'
+
+article:
+  title:
+    - 'h1'
+    - '.titulo-materia'
+  body:
+    - '.content'
+    - '.news'
+    - 'article'
+    - '.corpo-materia'

@@ -356,7 +356,14 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 |---|---|
 | Entrada | Palavras-chave de `queries.yaml`; período de busca |
 | Processamento | Login no Acervo Folha; busca incremental por data; captura de HTML/texto da notícia |
-| Saída | Arquivo JSONL com `{source_url, source_date, headline, body_text, query_used}` |
+| Saída | Um JSON por matéria em `pipeline/data/raw/` com `{url, date_hint, title, text, search_term, date_range}` |
+
+> Nomes de campo **alinhados ao código** em 2026-07-18. Versões anteriores deste
+> protocolo listavam `{source_url, source_date, headline, body_text, query_used}`, que o
+> scraper nunca escreveu e o coder nunca leu — divergência puramente documental, sem efeito
+> sobre dados (nenhuma coleta foi executada). Correspondência: `url`→source_url,
+> `date_hint`→source_date, `title`→headline, `text`→body_text, `search_term`→query_used.
+> A saída é um arquivo por matéria, não JSONL agregado.
 
 ### Passagem 2 — Triagem (02_doca_coder.py, step 1)
 

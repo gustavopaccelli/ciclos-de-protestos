@@ -434,3 +434,53 @@ canônicos, com São Paulo/SP colapsando entre duas fontes e São Paulo/MG **nã
 
 Coleta de dados (segue bloqueada por credenciais); separação de triagem e codificação em duas
 passagens no coder (D8); verificação dos metadados bibliográficos (V1).
+
+## 2026-07-18 (2ª sessão) — Revisão do código de coleta
+
+`01_scraper.py` era o único script do pipeline ainda não revisado. Diagnóstico: além dos
+seletores placeholders (já conhecidos), havia **defeitos que impediriam a coleta de
+funcionar mesmo com seletores corretos**.
+
+**Defeitos corrigidos:**
+1. **URL de busca sem codificação** — `keyword=manifestação` e `keyword=ato público` iam
+   crus na querystring. A coleta falharia no primeiro termo. Agora via `urlencode`.
+2. **Hrefs relativos nunca resolvidos** — `href="/materia/1"` ia direto para `page.goto()`.
+   Agora `urljoin` contra a URL da página. Testado com href absoluto, raiz-relativo e
+   path-relativo.
+3. **Login sem confirmação** — credencial errada, captcha ou mudança de layout produziam
+   coleta de zero artigos **sem erro nenhum**: o pior modo de falha possível. Agora há um
+   `logged_in_marker` e o script aborta com diagnóstico.
+4. **Paginação sem guarda** — se o seletor "próxima" casasse com elemento sempre presente,
+   loop infinito. Agora há teto de páginas e detecção de página sem resultados novos.
+5. **Vazamento de abas** — `browser.new_page()` dentro do `try`; falha em `goto()` deixava a
+   aba aberta. Em coleta longa, derrubaria o processo. Agora `finally`.
+6. **Sem retry** — qualquer instabilidade de rede perdia o artigo. Agora 3 tentativas com
+   backoff exponencial e jitter.
+7. **Estado grosso demais** — progresso só ao fim de termo×janela; interrupção no meio
+   refazia a janela inteira. Agora grava por página.
+
+**Mudança de desenho — seletores em `config/selectors.yaml`.** O modo de falha crônico deste
+scraper é o layout do Acervo mudar. Quem vai consertar é o pesquisador, não o programador, e
+não faz sentido exigir edição de Python para isso. Cada grupo aceita uma **lista de
+candidatos**, tentados em ordem, o que permite manter o seletor antigo como reserva ao testar
+um novo. Candidato com sintaxe inválida é ignorado em vez de derrubar a execução.
+
+**Modo `--diagnose`.** Faz login, roda uma busca e grava HTML, screenshot e um relatório com
+**quantos elementos cada candidato encontrou** — transformando "coletou zero, boa sorte" em
+um diagnóstico acionável. Mais `--dry-run` e `--limit N` para teste barato antes de gastar
+horas de coleta.
+
+Acrescentado User-Agent identificando o projeto: coleta acadêmica não deve se disfarçar de
+navegador comum.
+
+**Documentação alinhada.** O §11 do protocolo declarava campos de saída
+(`headline`, `body_text`, `query_used`) que o scraper nunca escreveu e o coder nunca leu —
+divergência puramente documental, sem efeito sobre dados, já que nenhuma coleta foi
+executada. Corrigido para os nomes reais, com a correspondência registrada. TUTORIAL
+reescrito: a validação de seletores passa a ser o **passo 2**, antes da coleta.
+
+**Testado offline** contra fixture HTML local com Chromium (interceptação de requisição, já
+que o proxy bloqueia o domínio): extração de 3 resultados de 4 itens (um sem link,
+corretamente descartado), resolução das três formas de href, tolerância a seletor inválido,
+fallback entre candidatos, e aborto imediato sem credenciais. **A validação contra o site
+real segue pendente (D1) — exige assinatura.**

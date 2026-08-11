@@ -1,7 +1,7 @@
 # Tarefas do projeto — acompanhamento
 
 Inventário das tarefas pendentes e concluídas, organizado por frente.
-Última atualização: 2026-07-18.
+Última atualização: 2026-07-18 (2ª sessão: revisão do coletor).
 
 > Ver `research-state.yaml` (estado central) e `research-log.md` (linha do tempo de decisões).
 
@@ -41,7 +41,16 @@ offline (não exige credenciais): ver `research-log.md`.
 - [ ] **D8.** Separar triagem e codificação em duas passagens no coder (protocolo §11 prevê
       Passagens 2 e 3 distintas; o código faz uma só). Apontado por PAPEA.
 - [ ] **D9.** Reintroduzir o `validation_report.json` que a cópia antiga emitia e a vigente não.
-- [ ] **D1.** Validar os seletores CSS do `01_scraper.py` contra o site real (gargalo crítico — Acervo é React, seletores hoje são placeholders).
+- [x] **D10.** Revisão do coletor `01_scraper.py` (2026-07-18): seletores movidos para
+      `config/selectors.yaml` (editável sem Python, com lista de candidatos por grupo);
+      modo `--diagnose` que grava HTML/screenshot/relatório de casamento de seletores;
+      URL de busca codificada (acentos e espaços quebravam a requisição); hrefs relativos
+      resolvidos; login confirmado antes de coletar; guarda contra paginação infinita;
+      retry com backoff; vazamento de abas corrigido; `--dry-run` e `--limit`;
+      progresso salvo por página. Testado contra fixture local.
+- [ ] **D1.** Validar os seletores CSS contra o site real — **agora com ferramenta**:
+      `python 01_scraper.py --diagnose --headed` produz o relatório; ajustes vão em
+      `config/selectors.yaml`. Continua exigindo credenciais.
 - [ ] **D2.** Instalar dependências (`pip install -r pipeline/requirements.txt`) e configurar `.env` com credenciais (NUNCA commitar o `.env`).
 - [ ] **D3.** Validar o `pipeline/config/doca_codebook.yaml` reconstruído contra o original.
 - [ ] **D4.** Primeira execução de teste + aferição de Cohen's Kappa (≥ 0,75).
