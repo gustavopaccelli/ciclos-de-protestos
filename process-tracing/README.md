@@ -48,8 +48,12 @@ empiricamente; e o Quadro 8 já era o embrião deste trabalho. Detalhes no `PROT
 PROTOCOLO.md              desenho, camadas do T-1, testes de Van Evera, riscos
 codebook-evidencia.yaml   vocabulários controlados, cada um com fonte na tese
 fontes/                   hierarquia de 4 níveis e caminho de busca por repositório
+  fontes-de-dados.csv       inventário canônico das fontes (versionável)
+  fontes-de-dados.xlsx      planilha derivada, gerada do CSV
 ciclos/c*/dossie.md       dossiê narrativo por ciclo, T-1e / T-1c / T0 / T+1
+                          (a seção de predições é gerada — editar o CSV)
 dados/
+  predicoes.csv             56 predições registradas (14 hipóteses x 4 ciclos)
   registro_evidencias.csv   tabela central, uma linha por peça de evidência
   marcos_institucionais.csv atos oficiais datados; encadeia ciclos via ciclo_seguinte_afetado
   series_estruturais.csv    bateria Chenoweth & Ulfelder, 1970-2016
@@ -67,7 +71,17 @@ python process-tracing/scripts/valida_registro.py
 python process-tracing/scripts/extrai_camara_senado.py --ciclo c2 --dry-run
 python process-tracing/scripts/extrai_series_estruturais.py --listar
 python process-tracing/scripts/extrai_series_estruturais.py --indicador inflacao
+
+# artefatos derivados — regerar sempre que o CSV de origem mudar
+python process-tracing/scripts/renderiza_predicoes.py      # CSV -> dossiês
+python process-tracing/scripts/gera_planilha_fontes.py     # CSV -> xlsx
 ```
+
+**Dois artefatos são derivados e não devem ser editados à mão:** a seção de predições dos
+dossiês (vem de `dados/predicoes.csv`) e `fontes/fontes-de-dados.xlsx` (vem de
+`fontes/fontes-de-dados.csv`). É o mesmo padrão que o repositório já usa em
+`artigo/referencias.bib` → `referencias-abnt.md`. `renderiza_predicoes.py --check` acusa
+dessincronia.
 
 Dependências: `pandas`, `pyyaml` (já em `pipeline/requirements.txt`). Os extratores usam
 só a biblioteca padrão.
@@ -88,8 +102,28 @@ documentação pública de cada API, mas a primeira execução com rede deve com
 `data_consulta`, e o validador recusa o contrário. O que não foi recuperado fica
 `pendente`, com o caminho de busca anotado.
 
+## Predições: o que pode e o que não pode ser testado
+
+As 56 predições estão registradas desde 2026-08-22, antes de qualquer varredura
+(PROTOCOLO §5). Cada uma carrega um **estatuto probatório**, porque as evidências-âncora
+das 14 hipóteses vêm de Fora Collor, Junho de 2013 e Fora Dilma — **nenhuma das Diretas
+Já**. Onde a hipótese foi formulada olhando para o ciclo, a predição é reformulação, não
+previsão, e nada ali pode refutá-la.
+
+| Ciclo | Âncora | Fora de amostra | Não pertinente |
+|---|---:|---:|---:|
+| C1 Diretas Já | 0 | **14** | 0 |
+| C2 Fora Collor | 5 | 9 | 0 |
+| C3 Junho 2013 | 7 | 7 | 0 |
+| C4 Impeachment | 6 | 6 | 2 |
+
+C1 concentra 14 testes fora de amostra: é o único ciclo capaz de refutar de verdade. As
+duas linhas não pertinentes são H3.4 e H3.5 em C4 — medem legado sobre o ciclo seguinte, e
+o impeachment é o último da série.
+
 ## Próximo passo
 
-Antes de qualquer varredura: **registrar as predições** de cada ciclo no dossiê
-correspondente, com data (PROTOCOLO §5). Enquanto a seção de predições estiver vazia, a
-evidência coletada é exploratória e não serve para testar hipótese.
+Rodar os extratores em máquina com rede e recuperar as fontes de nível 1 já mapeadas em
+`fontes/fontes-de-dados.csv` — a começar pelos três documentos que resolvem divergências
+abertas: Diário da Câmara de 30/09/1992 (p. 22067), Diário do Congresso de 30/12/1992
+(p. 4811) e a ata do julgamento de 31/08/2016 no Diário do Senado.

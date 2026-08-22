@@ -11,6 +11,8 @@ Roda sem rede. Checa o que um parecerista checaria:
      é sinal de viés de busca, não de força do argumento (PROTOCOLO §5).
   6. Cadeia entre ciclos: todo marco com ciclo_seguinte_afetado deve ter
      evidencia_id, senão H3.5 fica sem lastro empírico.
+  7. Predições: uma por par ciclo x hipótese, nenhuma testável sem
+     o_que_refutaria, e nenhuma evidência coletada sem predição prévia.
 
 Uso: python process-tracing/scripts/valida_registro.py [--estrito]
      --estrito faz o script sair com código 1 se houver qualquer erro.
@@ -41,10 +43,11 @@ def carregar():
     ev = pd.read_csv(DADOS / "registro_evidencias.csv", dtype=str)
     mi = pd.read_csv(DADOS / "marcos_institucionais.csv", dtype=str)
     q8 = pd.read_csv(DADOS / "quadro8_ampliado.csv", dtype=str)
+    pr = pd.read_csv(DADOS / "predicoes.csv", dtype=str)
     fases = pd.read_csv(RAIZ / "data" / "cycle_phases.csv", dtype=str)
     hip = set(re.findall(r"H\d\.\d",
                          (RAIZ / "docs" / "quadro-hipoteses.md").read_text(encoding="utf-8")))
-    return cb, ev, mi, q8, fases, hip
+    return cb, ev, mi, q8, pr, fases, hip
 
 
 def checa_fks(ev, fases, hip):
@@ -146,8 +149,53 @@ def checa_cadeia(mi):
               f"[{r.status_verificacao}]")
 
 
+def checa_predicoes(pr, ev, hip):
+    secao("7. Predições registradas (PROTOCOLO §5)")
+    ciclos = sorted(pr.ciclo.unique())
+    esperado = len(ciclos) * len(hip)
+    print(f"  {len(pr)} predições para {len(ciclos)} ciclos x {len(hip)} hipóteses "
+          f"(esperado {esperado})")
+
+    dup = pr[pr.duplicated(["ciclo", "hipotese"], keep=False)]
+    for _, r in dup.iterrows():
+        erros.append(f"predição duplicada: {r.ciclo} x {r.hipotese}")
+
+    faltando = {(c, h) for c in ciclos for h in hip} - set(zip(pr.ciclo, pr.hipotese))
+    for c, h in sorted(faltando):
+        erros.append(f"sem predição registrada: {c} x {h}")
+
+    ruins = set(pr.hipotese) - hip
+    if ruins:
+        erros.append(f"predições para hipóteses inexistentes: {sorted(ruins)}")
+
+    # o_que_refutaria é obrigatório onde a predição é testável
+    testaveis = pr[pr.estatuto_probatorio != "nao_pertinente"]
+    for _, r in testaveis.iterrows():
+        if not str(r.o_que_refutaria).strip():
+            erros.append(f"{r.predicao_id}: sem o_que_refutaria — predição não testável")
+
+    print()
+    print(pd.crosstab(pr.ciclo, pr.estatuto_probatorio).to_string())
+    fora = pr[pr.estatuto_probatorio == "fora_de_amostra"]
+    print(f"\n  {len(fora)} predições fora de amostra — as únicas que podem falhar")
+    por_ciclo = fora.groupby("ciclo").size().sort_values(ascending=False)
+    if len(por_ciclo):
+        topo = por_ciclo.index[0]
+        print(f"  concentração máxima em {topo} ({por_ciclo.iloc[0]} testes): "
+              "é o ciclo com maior poder refutador")
+
+    # evidência sem predição prévia = violação do protocolo
+    pares_ev = {(r.ciclo, r.hipotese_vinculada) for _, r in ev.iterrows()
+                if pd.notna(r.hipotese_vinculada)}
+    pares_pr = set(zip(pr.ciclo, pr.hipotese))
+    orfas = pares_ev - pares_pr
+    for c, h in sorted(orfas):
+        avisos.append(f"evidência registrada para {c} x {h} sem predição prévia "
+                      "(PROTOCOLO §5)")
+
+
 def main(estrito: bool) -> None:
-    cb, ev, mi, q8, fases, hip = carregar()
+    cb, ev, mi, q8, pr, fases, hip = carregar()
     print(f"Registro: {len(ev)} evidências | {len(mi)} marcos | {len(q8)} células do Quadro 8")
     checa_fks(ev, fases, hip)
     checa_procedencia(ev)
@@ -155,6 +203,7 @@ def main(estrito: bool) -> None:
     checa_cobertura(ev, q8)
     checa_desconfirmacao(ev, hip)
     checa_cadeia(mi)
+    checa_predicoes(pr, ev, hip)
 
     secao("Resultado")
     for a in avisos:

@@ -102,6 +102,21 @@ repositório. Aqui a regra é a mesma e vale por ciclo: **antes** de abrir qualq
 para um ciclo, registrar no dossiê correspondente, com data, o que cada hipótese prevê
 encontrar e — mais importante — **o que a refutaria**.
 
+**Cumprido em 2026-08-22.** As 56 predições estão em `dados/predicoes.csv` e renderizadas
+nos dossiês por `scripts/renderiza_predicoes.py`. Cada uma traz `o_que_refutaria` — campo
+obrigatório: predição cuja refutação não é enunciável em termos de dado observável não é
+testável, e o validador acusa.
+
+Cada predição carrega ainda um **estatuto probatório**, porque a anterioridade formal não
+basta. As evidências-âncora das 14 hipóteses em `docs/quadro-hipoteses.md` vêm de C2, C3 e
+C4; nenhuma vem de C1. Onde a hipótese foi construída a partir do ciclo, a predição é
+reformulação — marcada `ancora` e explicitamente não-teste. Só as `fora_de_amostra`
+constituem teste, e C1 concentra 14 delas. Assim o viés retrospectivo da §6.4 deixa de ser
+ressalva e vira variável registrada.
+
+Alterar uma predição depois de ver evidência exige **nova linha com nova data**,
+preservando a anterior — o rastro de auditoria que faltou na recodificação v2→v3.
+
 Corolário operacional: `relacao_com_hipotese` admite `desconfirma`, e o validador conta
 desconfirmações por hipótese. **Zero desconfirmação em 14 hipóteses é sinal de viés de
 busca, não de força do argumento.**
