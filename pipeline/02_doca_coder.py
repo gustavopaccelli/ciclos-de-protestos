@@ -250,14 +250,22 @@ NÍVEIS DE REPRESSÃO:
 """
 
 
-def deterministic_id(url: str, event_date: str | None, location_city: str | None) -> str:
-    """UUID5 sobre (source_url, event_date, location_city) — protocolo §4.2.
+def deterministic_id(url: str, event_date: str | None, location_city: str | None,
+                     claim_code: str | None, repertoire: str | None) -> str:
+    """UUID5 sobre (source_url, event_date, location_city, claim, repertório).
 
-    Deliberadamente NÃO usa o índice posicional do evento no artigo: o índice
-    muda se o modelo reordenar a saída, o que quebraria a estabilidade do ID
-    entre recodificações.
+    Protocolo §4.2. Deliberadamente NÃO usa o índice posicional do evento no
+    artigo: o índice muda se o modelo reordenar a saída, o que quebraria a
+    estabilidade do ID entre recodificações.
+
+    claim_code e repertoire entram na chave porque data+cidade não bastam para
+    distinguir eventos: uma mesma matéria costuma relatar manifestação e
+    contramanifestação no mesmo dia e cidade. Com a chave curta os dois
+    recebiam o mesmo event_id e um deles era descartado silenciosamente pelo
+    drop_duplicates da Passagem 4.
     """
-    return str(uuid.uuid5(DOCA_NAMESPACE, f"{url}|{event_date}|{location_city}"))
+    chave = f"{url}|{event_date}|{location_city}|{claim_code}|{repertoire}"
+    return str(uuid.uuid5(DOCA_NAMESPACE, chave))
 
 
 def code_article(client: anthropic.Anthropic, art: dict) -> dict:
@@ -292,7 +300,8 @@ def code_article(client: anthropic.Anthropic, art: dict) -> dict:
     data = json.loads(text)
     for ev in data["events"]:
         ev["event_id"] = deterministic_id(
-            art.get("url", ""), ev.get("event_date"), ev.get("location_city")
+            art.get("url", ""), ev.get("event_date"), ev.get("location_city"),
+            ev.get("claim_code"), ev.get("repertoire"),
         )
         ev["source_url"] = art.get("url")
         ev["source_date"] = art.get("date_hint")

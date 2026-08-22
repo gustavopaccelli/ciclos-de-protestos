@@ -15,6 +15,7 @@ de deduplicação.
 """
 
 import json
+import re
 import unicodedata
 import uuid
 from pathlib import Path
@@ -92,6 +93,37 @@ def coerce_bool(series: pd.Series) -> pd.Series:
     return series.map(conv).astype("boolean")
 
 
+MESES_PT = {
+    "jan": 1, "fev": 2, "mar": 3, "abr": 4, "mai": 5, "jun": 6,
+    "jul": 7, "ago": 8, "set": 9, "out": 10, "nov": 11, "dez": 12,
+}
+
+
+def parse_data_ptbr(series) -> pd.Series:
+    """Converte o date_hint do Acervo ('12.abr.1984') em datetime.
+
+    pd.to_datetime sozinho parseia só os meses cujo abreviado coincide com o
+    inglês (jan, mar, jun, jul, nov) e devolve NaT em fev/abr/mai/ago/set/out/
+    dez. O resultado seria uma coluna de datas com lacuna SAZONAL — grave num
+    corpus cujo pico (Diretas Já) está justamente em abril.
+    """
+    if series is None:
+        return pd.Series(pd.NaT, dtype="datetime64[ns]")
+    series = pd.Series(series)
+
+    def conv(v):
+        if not isinstance(v, str) or not v.strip():
+            return pd.NaT
+        m = re.search(r"(\d{1,2})[./-]\s*([a-zç]{3,})[./-]\s*(\d{4})",
+                      v.strip().lower())
+        if m and m.group(2)[:3] in MESES_PT:
+            return pd.Timestamp(int(m.group(3)), MESES_PT[m.group(2)[:3]],
+                                int(m.group(1)))
+        return pd.to_datetime(v, errors="coerce", dayfirst=True)
+
+    return pd.to_datetime(series.map(conv), errors="coerce")
+
+
 def normalize(df: pd.DataFrame) -> pd.DataFrame:
     """Normaliza contra o codebook e reporta valores fora do vocabulário.
 
@@ -120,7 +152,7 @@ def normalize(df: pd.DataFrame) -> pd.DataFrame:
         )
 
     df["event_date"] = pd.to_datetime(df["event_date"], errors="coerce")
-    df["source_date"] = pd.to_datetime(df.get("source_date"), errors="coerce")
+    df["source_date"] = parse_data_ptbr(df.get("source_date"))
     n_nodate = df["event_date"].isna().sum()
     if n_nodate:
         print(f"[aviso] {n_nodate} eventos sem data — mantidos, revisar manualmente")
@@ -151,10 +183,17 @@ def assign_canonical(df: pd.DataFrame) -> pd.DataFrame:
     """
     def key(row) -> str:
         date = row["event_date"]
-        date_s = date.strftime("%Y-%m-%d") if pd.notna(date) else "SEM-DATA"
+        cidade = _slug(row.get("location_city"))
+        # Chave incompleta NÃO agrupa: sem data ou sem cidade não há como
+        # afirmar que duas extrações são o mesmo evento. Agrupá-las fundiria
+        # eventos distintos que apenas compartilham lacunas — o próprio
+        # event_id vira a chave, e a extração é preservada para arbitragem
+        # humana (§10.3).
+        if pd.isna(date) or not cidade:
+            return f"SEM-CHAVE|{row['event_id']}"
         return "|".join([
-            date_s,
-            _slug(row.get("location_city")),
+            date.strftime("%Y-%m-%d"),
+            cidade,
             _slug(row.get("location_state")),
             str(row.get("claim_code") or ""),
         ])
@@ -164,7 +203,11 @@ def assign_canonical(df: pd.DataFrame) -> pd.DataFrame:
         lambda k: str(uuid.uuid5(CANONICAL_NAMESPACE, k))
     )
     n_canon = df["canonical_event_id"].nunique()
+    n_sem_chave = int(df["_canonical_key"].str.startswith("SEM-CHAVE").sum())
     print(f"{len(df)} extrações → {n_canon} eventos canônicos")
+    if n_sem_chave:
+        print(f"[aviso] {n_sem_chave} extrações sem data e/ou sem cidade não "
+              "foram agrupadas (chave incompleta) — conferir manualmente")
     return df
 
 
