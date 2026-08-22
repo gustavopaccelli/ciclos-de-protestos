@@ -1,0 +1,11 @@
+marco_id,ciclo,data,tipo_ato,descricao,canal_demandado,canal_efetivo,traducao_institucional,ciclo_seguinte_afetado,evidencia_id,fonte_nivel,status_verificacao
+MI-C1-01,c1,1984-04-25,votacao_legislativa,"Câmara rejeita a Emenda Dante de Oliveira (PEC de eleição direta): 298 favoráveis, 65 contrários, 3 abstenções, 113 ausências. Necessários 320 votos (2/3). A emenda não foi ao Senado.",eleicao_direta_presidencial,nenhum,sim,,,2,verificado_fonte_oficial
+MI-C1-02,c1,1985-01-15,eleicao_indireta,"Colégio Eleitoral elege Tancredo Neves por 480 x 180 sobre Paulo Maluf, 26 abstenções.",eleicao_direta_presidencial,colegio_eleitoral,sim,,EV-C1-T1-001,2,verificado_fonte_oficial
+MI-C1-03,c1,1988-10-05,promulgacao_constitucional,"Promulgação da Constituição Federal de 1988.",ampliacao_canais_democraticos,assembleia_nacional_constituinte,nao,c2,EV-C1-T1-002,1,pendente
+MI-C1-04,c1,1989-11-15,eleicao_direta,"Primeira eleição presidencial direta desde 1960; 2º turno em 17/12/1989 elege Fernando Collor.",eleicao_direta_presidencial,eleicao_direta_presidencial,nao,c2,EV-C1-T1-003,1,pendente
+MI-C2-01,c2,1992-09-29,votacao_legislativa,"Câmara autoriza a abertura do processo de impeachment: 441 x 38, 1 abstenção, 23 ausências.",impeachment,impeachment,nao,,EV-C2-T1-001,2,verificado_fonte_oficial
+MI-C2-02,c2,1992-12-29,renuncia_e_cassacao,"Collor renuncia no início do julgamento; o Senado prossegue e consuma a cassação. Resolução nº 101/1992.",impeachment,impeachment,nao,,EV-C2-T1-002,2,verificado_fonte_oficial
+MI-C3-01,c3,2013-06-19,revogacao_tarifaria,"Revogação do aumento da tarifa de transporte público em São Paulo e em outras capitais.",revogacao_do_aumento_tarifario,executivo_municipal_estadual,nao,,,2,pendente
+MI-C3-02,c3,2013-06-25,votacao_legislativa,"Câmara rejeita a PEC 37: 430 contrários, 9 favoráveis.",nao_demandado_pelo_ciclo,legislativo_federal,sim,,EV-C3-T1-001,2,verificado_fonte_oficial
+MI-C4-01,c4,2016-04-17,votacao_legislativa,"Câmara admite a denúncia por crime de responsabilidade e autoriza a instauração do processo no Senado.",impeachment,impeachment,nao,,,2,pendente
+MI-C4-02,c4,2016-08-31,julgamento_senado,"Senado cassa o mandato de Dilma Rousseff (61 x 20) e, em votação separada, preserva seus direitos políticos.",impeachment,impeachment,parcial,,EV-C4-T1-001,2,divergencia_nao_resolvida

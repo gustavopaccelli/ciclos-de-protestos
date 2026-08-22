@@ -1,0 +1,277 @@
+# Codebook do levantamento por process tracing em fontes oficiais
+# Projeto: Ciclos de Protesto no Brasil — EOP, DOS e Análise de Conjuntura
+# Criado: 2026-08-22
+#
+# PRINCÍPIO DE ANCORAGEM
+# Os vocabulários abaixo NÃO foram importados de um esquema genérico de process
+# tracing. Cada um deriva do arcabouço já mobilizado na tese de Costa (2024),
+# cuja localização no texto está registrada em `fonte_na_tese`. O objetivo é que
+# o levantamento seja continuidade do trabalho doutoral, e não um enxerto.
+
+versao: "1.0"
+data_criacao: "2026-08-22"
+
+# ---------------------------------------------------------------------------
+# CICLOS
+# ---------------------------------------------------------------------------
+ciclos:
+  c1:
+    id: diretas_ja
+    nome: "Diretas Já"
+    estatuto_na_tese: >
+      Não é um dos três estudos de caso empíricos, mas é o caso FUNDANTE do
+      capítulo 2.1: é de Rodrigues (1993, 1999a, 2001) sobre as Diretas Já que
+      a tese extrai a pergunta central ("como conceituar a mobilização política
+      da sociedade em um contexto de ampliação da arena política?") e o conceito
+      de conjunturas fluídas. Sustenta teoricamente a tese sem ter recebido dela
+      tratamento empírico sistemático — a lacuna que este levantamento preenche.
+    fonte_na_tese: "cap. 2.1, parágrafo de abertura"
+  c2:
+    id: fora_collor
+    nome: "Fora Collor / Campanha pela Ética na Política"
+    estatuto_na_tese: "Estudo de caso empírico (caps. 2.2.1 e 3.2)"
+  c3:
+    id: junho_2013
+    nome: "Junho de 2013"
+    estatuto_na_tese: "Estudo de caso empírico (caps. 2.2.4 e 3.3)"
+  c4:
+    id: impeachment_dilma
+    nome: "Impeachment de Dilma Rousseff"
+    estatuto_na_tese: >
+      Estudo de caso empírico, enquadrado na tese como "Fora Dilma (2015)".
+      O projeto amplia a janela para 2014-2016 (articulação desde 27/10/2014).
+
+# ---------------------------------------------------------------------------
+# CAMADAS TEMPORAIS
+# ---------------------------------------------------------------------------
+# A tese adota as múltiplas temporalidades de Braudel via Vieira (2015): a
+# conjuntura "se situa entre os fatos de curta duração e as estruturas
+# históricas de longa duração, representando um recorte temporal de algumas
+# décadas" (cap. METODOLOGIA). Por esse critério, uma janela T-1 de 24 meses é
+# curta demais para capturar conjuntura. Daí duas camadas aninhadas, não uma.
+tempos:
+  T-1e:
+    nome: "Antecedente estrutural (longa duração)"
+    descricao: >
+      O "ciclo de oportunidades políticas no Brasil (1970-2015)" periodizado no
+      cap. 2.2 da tese. Indicadores anuais; ver bloco `indicadores_estruturais`.
+    fonte_na_tese: "cap. 2.2"
+  T-1c:
+    nome: "Antecedente conjuntural (curta duração)"
+    descricao: >
+      Janela imediatamente anterior à primeira fase do ciclo. Registrada nas
+      duas demarcações de `janelas`; codificada pelas dimensões de Souza (1986).
+  T0:
+    nome: "Ciclo de protesto"
+    descricao: "Da primeira à última fase do ciclo em data/cycle_phases.csv."
+  T+1:
+    nome: "Desfechos"
+    descricao: >
+      Consequências institucionais e discursivas. Pode ser longo: o T+1 de C1
+      alcança a Constituinte, a CF/1988 e a eleição de 1989, e é por construção
+      o T-1e de C2 (ver `encadeamento_entre_ciclos`).
+
+janelas:
+  janela_fixa:
+    regra: "24 meses antes do início da 1ª fase; 24 meses após o fim do desfecho."
+    uso: "Padrão da análise. Regra mecânica, garante comparabilidade entre casos."
+  janela_ancorada:
+    regra: >
+      T-1 inicia no desfecho do ciclo anterior; T+1 encerra no ato institucional
+      que fecha a disputa.
+    uso: >
+      NÃO é apenas teste de robustez. É a espinha substantiva do levantamento:
+      é ela que torna H3.5 (legados de um ciclo condicionam o seguinte) uma
+      proposição testável em vez de afirmação interpretativa.
+
+encadeamento_entre_ciclos:
+  principio: >
+    Um mesmo marco institucional pode figurar como T+1 de um ciclo e T-1 do
+    seguinte, com o MESMO evidencia_id. A cadeia fica explícita e auditável em
+    marcos_institucionais.csv, campo `ciclo_seguinte_afetado`.
+  cadeia_c1_c2: >
+    Diretas Já -> Colégio Eleitoral (1985) -> Assembleia Nacional Constituinte
+    -> Constituição de 1988 -> eleição direta de 1989 -> eleição de Collor ->
+    ciclo Fora Collor. É o teste mínimo de H3.5: se essa cadeia não fecha em
+    fonte oficial, H3.5 não tem base empírica no levantamento.
+
+# ---------------------------------------------------------------------------
+# DIMENSÕES DO T-1 CONJUNTURAL — Herbert José de Souza (1986)
+# ---------------------------------------------------------------------------
+# "quatro categorias são importantes para trabalhar a análise de conjuntura:
+#  os acontecimentos, os cenários, as relações de forças e a articulação
+#  (relação) entre estrutura e conjuntura" (JOSÉ DE SOUZA, 1986, p. 9),
+# citado na METODOLOGIA da tese.
+dimensoes_conjuntura:
+  acontecimentos:
+    descricao: "Fatos datados que alteram o quadro; o nível do evento."
+  cenarios:
+    descricao: "Arenas em que a disputa se desenrola (Congresso, ruas, mídia, Judiciário)."
+  relacoes_de_forcas:
+    descricao: "Correlação entre atores: quem detém que recurso, aliança e veto."
+  articulacao_estrutura_conjuntura:
+    descricao: "Como determinantes de longa duração se manifestam no tempo curto."
+fonte_na_tese_dimensoes: "METODOLOGIA, citando JOSÉ DE SOUZA (1986, p. 9)"
+
+# ---------------------------------------------------------------------------
+# MECANISMOS — Tilly & Tarrow (2015); McAdam et al. (2004); Christiansen (2009)
+# ---------------------------------------------------------------------------
+# "mecanismos e processos compõem e produzem eventos ou fluxos contínuos de
+#  ação coletiva através dos quais encontramos elementos como emergência,
+#  difusão, repressão e radicalização do confronto" (METODOLOGIA da tese).
+# Polarização, inovação e coalescência são nomeados nas CONSIDERAÇÕES FINAIS.
+mecanismos:
+  emergencia:    "Irrupção da ação coletiva a partir de mobilização potencial latente."
+  difusao:       "Propagação do repertório entre localidades, setores ou redes."
+  repressao:     "Resposta coerciva estatal; pode conter OU expandir o ciclo (H1.3)."
+  radicalizacao: "Deslocamento para repertórios mais confrontacionais."
+  polarizacao:   "Formação de clivagens definidas entre campos opostos."
+  inovacao:      "Surgimento de novo método de mobilização ou organização."
+  coalescencia:  "Passagem de demanda específica a pauta ampla (CHRISTIANSEN, 2009)."
+  nao_ocorrencia: >
+    O cão que não latiu: janela de oportunidade sem mobilização, ou mobilização
+    sem desfecho. Categoria OBRIGATÓRIA — sem ela o levantamento só enxerga onde
+    já sabe que houve evento. Caso paradigmático oferecido pela própria tese: o
+    Movimento Cansei (2007), que teve pauta antipetista, lideranças e celebridades
+    mas "não teve grandes articulações, tampouco conseguiu despontar como um
+    catalisador" (CONSIDERAÇÕES FINAIS). É o contrafactual natural de H2.4.
+
+# ---------------------------------------------------------------------------
+# TESTES DIAGNÓSTICOS — Van Evera (1997); Beach & Pedersen (2013)
+# ---------------------------------------------------------------------------
+# Declarados ANTES de examinar a evidência. É o que separa process tracing de
+# cronologia comentada, e é o que o parecerista de ciência política procura.
+testes_van_evera:
+  palha_ao_vento:
+    necessario: false
+    suficiente: false
+    efeito: "Ajusta levemente a plausibilidade; não decide nada sozinho."
+  aro:
+    necessario: true
+    suficiente: false
+    efeito: "Falhar elimina a hipótese; passar não a confirma."
+  arma_fumegante:
+    necessario: false
+    suficiente: true
+    efeito: "Passar confirma fortemente; falhar não elimina."
+  duplamente_decisivo:
+    necessario: true
+    suficiente: true
+    efeito: "Confirma uma hipótese e elimina as rivais. Raro."
+
+relacao_com_hipotese:
+  confirma:      "A evidência é consistente com a predição registrada."
+  desconfirma:   "A evidência contraria a predição registrada."
+  indeterminada: "A evidência é compatível com a hipótese e com suas rivais."
+# NOTA: zero desconfirmação em 14 hipóteses é sinal de viés de busca, não de
+# força do argumento. valida_registro.py conta desconfirmação por hipótese.
+
+# ---------------------------------------------------------------------------
+# HIERARQUIA DE FONTES
+# ---------------------------------------------------------------------------
+fonte_nivel:
+  1: >
+    Ato oficial primário: Diário Oficial da União, Diário da Câmara/Senado,
+    Diário da Assembleia Nacional Constituinte, acórdão do STF/TSE, texto legal
+    promulgado, resultado eleitoral do TSE, série estatística do IBGE/BCB.
+  2: >
+    Registro institucional secundário: portais de notícia da Câmara, Senado,
+    STF, TSE, Agência Brasil/EBC, IPEA. Produzidos pela própria instituição
+    sobre seus atos, mas em formato jornalístico.
+  3: >
+    Imprensa de referência. Entra APENAS como corroboração, nunca como base
+    única de um marco institucional ou de qualquer linha de tempo T+1.
+  4: >
+    Literatura acadêmica revisada por pares. Usada para interpretação e para
+    localizar fontes de nível 1-2 — não para estabelecer fatos institucionais.
+
+regra_de_admissibilidade: >
+  Todo marco institucional e toda evidência de T+1 exigem fonte de nível 1 ou 2.
+  Nível 3 e 4 podem acompanhar, jamais substituir. Evidência de DOS (enquadramento
+  midiático) é a exceção prevista: ali a imprensa É o objeto, não a fonte sobre
+  um terceiro fato — nesse caso registrar nivel 3 com notas explicitando o uso.
+
+status_verificacao:
+  verificado_fonte_oficial:  "Recuperado em fonte nível 1-2, com URL e data_consulta."
+  corroborado_imprensa:      "Recuperado em fonte nível 3; aguarda confirmação oficial."
+  pendente:                  "Identificado, ainda não recuperado. Registrar caminho de busca em notas."
+  divergencia_nao_resolvida: "Duas fontes admissíveis discordam. NUNCA silenciar: registrar ambas."
+
+# ---------------------------------------------------------------------------
+# INDICADORES DO T-1 ESTRUTURAL — Chenoweth & Ulfelder (2015), Quadro 3 da tese
+# ---------------------------------------------------------------------------
+# A tese reproduz o Quadro 3 e o adota como heurística ("nossa pretensão é de
+# nos apoiar nos possíveis insights heurísticos que esse sumário nos fornece"),
+# mas nunca mede os indicadores para o Brasil. Este bloco os operacionaliza com
+# equivalentes oficiais brasileiros. É a contribuição empírica mais original
+# desta pasta.
+indicadores_estruturais:
+  modelo_grievance:
+    inflacao:
+      indicador_original: "Consumer price index (World Bank)"
+      fonte_brasileira: "IBGE — IPCA (SIDRA 1737) / BCB-SGS série 433"
+      efeito_esperado: "+"
+    crescimento_economico:
+      indicador_original: "Year to year % change in real GDP per capita (World Bank)"
+      fonte_brasileira: "IBGE — Contas Nacionais (SIDRA 6784)"
+      efeito_esperado: "-"
+    repressao:
+      indicador_original: "CIRI physical integrity index"
+      fonte_brasileira: >
+        Sem equivalente oficial brasileiro direto. Usar dados de resposta estatal
+        codificados no próprio protest_events (Bloco V) + Anuário do FBSP como
+        nível 2. Registrar a lacuna, não improvisar proxy.
+      efeito_esperado: "±"
+  modelo_mobilizacao_de_recursos:
+    urbanizacao:
+      fonte_brasileira: "IBGE — Censo e projeções (SIDRA 202/6579)"
+      efeito_esperado: "+"
+    bonus_demografico_jovem:
+      indicador_original: "15-24 year olds as % of total population"
+      fonte_brasileira: "IBGE — projeções da população por idade (SIDRA 7358)"
+      efeito_esperado: "+"
+    capacidade_organizacional:
+      indicador_original: "Sum of strikes (Banks & Wilson)"
+      fonte_brasileira: "DIEESE — Sistema de Acompanhamento de Greves (nível 2)"
+      efeito_esperado: "+"
+    aprendizado_organizacional:
+      indicador_original: "Sum of riots and demonstrations (Banks & Wilson)"
+      fonte_brasileira: >
+        O próprio protest_events do projeto, mais NEPAC e Mass Mobilization.
+        Atenção: usar aqui o banco do projeto cria dependência circular se a
+        mesma série for depois usada como variável dependente. Ver PROTOCOLO §6.
+      efeito_esperado: "+"
+  modelo_modernizacao:
+    escolaridade:
+      fonte_brasileira: "IBGE — PNAD/PNADC, taxa de escolarização líquida"
+      efeito_esperado: "+"
+    comunicacao:
+      indicador_original: "Mobile phone subscriptions per 100 people"
+      fonte_brasileira: "ANATEL — acessos móveis; IBGE PNADC TIC para internet"
+      efeito_esperado: "+"
+  modelo_oportunidade_politica:
+    ano_eleitoral:
+      fonte_brasileira: "TSE — calendário e resultados eleitorais"
+      efeito_esperado: "+"
+    democracia:
+      indicador_original: "Polity component variables"
+      fonte_brasileira: >
+        Sem equivalente oficial brasileiro — é indicador de produção acadêmica
+        internacional. Manter Polity/V-Dem como nível 4, explicitamente marcado.
+      efeito_esperado: "+"
+
+# ---------------------------------------------------------------------------
+# CATEGORIAS DO QUADRO 8 (Considerações Finais da tese)
+# ---------------------------------------------------------------------------
+# O Quadro 8 cruza 9 categorias × 3 ciclos. O produto central desta pasta é
+# esse quadro estendido ao 4º ciclo e reancorado em fonte oficial peça a peça.
+categorias_quadro8:
+  - abertura_democratica
+  - crises_economicas
+  - escandalos_de_corrupcao
+  - aliancas_com_elites
+  - repressao_estatal
+  - participacao_da_midia
+  - engajamento_de_atores_sociais
+  - inovacao_e_recursos_de_mobilizacao
+  - estruturas_de_mobilizacao

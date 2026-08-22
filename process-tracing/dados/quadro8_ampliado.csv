@@ -1,0 +1,37 @@
+categoria,ciclo,formulacao_tese_2024,formulacao_revisada,evidencia_ids,status
+abertura_democratica,c1,,,,sem_formulacao_na_tese
+abertura_democratica,c2,"Moderada, com recente transição para a democracia",,,aguarda_ancoragem_oficial
+abertura_democratica,c3,"Alta, período democrático consolidado",,,aguarda_ancoragem_oficial
+abertura_democratica,c4,"Alta, mas com polarização política crescente",,,aguarda_ancoragem_oficial
+crises_economicas,c1,,,,sem_formulacao_na_tese
+crises_economicas,c2,"Estabilidade econômica relativa, mas com descontentamento com políticas neoliberais",,,aguarda_ancoragem_oficial
+crises_economicas,c3,Insatisfação com gastos públicos em megaeventos e serviços deficientes,,,aguarda_ancoragem_oficial
+crises_economicas,c4,"Grave crise econômica, com recessão e inflação",,,aguarda_ancoragem_oficial
+escandalos_de_corrupcao,c1,,,,sem_formulacao_na_tese
+escandalos_de_corrupcao,c2,Graves escândalos envolvendo o presidente,,,aguarda_ancoragem_oficial
+escandalos_de_corrupcao,c3,Escândalos relacionados a superfaturamento e ineficiência,,,aguarda_ancoragem_oficial
+escandalos_de_corrupcao,c4,Escândalos de corrupção envolvendo a Petrobras e o governo,,,aguarda_ancoragem_oficial
+aliancas_com_elites,c1,,,,sem_formulacao_na_tese
+aliancas_com_elites,c2,"Alianças políticas frágeis, apoio dividido no Congresso",,,aguarda_ancoragem_oficial
+aliancas_com_elites,c3,"Fragilidade nas alianças políticas, oposição crescente",,,aguarda_ancoragem_oficial
+aliancas_com_elites,c4,Fortes alianças com setores conservadores e empresariais,,,aguarda_ancoragem_oficial
+repressao_estatal,c1,,,,sem_formulacao_na_tese
+repressao_estatal,c2,"Repressão moderada, com uso de violência em alguns protestos",,,aguarda_ancoragem_oficial
+repressao_estatal,c3,"Repressão estatal variada, com respostas violentas em alguns casos",,,aguarda_ancoragem_oficial
+repressao_estatal,c4,"Repressão mais contida, com foco em manter ordem",,,aguarda_ancoragem_oficial
+participacao_da_midia,c1,,,,sem_formulacao_na_tese
+participacao_da_midia,c2,"Cobertura ampla, mas controle estatal de algumas narrativas",,,aguarda_ancoragem_oficial
+participacao_da_midia,c3,"Cobertura intensa, com polarização das narrativas",,,aguarda_ancoragem_oficial
+participacao_da_midia,c4,"Cobertura intensa, com narrativas fortemente polarizadas e tendenciadas",,,aguarda_ancoragem_oficial
+engajamento_de_atores_sociais,c1,,,,sem_formulacao_na_tese
+engajamento_de_atores_sociais,c2,Mobilização predominantemente liderada por elites políticas e sociais,,,aguarda_ancoragem_oficial
+engajamento_de_atores_sociais,c3,"Engajamento significativo de jovens, estudantes e classes médias",,,aguarda_ancoragem_oficial
+engajamento_de_atores_sociais,c4,Mobilização ampla com participação de diversas classes sociais,,,aguarda_ancoragem_oficial
+inovacao_e_recursos_de_mobilizacao,c1,,,,sem_formulacao_na_tese
+inovacao_e_recursos_de_mobilizacao,c2,Manifestos e comunicação tradicional,,,aguarda_ancoragem_oficial
+inovacao_e_recursos_de_mobilizacao,c3,Uso massivo de redes sociais e tecnologias digitais para mobilização,,,aguarda_ancoragem_oficial
+inovacao_e_recursos_de_mobilizacao,c4,Ampliação do uso de redes sociais para mobilização e disseminação de mensagens,,,aguarda_ancoragem_oficial
+estruturas_de_mobilizacao,c1,,,,sem_formulacao_na_tese
+estruturas_de_mobilizacao,c2,"Estruturas baseadas em lideranças carismáticas e apoio de entidades civis organizadas, como a Igreja Católica e sindicatos",,,aguarda_ancoragem_oficial
+estruturas_de_mobilizacao,c3,"Estruturas descentralizadas, organizadas principalmente através de redes sociais, com ênfase em ações espontâneas e sem lideranças claras",,,aguarda_ancoragem_oficial
+estruturas_de_mobilizacao,c4,"Estruturas fortemente influenciadas por movimentos sociais organizados, partidos de oposição e setores empresariais, com campanhas estruturadas",,,aguarda_ancoragem_oficial
