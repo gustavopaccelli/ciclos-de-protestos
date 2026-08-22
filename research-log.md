@@ -179,6 +179,29 @@ DOI: 10.11606/issn.2176-8099.pcso.2024.233335
 de inferência causal" e passa a ser "consolidação do artigo para preprint",
 incluindo integração do quadro de 14 hipóteses como seção de discussão.
 
+## 2026-08-22 — Tradução institucional ortogonalizada; correção de achado de auditoria
+
+**Redesenho.** A escala 0–3 de `traducao_institucional` embutia o critério de canal nos
+níveis 2 e 3, que por isso não diferiam em magnitude e sim em tipo. A escala passa a medir
+só magnitude; direção, valência e controle do gatilho viram variáveis próprias
+(`codebook/cycle_phases_codebook.yaml`). As 13 células não-zero foram reexaminadas sob a
+nova definição — nenhuma magnitude mudou. Novo validador: `codebook/valida_cycle_phases.py`.
+
+A categoria `antecipacao_pelo_alvo` veio da evidência oficial recuperada nesta data: a
+Resolução nº 101/1992 mostra que a renúncia de Collor **prejudicou** o pedido de perda do
+cargo, extinguindo o processo nessa parte. `traducao_controle_gatilho` formaliza a questão
+aberta nº 1 de `findings.md`.
+
+**CORREÇÃO.** A auditoria desta mesma data havia relatado "seis escores alterados entre v2 e
+v3 nas fases ID-1 e ID-2 sem justificativa registrada", classificando isso como a lacuna mais
+séria do repositório. **O achado estava errado.** Resultou de comparar os datasets pela chave
+`phase_id`, que não é estável entre versões: a periodização v3 renumerou as fases do ciclo do
+impeachment (v2 `ID-1` = emergência de 2014-10-26 a 2015-02-28; v3 `ID-1` = emergência de
+2015-03-15 a 2015-08-16). Refeita a comparação por (ciclo, fase) e restrita às fases de
+período idêntico: **16 fases comparáveis, zero escores alterados.** As quatro restantes
+tiveram fronteiras redesenhadas pela v3, o que torna a diferença esperada. Não há lacuna de
+auditoria v2→v3. Registrado em `codebook/historico-codificacao.csv`.
+
 ## 2026-07-04 — Frente C: alinhamento do artigo a 4 ciclos (inclusão das Diretas Já)
 
 **Decisão do usuário:** o estudo de caso do artigo cobria apenas 3 ciclos (Fora

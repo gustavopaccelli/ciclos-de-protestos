@@ -54,9 +54,77 @@ blocos:
       descricao: "Nível de repressão estatal ao protesto (codificação NÃO invertida: 3 = repressão alta)"
       fundamento: "Tarrow (2009); della Porta (2018) — repressão como detonador em 2013"
   traducao_institucional:
+    # -----------------------------------------------------------------------
+    # REDESENHO DE 2026-08-22 — magnitude e direção ortogonalizadas
+    #
+    # A escala original (nota_consolidada_v2, incorporada em 2026-07-04) definia
+    # 2 = "substantiva, mas por canal DISTINTO do demandado" e 3 = "plena, pelo
+    # canal demandado". Os dois níveis não diferiam em magnitude, e sim em tipo:
+    # o critério de canal estava embutido no ordinal. Isso impunha uma premissa
+    # empírica disfarçada de definição — a de que resultado por canal deslocado
+    # é sempre menor que resultado pelo canal demandado. Nas Diretas Já isso é
+    # discutível: a transição via Colégio Eleitoral foi historicamente maior do
+    # que uma vitória da emenda teria sido no curto prazo.
+    #
+    # A escala passa a medir SÓ magnitude. Direção, valência e controle do canal
+    # efetivo viram variáveis próprias. Toda recodificação decorrente está em
+    # codebook/historico-codificacao.csv.
+    # -----------------------------------------------------------------------
     traducao_institucional:
-      descricao: "Grau em que o resultado é obtido por canal institucional distinto do demandado (ex.: Diretas Já perde a emenda mas elege Tancredo no Colégio Eleitoral)"
-      fundamento: "Costa (2024); nota_consolidada_v2 dos artefatos (2026). Escala 0-3; incorporada em 2026-07-04"
+      descricao: "Magnitude da conversão da mobilização em resultado institucional, por qualquer canal. NÃO julga o canal — isso é traducao_direcao."
+      escala:
+        0: "Nenhuma tradução; demanda ignorada"
+        1: "Tradução parcial ou simbólica; concessões marginais"
+        2: "Tradução substantiva; parte central da demanda convertida em resultado"
+        3: "Tradução plena; demanda central integralmente convertida"
+      fundamento: "Costa (2024); nota_consolidada_v2 dos artefatos (2026); redesenhada em 2026-08-22"
+      nota: "NA (não se aplica) permanece distinto de 0 (medido e ausente)."
+
+    traducao_direcao:
+      descricao: >
+        Relação entre o que foi demandado e o que foi entregue. Tipologia derivada
+        dos quatro casos do projeto, não importada de outro desenho.
+      valores:
+        NA: "Não se aplica — magnitude 0"
+        canal_demandado: "Atendida pela via que o ciclo pleiteava"
+        canal_alternativo: "Mesmo objetivo, outra via institucional"
+        objeto_substituido: "A instituição responde a objetivo diverso do demandado"
+        principal_sem_acessorio: "Objetivo principal obtido; efeito acessório negado"
+        acessorio_sem_principal: "Principal extinto ou negado; acessório obtido"
+        antecipacao_pelo_alvo: >
+          O alvo esvazia o canal demandado por ação própria, entregando ainda assim
+          o objetivo substantivo. Categoria derivada da evidência: a renúncia de
+          Collor prejudicou o pedido de perda do cargo (Resolução 101/1992), de modo
+          que o desfecho não veio nem do canal demandado nem de um canal alternativo
+          acionado pelo ciclo. Sem ela, C2 seria forçado em outra categoria e a
+          diferença com C4 se perderia.
+      fundamento: "Derivada dos marcos institucionais documentados em process-tracing/dados/marcos_institucionais.csv (2026-08-22)"
+      regra: "É NA se e somente se traducao_institucional = 0."
+
+    traducao_valencia:
+      descricao: "Sinal do resultado para a coalizão mobilizada. A tipologia de direção não diz, sozinha, se o deslocamento ajudou o ciclo."
+      valores:
+        NA: "Não se aplica — magnitude 0"
+        favoravel: "O resultado atende ao interesse da coalizão mobilizada"
+        parcial: "Atende em parte, ou atende deslocando a pauta original"
+        adversa: "O resultado contraria o interesse da coalizão mobilizada"
+      fundamento: "Necessária porque canal_alternativo produziu transição favorável em C1, enquanto objeto_substituido foi desmobilizador em C3"
+
+    traducao_controle_gatilho:
+      descricao: >
+        Quem controlava o canal pelo qual o resultado efetivamente passou.
+        Formaliza a questão aberta nº 1 de findings.md ("controle do gatilho
+        institucional": Congresso 1984; CPI/Câmara 1992; nenhum alvo único 2013;
+        presidência da Câmara 2015-16) e alimenta H3.2.
+      valores:
+        NA: "Não se aplica — magnitude 0"
+        elite_institucional: "Órgão colegiado do sistema político (Congresso, Colégio Eleitoral, Senado)"
+        ator_estrategico: "Veto player individual que decide o timing da abertura"
+        coalizao_do_ciclo: "A própria coalizão mobilizada"
+        executivo_alvo: "O Executivo alvo da demanda, cedendo por ato próprio"
+        alvo_da_demanda: "O alvo pessoal da demanda, por ação que antecipa o desfecho"
+        difuso_sem_alvo_unico: "Sem alvo institucional único identificável"
+      fundamento: "findings.md, questão aberta 1; H3.2 (capacidade de leitura conjuntural e eficácia estratégica)"
   oportunidades_discursivas:
     od_visibilidade_midia:
       descricao: "Cobertura e enquadramento midiático favorável"

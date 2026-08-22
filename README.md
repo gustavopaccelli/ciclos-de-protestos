@@ -50,7 +50,18 @@ Justificativas completas em `docs/periodizacao-articulacao.md`.
 
 ### 2.2 Codificação ordinal (9 variáveis, escala 0–3)
 
-Para cada fase são codificadas **5 variáveis de EOP** (abertura do sistema, vulnerabilidade das elites, aliados influentes, repressão, instabilidade de alinhamentos), **3 variáveis de DOS** (ressonância dos frames, visibilidade/valência midiática, hegemonia discursiva) e a variável **`traducao_institucional`** (0–3), que captura quando o resultado do ciclo é obtido por canal institucional distinto do demandado (ex.: as Diretas Já perdem a emenda Dante de Oliveira, mas elegem Tancredo no Colégio Eleitoral). Codebook completo: `codebook/cycle_phases_codebook.yaml`. Código `NA` distinto de `0` (não se aplica ≠ ausente).
+Para cada fase são codificadas **5 variáveis de EOP** (abertura do sistema, vulnerabilidade das elites, aliados influentes, repressão, instabilidade de alinhamentos), **3 variáveis de DOS** (ressonância dos frames, visibilidade/valência midiática, hegemonia discursiva) e o bloco da **tradução institucional**, redesenhado em 2026-08-22. Antes uma única escala 0–3 misturava magnitude e direção — o nível 2 significava "substantiva, mas por canal distinto" e o 3, "plena, pelo canal demandado", de modo que a direção determinava o escore. As quatro variáveis agora são ortogonais:
+
+| Variável | Mede |
+|---|---|
+| `traducao_institucional` (0–3) | magnitude da conversão em resultado, por qualquer canal |
+| `traducao_direcao` | relação demanda→desfecho (canal alternativo, objeto substituído, principal sem acessório, antecipação pelo alvo…) |
+| `traducao_valencia` | se o resultado favoreceu a coalizão mobilizada |
+| `traducao_controle_gatilho` | quem controlava o canal efetivo |
+
+A tipologia discrimina: os quatro ciclos têm direções **distintas** no desfecho — Diretas Já por canal alternativo (Colégio Eleitoral), Fora Collor por antecipação do alvo (a renúncia prejudica a perda do cargo, Resolução 101/1992), Junho 2013 por objeto substituído (PEC 37 no lugar da tarifa) e Impeachment por principal sem acessório (cassação aprovada, inabilitação rejeitada por quórum).
+
+Codebook completo: `codebook/cycle_phases_codebook.yaml`. Código `NA` distinto de `0` (não se aplica ≠ ausente). Toda alteração de codificação fica em `codebook/historico-codificacao.csv`; `python codebook/valida_cycle_phases.py` confere dataset, codebook e trilha.
 
 ### 2.3 Análise de Eventos de Protesto (AEP)
 

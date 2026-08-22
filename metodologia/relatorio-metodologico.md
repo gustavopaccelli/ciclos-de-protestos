@@ -256,9 +256,13 @@ A articulação teórico-empírica produziu um conjunto de achados analíticos, 
 4. **Endogeneidade das oportunidades.** Os ciclos não apenas exploram, mas *aprofundam* as
    divisões de elite que os favorecem (evidente nas Diretas e no Fora Collor).
 
-5. **Tradução institucional como variável.** O desfecho pode ser obtido por canal institucional
-   distinto do demandado (Diretas Já perde a emenda mas elege Tancredo) — capturado pela variável
-   `traducao_institucional`.
+5. **Tradução institucional como variável, com direção.** O desfecho pode ser obtido por canal
+   distinto do demandado (Diretas Já perde a emenda mas elege Tancredo). Em 2026-08-22 o bloco foi
+   ortogonalizado: a escala 0–3 embutia o critério de canal nos níveis 2 e 3, que por isso não
+   diferiam em magnitude e sim em tipo. Hoje `traducao_institucional` mede só magnitude, e
+   `traducao_direcao`, `traducao_valencia` e `traducao_controle_gatilho` registram, respectivamente,
+   a relação demanda→desfecho, o sinal para a coalizão e quem controlava o canal efetivo. Os quatro
+   ciclos apresentam direções distintas no desfecho, o que dá à tipologia poder discriminante.
 
 6. **Deslocamento do *master frame*.** Da democratização (1984) à ética/anticorrupção (1992 em
    diante), com a inclusão das Diretas Já permitindo observar essa trajetória de longo prazo.
@@ -274,6 +278,8 @@ A articulação teórico-empírica produziu um conjunto de achados analíticos, 
 - **Execução do pipeline** pendente de credenciais e validação de seletores (Frente D, em pausa).
 - **Scores das fases de articulação** e valores de `traducao_institucional` foram derivados
   analiticamente (a partir das versões dos artefatos e da tese) e comportam revisão do pesquisador.
+  Desde 2026-08-22 toda alteração de codificação exige linha em `codebook/historico-codificacao.csv`,
+  e `codebook/valida_cycle_phases.py` recusa escore alterado sem registro correspondente.
 - **Não coleta de dados primários originais**: as interpretações ancoram-se em fontes secundárias
   sistematizadas; a contribuição é conceitual e metodológica.
 - **Agenda:** consolidação do artigo em preprint (Frente C); análise de triangulação dos bancos e
