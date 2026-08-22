@@ -121,9 +121,30 @@ C1 concentra 14 testes fora de amostra: é o único ciclo capaz de refutar de ve
 duas linhas não pertinentes são H3.4 e H3.5 em C4 — medem legado sobre o ciclo seguinte, e
 o impeachment é o último da série.
 
+## Estado da coleta (2026-08-22)
+
+Os extratores **não rodam no ambiente remoto**: os onze hosts oficiais retornam 403 no
+CONNECT por política de egresso. `scripts/executa_coleta.py --dry-run` diagnostica isso e
+grava `dados/relatorio_coleta.md`.
+
+O que foi recuperado por busca server-side, que não passa por esse proxy:
+
+- **Divergência de C4 resolvida.** Eram duas votações na sessão de 31/08/2016 — condenação
+  (61×20) e inabilitação (42×36×3, rejeitada por não atingir 54). O placar "61×21" de uma
+  página de áudio do Senado é erro dessa página.
+- **Resolução nº 101/1992** (nível 1): a perda do cargo de Collor foi julgada *prejudicada*
+  pela renúncia. C2 passa a ser caso de `traducao_institucional`, e forma espelho com C4.
+- **Diário da ANC de 05/10/1988, p. 14380** (nível 1): promulgação da CF/88, elo 2 da cadeia
+  C1→C2, com 61.200 emendas parlamentares e 122 populares.
+- Admissibilidade de 17/04/2016 (367×137×7) e PEC 37 refinada (430×9, 2 abstenções).
+- Eleição de 1989 corroborada, com divergência de percentuais a resolver no TSE.
+
+Passou de 4 para 9 evidências verificadas; de 13 para 16 fontes de nível 1 na planilha.
+Continua pendente o que é imagem digitalizada ou série de API.
+
 ## Próximo passo
 
-Rodar os extratores em máquina com rede e recuperar as fontes de nível 1 já mapeadas em
+Rodar `scripts/executa_coleta.py` em máquina com rede e recuperar as fontes de nível 1 já mapeadas em
 `fontes/fontes-de-dados.csv` — a começar pelos três documentos que resolvem divergências
 abertas: Diário da Câmara de 30/09/1992 (p. 22067), Diário do Congresso de 30/12/1992
 (p. 4811) e a ata do julgamento de 31/08/2016 no Diário do Senado.

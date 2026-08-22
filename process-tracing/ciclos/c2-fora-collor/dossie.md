@@ -41,6 +41,31 @@ Ver `dados/marcos_institucionais.csv`, filtrando por este ciclo. Atenção às c
 `canal_demandado` e `canal_efetivo`: a diferença entre elas é o conteúdo empírico da
 variável `traducao_institucional`.
 
+## Achado da coleta de 2026-08-22 — a perda do cargo foi *prejudicada*
+
+A Resolução nº 101/1992 do Senado (fonte de nível 1, texto integral recuperado) mostra algo
+que o registro não capturava: o pedido de **perda do cargo foi julgado PREJUDICADO** em razão
+da renúncia formalizada perante o Congresso, e o processo foi **extinto nessa parte**. O que
+a Resolução impõe é apenas a sanção acessória — inabilitação por oito anos para função
+pública.
+
+Logo o canal demandado pelo ciclo (impeachment com perda do cargo) não se consumou: o
+desfecho efetivo veio da renúncia somada à sanção acessória. `MI-C2-02` passa a
+`traducao_institucional = sim`, onde antes constava `nao`.
+
+**Espelho com C4.** Os dois ciclos de impeachment da série produzem desfechos institucionais
+inversos quanto à sanção acessória:
+
+| | Perda do cargo | Inabilitação |
+|---|---|---|
+| **C2 (1992)** | prejudicada pela renúncia | **aplicada** (8 anos) |
+| **C4 (2016)** | **aplicada** (61×20) | rejeitada por quórum (42×36×3, exigia 54) |
+
+Essa variação não é captada pelo escore ordinal de `traducao_institucional` em
+`cycle_phases.csv`, que registra grau e não direção. É achado a incorporar na discussão de
+H1.2 — e um argumento a favor de manter `marcos_institucionais.csv` com `canal_demandado` e
+`canal_efetivo` em colunas separadas.
+
 ## Predições registradas
 
 <!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->

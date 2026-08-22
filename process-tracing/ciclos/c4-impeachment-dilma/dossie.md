@@ -41,6 +41,25 @@ Ver `dados/marcos_institucionais.csv`, filtrando por este ciclo. Atenção às c
 `canal_demandado` e `canal_efetivo`: a diferença entre elas é o conteúdo empírico da
 variável `traducao_institucional`.
 
+## Achado da coleta de 2026-08-22 — duas votações, não uma
+
+A divergência registrada em `EV-C4-T1-001` (61×20 numa página do Senado, 61×21 em outra)
+está **resolvida**: houve duas votações distintas na sessão de 31/08/2016, separadas por
+decisão do presidente do STF, que presidia o julgamento.
+
+| Votação | Resultado | Quórum | Desfecho |
+|---|---|---|---|
+| Condenação e perda do mandato | 61 × 20 | 2/3 = 54 | aprovada |
+| Inabilitação para função pública | 42 × 36, 3 abstenções | maioria absoluta = 54 | **rejeitada** |
+
+O placar de 21 contrários, presente numa página de áudio do Senado, é inconsistente com as
+demais páginas oficiais.
+
+**Espelho com C2.** Em 1992 a perda do cargo foi prejudicada pela renúncia mas a inabilitação
+foi aplicada; em 2016 a perda do cargo foi aplicada mas a inabilitação falhou por quórum. Os
+dois ciclos de impeachment da série produzem desfechos **inversos** quanto à sanção
+acessória — variação que o escore ordinal de `traducao_institucional` não captura.
+
 ## Predições registradas
 
 <!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
