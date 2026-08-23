@@ -111,7 +111,7 @@ dimensoes_conjuntura:
     descricao: "Correlação entre atores: quem detém que recurso, aliança e veto."
   articulacao_estrutura_conjuntura:
     descricao: "Como determinantes de longa duração se manifestam no tempo curto."
-fonte_na_tese_dimensoes: "METODOLOGIA, citando JOSÉ DE SOUZA (1986, p. 9)"
+fonte_na_tese_dimensoes: "METODOLOGIA, citando JOSÉ DE SOUZA (1986, p. 9). Entrada em artigo/referencias.bib: josedesouza1986conjuntura"
 
 # ---------------------------------------------------------------------------
 # MECANISMOS — Tilly & Tarrow (2015); McAdam et al. (2004); Christiansen (2009)
@@ -135,6 +135,21 @@ mecanismos:
     Movimento Cansei (2007), que teve pauta antipetista, lideranças e celebridades
     mas "não teve grandes articulações, tampouco conseguiu despontar como um
     catalisador" (CONSIDERAÇÕES FINAIS). É o contrafactual natural de H2.4.
+
+# ---------------------------------------------------------------------------
+# O QUE "PREDIÇÃO" SIGNIFICA NESTE PROJETO
+# ---------------------------------------------------------------------------
+# Não é prognóstico. Em Dynamics of Contention (MCADAM, TARROW e TILLY, 2001) a
+# unidade explicativa é o mecanismo, e o programa é contrário à explicação por
+# leis de cobertura. Logo:
+#   predição = expectativa observável derivada de um mecanismo postulado,
+#   registrada com data anterior à varredura. Enuncia o que deve aparecer no
+#   registro documental SE o mecanismo operou neste episódio. Função
+#   diagnóstica, não prognóstica.
+# Âncoras de que o campo não prevê: CHENOWETH e ULFELDER (2017), cujos testes
+# fora de amostra dão resultados mistos para todos os modelos estruturais; e
+# STYKOW (2022), para quem nem estrutura nem agência teriam predito Belarus 2020.
+# Ver PROTOCOLO.md §5.
 
 # ---------------------------------------------------------------------------
 # TESTES DIAGNÓSTICOS — Van Evera (1997); Beach & Pedersen (2013)

@@ -11,6 +11,13 @@ três dimensões do triângulo. Para cada hipótese, o quadro especifica a vari�
 independente, a variável dependente, os indicadores de operacionalização e a evidência
 empírica âncora extraída dos casos analisados em Costa (2024).
 
+> **Estágio da pesquisa (2026-08-23).** O *scraper* do Acervo Folha ainda não foi executado
+> e o banco de eventos de protesto a partir das fontes primárias ainda não existe. Esta etapa
+> refina o aparato analítico-conceitual com os dados disponíveis, que são incompletos por
+> construção. As hipóteses aqui são **instrumentos de teste construídos antes do teste**;
+> relações encontradas por inspeção do corpus já codificado estão assinaladas como ajuste
+> intra-amostra e datadas, e não devem ser lidas como corroboração.
+
 **Legenda de dimensões:**
 - **EOP** (político-institucional): estrutura de oportunidades políticas
 - **DOS** (discursivo-cultural): estrutura de oportunidades discursivas
@@ -38,21 +45,35 @@ empírica âncora extraída dos casos analisados em Costa (2024).
 
 ---
 
-### H1.2 — Vulnerabilidade das elites e probabilidade de resultado institucional
+### H1.2 — Vulnerabilidade das elites e magnitude da tradução institucional
+
+> **Revisada em 2026-08-23.** A formulação anterior tinha por variável dependente a
+> "probabilidade de mudança institucional" e era confirmada pelos quatro ciclos por
+> construção: todos produziram resultado institucional, inclusive Junho de 2013, que o
+> projeto trata como o ciclo sem resultado definido. Qualquer ato institucional contava como
+> corroboração. A revisão troca a VD por uma grandeza com variação observada e dá à cláusula
+> da DOS um refutador próprio. Registro em `codebook/historico-codificacao.csv`.
 
 | Dimensão | Proposição |
 |---|---|
-| **EOP** | Quanto maior a vulnerabilidade do governo (erosão de aprovação, deserção de aliados parlamentares, crise de governabilidade), maior a probabilidade de que a mobilização produza resultado institucional. |
-| **DOS** | A DOS deve oferecer um frame de legitimação disponível — sem ressonância discursiva, a vulnerabilidade da elite não se converte automaticamente em mudança. |
-| **Conjuntura** | A leitura conjuntural deve identificar os indicadores de vulnerabilidade (aprovação presidencial, base parlamentar, apoio midiático) como variáveis de *timing* para a mobilização. |
+| **EOP** | A vulnerabilidade das elites governantes não determina *se* a mobilização produz resultado institucional: determina o **teto** da magnitude que o ciclo pode obter, e só o determina em conjunção com a abertura do canal acionável. A deserção fornece votos disponíveis; é o limiar decisório do canal, com sua base de incidência, que decide se votos disponíveis viram ato. Formalmente: a magnitude da tradução não excede o menor valor entre a abertura institucional vigente na fase do ato e o máximo de divisão de elite acumulado até ela. Daí a predição que separa esta formulação da anterior — **vulnerabilidade máxima com canal fechado produz magnitude 0, e não resultado atenuado**. |
+| **DOS** | A DOS não eleva o teto nem produz votos. Ela decide sobre **que objeto** a deserção disponível é gasta e se a magnitude já obtida é **retida**. Onde a ressonância se sustenta no momento do ato de limiar, a conversão recai sobre o objeto demandado ou sobre equivalente funcional, e o ganho não regride. Onde a ressonância colapsa antes que um ato de limiar consolide o ganho, a arena gasta a mesma deserção em objeto de sua própria escolha e a magnitude obtida regride. Esse é o único mecanismo pelo qual a magnitude de um ciclo pode diminuir: a moderação discursiva torna-se testável por **reversão observada**, e não por ausência de resultado. |
+| **Conjuntura** | A leitura conjuntural deve medir separadamente as duas quantidades que a formulação anterior fundia: a deserção disponível e o limiar do canal com sua base de incidência. Apenas a segunda é legível em norma antes do desfecho; a primeira é parcialmente endógena ao ciclo (padrão 1 de `findings.md`: em 1984 o ciclo *produz* a divisão de elite; em 1992 e 2015-16 ela a precede). Corolário prospectivo: conjuntura de vulnerabilidade alta sem canal cujo limiar seja alcançável não é janela de oportunidade, ainda que os indicadores clássicos de EOP a descrevam como tal. |
 
 | | |
 |---|---|
-| **Variável independente** | Grau de vulnerabilidade das elites governantes |
-| **Variável dependente** | Probabilidade de mudança institucional como resultado do ciclo |
-| **Operacionalização / indicadores** | Índices de aprovação presidencial, número de aliados parlamentares que desertam, cobertura editorial favorável ou contrária |
-| **Evidência âncora** (Costa, 2024) | Fora Collor: aprovação 71% → 9%; deserção parlamentar + inversão midiática → impeachment. Fora Dilma: crise econômica + Lava Jato + deserção do PMDB. |
-| **Referências** | Costa (2024); Sallum Jr. (2015); Tatagiba (2018) |
+| **Variável independente** | Conjunção entre o grau de vulnerabilidade das elites governantes (`op_divisao_elites`, acumulado até a fase do ato) e a abertura do canal acionável (`op_abertura_institucional` na fase do ato). A vulnerabilidade entra desdobrada em vulnerabilidade objetiva (aprovação, deterioração macroeconômica, exposição judicial formalizada) e deserção consumada (rompimentos e migrações registrados) — distinção que Stykow (2022) extrai de Belarus 2020, onde vulnerabilidade objetiva máxima sem deserção interna não derrubou o governo. |
+| **Variável dependente** | Magnitude da tradução institucional: `traducao_institucional` (0–3) na fase de desfecho, com a trajetória por fase como observação subordinada — inclusive a reversão, quando ocorre. `traducao_direcao`, `traducao_valencia` e `traducao_controle_gatilho` permanecem **descritores de escopo do desfecho**, e não variáveis dependentes concorrentes: sua tipologia foi derivada dos quatro casos do projeto (codebook, 2026-08-22) e, por isso, não pode ser testada neles. |
+| **Operacionalização / indicadores** | (i) **Margem = votos obtidos − limiar exigido**, com a base de incidência declarada, extraída de votação nominal em fonte oficial: 298 − 320 = −22 em 25/04/1984, com as 113 ausências operando como veto porque o limiar incide sobre a composição e não sobre os presentes; 441 × 38 × 1 em 29/09/1992; 367 − 342 = +25 em 17/04/2016; 61 − 54 = +7 na cassação e 42 − 54 = −12 na inabilitação, em 31/08/2016. (ii) **Deserção nominal** da base governista em votação registrada, mais migração partidária, nos 90 dias anteriores ao ato. (iii) **Data do ato formal** que abre ou fecha o canal. (iv) `od_ressonancia_discursiva` e `od_legitimidade_narrativa` lidos na fase que contém o ato de limiar, com a variação entre fases contíguas. (v) **Não-ocorrência documentada** (`mecanismo = nao_ocorrencia`): a não-pauta datada é evidência positiva de canal fechado. (vi) Aprovação presidencial e séries macroeconômicas como validação convergente declarada, nunca estabelecedora. |
+| **Evidência âncora** (Costa, 2024) | Fora Collor: aprovação de 71% para 9%, deserção parlamentar e inversão midiática precedendo a autorização de 29/09/1992. Fora Dilma: crise econômica, Lava Jato e deserção do PMDB precedendo a admissibilidade de 17/04/2016. Ambas permanecem âncoras e **não constituem teste**. A cláusula de conjunção **não** é ancorada em Costa (2024): foi extraída da codificação de `data/cycle_phases.csv` em 2026-08-23, é ajuste intra-amostra e está registrada com data. |
+| **Estado empírico** | Relação de teto verificada em 24 fases: **zero violações**, vinculando por igualdade em seis células (DJ-4, DJ-5, FC-4, FC-5, J13-3, ID-5). Reversão de magnitude: **uma** no corpus (J13-3 → J13-3b, 2→1), coincidindo com a única queda de ressonância que precede consolidação. Desconfirmação registrada: DJ-3 (abril/1984) — vulnerabilidade e DOS ambas em 3, magnitude 0. Teste fora de amostra pendente (Coreia, Paraguai, Belarus). |
+| **Referências** | Costa (2024); Sallum Jr. (2015); Tatagiba (2018); Tarrow (2009); Stykow (2022); Holdo (2019); Kwak (2021); Hatab (2024) |
+
+**Demarcação em relação a H2.2.** As duas hipóteses preveem Junho de 2013, e é preciso que
+os observáveis difiram. H1.2 prevê **reversão de magnitude**, condicionada ao *nível* de
+ressonância no momento do ato de limiar. H2.2 prevê **resultado indeterminado**, condicionado
+ao *número* de frames incompatíveis em circulação. Se as duas passarem a ser sustentadas pela
+mesma evidência com a mesma relação, uma delas é supérflua e a escolha deve ser explícita.
 
 ---
 
@@ -127,6 +148,12 @@ empírica âncora extraída dos casos analisados em Costa (2024).
 | **Operacionalização / indicadores** | Número de demandas distintas identificadas nas manifestações; heterogeneidade ideológica dos participantes; ausência de *master frame* unificador |
 | **Evidência âncora** (Costa, 2024) | Junho de 2013: coexistência de frame dos direitos urbanos (MPL), anticorrupção, aprofundamento democrático e moralizador — resultado "inacabado". |
 | **Referências** | Costa (2024); Singer (2013); Alonso (2023) |
+
+**Demarcação em relação a H1.2.** Ambas preveem Junho de 2013. H2.2 é condicionada ao
+*número* de frames incompatíveis e prevê **resultado indeterminado** no desfecho; H1.2 é
+condicionada ao *nível* de ressonância no ato de limiar e prevê **reversão de magnitude**
+entre fases contíguas. Os observáveis são distintos por construção; se a mesma evidência
+passar a sustentar as duas com a mesma relação, uma delas é supérflua.
 
 ---
 

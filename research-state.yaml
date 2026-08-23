@@ -8,6 +8,14 @@ project:
     emergência, a dinâmica de fases e os desfechos dos ciclos de protesto no
     Brasil (Diretas Já, Fora Collor, Junho 2013, Impeachment Dilma)?
   status: active
+  estagio: >
+    (2026-08-23) Refinamento analítico-conceitual. O scraper do Acervo Folha ainda não foi
+    executado e o banco de eventos a partir das fontes primárias ainda não existe; a etapa
+    trabalha com os dados disponíveis, incompletos por construção. Repositórios do GitHub
+    sobre o tema serão incorporados depois. As hipóteses são instrumentos de teste
+    construídos antes do teste: relações encontradas por inspeção do corpus já codificado
+    estão assinaladas como ajuste intra-amostra e datadas em
+    codebook/historico-codificacao.csv, e não devem ser lidas como corroboração.
   started: "2026-04-01"   # início real do projeto (sessões anteriores); repo desde 2026-06-10
   domain: "sociologia política — TPP / movimentos sociais / análise de conjuntura"
   method: >

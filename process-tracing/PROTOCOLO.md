@@ -97,6 +97,36 @@ não está fazendo process tracing — está colecionando ilustrações.
 
 ## 5. Predições registradas antes da varredura
 
+### O que "predição" significa aqui
+
+Não é prognóstico. A Teoria do Processo Político não é uma teoria preditiva, e o termo
+precisa ser definido para não convidar o leitor a cobrar poder preditivo que o desenho não
+promete.
+
+Em *Dynamics of Contention* (McAdam, Tarrow e Tilly, 2001), a unidade explicativa é o
+**mecanismo**, e o programa é explicitamente contrário à explicação por leis de cobertura:
+abandona-se o modelo geral do "movimento social" em favor de mecanismos causais recorrentes
+que se compõem em processos, variando de episódio para episódio. Neste protocolo, portanto:
+
+> **Predição = expectativa observável derivada de um mecanismo postulado, registrada com data
+> anterior à varredura.** Ela enuncia o que deve aparecer no registro documental *se* o
+> mecanismo operou neste episódio. Sua função é diagnóstica, não prognóstica.
+
+Três camadas a sustentam, todas já mobilizadas pelo projeto: o **mecanismo** (McAdam, Tarrow
+e Tilly, 2001; Tilly e Tarrow, 2015), de onde a expectativa é derivada; a **fase do ciclo**
+(Tarrow), que fornece as regularidades internas ao ciclo — difusão, inovação de repertório,
+radicalização e institucionalização — onde vivem as predições por fase; e o **teste
+diagnóstico** (Beach e Pedersen, 2013; Van Evera, 1997), que fixa o valor probatório de cada
+uma. O valor de uma predição está no teste que ela habilita, não na taxa de acerto.
+
+Dois trabalhos sustentam, de dentro do campo, que aqui não se prevê. Chenoweth e Ulfelder
+(2017) testam quatro modelos estruturais de irrupção de levantes não violentos e obtêm, fora
+de amostra, resultados mistos para todos eles, recomendando mais ênfase na agência que na
+estrutura. Stykow (2022) mostra que nem fatores estruturais nem de agência teriam predito a
+mobilização de 2020 em Belarus. São as âncoras de por que as predições deste protocolo são
+instrumentos de teste, e não prognósticos.
+
+
 `experiments/` já usa "predições registradas antes da análise" — a melhor prática do
 repositório. Aqui a regra é a mesma e vale por ciclo: **antes** de abrir qualquer fonte
 para um ciclo, registrar no dossiê correspondente, com data, o que cada hipótese prevê

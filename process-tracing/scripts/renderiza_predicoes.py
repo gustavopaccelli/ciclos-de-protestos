@@ -96,6 +96,8 @@ def aplica(texto: str, novo: str) -> str:
 
 def main(check: bool) -> None:
     df = pd.read_csv(CSV, dtype=str)
+    # Superadas ficam no CSV como rastro de auditoria, fora dos dossiês.
+    df = df[~df.status.fillna("").str.startswith("superada")]
     divergentes = []
     for ciclo, pasta in DOSSIES.items():
         caminho = BASE / "ciclos" / pasta / "dossie.md"

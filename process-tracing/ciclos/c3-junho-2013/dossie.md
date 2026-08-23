@@ -45,7 +45,7 @@ variável `traducao_institucional`.
 
 <!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
 
-**Registradas em 2026-08-22**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 7 fora de amostra, 7 de âncora, 0 não pertinentes.
+**Registradas em 2026-08-23**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 7 fora de amostra, 7 de âncora, 0 não pertinentes.
 
 O *estatuto probatório* distingue o que pode ser testado do que não pode. Onde a evidência-âncora da hipótese em `docs/quadro-hipoteses.md` vem deste ciclo, a hipótese foi formulada olhando para ele: a predição é reformulação, não previsão, e nenhuma evidência aqui pode refutá-la. Só as predições **fora de amostra** constituem teste.
 
@@ -63,9 +63,9 @@ Fonte de verdade: `dados/predicoes.csv`. Esta seção é gerada — não editar 
 
 **H1.2**
 
-- *Predição.* Teste fora de amostra: em 2013 a mobilização é a maior da série e NÃO produz resultado institucional dirigido ao Executivo federal. H1.2 prevê que isso decorra de vulnerabilidade baixa da elite governante no momento do pico.
-- *O que a refutaria.* Se os indicadores de vulnerabilidade (aprovação, base parlamentar) já estiverem deteriorados em junho de 2013 e ainda assim não houver resultado institucional, então vulnerabilidade não é suficiente e a moderação da DOS precisa fazer todo o trabalho — o que reduz H1.2 a H2.2.
-- *Teste previsto:* aro · *Indicador:* Aprovação presidencial jun-jul/2013; tamanho e coesão da base parlamentar · *Fonte prevista:* Séries de opinião (nível 3, declarado); composição da base no Congresso
+- *Predição.* Prevê-se magnitude 2 em 19/06/2013 pelo canal demandado (revogação tarifária), seguida de REVERSÃO para 1 a partir de 21/06, com a divisão de elite acumulada travada em 2 — a menor da série. A reversão é o refutador próprio da cláusula da DOS: ela coincide com a queda de od_ressonancia_discursiva de 3 para 1.
+- *O que a refutaria.* Se a verificação de MI-C3-01 falhar — isto é, se não houver ato datado de revogação tarifária —, a magnitude 2 em J13-3 perde lastro e a reversão deixa de ser observável. E se o banco de eventos do pipeline DoCA registrar a PEC 37 entre as demandas efetivas do ciclo, cai a codificação nao_demandado_pelo_ciclo, a reversão perde a explicação por substituição de objeto, e a cláusula da DOS fica sem o único caso que a sustenta.
+- *Teste previsto:* aro · *Indicador:* Magnitude por fase; od_ressonancia_discursiva entre fases contíguas; ato de revogação · *Fonte prevista:* Prefeitura de São Paulo; Diário da Câmara de 26/06/2013; protest_events
 
 **H1.4**
 

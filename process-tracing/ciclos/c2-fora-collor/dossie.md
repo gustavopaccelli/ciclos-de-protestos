@@ -70,7 +70,7 @@ H1.2 — e um argumento a favor de manter `marcos_institucionais.csv` com `canal
 
 <!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
 
-**Registradas em 2026-08-22**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 9 fora de amostra, 5 de âncora, 0 não pertinentes.
+**Registradas em 2026-08-23**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 9 fora de amostra, 5 de âncora, 0 não pertinentes.
 
 O *estatuto probatório* distingue o que pode ser testado do que não pode. Onde a evidência-âncora da hipótese em `docs/quadro-hipoteses.md` vem deste ciclo, a hipótese foi formulada olhando para ele: a predição é reformulação, não previsão, e nenhuma evidência aqui pode refutá-la. Só as predições **fora de amostra** constituem teste.
 
@@ -146,9 +146,9 @@ Fonte de verdade: `dados/predicoes.csv`. Esta seção é gerada — não editar 
 
 **H1.2**
 
-- *Predição.* Âncora: aprovação de 71% para 9%, deserção parlamentar e inversão midiática precedendo o impeachment. Não é teste.
-- *O que a refutaria.* Nada neste ciclo refuta H1.2. O valor da linha é documental: elevar o placar de 441x38 a fonte de nível 1 no Diário da Câmara.
-- *Teste previsto:* palha ao vento · *Indicador:* Série de aprovação presidencial; votação nominal de 29/09/1992 · *Fonte prevista:* Diário da Câmara 30/09/1992, p. 22067
+- *Predição.* Âncora: aprovação de 71% para 9%, deserção parlamentar e inversão midiática precedendo a autorização de 29/09/1992. Não é teste. Sob a formulação revisada a linha ganha conteúdo de mecanismo: em FC-2 abertura e divisão já valem 3 e a magnitude é 1 — o teto estava disponível e ainda não fora alcançado, o que documenta que o teto permite sem produzir.
+- *O que a refutaria.* Nada neste ciclo refuta H1.2. Valor documental: elevar 441 × 38 × 1 a fonte de nível 1 no Diário da Câmara de 30/09/1992, p. 22067.
+- *Teste previsto:* palha ao vento · *Indicador:* Trajetória de op_abertura_institucional e op_divisao_elites por fase; margem da votação · *Fonte prevista:* Diário da Câmara de 30/09/1992; Resolução 101/1992
 
 **H1.4**
 

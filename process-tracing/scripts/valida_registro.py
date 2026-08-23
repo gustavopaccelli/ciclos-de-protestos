@@ -151,6 +151,18 @@ def checa_cadeia(mi):
 
 def checa_predicoes(pr, ev, hip):
     secao("7. Predições registradas (PROTOCOLO §5)")
+    # Predição alterada depois de ver evidência exige NOVA linha datada, preservando
+    # a anterior (PROTOCOLO §5). Só as vigentes entram nas checagens de unicidade;
+    # as superadas ficam no arquivo como rastro de auditoria.
+    total = len(pr)
+    superadas = pr[pr.status.fillna("").str.startswith("superada")]
+    pr = pr[~pr.status.fillna("").str.startswith("superada")]
+    if len(superadas):
+        print(f"  {len(superadas)} predições superadas preservadas como rastro "
+              f"({total} linhas no arquivo, {len(pr)} vigentes)")
+        for h in sorted(superadas.hipotese.unique()):
+            n = int((superadas.hipotese == h).sum())
+            print(f"    {h}: {n} superada(s)")
     ciclos = sorted(pr.ciclo.unique())
     esperado = len(ciclos) * len(hip)
     print(f"  {len(pr)} predições para {len(ciclos)} ciclos x {len(hip)} hipóteses "

@@ -26,6 +26,10 @@ brasileiros (Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezi
 
 **Referências da tese de Gustavo Paccelli (fonte primária do estudo de caso):**
 
+CHENOWETH, Erica; ULFELDER, Jay. Can structural conditions explain the onset of nonviolent uprisings? **Journal of Conflict Resolution**, v. 61, n. 2, p. 298-324, 2017. DOI: 10.1177/0022002715576574.
+
+CHRISTIANSEN, Jonathan. **Four Stages of Social Movements.** EBSCO Research Starters: Academic Topic Overviews, 2009.
+
 COSTA, Gustavo Paccelli. **Estruturas de mobilização e oportunidades políticas: análise dos ciclos de protestos no Brasil contemporâneo.** 2024. 233 f. Tese (Doutorado em Ciências Sociais) – Programa de Pós-Graduação em Ciências Sociais, Universidade Federal de Juiz de Fora, Juiz de Fora, 2024.
 
 **Referências de terceiros:**
@@ -124,11 +128,15 @@ HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measure
 
 HANNA, Alex. Developing a system for the automated coding of protest event data. 2014. [VERIFICAR: veículo de publicação, volume, páginas, DOI.]
 
+HATAB, Shimaa. The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008-2012). **International Journal of Comparative Sociology**, 2024. DOI: 10.1177/00207152231196320.
+
 HAUNSS, Sebastian et al. PAPEA: a modular pipeline for the automation of protest event analysis. **Political Science Research and Methods**, 2025. [VERIFICAR: coautores, volume, páginas, DOI.]
 
 HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
 
 HOFFMANN, Matthias et al. Lifting the veil on the use of big data news repositories: a documentation and critical discussion of a protest event analysis. **Communication Methods and Measures**, 2022. [VERIFICAR: coautores, volume, número, páginas, DOI.]
+
+HOLDO, Markus. Cooptation and non-cooptation: elite strategies in response to social protest. **Social Movement Studies**, v. 18, n. 4, p. 444-462, 2019. DOI: 10.1080/14742837.2019.1577133.
 
 HOLSTON, James. **Insurgent Citizenship: Disjunctions of Democracy and Modernity in Brazil.** Princeton: Princeton University Press, 2008.
 
@@ -139,6 +147,8 @@ JATOBÁ, Daniel. **Análise de conjuntura: o que é e como se faz?** Juiz de For
 
 JASPER, James M. **Protest: A Cultural Introduction to Social Movements.** Cambridge: Polity Press, 2016.
 
+JOSÉ DE SOUZA, Herbert. **Como se faz análise de conjuntura.** 4. ed. Petrópolis: Vozes, 1986.
+
 KECK, Margaret E. **The Workers' Party and Democratization in Brazil.** New Haven: Yale University Press, 2010.
 
 KOTSCHO, Ricardo. **Explode um novo Brasil: diário da campanha das Diretas.** São Paulo: Brasiliense, 1984.
@@ -148,6 +158,10 @@ KRIESI, Hanspeter; KOOPMANS, Ruud; DUYVENDAK, Jan Willem; GIUGNI, Marco G. **New
 KOOPMANS, Ruud; OLZAK, Susan. Discursive opportunities and the evolution of right-wing violence in Germany. **American Journal of Sociology**, v. 110, n. 1, p. 198-230, 2004.
 
 KOOPMANS, Ruud; STATHAM, Paul. Ethnic and civic conceptions of nationhood and the differential success of the extreme right in Germany and Italy. In: GIUGNI, Marco; McADAM, Doug; TILLY, Charles (Ed.). **How Social Movements Matter.** Minneapolis: University of Minnesota Press, 1999. p. 225-251.
+
+KWAK, Seohee. From collective action to impeachment: political opportunities of the candlelight protests in South Korea. **Korea Observer**, v. 52, n. 1, p. 107-130, 2021. DOI: 10.29152/KOIKS.2021.52.1.107.
+
+LANDIS, J. Richard; KOCH, Gary G. The measurement of observer agreement for categorical data. **Biometrics**, v. 33, n. 1, p. 159-174, 1977.
 
 LEONELLI, Domingos; OLIVEIRA, Wagner de. **Diretas Já: 15 meses que abalaram a ditadura.** São Paulo: Editora Fundação Perseu Abramo, 2004.
 
@@ -237,6 +251,8 @@ SNOW, David A.; BENFORD, Robert D. Master frames and cycles of protest. In: MORR
 
 SOLANO, Esther. Crise da democracia e extremismos de direita. **Análise**, São Paulo: Fundação Friedrich Ebert, n. 42, abr. 2018.
 
+STYKOW, Petra. Making sense of a surprise: perspectives on the 2020 “Belarusian Revolution”. **Nationalities Papers**, 2022. DOI: 10.1017/nps.2022.93.
+
 SØRBØE, Celina Myrann. Urban uprisings between revolutionary openings and reactionary outcomes: making sense of the 2013 'June Days' in Brazil. **Urban Geography**, 2022. (Volume e páginas a confirmar.)
 
 
@@ -260,7 +276,15 @@ TILLY, Charles. **Regimes and Repertoires.** Chicago: University of Chicago Pres
 
 TILLY, Charles; TARROW, Sidney. **Contentious Politics.** 2. ed. Oxford: Oxford University Press, 2015.
 
+VAN EVERA, Stephen. **Guide to Methods for Students of Political Science.** Ithaca: Cornell University Press, 1997.
+
 VANDENBERGHE, Frédéric. Conjunctural analysis. **Revista Brasileira de Sociologia – RBS**, v. 13, 1 out. 2025. DOI: 10.20336/rbs.1118.
+
+VELASCO E CRUZ, Sebastião C. Teoria e método na análise de conjuntura. **Educação & Sociedade**, v. 21, n. 72, p. 145-152, 2000.
+
+VIEIRA, Rosângela de Lima. Como fazer “análise de conjuntura” numa abordagem histórica. In: CORSI, F. L.; CAMARGO, J. M.; SANTOS, A. dos (org.). **A conjuntura econômica e política brasileira e argentina**, 2015.
+
+VIRGENS, J. H. A.; TEIXEIRA, C. F. Análise de conjuntura: contribuições teórico-metodológicas. **Lua Nova**, São Paulo, n. 120, p. 325-357, 2023.
 
 WAHLSTRÖM, Mattias; TÖRNBERG, Anton. Social media mechanisms for right-wing political violence in the 21st century: discursive opportunities, group dynamics, and co-ordination. **Terrorism and Political Violence**, 2019. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
 

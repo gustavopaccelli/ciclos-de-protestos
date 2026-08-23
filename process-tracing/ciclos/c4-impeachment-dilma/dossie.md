@@ -64,7 +64,7 @@ acessória — variação que o escore ordinal de `traducao_institucional` não 
 
 <!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
 
-**Registradas em 2026-08-22**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 6 fora de amostra, 6 de âncora, 2 não pertinentes.
+**Registradas em 2026-08-23**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 6 fora de amostra, 6 de âncora, 2 não pertinentes.
 
 O *estatuto probatório* distingue o que pode ser testado do que não pode. Onde a evidência-âncora da hipótese em `docs/quadro-hipoteses.md` vem deste ciclo, a hipótese foi formulada olhando para ele: a predição é reformulação, não previsão, e nenhuma evidência aqui pode refutá-la. Só as predições **fora de amostra** constituem teste.
 
@@ -116,9 +116,9 @@ Fonte de verdade: `dados/predicoes.csv`. Esta seção é gerada — não editar 
 
 **H1.2**
 
-- *Predição.* Âncora: crise econômica, Lava Jato e deserção do PMDB precedendo o impeachment. Não é teste.
-- *O que a refutaria.* Nada neste ciclo refuta H1.2. Valor documental: resolver a divergência 61x20 / 61x21 na ata do Diário do Senado.
-- *Teste previsto:* palha ao vento · *Indicador:* Deserção do PMDB; votações de 17/04/2016 e 31/08/2016 · *Fonte prevista:* Diário do Senado Federal; portal da Câmara
+- *Predição.* Âncora: crise econômica, Lava Jato e deserção do PMDB precedendo a admissibilidade de 17/04/2016. Não é teste. Observação intracaso a registrar como mecanismo = nao_ocorrencia: entre março e dezembro de 2015 (ID-1 e ID-2) op_divisao_elites vale 3 e a magnitude permanece 0 por oito meses; o teto só sobe quando o canal abre, em 02/12/2015.
+- *O que a refutaria.* Nada neste ciclo refuta H1.2. Valor documental ampliado: além da divergência de placar já resolvida, verificar no Diário do Senado a qualificação do limiar de 54 na votação da inabilitação — o registro do repositório dizia 'maioria absoluta', corrigido em 2026-08-23 para dois terços de 81.
+- *Teste previsto:* palha ao vento · *Indicador:* Datas de abertura do canal; deserção do PMDB em 29/03/2016; margens das duas votações · *Fonte prevista:* Diário do Senado de 31/08/2016; notas taquigráficas de 17/04/2016
 
 **H1.4**
 

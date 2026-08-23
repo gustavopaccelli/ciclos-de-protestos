@@ -96,7 +96,7 @@ vencem o desfecho por outro canal**. É o caso paradigmático de `traducao_insti
 
 <!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
 
-**Registradas em 2026-08-22**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 14 fora de amostra, 0 de âncora, 0 não pertinentes.
+**Registradas em 2026-08-23**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 14 fora de amostra, 0 de âncora, 0 não pertinentes.
 
 O *estatuto probatório* distingue o que pode ser testado do que não pode. Onde a evidência-âncora da hipótese em `docs/quadro-hipoteses.md` vem deste ciclo, a hipótese foi formulada olhando para ele: a predição é reformulação, não previsão, e nenhuma evidência aqui pode refutá-la. Só as predições **fora de amostra** constituem teste.
 
@@ -114,9 +114,9 @@ Fonte de verdade: `dados/predicoes.csv`. Esta seção é gerada — não editar 
 
 **H1.2**
 
-- *Predição.* Teste fora de amostra decisivo. A vulnerabilidade da elite governante deve ser observável na deserção do PDS (dissidência que origina a Frente Liberal) e preceder o desfecho institucional de jan/1985. ATENÇÃO: o indicador 'aprovação presidencial' não transporta para presidente não eleito diretamente; o teste recai sobre deserção parlamentar.
-- *O que a refutaria.* Se o Colégio Eleitoral eleger Tancredo SEM deserção prévia mensurável da base governista — isto é, se a vitória vier apenas de recomposição pós-derrota da emenda —, a vulnerabilidade não antecede o resultado e H1.2 perde poder explicativo no caso fundador.
-- *Teste previsto:* arma fumegante · *Indicador:* Número de parlamentares do PDS que migram ou votam com a oposição; votação nominal do Colégio Eleitoral (480x180) · *Fonte prevista:* Diários do Congresso; TSE
+- *Predição.* Sob a formulação revisada, prevê-se magnitude 0 no pico (abril de 1984) apesar de vulnerabilidade e ressonância ambas em 3, porque op_abertura_institucional = 1: o canal existia mas seu limiar era inalcançável, já que os dois terços incidiam sobre a composição da Câmara e não sobre os presentes. No desfecho, magnitude 2 por canal alternativo.
+- *O que a refutaria.* Se o Diário da Câmara ou o Regimento vigente em 1984 mostrarem o limiar incidindo sobre os PRESENTES, então 2/3 de 366 seriam 244, os 298 votos teriam aprovado a emenda, op_abertura_institucional = 1 está mal codificada e o caso fundador cai. Segundo aro: se a eleição de Tancredo no Colégio Eleitoral ocorrer sem deserção prévia mensurável da base governista nas listas nominais.
+- *Teste previsto:* duplamente decisivo · *Indicador:* Base de incidência do limiar de 1984; listas nominais do Colégio Eleitoral de 15/01/1985 · *Fonte prevista:* Diário da Câmara de 26/04/1984; Diário do Congresso de 16/01/1985; TSE
 
 **H1.3**
 
