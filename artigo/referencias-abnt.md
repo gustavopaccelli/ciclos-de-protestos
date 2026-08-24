@@ -26,6 +26,8 @@ brasileiros (Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezi
 
 **Referências da tese de Gustavo Paccelli (fonte primária do estudo de caso):**
 
+CARLOS, Euzeneia; DOWBOR, Monika; ALBUQUERQUE, Maria do Carmo. Movimentos sociais e seus efeitos nas políticas públicas: balanço do debate e proposições analíticas. **Civitas — Revista de Ciências Sociais**, v. 17, n. 2, p. 360-378, 2017.
+
 CHENOWETH, Erica; ULFELDER, Jay. Can structural conditions explain the onset of nonviolent uprisings? **Journal of Conflict Resolution**, v. 61, n. 2, p. 298-324, 2017. DOI: 10.1177/0022002715576574.
 
 CHRISTIANSEN, Jonathan. **Four Stages of Social Movements.** EBSCO Research Starters: Academic Topic Overviews, 2009.
@@ -211,6 +213,8 @@ ORTELLADO, Pablo; SOLANO, Esther; MORETTO, Márcio. Nova direita nas ruas? Uma a
 
 PIVEN, Frances Fox; CLOWARD, Richard A. **Poor People's Movements: Why They Succeed, How They Fail.** New York: Pantheon Books, 1977.
 
+
+RICCI, Rudá. Movimentos e mobilizações sociais no Brasil: de 2013 aos dias atuais. **Saúde em Debate**, Rio de Janeiro, 2018.
 
 RODRIGUES, Alberto Tosi. Democracia e mobilização social: participação autônoma e instituições políticas na transição brasileira. **Revista de Sociologia e Política**, Curitiba, n. 12, p. 99-119, jun. 1999.
 

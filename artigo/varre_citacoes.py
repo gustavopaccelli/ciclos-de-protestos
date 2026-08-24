@@ -38,6 +38,7 @@ RUIDO = {
     "resolução", "emenda", "colegio", "colégio", "impeachment", "lei", "artigo",
     "decreto", "diario", "diário", "acervo", "folha", "sessao", "sessão", "pec",
     "verificado", "registrada", "revisada", "criado", "atualizado", "incorporada",
+    "salvador", "buzu", "curitiba", "goiania", "goiânia", "anhangabau", "anhangabaú",
     "incorporadas", "aprovada", "rejeitada", "eleicao", "eleição", "votacao",
     "votação", "magnitude", "abertura", "reversao", "reversão", "predicao",
     "predição", "predicoes", "hipotese", "hipótese", "evidencia", "evidência",

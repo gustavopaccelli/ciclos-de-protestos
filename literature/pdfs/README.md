@@ -14,6 +14,15 @@ O registro abaixo mantém a lacuna visível em vez de silenciosa.
 | VIEIRA (2015) | a verificar | capítulo em coletânea; conferir na bibliografia da tese | pendente |
 | VIRGENS; TEIXEIRA (2023) | sim | *Lua Nova* n. 120, SciELO | pendente |
 | VELASCO E CRUZ (2000) | sim | *Educação & Sociedade* v. 21 n. 72, SciELO | pendente |
+| RICCI (2018) | sim | *Saúde em Debate*, SciELO — scielo.br/j/sdeb/a/yrw7bXmFdLWLDC9zmds8PXy | pendente |
+| CARLOS; DOWBOR; ALBUQUERQUE (2017) | sim | *Civitas* v. 17 n. 2, SciELO | pendente |
+
+## Checklist de metadados
+
+`literature/verificacao-bibliografica.md` lista as 32 entradas do `.bib` cujos metadados
+estão incompletos ou não foram conferidos em fonte primária. É gerado por
+`artigo/lista_verificacao.py`; ao completar uma entrada, remova a nota `VERIFICAR` do `.bib`
+e regenere — ela sai da lista sozinha.
 
 ## Convenção de nomes
 
