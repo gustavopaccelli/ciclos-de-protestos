@@ -8,7 +8,7 @@ citação é utilizável no texto, mas a referência **não deve ir para publica
 > Corrija o `.bib` e regenere; não edite este arquivo à mão. Ao completar uma
 > entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.
 
-**32 entradas pendentes.**
+**31 entradas pendentes.**
 
 Nenhum campo será preenchido por inferência: um metadado plausível porém não
 conferido é pior que um campo vazio, porque parece verificado.
@@ -66,10 +66,10 @@ Halterman, Andrew and Keith, Katherine A. — *Codebook LLMs: Evaluating LLMs as
 
 ### `hanna2014developing`
 
-Hanna, Alex — *Developing a System for the Automated Coding of Protest Event Data* (2014, article)
+Hanna, Alex — *Developing a System for the Automated Coding of Protest Event Data* (2014, misc)
 
-- **A nota pede:** veículo de publicação, volume, páginas, DOI.
-- **Campos vazios:** `journal`, `booktitle`, `volume`, `number`, `pages`, `doi`
+- **A nota pede:** DOI do SSRN e eventual versão publicada em periódico.
+- **Campos vazios:** `booktitle`, `pages`
 
 ### `hatab2024outsiders`
 
@@ -231,10 +231,3 @@ Wahlström, Mattias and Törnberg, Anton — *Social Media Mechanisms for Right-
 
 - **A nota pede:** coautoria, volume, número, páginas e DOI.
 - **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `yoruk2022glocon`
-
-— — *GLOCON Database: Design Decisions and User Manual (v1.0)* (2024, misc)
-
-- **A nota pede:** lista de autores.
-- **Campos vazios:** `booktitle`, `pages`

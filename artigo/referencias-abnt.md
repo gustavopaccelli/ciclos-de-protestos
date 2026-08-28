@@ -128,7 +128,9 @@ HABERMAS, Jürgen. **Legitimation Crisis.** Boston: Beacon Press, 1973.
 
 HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measurement tools for political science concepts. **Political Analysis**, 2024. [VERIFICAR: coautoria, volume, páginas, DOI.]
 
-HANNA, Alex. Developing a system for the automated coding of protest event data. 2014. [VERIFICAR: veículo de publicação, volume, páginas, DOI.]
+HANNA, Alex. Developing a system for the automated coding of protest event data. **SSRN Working Paper**, 15 abr. 2014. Disponível em: https://ssrn.com/abstract=2425232. [VERIFICAR: DOI do SSRN e eventual versão publicada em periódico.]
+
+HÜRRIYETOĞLU, Ali; MUTLU, Osman; DURUŞAN, Fırat; YÖRÜK, Erdem. GLOCON Database: design decisions and user manual (v1.0). **arXiv**:2405.18613, 28 maio 2024. Disponível em: https://arxiv.org/abs/2405.18613. (Manuais de anotação: arXiv:2206.10299.)
 
 HATAB, Shimaa. The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008-2012). **International Journal of Comparative Sociology**, 2024. DOI: 10.1177/00207152231196320.
 
@@ -298,8 +300,6 @@ WEYLAND, Kurt. The rise and fall of President Collor and its impact on Brazilian
 
 **Fontes técnicas sem autoria consolidada** (bases e benchmarks de AEP automatizada;
 incorporadas em 2026-07-18, [VERIFICAR: lista de autores e publicação final]):
-
-GLOCON Database: design decisions and user manual (v1.0). arXiv:2405.18613, 2024. (Manuais de anotação: arXiv:2206.10299.)
 
 Event coreference resolution for contentious politics events. arXiv:2203.10123, 2022.
 
