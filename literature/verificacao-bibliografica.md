@@ -68,7 +68,7 @@ Halterman, Andrew and Keith, Katherine A. — *Codebook LLMs: Evaluating LLMs as
 
 Hanna, Alex — *Developing a System for the Automated Coding of Protest Event Data* (2014, misc)
 
-- **A nota pede:** DOI do SSRN e eventual versão publicada em periódico.
+- **A nota pede:** eventual versão publicada em periódico -- é ela que decide se a citação correta é o working paper ou o texto publicado.
 - **Campos vazios:** `booktitle`, `pages`
 
 ### `hatab2024outsiders`

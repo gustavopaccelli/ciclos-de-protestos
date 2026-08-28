@@ -128,7 +128,7 @@ HABERMAS, Jürgen. **Legitimation Crisis.** Boston: Beacon Press, 1973.
 
 HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measurement tools for political science concepts. **Political Analysis**, 2024. [VERIFICAR: coautoria, volume, páginas, DOI.]
 
-HANNA, Alex. Developing a system for the automated coding of protest event data. **SSRN Working Paper**, 15 abr. 2014. Disponível em: https://ssrn.com/abstract=2425232. [VERIFICAR: DOI do SSRN e eventual versão publicada em periódico.]
+HANNA, Alex. Developing a system for the automated coding of protest event data. **SSRN Working Paper**, 15 abr. 2014. DOI: 10.2139/ssrn.2425232. Disponível em: https://ssrn.com/abstract=2425232. [VERIFICAR: eventual versão publicada em periódico.]
 
 HÜRRIYETOĞLU, Ali; MUTLU, Osman; DURUŞAN, Fırat; YÖRÜK, Erdem. GLOCON Database: design decisions and user manual (v1.0). **arXiv**:2405.18613, 28 maio 2024. Disponível em: https://arxiv.org/abs/2405.18613. (Manuais de anotação: arXiv:2206.10299.)
 
