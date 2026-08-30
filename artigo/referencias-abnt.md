@@ -104,7 +104,7 @@ ENTMAN, Robert M. Framing: toward clarification of a fractured paradigm. **Journ
 
 FANTINATTI, Marcia; MOURA, José. Mídia, censura e transição política no Brasil. **Comunicação & Sociedade**, São Paulo, v. 28, n. 2, p. 45-67, 2007.
 
-FERNANDES, Antonio et al. A longa conjuntura crítica brasileira desde 2013: crise e castigo. 2020. (Dados de publicação a confirmar.)
+FERNANDES, Antônio Sérgio Araújo; TEIXEIRA, Marco Antônio Carvalho; PALMEIRA, Jussara Silva. A longa conjuntura crítica brasileira desde 2013: crise e castigo. **Cadernos Gestão Pública e Cidadania**, São Paulo, v. 25, n. 81, 2020. DOI: 10.12660/cgpc.v25n81.81577.
 
 
 FERREE, Myra Marx. Resonance and radicalism: feminist framing in the abortion debates of the United States and Germany. **American Journal of Sociology**, v. 109, n. 2, p. 304-344, 2003.
@@ -125,16 +125,15 @@ GOODWIN, Jeff; JASPER, James M. Caught in a winding, snarling vine: the structur
 
 HABERMAS, Jürgen. **Legitimation Crisis.** Boston: Beacon Press, 1973.
 
+HALTERMAN, Andrew; RADFORD, Benjamin J. Few-shot upsampling for protest size detection. In: **Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021**. Association for Computational Linguistics, 2021. p. 3713-3720. DOI: 10.18653/v1/2021.findings-acl.325.
 
 HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measurement tools for political science concepts. **Political Analysis**, v. 34, n. 2, p. 188-204, 2025. DOI: 10.1017/pan.2025.10017. (Publicado online em 19 set. 2025; fascículo datado de 2026. Não confundir com o preprint arXiv:2407.10747, de subtítulo diverso.)
 
 HANNA, Alex. Developing a system for the automated coding of protest event data. **SSRN Working Paper**, abr. 2014. DOI: 10.2139/ssrn.2425232. Disponível em: https://ssrn.com/abstract=2425232. (Sem versão publicada em periódico; os desdobramentos são a tese de 2016 e Hanna, 2017.)
 
-HÜRRIYETOĞLU, Ali; MUTLU, Osman; DURUŞAN, Fırat; YÖRÜK, Erdem. GLOCON Database: design decisions and user manual (v1.0). **arXiv**:2405.18613, 28 maio 2024. Disponível em: https://arxiv.org/abs/2405.18613. (Manuais de anotação: arXiv:2206.10299.)
+HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
 
 HATAB, Shimaa. The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008-2012). **International Journal of Comparative Sociology**, 2024. DOI: 10.1177/00207152231196320.
-
-HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
 
 HAUNSS, Sebastian. PAPEA: a modular pipeline for the automation of protest event analysis. **Political Science Research and Methods**, publicado online em 23 jun. 2025. DOI: 10.1017/psrm.2025.10013. (Autor único; sem volume ou paginação de fascículo — online-first.)
 
@@ -143,6 +142,12 @@ HOFFMANN, Matthias; SANTOS, Felipe G.; NEUMAYER, Christina; MERCEA, Dan. Lifting
 HOLDO, Markus. Cooptation and non-cooptation: elite strategies in response to social protest. **Social Movement Studies**, v. 18, n. 4, p. 444-462, 2019. DOI: 10.1080/14742837.2019.1577133.
 
 HOLSTON, James. **Insurgent Citizenship: Disjunctions of Democracy and Modernity in Brazil.** Princeton: Princeton University Press, 2008.
+
+HÜRRIYETOĞLU, Ali; MUTLU, Osman; BEYHAN, Fatih; DURUŞAN, Fırat; SAFAYA, Ali; YENITERZI, Reyyan; YÖRÜK, Erdem. Event coreference resolution for contentious politics events. **arXiv**:2203.10123, 18 mar. 2022. Disponível em: https://arxiv.org/abs/2203.10123.
+
+HÜRRIYETOĞLU, Ali; MUTLU, Osman; DURUŞAN, Fırat; YÖRÜK, Erdem. GLOCON Database: design decisions and user manual (v1.0). **arXiv**:2405.18613, 28 maio 2024. Disponível em: https://arxiv.org/abs/2405.18613. (Manuais de anotação: arXiv:2206.10299.)
+
+HÜRRIYETOĞLU, Ali; YÖRÜK, Erdem; YÜRET, Deniz; YOLTAR, Çağrı; GÜREL, Burak; DURUŞAN, Fırat; MUTLU, Osman; AKDEMIR, Arda. Overview of CLEF 2019 Lab ProtestNews: extracting protests from news in a cross-context setting. In: CRESTANI, Fabio et al. (Ed.). **Experimental IR Meets Multilinguality, Multimodality, and Interaction:** 10th International Conference of the CLEF Association, CLEF 2019. Cham: Springer, 2019. (Lecture Notes in Computer Science, 11696). p. 425-432. Depósito: arXiv:2008.00345. [VERIFICAR: DOI do capítulo.]
 
 HUTTER, Swen. Protest event analysis and its offspring. In: DELLA PORTA, Donatella (Ed.). **Methodological Practices in Social Movement Research.** Oxford: Oxford University Press, 2014.
 
@@ -295,14 +300,3 @@ VIRGENS, J. H. A.; TEIXEIRA, C. F. Análise de conjuntura: contribuições teór
 WAHLSTRÖM, Mattias; TÖRNBERG, Anton. Social media mechanisms for right-wing political violence in the 21st century: discursive opportunities, group dynamics, and co-ordination. **Terrorism and Political Violence**, 2019. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
 
 WEYLAND, Kurt. The rise and fall of President Collor and its impact on Brazilian democracy. **Journal of Interamerican Studies and World Affairs**, v. 35, n. 1, p. 1-37, 1993.
-
----
-
-**Fontes técnicas sem autoria consolidada** (bases e benchmarks de AEP automatizada;
-incorporadas em 2026-07-18, [VERIFICAR: lista de autores e publicação final]):
-
-Event coreference resolution for contentious politics events. arXiv:2203.10123, 2022.
-
-Few-shot upsampling for protest size detection. arXiv:2105.11260, 2021.
-
-Overview of CLEF 2019 Lab ProtestNews: extracting protests from news in a cross-context setting. arXiv:2008.00345, 2019.

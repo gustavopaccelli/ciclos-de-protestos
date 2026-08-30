@@ -8,7 +8,7 @@ citação é utilizável no texto, mas a referência **não deve ir para publica
 > Corrija o `.bib` e regenere; não edite este arquivo à mão. Ao completar uma
 > entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.
 
-**19 entradas pendentes.**
+**16 entradas pendentes.**
 
 Nenhum campo será preenchido por inferência: um metadado plausível porém não
 conferido é pior que um campo vazio, porque parece verificado.
@@ -36,26 +36,18 @@ Cammaerts, Bart — *Protest logics and the mediation opportunity structure* (20
 - **A nota pede:** volume, número, páginas e DOI.
 - **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
 
-### `coreference2022contentious`
-
-— — *Event Coreference Resolution for Contentious Politics Events* (2022, misc)
-
-- **A nota pede:** lista de autores, publicação final.
-- **Campos vazios:** `booktitle`, `pages`
-
-### `fernandes2020longa`
-
-Fernandes, Antonio — *A longa conjuntura crítica brasileira desde 2013: crise e castigo* (2020, misc)
-
-- **A nota pede:** coautores, veículo de publicação, volume e páginas.
-- **Campos vazios:** `booktitle`, `pages`
-
 ### `hatab2024outsiders`
 
 Hatab, Shimaa — *The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008--2012)* (2024, article)
 
 - **A nota pede:** volume, número e páginas
 - **Campos vazios:** `booktitle`, `volume`, `number`, `pages`
+
+### `hurriyetoglu2019protestnews`
+
+Hürriyetoğlu, Ali and Yörük, Erdem and Yüret, Deniz and Yoltar, Çağrı and Gürel, Burak and Duruşan, Fırat and Mutlu, Osman and Akdemir, Arda — *Overview of CLEF 2019 Lab ProtestNews: Extracting Protests from News in a Cross-context Setting* (2019, incollection)
+
+- **A nota pede:** DOI do capítulo na Springer.
 
 ### `landis1977agreement`
 
@@ -99,13 +91,6 @@ Ortellado, Pablo and Solano, Esther — *Nova direita nas ruas? Uma análise do 
 - **A nota pede:** página final -- as fontes divergem entre 180 e 181.
 - **Campos vazios:** `booktitle`, `volume`, `doi`
 
-### `protestnews2019clef`
-
-— — *Overview of CLEF 2019 Lab ProtestNews: Extracting Protests from News in a Cross-context Setting* (2019, misc)
-
-- **A nota pede:** lista de autores, publicação final.
-- **Campos vazios:** `booktitle`, `pages`
-
 ### `sorboe2022urban`
 
 Sørbøe, Celina Myrann — *Urban uprisings between revolutionary openings and reactionary outcomes: making sense of the 2013 'June Days' in Brazil* (2022, article)
@@ -119,13 +104,6 @@ Stykow, Petra — *Making sense of a surprise: perspectives on the 2020 "Belarus
 
 - **A nota pede:** volume, número, páginas e inicial do prenome
 - **Campos vazios:** `booktitle`, `volume`, `number`, `pages`
-
-### `upsampling2021protestsize`
-
-— — *Few-Shot Upsampling for Protest Size Detection* (2021, misc)
-
-- **A nota pede:** lista de autores, publicação final.
-- **Campos vazios:** `booktitle`, `pages`
 
 ### `vanevera1997guide`
 
