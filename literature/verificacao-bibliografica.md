@@ -8,26 +8,19 @@ citação é utilizável no texto, mas a referência **não deve ir para publica
 > Corrija o `.bib` e regenere; não edite este arquivo à mão. Ao completar uma
 > entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.
 
-**31 entradas pendentes.**
+**26 entradas pendentes.**
 
 Nenhum campo será preenchido por inferência: um metadado plausível porém não
 conferido é pior que um campo vazio, porque parece verificado.
 
 ---
 
-### `avritzer2016participacao`
+### `avritzer2016impasses`
 
-Avritzer, Leonardo — *Participação e crise da representação* (2016, incollection)
+Avritzer, Leonardo — *Impasses da democracia no Brasil* (2016, book)
 
-- **A nota pede:** volume da coleção e páginas.
-- **Campos vazios:** `pages`
-
-### `becker2017manifestacoes`
-
-Becker, Cintia and Moreira Cesar, Camila and Gallas, Daniel and Weber, Maria Helena — *Manifestações e votos sobre impeachment de Dilma Rousseff na primeira página de jornais brasileiros* (2017, article)
-
-- **A nota pede:** prenomes completos dos autores (na lista ABNT constam abreviados).
-- **Campos vazios:** `booktitle`, `pages`, `doi`
+- **A nota pede:** paginação exata das passagens usadas, no exemplar.
+- **Campos vazios:** `booktitle`
 
 ### `caiani2023framing`
 
@@ -110,7 +103,7 @@ Li, Mengyu — *Platform affordances, discursive opportunities, and social media
 
 Limongi, Fernando — *Impedindo Dilma: coalizão e conflito no impeachment* (2023, book)
 
-- **A nota pede:** editora, ano e paginação.
+- **A nota pede:** editora, ano e paginação
 - **Campos vazios:** `booktitle`
 
 ### `lorenzini2020design`
@@ -141,13 +134,6 @@ Meyer, David S. and Staggenborg, Suzanne — *Movements, Countermovements, and t
 - **A nota pede:** volume, número e páginas.
 - **Campos vazios:** `booktitle`, `doi`
 
-### `mische2006estudantes`
-
-Mische, Ann — *De estudantes a cidadãos: redes de jovens e participação política* (2006, article)
-
-- **A nota pede:** qual versão citar.
-- **Campos vazios:** `booktitle`, `doi`
-
 ### `motta2015transnational`
 
 Motta, Renata — *Transnational Discursive Opportunities and Social Movement Risk Frames Opposing GMOs* (2015, article)
@@ -157,37 +143,16 @@ Motta, Renata — *Transnational Discursive Opportunities and Social Movement Ri
 
 ### `ortellado2016nova`
 
-Ortellado, Pablo and Solano, Esther and Moretto, Márcio — *Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015* (2016, misc)
+Ortellado, Pablo and Solano, Esther — *Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015* (2016, article)
 
-- **A nota pede:** veículo de publicação, volume e páginas.
-- **Campos vazios:** `booktitle`, `pages`
+- **A nota pede:** página final -- as fontes divergem entre 180 e 181.
+- **Campos vazios:** `booktitle`, `volume`, `doi`
 
 ### `protestnews2019clef`
 
 — — *Overview of CLEF 2019 Lab ProtestNews: Extracting Protests from News in a Cross-context Setting* (2019, misc)
 
 - **A nota pede:** lista de autores, publicação final.
-- **Campos vazios:** `booktitle`, `pages`
-
-### `ricci2018movimentos`
-
-Ricci, Rudá — *Movimentos e mobilizações sociais no Brasil: de 2013 aos dias atuais* (2018, article)
-
-- **A nota pede:** volume, número, páginas e DOI
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `sallum2015imperador`
-
-Sallum Jr., Brasílio — *O imperador está nu: análise da crise do governo Collor* (2015, book)
-
-- **A nota pede:** título correto, editora e ano.
-- **Campos vazios:** `booktitle`
-
-### `scartezini2016fascistizacao`
-
-Scartezini, Natália — *A fascistização da indignação: as manifestações de 2015 no Brasil* (2016, misc)
-
-- **A nota pede:** veículo de publicação, volume e páginas.
 - **Campos vazios:** `booktitle`, `pages`
 
 ### `sorboe2022urban`

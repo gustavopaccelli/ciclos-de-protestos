@@ -14,7 +14,7 @@ Wahlström & Törnberg, Li, Caiani, Meyer & Staggenborg). Fichamentos em
 [`literature/fichamentos/`](../literature/fichamentos/).
 Atualização anterior: 2026-07-04 — 14 referências dos artefatos (referencias_ciclos_protesto.bib):
 Piven & Cloward, Entman, Habermas, Dobry, Beach & Pedersen, Davenport, Alexander, Hutter, e casos
-brasileiros (Ortellado/Solano/Moretto, Nunes & Melo, Ansell, Fernandes, Scartezini, Sørbøe).
+brasileiros (Ortellado & Solano, Nunes & Melo, Ansell, Fernandes, Scartezini, Sørbøe).
 
 > ⚠️ **Verificação pendente.** As 16 obras incorporadas em 2026-07-18 vieram de levantamento em
 > base bibliográfica e **têm metadados incompletos** (volume, número, páginas, DOI, coautoria).
@@ -50,14 +50,14 @@ ALONSO, Angela; REZENDE, Patrícia Jimenez; SOUZA, Rafael de; SOUZA, Viviane Bri
 ANSELL, Aaron. Impeaching Dilma Rousseff: the double life of corruption allegations on Brazil's political right. **Culture, Theory and Critique**, v. 59, n. 4, p. 312-331, 2018.
 
 
-AVRITZER, Leonardo. **Participação e crise da representação.** In: NOVAIS, Fernando A.; SCHWARCZ, Lilia Moritz (Org.). **História da vida privada no Brasil.** São Paulo: Companhia das Letras, 2016. (Referência reconstituída a partir do uso em Costa, 2024.)
+AVRITZER, Leonardo. **Impasses da democracia no Brasil.** Rio de Janeiro: Civilização Brasileira, 2016. 153 p. [VERIFICAR: paginação das passagens usadas. Substitui atribuição anterior a um capítulo em *História da vida privada no Brasil*, que não se confirmou.]
 
 AVRITZER, Leonardo. Participation in democratic Brazil: from popular hegemony and innovation to middle-class protest. **Opinião Pública**, Campinas, v. 23, n. 1, p. 43-59, 2017.
 
 BEACH, Derek; PEDERSEN, Rasmus Brun. **Process-Tracing Methods: Foundations and Guidelines.** Ann Arbor: University of Michigan Press, 2013.
 
 
-BECKER, C.; MOREIRA CESAR, C.; GALLAS, D.; WEBER, M. H. Manifestações e votos sobre impeachment de Dilma Rousseff na primeira página de jornais brasileiros. **Revista Latinoamericana de Ciencias de la Comunicación**, v. 13, n. 24, 2017.
+BECKER, C.; MOREIRA CESAR, C.; GALLAS, D.; WEBER, M. H. Manifestações e votos sobre impeachment de Dilma Rousseff na primeira página de jornais brasileiros. **Revista Latinoamericana de Ciencias de la Comunicación**, v. 13, n. 24, p. 96-113, 2017.
 
 BENFORD, Robert D.; SNOW, David A. Framing processes and social movements: an overview and assessment. **Annual Review of Sociology**, v. 26, p. 611-639, 2000.
 
@@ -171,7 +171,7 @@ LEONELLI, Domingos; OLIVEIRA, Wagner de. **Diretas Já: 15 meses que abalaram a 
 
 LI, Mengyu et al. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, 2024. [VERIFICAR: coautores, volume, número, páginas, DOI.]
 
-LIMONGI, Fernando. **Impedindo Dilma: coalizão e conflito no impeachment.** São Paulo: CEBRAP; Rio de Janeiro: Fundação Heinrich Böll, 2023. (Referência reconstituída a partir do uso em Costa, 2024.)
+LIMONGI, Fernando. **Impedindo Dilma: coalizão e conflito no impeachment.** São Paulo: CEBRAP; Rio de Janeiro: Fundação Heinrich Böll, 2023. (Referência reconstituída a partir do uso em Costa, 2024.) [VERIFICAR: editora, ano e paginação. Não confundir com LIMONGI, F. Impedindo Dilma. **Novos Estudos CEBRAP**, n. especial, p. 5-13, jun. 2017 — texto curto, incompatível com as páginas citadas em Costa, 2024.]
 
 LORENZINI, Jasmine et al. Protest event analysis: developing a semiautomated NLP approach. **American Behavioral Scientist**, 2021. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
 
@@ -199,7 +199,7 @@ MEDEIROS, Cintia Rodrigues de Oliveira; SILVEIRA, Rafael Alcadipani da. A Petrob
 
 MEYER, David S.; STAGGENBORG, Suzanne. Movements, countermovements, and the structure of political opportunity. **American Journal of Sociology**, 1996. [VERIFICAR: volume, número, páginas.]
 
-MISCHE, Ann. De estudantes a cidadãos: redes de jovens e participação política. **Citizenship Studies**, v. 10, n. 6, p. 597-611, 2006. (Referência reconstituída; o uso em Costa, 2024 remete à versão em português publicada originalmente em: MISCHE, Ann. De estudantes a cidadãos. **Revista Brasileira de Educação**, n. 5/6, 1997.)
+MISCHE, Ann. De estudantes a cidadãos: redes de jovens e participação política. **Revista Brasileira de Educação**, n. 5/6, p. 134-150, 1997. (Versão em inglês: MISCHE, Ann. **Citizenship Studies**, v. 10, n. 6, p. 597-611, 2006. Adotada aqui a versão em português, que é a paginada nas citações de Costa, 2024.)
 
 MISCHE, Ann. **Partisan Publics: Communication and Contention across Brazilian Youth Activist Networks.** Princeton: Princeton University Press, 2008.
 
@@ -210,13 +210,13 @@ MOTTA, Renata. Transnational discursive opportunities and social movement risk f
 NUNES, Felipe; MELO, Carlos Ranulfo. Impeachment, political crisis and democracy in Brazil. **Revista de Ciencia Política**, v. 37, n. 2, p. 281-304, 2017.
 
 
-ORTELLADO, Pablo; SOLANO, Esther; MORETTO, Márcio. Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015. 2016. (Dados de publicação a confirmar.)
+ORTELLADO, Pablo; SOLANO, Esther. Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015. **Perseu: História, Memória e Política**, São Paulo, n. 11, p. 169-180, 2016. [VERIFICAR: página final (fontes divergem entre 180 e 181).]
 
 
 PIVEN, Frances Fox; CLOWARD, Richard A. **Poor People's Movements: Why They Succeed, How They Fail.** New York: Pantheon Books, 1977.
 
 
-RICCI, Rudá. Movimentos e mobilizações sociais no Brasil: de 2013 aos dias atuais. **Saúde em Debate**, Rio de Janeiro, 2018.
+RICCI, Rudá. Movimentos e mobilizações sociais no Brasil: de 2013 aos dias atuais. **Saúde em Debate**, Rio de Janeiro, v. 42, n. especial 3, p. 90-107, nov. 2018. DOI: 10.1590/0103-11042018S308.
 
 RODRIGUES, Alberto Tosi. Democracia e mobilização social: participação autônoma e instituições políticas na transição brasileira. **Revista de Sociologia e Política**, Curitiba, n. 12, p. 99-119, jun. 1999.
 
@@ -232,13 +232,13 @@ SAAD-FILHO, Alfredo. Mass protests under 'left neoliberalism': Brazil, June-July
 
 SADER, Eder. **Quando novos personagens entram em cena: experiências, falas e lutas dos trabalhadores da Grande São Paulo (1970-1980).** Rio de Janeiro: Paz e Terra, 1988.
 
-SALLUM JR., Brasílio. **O imperador está nu: análise da crise do governo Collor.** São Paulo: Editora Parma, 2015. (Referência reconstituída a partir da recorrência em Costa, 2024.)
+SALLUM JR., Brasílio. **O impeachment de Fernando Collor: sociologia de uma crise.** São Paulo: Editora 34, 2015. 424 p.
 
 SANTANA, Marco Aurélio. **Trabalhadores, sindicatos e política no Brasil.** Rio de Janeiro: FGV Editora, 2018.
 
 SANTOS, Boaventura de Sousa; AVRITZER, Leonardo. Para ampliar o cânone democrático. In: SOUZA SANTOS, Boaventura de (Org.). **Democratizar a democracia: os caminhos da democracia participativa.** Rio de Janeiro: Civilização Brasileira, 2002. p. 39-82.
 
-SCARTEZINI, Natália. A fascistização da indignação: as manifestações de 2015 no Brasil. 2016. (Dados de publicação a confirmar.)
+SCARTEZINI, Natália. A fascistização da indignação: as manifestações de 2015 no Brasil. **Cadernos de Campo: Revista de Ciências Sociais**, Araraquara, n. 20, p. 183-206, 2016.
 
 
 SCHERER-WARREN, Ilse. **Movimentos sociais: um ensaio de interpretação sociológica.** Florianópolis: Editora da UFSC, 1987.

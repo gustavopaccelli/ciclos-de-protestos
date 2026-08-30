@@ -67,9 +67,12 @@ Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e 
 ## Pendência de verificação bibliográfica — **bloqueia a redação final**
 
 26 entradas do `.bib` estão marcadas `VERIFICAR` (rodar `python artigo/check_bib.py` para a
-lista): 8 defeitos antigos ("Dados de publicação a confirmar" / "Referência reconstituída",
-incl. a divergência de título de Sallum Jr. 2015 entre `survey.md` e a lista ABNT) e 18 obras
-incorporadas em 2026-07-18 com metadados incompletos.
+lista). Em 2026-08-30 fecharam-se as oito obras brasileiras: quatro saíram da lista (Ricci,
+Scartezini, Ortellado, Becker) e três eram **atribuição errada, não metadado faltando** --
+Sallum Jr. 2015 (o título correto é *O impeachment de Fernando Collor*, Editora 34, o que
+resolve a divergência com `survey.md`), Avritzer 2016 (é o livro *Impasses da democracia no
+Brasil*, não um capítulo) e Ortellado 2016 (Márcio Moretto não é coautor). Seguem abertas
+Limongi 2023, a paginação de Avritzer e a página final de Ortellado.
 
 - [ ] **V1.** Confirmar volume/número/páginas/DOI/coautoria via Scite ou Elicit. Os conectores
       caíram durante a sessão de 2026-07-18 antes da checagem. **Registrar como não-verificada
