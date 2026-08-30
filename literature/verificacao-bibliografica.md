@@ -8,7 +8,7 @@ citação é utilizável no texto, mas a referência **não deve ir para publica
 > Corrija o `.bib` e regenere; não edite este arquivo à mão. Ao completar uma
 > entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.
 
-**26 entradas pendentes.**
+**19 entradas pendentes.**
 
 Nenhum campo será preenchido por inferência: um metadado plausível porém não
 conferido é pior que um campo vazio, porque parece verificado.
@@ -50,40 +50,12 @@ Fernandes, Antonio — *A longa conjuntura crítica brasileira desde 2013: crise
 - **A nota pede:** coautores, veículo de publicação, volume e páginas.
 - **Campos vazios:** `booktitle`, `pages`
 
-### `halterman2024codebook`
-
-Halterman, Andrew and Keith, Katherine A. — *Codebook LLMs: Evaluating LLMs as Measurement Tools for Political Science Concepts* (2024, article)
-
-- **A nota pede:** coautoria, volume, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `hanna2014developing`
-
-Hanna, Alex — *Developing a System for the Automated Coding of Protest Event Data* (2014, misc)
-
-- **A nota pede:** eventual versão publicada em periódico -- é ela que decide se a citação correta é o working paper ou o texto publicado.
-- **Campos vazios:** `booktitle`, `pages`
-
 ### `hatab2024outsiders`
 
 Hatab, Shimaa — *The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008--2012)* (2024, article)
 
 - **A nota pede:** volume, número e páginas
 - **Campos vazios:** `booktitle`, `volume`, `number`, `pages`
-
-### `haunss2025papea`
-
-Haunss, Sebastian — *PAPEA: A modular pipeline for the automation of protest event analysis* (2025, article)
-
-- **A nota pede:** coautores, volume, número, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `hoffmann2022lifting`
-
-Hoffmann, Matthias — *Lifting the Veil on the Use of Big Data News Repositories: A Documentation and Critical Discussion of A Protest Event Analysis* (2022, article)
-
-- **A nota pede:** coautores, volume, número, páginas, DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
 
 ### `landis1977agreement`
 
@@ -105,27 +77,6 @@ Limongi, Fernando — *Impedindo Dilma: coalizão e conflito no impeachment* (20
 
 - **A nota pede:** editora, ano e paginação
 - **Campos vazios:** `booktitle`
-
-### `lorenzini2020design`
-
-Lorenzini, Jasmine and Makarov, Peter and Kriesi, Hanspeter and Wüest, Bruno — *Design and Methods of Semi-automated Protest Event Analysis* (2020, incollection)
-
-- **A nota pede:** livro, editores, editora, páginas.
-- **Campos vazios:** `booktitle`, `pages`, `publisher`, `address`
-
-### `lorenzini2021protest`
-
-Lorenzini, Jasmine and Kriesi, Hanspeter and Makarov, Peter and Wüest, Bruno — *Protest Event Analysis: Developing a Semiautomated NLP Approach* (2021, article)
-
-- **A nota pede:** coautoria, volume, número, páginas, DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `mamaev2025collecting`
-
-Mamaev, Bogdan — *Collecting protest event data using natural language processing models* (2025, article)
-
-- **A nota pede:** volume, número, páginas, DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
 
 ### `meyer1996movements`
 

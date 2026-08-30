@@ -126,19 +126,19 @@ GOODWIN, Jeff; JASPER, James M. Caught in a winding, snarling vine: the structur
 HABERMAS, Jürgen. **Legitimation Crisis.** Boston: Beacon Press, 1973.
 
 
-HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measurement tools for political science concepts. **Political Analysis**, 2024. [VERIFICAR: coautoria, volume, páginas, DOI.]
+HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: evaluating LLMs as measurement tools for political science concepts. **Political Analysis**, v. 34, n. 2, p. 188-204, 2025. DOI: 10.1017/pan.2025.10017. (Publicado online em 19 set. 2025; fascículo datado de 2026. Não confundir com o preprint arXiv:2407.10747, de subtítulo diverso.)
 
-HANNA, Alex. Developing a system for the automated coding of protest event data. **SSRN Working Paper**, 15 abr. 2014. DOI: 10.2139/ssrn.2425232. Disponível em: https://ssrn.com/abstract=2425232. [VERIFICAR: eventual versão publicada em periódico.]
+HANNA, Alex. Developing a system for the automated coding of protest event data. **SSRN Working Paper**, abr. 2014. DOI: 10.2139/ssrn.2425232. Disponível em: https://ssrn.com/abstract=2425232. (Sem versão publicada em periódico; os desdobramentos são a tese de 2016 e Hanna, 2017.)
 
 HÜRRIYETOĞLU, Ali; MUTLU, Osman; DURUŞAN, Fırat; YÖRÜK, Erdem. GLOCON Database: design decisions and user manual (v1.0). **arXiv**:2405.18613, 28 maio 2024. Disponível em: https://arxiv.org/abs/2405.18613. (Manuais de anotação: arXiv:2206.10299.)
 
 HATAB, Shimaa. The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008-2012). **International Journal of Comparative Sociology**, 2024. DOI: 10.1177/00207152231196320.
 
-HAUNSS, Sebastian et al. PAPEA: a modular pipeline for the automation of protest event analysis. **Political Science Research and Methods**, 2025. [VERIFICAR: coautores, volume, páginas, DOI.]
-
 HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
 
-HOFFMANN, Matthias et al. Lifting the veil on the use of big data news repositories: a documentation and critical discussion of a protest event analysis. **Communication Methods and Measures**, 2022. [VERIFICAR: coautores, volume, número, páginas, DOI.]
+HAUNSS, Sebastian. PAPEA: a modular pipeline for the automation of protest event analysis. **Political Science Research and Methods**, publicado online em 23 jun. 2025. DOI: 10.1017/psrm.2025.10013. (Autor único; sem volume ou paginação de fascículo — online-first.)
+
+HOFFMANN, Matthias; SANTOS, Felipe G.; NEUMAYER, Christina; MERCEA, Dan. Lifting the veil on the use of big data news repositories: a documentation and critical discussion of a protest event analysis. **Communication Methods and Measures**, v. 16, n. 4, p. 283-302, 2022. DOI: 10.1080/19312458.2022.2128099.
 
 HOLDO, Markus. Cooptation and non-cooptation: elite strategies in response to social protest. **Social Movement Studies**, v. 18, n. 4, p. 444-462, 2019. DOI: 10.1080/14742837.2019.1577133.
 
@@ -173,11 +173,11 @@ LI, Mengyu et al. Platform affordances, discursive opportunities, and social med
 
 LIMONGI, Fernando. **Impedindo Dilma: coalizão e conflito no impeachment.** São Paulo: CEBRAP; Rio de Janeiro: Fundação Heinrich Böll, 2023. (Referência reconstituída a partir do uso em Costa, 2024.) [VERIFICAR: editora, ano e paginação. Não confundir com LIMONGI, F. Impedindo Dilma. **Novos Estudos CEBRAP**, n. especial, p. 5-13, jun. 2017 — texto curto, incompatível com as páginas citadas em Costa, 2024.]
 
-LORENZINI, Jasmine et al. Protest event analysis: developing a semiautomated NLP approach. **American Behavioral Scientist**, 2021. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
+LORENZINI, Jasmine; KRIESI, Hanspeter; MAKAROV, Peter; WÜEST, Bruno. Protest event analysis: developing a semiautomated NLP approach. **American Behavioral Scientist**, v. 66, n. 5, p. 555-577, 2022. DOI: 10.1177/00027642211021650. (Publicado online em jun. 2021.)
 
-LORENZINI, Jasmine et al. Design and methods of semi-automated protest event analysis. 2020. [VERIFICAR: livro, organizadores, editora, páginas.]
+LORENZINI, Jasmine; MAKAROV, Peter; WÜEST, Bruno. Design and methods of semi-automated protest event analysis. In: KRIESI, Hanspeter; LORENZINI, Jasmine; WÜEST, Bruno; HÄUSERMANN, Silja (Org.). **Contention in Times of Crisis:** recession and political protest in thirty European countries. Cambridge: Cambridge University Press, 2020. cap. 2, p. 29-48. DOI: 10.1017/9781108891660.003.
 
-MAMAEV, Bogdan. Collecting protest event data using natural language processing models. **Post-Soviet Affairs**, 2025. [VERIFICAR: volume, número, páginas, DOI.]
+MAMAEV, Bogdan. Collecting protest event data using natural language processing models. **Post-Soviet Affairs**, v. 42, n. 1, p. 78-106, 2025. DOI: 10.1080/1060586X.2025.2600874.
 
 MACIEL, Débora Alves. Repressão e mobilização política no regime militar brasileiro. **Revista Brasileira de Ciências Sociais**, São Paulo, v. 28, n. 83, p. 27-43, 2013.
 
