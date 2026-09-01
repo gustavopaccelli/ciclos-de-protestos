@@ -50,7 +50,7 @@ ALONSO, Angela; REZENDE, Patrícia Jimenez; SOUZA, Rafael de; SOUZA, Viviane Bri
 ANSELL, Aaron. Impeaching Dilma Rousseff: the double life of corruption allegations on Brazil's political right. **Culture, Theory and Critique**, v. 59, n. 4, p. 312-331, 2018.
 
 
-AVRITZER, Leonardo. **Impasses da democracia no Brasil.** Rio de Janeiro: Civilização Brasileira, 2016. 153 p. [VERIFICAR: paginação das passagens usadas. Substitui atribuição anterior a um capítulo em *História da vida privada no Brasil*, que não se confirmou.]
+AVRITZER, Leonardo. **Impasses da democracia no Brasil.** Rio de Janeiro: Editora Civilização Brasileira, 2016. 153 p. ISBN 978-85-2001-272-7. (Substitui atribuição anterior a um capítulo em *História da vida privada no Brasil*, que não se confirmou.)
 
 AVRITZER, Leonardo. Participation in democratic Brazil: from popular hegemony and innovation to middle-class protest. **Opinião Pública**, Campinas, v. 23, n. 1, p. 43-59, 2017.
 
@@ -147,7 +147,7 @@ HÜRRIYETOĞLU, Ali; MUTLU, Osman; BEYHAN, Fatih; DURUŞAN, Fırat; SAFAYA, Ali;
 
 HÜRRIYETOĞLU, Ali; MUTLU, Osman; DURUŞAN, Fırat; YÖRÜK, Erdem. GLOCON Database: design decisions and user manual (v1.0). **arXiv**:2405.18613, 28 maio 2024. Disponível em: https://arxiv.org/abs/2405.18613. (Manuais de anotação: arXiv:2206.10299.)
 
-HÜRRIYETOĞLU, Ali; YÖRÜK, Erdem; YÜRET, Deniz; YOLTAR, Çağrı; GÜREL, Burak; DURUŞAN, Fırat; MUTLU, Osman; AKDEMIR, Arda. Overview of CLEF 2019 Lab ProtestNews: extracting protests from news in a cross-context setting. In: CRESTANI, Fabio et al. (Ed.). **Experimental IR Meets Multilinguality, Multimodality, and Interaction:** 10th International Conference of the CLEF Association, CLEF 2019. Cham: Springer, 2019. (Lecture Notes in Computer Science, 11696). p. 425-432. Depósito: arXiv:2008.00345. [VERIFICAR: DOI do capítulo.]
+HÜRRIYETOĞLU, Ali; YÖRÜK, Erdem; YÜRET, Deniz; YOLTAR, Çağrı; GÜREL, Burak; DURUŞAN, Fırat; MUTLU, Osman; AKDEMIR, Arda. Overview of CLEF 2019 Lab ProtestNews: extracting protests from news in a cross-context setting. In: CRESTANI, Fabio et al. (Ed.). **Experimental IR Meets Multilinguality, Multimodality, and Interaction:** 10th International Conference of the CLEF Association, CLEF 2019. Cham: Springer, 2019. (Lecture Notes in Computer Science, 11696). p. 425-432. Disponível em: https://arxiv.org/pdf/2008.00345.
 
 HUTTER, Swen. Protest event analysis and its offspring. In: DELLA PORTA, Donatella (Ed.). **Methodological Practices in Social Movement Research.** Oxford: Oxford University Press, 2014.
 
@@ -170,13 +170,13 @@ KOOPMANS, Ruud; STATHAM, Paul. Ethnic and civic conceptions of nationhood and th
 
 KWAK, Seohee. From collective action to impeachment: political opportunities of the candlelight protests in South Korea. **Korea Observer**, v. 52, n. 1, p. 107-130, 2021. DOI: 10.29152/KOIKS.2021.52.1.107.
 
-LANDIS, J. Richard; KOCH, Gary G. The measurement of observer agreement for categorical data. **Biometrics**, v. 33, n. 1, p. 159-174, 1977.
-
 LEONELLI, Domingos; OLIVEIRA, Wagner de. **Diretas Já: 15 meses que abalaram a ditadura.** São Paulo: Editora Fundação Perseu Abramo, 2004.
 
-LI, Mengyu; SUK, Jiyoun; ZHANG, Yini; PEVEHOUSE, Jon C.; SUN, Yibing; KWON, Hyerin; LIAN, Ruixue; WANG, Rui; DONG, Xinxia; SHAH, Dhavan V. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, v. 28, n. 1, p. 119-147, 2024. DOI: 10.1177/14614448241285562. [VERIFICAR: ordem dos autores — a lista está conferida, a sequência do 3º ao 5º diverge entre as fontes.]
+KRIPPENDORFF, Klaus. **Content Analysis:** an introduction to its methodology. 4. ed. Thousand Oaks: SAGE, 2018. DOI: 10.4135/9781071878781. (Padrão de confiabilidade adotado no pipeline; substitui Landis & Koch, 1977, retirada por ser de bioestatística.)
 
-LIMONGI, Fernando. **Impedindo Dilma: coalizão e conflito no impeachment.** São Paulo: CEBRAP; Rio de Janeiro: Fundação Heinrich Böll, 2023. (Referência reconstituída a partir do uso em Costa, 2024.) [VERIFICAR: editora, ano e paginação. Não confundir com LIMONGI, F. Impedindo Dilma. **Novos Estudos CEBRAP**, n. especial, p. 5-13, jun. 2017 — texto curto, incompatível com as páginas citadas em Costa, 2024.]
+LI, Mengyu; SUK, Jiyoun; ZHANG, Yini; PEVEHOUSE, Jon C.; SUN, Yibing; KWON, Hyerin; LIAN, Ruixue; WANG, Rui; DONG, Xinxia; SHAH, Dhavan V. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, v. 28, n. 1, p. 119-147, 2024. DOI: 10.1177/14614448241285562. Disponível em: https://journals.sagepub.com/doi/10.1177/14614448241285562. [VERIFICAR: ordem dos autores — a lista está conferida, a sequência do 3º ao 5º diverge entre as fontes.]
+
+LIMONGI, Fernando. **Operação impeachment:** Dilma Rousseff e o Brasil da Lava Jato. São Paulo: Todavia, 2023. 302 p. ISBN 978-65-5692-435-9.
 
 LORENZINI, Jasmine; KRIESI, Hanspeter; MAKAROV, Peter; WÜEST, Bruno. Protest event analysis: developing a semiautomated NLP approach. **American Behavioral Scientist**, v. 66, n. 5, p. 555-577, 2022. DOI: 10.1177/00027642211021650. (Publicado online em jun. 2021.)
 
@@ -215,7 +215,7 @@ MOTTA, Renata. Transnational discursive opportunities and social movement risk f
 NUNES, Felipe; MELO, Carlos Ranulfo. Impeachment, political crisis and democracy in Brazil. **Revista de Ciencia Política**, v. 37, n. 2, p. 281-304, 2017.
 
 
-ORTELLADO, Pablo; SOLANO, Esther. Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015. **Perseu: História, Memória e Política**, São Paulo, n. 11, p. 169-180, 2016. [VERIFICAR: página final (fontes divergem entre 180 e 181).]
+ORTELLADO, Pablo; SOLANO, Esther. Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015. **Perseu: História, Memória e Política**, São Paulo, ano 7, n. 11, p. 169-180, 2016. Dossiê As direitas no Brasil. Disponível em: https://revistaperseu.fpabramo.org.br/index.php/revista-perseu/issue/view/9.
 
 
 PIVEN, Frances Fox; CLOWARD, Richard A. **Poor People's Movements: Why They Succeed, How They Fail.** New York: Pantheon Books, 1977.
@@ -293,7 +293,7 @@ VANDENBERGHE, Frédéric. Conjunctural analysis. **Revista Brasileira de Sociolo
 
 VELASCO E CRUZ, Sebastião C. Teoria e método na análise de conjuntura. **Educação & Sociedade**, v. 21, n. 72, p. 145-152, 2000.
 
-VIEIRA, Rosângela de Lima. Como fazer “análise de conjuntura” numa abordagem histórica. In: CORSI, F. L.; CAMARGO, J. M.; SANTOS, A. dos (org.). **A conjuntura econômica e política brasileira e argentina**, 2015.
+VIEIRA, Rosângela de Lima. Como fazer “análise de conjuntura” numa abordagem histórica. In: CORSI, F. L.; CAMARGO, J. M.; SANTOS, A. dos (org.). **A conjuntura econômica e política brasileira e argentina**. Marília: Oficina Universitária; São Paulo: Cultura Acadêmica, 2015. p. 15-24. Disponível em: https://ebooks.marilia.unesp.br/index.php/lab_editorial/catalog/download/78/2472/4112?inline=1.
 
 VIRGENS, J. H. A.; TEIXEIRA, C. F. Análise de conjuntura: contribuições teórico-metodológicas. **Lua Nova**, São Paulo, n. 120, p. 325-357, 2023.
 

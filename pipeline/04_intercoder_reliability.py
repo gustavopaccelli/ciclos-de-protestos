@@ -114,8 +114,11 @@ def main(manual_csv: str, out_csv: str | None) -> None:
                        "n": int(mask.sum()), "situacao": situacao})
         print(f"{var:<24}{kappa:>8.3f}{mask.sum():>6}  {situacao}")
 
-    print("\nInterpretação (Landis & Koch): <0.40 fraco | 0.41-0.60 moderado | "
-          "0.61-0.80 substancial | >0.80 quase perfeito")
+    print("\nPadrão de confiabilidade (Krippendorff, 2018): >= 0.800 permite conclusões; "
+          "0.667-0.799 apenas conclusões provisórias; abaixo de 0.667 não se conclui.")
+    print(f"Ressalva: esse padrão é para o alpha de Krippendorff e aqui se calcula o kappa de "
+          f"Cohen — o corte é aplicado por analogia. E o limiar do projeto (KAPPA_MIN = "
+          f"{KAPPA_MIN}) fica entre os dois cortes: é escolha nossa, não parâmetro consagrado.")
     reprovadas = [r["variavel"] for r in linhas if r["situacao"] == "ABAIXO DO LIMIAR"]
     if reprovadas:
         print(f"\n[atenção] κ < {KAPPA_MIN} em: {', '.join(reprovadas)} — protocolo §11 "
