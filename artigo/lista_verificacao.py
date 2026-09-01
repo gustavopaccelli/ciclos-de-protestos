@@ -66,7 +66,13 @@ def render(itens: list[dict]) -> str:
          "> entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.", "",
          f"**{len(itens)} entradas pendentes.**", "",
          "Nenhum campo será preenchido por inferência: um metadado plausível porém não",
-         "conferido é pior que um campo vazio, porque parece verificado.", "", "---", ""]
+         "conferido é pior que um campo vazio, porque parece verificado.", ""]
+    if not itens:
+        L += ["Não há pendências: toda entrada do `.bib` teve seus metadados conferidos.",
+              "Isto não certifica que estejam corretos — certifica que foram checados e que",
+              "a fonte da checagem está registrada na nota de cada entrada.", ""]
+        return "\n".join(L)
+    L += ["---", ""]
     for it in itens:
         titulo = it["titulo"].replace("{", "").replace("}", "")
         L.append(f"### `{it['chave']}`")

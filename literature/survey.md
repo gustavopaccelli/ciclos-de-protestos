@@ -126,7 +126,7 @@ McCammon (2007, 2013) e Ferree (2003). Nada posterior, e nenhum caso latino-amer
   acrescenta a mídia como infraestrutura material da ação (caso: Mídia Ninja, 2013).
 - **Wahlström & Törnberg (2021)** (*TPV*) — DOS **coproduzida** entre mídia tradicional e
   redes; teorização que falta à H2.4 (construção deliberada da DOS).
-- **Li et al. (2024)** (*New Media & Society*) — *affordances* para oportunidades discursivas.
+- **Li et al. (2026)** (*New Media & Society*) — *affordances* para oportunidades discursivas.
 - **Caiani (2023)** (*Discourse Studies*) — mapeia a lacuna de análise de frames aplicada a
   atores **de direita**; converte nossa simetria de desenho em contribuição explicitável.
 - **Meyer & Staggenborg (1996)** (*AJS*) — interação movimento–contramovimento aumenta

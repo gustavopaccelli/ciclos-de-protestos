@@ -174,7 +174,7 @@ LEONELLI, Domingos; OLIVEIRA, Wagner de. **Diretas Já: 15 meses que abalaram a 
 
 KRIPPENDORFF, Klaus. **Content Analysis:** an introduction to its methodology. 4. ed. Thousand Oaks: SAGE, 2018. DOI: 10.4135/9781071878781. (Padrão de confiabilidade adotado no pipeline; substitui Landis & Koch, 1977, retirada por ser de bioestatística.)
 
-LI, Mengyu; SUK, Jiyoun; ZHANG, Yini; PEVEHOUSE, Jon C.; SUN, Yibing; KWON, Hyerin; LIAN, Ruixue; WANG, Rui; DONG, Xinxia; SHAH, Dhavan V. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, v. 28, n. 1, p. 119-147, 2024. DOI: 10.1177/14614448241285562. Disponível em: https://journals.sagepub.com/doi/10.1177/14614448241285562. [VERIFICAR: ordem dos autores — a lista está conferida, a sequência do 3º ao 5º diverge entre as fontes.]
+LI, Mengyu; SUK, Jiyoun; ZHANG, Yini; PEVEHOUSE, Jon C.; SUN, Yibing; KWON, Hyerin; LIAN, Ruixue; WANG, Rui; DONG, Xinxia; SHAH, Dhavan V. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, v. 28, n. 1, p. 119-147, 2026. DOI: 10.1177/14614448241285562. Disponível em: https://journals.sagepub.com/doi/10.1177/14614448241285562. (Publicado online em out. 2024.)
 
 LIMONGI, Fernando. **Operação impeachment:** Dilma Rousseff e o Brasil da Lava Jato. São Paulo: Todavia, 2023. 302 p. ISBN 978-65-5692-435-9.
 

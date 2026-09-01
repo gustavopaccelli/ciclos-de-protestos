@@ -8,16 +8,11 @@ citação é utilizável no texto, mas a referência **não deve ir para publica
 > Corrija o `.bib` e regenere; não edite este arquivo à mão. Ao completar uma
 > entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.
 
-**1 entradas pendentes.**
+**0 entradas pendentes.**
 
 Nenhum campo será preenchido por inferência: um metadado plausível porém não
 conferido é pior que um campo vazio, porque parece verificado.
 
----
-
-### `li2024platform`
-
-Li, Mengyu and Suk, Jiyoun and Zhang, Yini and Pevehouse, Jon C. and Sun, Yibing and Kwon, Hyerin and Lian, Ruixue and Wang, Rui and Dong, Xinxia and Shah, Dhavan V. — *Platform affordances, discursive opportunities, and social media activism: A cross-platform analysis of \#MeToo on Twitter, Facebook, and Reddit, 2017--2020* (2024, article)
-
-- **A nota pede:** ORDEM dos autores
-- **Campos vazios:** `booktitle`
+Não há pendências: toda entrada do `.bib` teve seus metadados conferidos.
+Isto não certifica que estejam corretos — certifica que foram checados e que
+a fonte da checagem está registrada na nota de cada entrada.
