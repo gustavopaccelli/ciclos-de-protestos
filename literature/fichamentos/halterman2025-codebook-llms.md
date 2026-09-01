@@ -1,4 +1,4 @@
-# Halterman & Keith (2024) — Codebook LLMs
+# Halterman & Keith (2025) — Codebook LLMs
 
 **Referência:** HALTERMAN, Andrew; KEITH, Katherine A. Codebook LLMs: Evaluating LLMs as Measurement Tools for Political Science Concepts. **Political Analysis**, 2024. `[VERIFICAR: coautoria, volume, páginas, DOI]`
 **Nível de leitura:** abstract (levantamento 2026-07-18). Não lido na íntegra.

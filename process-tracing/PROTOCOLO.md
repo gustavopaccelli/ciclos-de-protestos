@@ -122,7 +122,7 @@ uma. O valor de uma predição está no teste que ela habilita, não na taxa de 
 Dois trabalhos sustentam, de dentro do campo, que aqui não se prevê. Chenoweth e Ulfelder
 (2017) testam quatro modelos estruturais de irrupção de levantes não violentos e obtêm, fora
 de amostra, resultados mistos para todos eles, recomendando mais ênfase na agência que na
-estrutura. Stykow (2022) mostra que nem fatores estruturais nem de agência teriam predito a
+estrutura. Stykow (2023) mostra que nem fatores estruturais nem de agência teriam predito a
 mobilização de 2020 em Belarus. São as âncoras de por que as predições deste protocolo são
 instrumentos de teste, e não prognósticos.
 

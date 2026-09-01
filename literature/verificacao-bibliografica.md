@@ -8,7 +8,7 @@ citação é utilizável no texto, mas a referência **não deve ir para publica
 > Corrija o `.bib` e regenere; não edite este arquivo à mão. Ao completar uma
 > entrada, remova a nota `VERIFICAR` do `.bib` e ela sai desta lista sozinha.
 
-**16 entradas pendentes.**
+**8 entradas pendentes.**
 
 Nenhum campo será preenchido por inferência: um metadado plausível porém não
 conferido é pior que um campo vazio, porque parece verificado.
@@ -21,27 +21,6 @@ Avritzer, Leonardo — *Impasses da democracia no Brasil* (2016, book)
 
 - **A nota pede:** paginação exata das passagens usadas, no exemplar.
 - **Campos vazios:** `booktitle`
-
-### `caiani2023framing`
-
-Caiani, Manuela — *Framing and social movements* (2023, article)
-
-- **A nota pede:** volume, número, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `cammaerts2012protest`
-
-Cammaerts, Bart — *Protest logics and the mediation opportunity structure* (2012, article)
-
-- **A nota pede:** volume, número, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `hatab2024outsiders`
-
-Hatab, Shimaa — *The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008--2012)* (2024, article)
-
-- **A nota pede:** volume, número e páginas
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`
 
 ### `hurriyetoglu2019protestnews`
 
@@ -58,10 +37,10 @@ Landis, J. Richard and Koch, Gary G. — *The measurement of observer agreement 
 
 ### `li2024platform`
 
-Li, Mengyu — *Platform affordances, discursive opportunities, and social media activism: A cross-platform analysis of \#MeToo on Twitter, Facebook, and Reddit, 2017--2020* (2024, article)
+Li, Mengyu and Suk, Jiyoun and Zhang, Yini and Pevehouse, Jon C. and Sun, Yibing and Kwon, Hyerin and Lian, Ruixue and Wang, Rui and Dong, Xinxia and Shah, Dhavan V. — *Platform affordances, discursive opportunities, and social media activism: A cross-platform analysis of \#MeToo on Twitter, Facebook, and Reddit, 2017--2020* (2024, article)
 
-- **A nota pede:** lista completa de autores, volume, número, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
+- **A nota pede:** ORDEM dos autores -- os dez nomes coincidem entre as fontes, mas a ordem do 3º ao 5º diverge entre a citação da ACM e o currículo do último autor
+- **Campos vazios:** `booktitle`
 
 ### `limongi2023impedindo`
 
@@ -70,40 +49,12 @@ Limongi, Fernando — *Impedindo Dilma: coalizão e conflito no impeachment* (20
 - **A nota pede:** editora, ano e paginação
 - **Campos vazios:** `booktitle`
 
-### `meyer1996movements`
-
-Meyer, David S. and Staggenborg, Suzanne — *Movements, Countermovements, and the Structure of Political Opportunity* (1996, article)
-
-- **A nota pede:** volume, número e páginas.
-- **Campos vazios:** `booktitle`, `doi`
-
-### `motta2015transnational`
-
-Motta, Renata — *Transnational Discursive Opportunities and Social Movement Risk Frames Opposing GMOs* (2015, article)
-
-- **A nota pede:** volume, número, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
 ### `ortellado2016nova`
 
 Ortellado, Pablo and Solano, Esther — *Nova direita nas ruas? Uma análise do descompasso entre manifestantes e os convocantes dos protestos antigoverno de 2015* (2016, article)
 
 - **A nota pede:** página final -- as fontes divergem entre 180 e 181.
 - **Campos vazios:** `booktitle`, `volume`, `doi`
-
-### `sorboe2022urban`
-
-Sørbøe, Celina Myrann — *Urban uprisings between revolutionary openings and reactionary outcomes: making sense of the 2013 'June Days' in Brazil* (2022, article)
-
-- **A nota pede:** volume e páginas.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`
-
-### `stykow2022surprise`
-
-Stykow, Petra — *Making sense of a surprise: perspectives on the 2020 "Belarusian Revolution"* (2022, article)
-
-- **A nota pede:** volume, número, páginas e inicial do prenome
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`
 
 ### `vanevera1997guide`
 
@@ -118,10 +69,3 @@ Vieira, Rosângela de Lima — *Como fazer "análise de conjuntura" numa abordag
 
 - **A nota pede:** editora, cidade e páginas
 - **Campos vazios:** `pages`, `publisher`, `address`
-
-### `wahlstrom2019social`
-
-Wahlström, Mattias and Törnberg, Anton — *Social Media Mechanisms for Right-Wing Political Violence in the 21st Century: Discursive Opportunities, Group Dynamics, and Co-Ordination* (2019, article)
-
-- **A nota pede:** coautoria, volume, número, páginas e DOI.
-- **Campos vazios:** `booktitle`, `volume`, `number`, `pages`, `doi`

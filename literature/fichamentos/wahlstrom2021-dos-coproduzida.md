@@ -1,4 +1,4 @@
-# Wahlström & Törnberg (2019) — DOS coproduzida em redes sociais
+# Wahlström & Törnberg (2021) — DOS coproduzida em redes sociais
 
 **Referência:** WAHLSTRÖM, Mattias; TÖRNBERG, Anton. Social Media Mechanisms for Right-Wing Political Violence in the 21st Century: Discursive Opportunities, Group Dynamics, and Co-Ordination. **Terrorism and Political Violence**, 2019. `[VERIFICAR: coautoria, volume, número, páginas, DOI]`
 **Nível de leitura:** abstract (levantamento 2026-07-18). Não lido na íntegra.

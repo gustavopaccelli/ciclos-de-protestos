@@ -75,9 +75,9 @@ BRINGEL, Breno; PLEYERS, Geoffrey (Org.). **Junho de 2013... a sociedade enfrent
 
 BRÖER, Christian; DUYVENDAK, Jan Willem. Emotions, emotionology and introspection in the study of social movements. **Mobilization: An International Quarterly**, v. 14, n. 4, p. 433-448, 2009.
 
-CAIANI, Manuela. Framing and social movements. **Discourse Studies**, 2023. [VERIFICAR: volume, número, páginas, DOI.]
+CAIANI, Manuela. Framing and social movements. **Discourse Studies**, v. 25, n. 2, p. 195-209, 2023. DOI: 10.1177/14614456231154734.
 
-CAMMAERTS, Bart. Protest logics and the mediation opportunity structure. **European Journal of Communication**, 2012. [VERIFICAR: volume, número, páginas, DOI.]
+CAMMAERTS, Bart. Protest logics and the mediation opportunity structure. **European Journal of Communication**, v. 27, n. 2, p. 117-134, 2012. DOI: 10.1177/0267323112441007.
 
 CARVALHO, José Murilo de. **Cidadania no Brasil: o longo caminho.** 15. ed. Rio de Janeiro: Civilização Brasileira, 2012.
 
@@ -133,7 +133,7 @@ HANNA, Alex. Developing a system for the automated coding of protest event data.
 
 HANNA, Alex. **MPEDS: Machine-Learning Protest Event Data System** (v1.0). Zenodo, 2017. DOI: 10.5281/zenodo.886459.
 
-HATAB, Shimaa. The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008-2012). **International Journal of Comparative Sociology**, 2024. DOI: 10.1177/00207152231196320.
+HATAB, Shimaa. The rise and fall of political outsiders: political opportunity structure and (de-)mobilization in Paraguay (2008-2012). **International Journal of Comparative Sociology**, v. 65, n. 5, p. 579-613, 2024. DOI: 10.1177/00207152231196320. (Publicado online em set. 2023.)
 
 HAUNSS, Sebastian. PAPEA: a modular pipeline for the automation of protest event analysis. **Political Science Research and Methods**, publicado online em 23 jun. 2025. DOI: 10.1017/psrm.2025.10013. (Autor único; sem volume ou paginação de fascículo — online-first.)
 
@@ -174,7 +174,7 @@ LANDIS, J. Richard; KOCH, Gary G. The measurement of observer agreement for cate
 
 LEONELLI, Domingos; OLIVEIRA, Wagner de. **Diretas Já: 15 meses que abalaram a ditadura.** São Paulo: Editora Fundação Perseu Abramo, 2004.
 
-LI, Mengyu et al. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, 2024. [VERIFICAR: coautores, volume, número, páginas, DOI.]
+LI, Mengyu; SUK, Jiyoun; ZHANG, Yini; PEVEHOUSE, Jon C.; SUN, Yibing; KWON, Hyerin; LIAN, Ruixue; WANG, Rui; DONG, Xinxia; SHAH, Dhavan V. Platform affordances, discursive opportunities, and social media activism: a cross-platform analysis of #MeToo on Twitter, Facebook, and Reddit, 2017-2020. **New Media & Society**, v. 28, n. 1, p. 119-147, 2024. DOI: 10.1177/14614448241285562. [VERIFICAR: ordem dos autores — a lista está conferida, a sequência do 3º ao 5º diverge entre as fontes.]
 
 LIMONGI, Fernando. **Impedindo Dilma: coalizão e conflito no impeachment.** São Paulo: CEBRAP; Rio de Janeiro: Fundação Heinrich Böll, 2023. (Referência reconstituída a partir do uso em Costa, 2024.) [VERIFICAR: editora, ano e paginação. Não confundir com LIMONGI, F. Impedindo Dilma. **Novos Estudos CEBRAP**, n. especial, p. 5-13, jun. 2017 — texto curto, incompatível com as páginas citadas em Costa, 2024.]
 
@@ -202,7 +202,7 @@ McCAMMON, Holly J.; MUSE, Courtney S.; NEWMAN, Harmony D.; TERRELL, Teresa M. Mo
 
 MEDEIROS, Cintia Rodrigues de Oliveira; SILVEIRA, Rafael Alcadipani da. A Petrobras nas teias da corrupção: mecanismos discursivos da mídia brasileira na cobertura da Operação Lava Jato. **Revista de Contabilidade e Organizações**, v. 11, n. 31, p. 11-20, set./dez. 2017.
 
-MEYER, David S.; STAGGENBORG, Suzanne. Movements, countermovements, and the structure of political opportunity. **American Journal of Sociology**, 1996. [VERIFICAR: volume, número, páginas.]
+MEYER, David S.; STAGGENBORG, Suzanne. Movements, countermovements, and the structure of political opportunity. **American Journal of Sociology**, v. 101, n. 6, p. 1628-1660, 1996. DOI: 10.1086/230869.
 
 MISCHE, Ann. De estudantes a cidadãos: redes de jovens e participação política. **Revista Brasileira de Educação**, n. 5/6, p. 134-150, 1997. (Versão em inglês: MISCHE, Ann. **Citizenship Studies**, v. 10, n. 6, p. 597-611, 2006. Adotada aqui a versão em português, que é a paginada nas citações de Costa, 2024.)
 
@@ -210,7 +210,7 @@ MISCHE, Ann. **Partisan Publics: Communication and Contention across Brazilian Y
 
 MOISÉS, José Álvaro. **Democratização e cultura política no Brasil.** São Paulo: Lua Nova, 1989.
 
-MOTTA, Renata. Transnational discursive opportunities and social movement risk frames opposing GMOs. **Social Movement Studies**, 2015. [VERIFICAR: volume, número, páginas, DOI.]
+MOTTA, Renata. Transnational discursive opportunities and social movement risk frames opposing GMOs. **Social Movement Studies**, v. 14, n. 5, p. 576-595, 2015. DOI: 10.1080/14742837.2014.947253.
 
 NUNES, Felipe; MELO, Carlos Ranulfo. Impeachment, political crisis and democracy in Brazil. **Revista de Ciencia Política**, v. 37, n. 2, p. 281-304, 2017.
 
@@ -262,9 +262,9 @@ SNOW, David A.; BENFORD, Robert D. Master frames and cycles of protest. In: MORR
 
 SOLANO, Esther. Crise da democracia e extremismos de direita. **Análise**, São Paulo: Fundação Friedrich Ebert, n. 42, abr. 2018.
 
-STYKOW, Petra. Making sense of a surprise: perspectives on the 2020 “Belarusian Revolution”. **Nationalities Papers**, 2022. DOI: 10.1017/nps.2022.93.
+STYKOW, Petra. Making sense of a surprise: perspectives on the 2020 “Belarusian Revolution”. **Nationalities Papers**, v. 51, n. 4, p. 803-822, 2023. DOI: 10.1017/nps.2022.93. (Publicado online em 18 out. 2022.)
 
-SØRBØE, Celina Myrann. Urban uprisings between revolutionary openings and reactionary outcomes: making sense of the 2013 'June Days' in Brazil. **Urban Geography**, 2022. (Volume e páginas a confirmar.)
+SØRBØE, Celina Myrann. Urban uprisings between revolutionary openings and reactionary outcomes: making sense of the 2013 'June Days' in Brazil. **Urban Geography**, v. 44, n. 6, p. 1146-1165, 2023. DOI: 10.1080/02723638.2022.2055925. (Publicado online em 2022.)
 
 
 TATAGIBA, Luciana. 1984, 1992 e 2013: sobre ciclos de protestos e democracia no Brasil. **Política & Sociedade**, Florianópolis, v. 13, n. 28, p. 35-61, 2014.
@@ -297,6 +297,6 @@ VIEIRA, Rosângela de Lima. Como fazer “análise de conjuntura” numa abordag
 
 VIRGENS, J. H. A.; TEIXEIRA, C. F. Análise de conjuntura: contribuições teórico-metodológicas. **Lua Nova**, São Paulo, n. 120, p. 325-357, 2023.
 
-WAHLSTRÖM, Mattias; TÖRNBERG, Anton. Social media mechanisms for right-wing political violence in the 21st century: discursive opportunities, group dynamics, and co-ordination. **Terrorism and Political Violence**, 2019. [VERIFICAR: coautoria, volume, número, páginas, DOI.]
+WAHLSTRÖM, Mattias; TÖRNBERG, Anton. Social media mechanisms for right-wing political violence in the 21st century: discursive opportunities, group dynamics, and co-ordination. **Terrorism and Political Violence**, v. 33, n. 4, p. 766-787, 2021. DOI: 10.1080/09546553.2019.1586676. (Publicado online em 4 abr. 2019.)
 
 WEYLAND, Kurt. The rise and fall of President Collor and its impact on Brazilian democracy. **Journal of Interamerican Studies and World Affairs**, v. 35, n. 1, p. 1-37, 1993.

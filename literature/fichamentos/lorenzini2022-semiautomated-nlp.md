@@ -1,4 +1,4 @@
-# Lorenzini et al. (2021) — AEP semiautomatizada com NLP
+# Lorenzini et al. (2022) — AEP semiautomatizada com NLP
 
 **Referência:** LORENZINI, Jasmine et al. Protest Event Analysis: Developing a Semiautomated NLP Approach. **American Behavioral Scientist**, 2021. `[VERIFICAR: coautoria, volume, número, páginas, DOI]`
 **Nível de leitura:** abstract (levantamento 2026-07-18). Não lido na íntegra.

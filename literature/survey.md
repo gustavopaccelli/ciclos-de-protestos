@@ -97,7 +97,7 @@ literatura que diz **como fazer e como validar**:
 
 - **Haunss et al. (2025), PAPEA** (*PSRM*) — pipeline modular com LLMs afinados; acurácia
   comparável à humana. Desenho de referência.
-- **Halterman & Keith (2024), Codebook LLMs** (*Political Analysis*) — framework de 5
+- **Halterman & Keith (2025), Codebook LLMs** (*Political Analysis*) — framework de 5
   estágios; achado decisivo: LLMs **não seguem codebooks de forma confiável em zero-shot**.
   Operacionalizado na nova §12 de `docs/aep-protocol-bep.md`.
 - **Lorenzini et al. (2021, 2020)** — desenho semiautomatizado (30 mil eventos, 30 países);
@@ -124,7 +124,7 @@ McCammon (2007, 2013) e Ferree (2003). Nada posterior, e nenhum caso latino-amer
 - **Cammaerts (2012)** (*EJC*) — *mediation opportunity structure*; ponte TPP ↔ estudos de
   mídia. Dá vocabulário ao nosso achado sobre mídia gatekeeper vs. produtora de frames, e
   acrescenta a mídia como infraestrutura material da ação (caso: Mídia Ninja, 2013).
-- **Wahlström & Törnberg (2019)** (*TPV*) — DOS **coproduzida** entre mídia tradicional e
+- **Wahlström & Törnberg (2021)** (*TPV*) — DOS **coproduzida** entre mídia tradicional e
   redes; teorização que falta à H2.4 (construção deliberada da DOS).
 - **Li et al. (2024)** (*New Media & Society*) — *affordances* para oportunidades discursivas.
 - **Caiani (2023)** (*Discourse Studies*) — mapeia a lacuna de análise de frames aplicada a
