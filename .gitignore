@@ -1,5 +1,61 @@
+# Environment variables
 .env
+.env.local
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Agent Reach / MCP
+.agent-reach/
+*.cookie
+cookies.txt
+*.session
+
+# Claude Code / AI tools
+.claude/
+SKILL.md
+claude_desktop_config.json
+
+# Data directories (preserve .gitkeep)
+data/raw/**
+!data/raw/.gitkeep
+data/interim/**
+!data/interim/.gitkeep
+data/processed/**
+!data/processed/.gitkeep
+
+# Pipeline/Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Old pipeline paths (deprecated)
 pipeline/data/raw/
 pipeline/data/coded/
 pipeline/data/scrape_state.json
-__pycache__/
