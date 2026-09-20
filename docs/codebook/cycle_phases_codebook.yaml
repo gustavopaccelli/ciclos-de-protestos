@@ -1,0 +1,160 @@
+# Codebook — cycle_phases
+# Projeto: Ciclos de Protesto no Brasil (agenda pós-defesa — Gustavo Paccelli Costa)
+# Fonte: desenho teórico-metodológico do projeto + sessão de scoring validada em 2026-06-05
+# Unidade de análise: fase de ciclo (cycle × phase)
+# Escala ordinal: 0 = ausente/nulo | 1 = baixo/incipiente | 2 = moderado/presente | 3 = alto/determinante
+
+periodizacao:
+  fases: [articulacao, emergencia, expansao, pico, latencia, radicalizacao, declinio, desfecho]
+  nota: >
+    v3 validada em 2026-07-04 (ver docs/periodizacao-articulacao.md), a partir da
+    tese Costa (2024). 24 fases (6 por ciclo). Duas fases não-canônicas específicas:
+    "articulacao" (construção prévia de estruturas de mobilização e oportunidades
+    antes da fase pública contenciosa) e "latencia" (vale entre expansão e pico).
+  fase_articulacao:
+    definicao: >
+      Fase em que estruturas de mobilização e oportunidades políticas são
+      construídas antes de o ciclo se tornar publicamente contencioso.
+    ocorrencia:
+      diretas_ja: "1982-11 a 1983-02 — eleições de 1982; governadores de oposição (Montoro/SP, Brizola/RJ); pré-campanha (grounding moderado)"
+      fora_collor: "1991-11 a 1992-05 — articulação estudantil/intersetorial (Mische 2008); denúncia a partir de 01/06/1992 (CPMI PC Farias)"
+      impeachment_dilma: "2014-10-27 a 2015-03-14 — pós-2º turno; Aécio (PSDB) contesta as urnas; mobilização eleitoral reativa (McAdam & Tarrow 2011; Tatagiba 2018)"
+      junho_2013: "AUSENTE — ações prévias do MPL (Revolta do Buzu 2003; MPL-Brasil/FSM 2005) são esporádicas; junho é ruptura de amplitude, não articulação (Costa 2024, §3.3.2)"
+  fase_radicalizacao:
+    definicao: >
+      Específica de Junho 2013 (21/06–31/07): após a violência policial contra
+      manifestantes (13/06) e o confronto com black blocs (17/06), e após o pico
+      (20/06) com a retirada do MPL (21/06), o repertório radicaliza (predomínio
+      black bloc) e a DOS se inverte pela 2ª vez (recriminalização midiática).
+      Fundamento: Costa (2024, §3.3.3); della Porta (2018); Dobry (2015).
+  fase_latencia:
+    definicao: >
+      Vale de mobilização entre expansão e pico. No ciclo Dilma: 2015-08-17 a
+      2015-12-01, entre o ato de 16/08/2015 e a admissibilidade do impeachment
+      (02/12/2015). Adotada da revisão dos artefatos (cycle_phases_v4).
+  nota_comparacao: >
+    Em tabelas comparativas 4×N, articulacao/latencia/radicalizacao podem ser
+    agregadas às fases canônicas vizinhas conforme a análise.
+
+blocos:
+  oportunidades_politicas:
+    op_abertura_institucional:
+      descricao: "Grau de abertura do sistema político a demandas externas"
+      fundamento: "Tarrow (2009); McAdam (1982); Kriesi et al. (1995)"
+    op_divisao_elites:
+      descricao: "Divisão ou dissensão entre elites governantes"
+      fundamento: "Tarrow (2009); McAdam, Tarrow & Tilly (2001) — defecção de elites"
+    op_aliados_influentes:
+      descricao: "Presença de aliados dentro do sistema político"
+      fundamento: "Tarrow (2009)"
+    op_crise_legitimidade:
+      descricao: "Crise de legitimidade do governo/regime"
+      fundamento: "Costa (2024); Weyland (1993)"
+    op_repressao:
+      descricao: "Nível de repressão estatal ao protesto (codificação NÃO invertida: 3 = repressão alta)"
+      fundamento: "Tarrow (2009); della Porta (2018) — repressão como detonador em 2013"
+  traducao_institucional:
+    # -----------------------------------------------------------------------
+    # REDESENHO DE 2026-08-22 — magnitude e direção ortogonalizadas
+    #
+    # A escala original (nota_consolidada_v2, incorporada em 2026-07-04) definia
+    # 2 = "substantiva, mas por canal DISTINTO do demandado" e 3 = "plena, pelo
+    # canal demandado". Os dois níveis não diferiam em magnitude, e sim em tipo:
+    # o critério de canal estava embutido no ordinal. Isso impunha uma premissa
+    # empírica disfarçada de definição — a de que resultado por canal deslocado
+    # é sempre menor que resultado pelo canal demandado. Nas Diretas Já isso é
+    # discutível: a transição via Colégio Eleitoral foi historicamente maior do
+    # que uma vitória da emenda teria sido no curto prazo.
+    #
+    # A escala passa a medir SÓ magnitude. Direção, valência e controle do canal
+    # efetivo viram variáveis próprias. Toda recodificação decorrente está em
+    # codebook/historico-codificacao.csv.
+    # -----------------------------------------------------------------------
+    traducao_institucional:
+      descricao: "Magnitude da conversão da mobilização em resultado institucional, por qualquer canal. NÃO julga o canal — isso é traducao_direcao."
+      escala:
+        0: "Nenhuma tradução; demanda ignorada"
+        1: "Tradução parcial ou simbólica; concessões marginais"
+        2: "Tradução substantiva; parte central da demanda convertida em resultado"
+        3: "Tradução plena; demanda central integralmente convertida"
+      fundamento: "Costa (2024); nota_consolidada_v2 dos artefatos (2026); redesenhada em 2026-08-22"
+      nota: "NA (não se aplica) permanece distinto de 0 (medido e ausente)."
+
+    traducao_direcao:
+      descricao: >
+        Relação entre o que foi demandado e o que foi entregue. Tipologia derivada
+        dos quatro casos do projeto, não importada de outro desenho.
+      valores:
+        NA: "Não se aplica — magnitude 0"
+        canal_demandado: "Atendida pela via que o ciclo pleiteava"
+        canal_alternativo: "Mesmo objetivo, outra via institucional"
+        objeto_substituido: "A instituição responde a objetivo diverso do demandado"
+        principal_sem_acessorio: "Objetivo principal obtido; efeito acessório negado"
+        acessorio_sem_principal: "Principal extinto ou negado; acessório obtido"
+        antecipacao_pelo_alvo: >
+          O alvo esvazia o canal demandado por ação própria, entregando ainda assim
+          o objetivo substantivo. Categoria derivada da evidência: a renúncia de
+          Collor prejudicou o pedido de perda do cargo (Resolução 101/1992), de modo
+          que o desfecho não veio nem do canal demandado nem de um canal alternativo
+          acionado pelo ciclo. Sem ela, C2 seria forçado em outra categoria e a
+          diferença com C4 se perderia.
+      fundamento: "Derivada dos marcos institucionais documentados em process-tracing/dados/marcos_institucionais.csv (2026-08-22)"
+      regra: "É NA se e somente se traducao_institucional = 0."
+
+    traducao_valencia:
+      descricao: "Sinal do resultado para a coalizão mobilizada. A tipologia de direção não diz, sozinha, se o deslocamento ajudou o ciclo."
+      valores:
+        NA: "Não se aplica — magnitude 0"
+        favoravel: "O resultado atende ao interesse da coalizão mobilizada"
+        parcial: "Atende em parte, ou atende deslocando a pauta original"
+        adversa: "O resultado contraria o interesse da coalizão mobilizada"
+      fundamento: "Necessária porque canal_alternativo produziu transição favorável em C1, enquanto objeto_substituido foi desmobilizador em C3"
+
+    traducao_controle_gatilho:
+      descricao: >
+        Quem controlava o canal pelo qual o resultado efetivamente passou.
+        Formaliza a questão aberta nº 1 de findings.md ("controle do gatilho
+        institucional": Congresso 1984; CPI/Câmara 1992; nenhum alvo único 2013;
+        presidência da Câmara 2015-16) e alimenta H3.2.
+      valores:
+        NA: "Não se aplica — magnitude 0"
+        elite_institucional: "Órgão colegiado do sistema político (Congresso, Colégio Eleitoral, Senado)"
+        ator_estrategico: "Veto player individual que decide o timing da abertura"
+        coalizao_do_ciclo: "A própria coalizão mobilizada"
+        executivo_alvo: "O Executivo alvo da demanda, cedendo por ato próprio"
+        alvo_da_demanda: "O alvo pessoal da demanda, por ação que antecipa o desfecho"
+        difuso_sem_alvo_unico: "Sem alvo institucional único identificável"
+      fundamento: "findings.md, questão aberta 1; H3.2 (capacidade de leitura conjuntural e eficácia estratégica)"
+  oportunidades_discursivas:
+    od_visibilidade_midia:
+      descricao: "Cobertura e enquadramento midiático favorável"
+      fundamento: "Koopmans & Olzak (2004) — visibilidade; Ferree et al. (2002) — mídia como gatekeeper"
+    od_ressonancia_discursiva:
+      descricao: "Ressonância dos frames do movimento junto ao público"
+      fundamento: "Koopmans & Statham (1999); Snow & Benford (1988); Ferree (2003)"
+    od_legitimidade_narrativa:
+      descricao: "Legitimidade pública da narrativa dos manifestantes"
+      fundamento: "Koopmans & Olzak (2004) — legitimidade; McCammon et al. (2007)"
+
+ciclos:
+  - id: diretas_ja
+    nome: "Diretas Já"
+    periodo: "1983-03 a 1985-03"
+  - id: fora_collor
+    nome: "Fora Collor"
+    periodo: "1991-11 a 1992-12 (articulação desde nov/1991)"
+  - id: junho_2013
+    nome: "Junho de 2013"
+    periodo: "2013-06 a 2013-12"
+  - id: impeachment_dilma
+    nome: "Impeachment Dilma"
+    periodo: "2014-10 a 2016-09"
+
+dataset_irmao:
+  protest_events:
+    descricao: >
+      Dataset no nível do evento de protesto (PEA), a construir via Acervo Folha
+      com pipeline DoCA (scraper Playwright → coder via API Anthropic →
+      dataset builder → confiabilidade intercodificadores via Cohen's Kappa).
+    codebook: "doca_codebook.yaml (claim codes de 4 dígitos em 9 domínios; repertórios de Tilly; escalas de multidão)"
+    status: "pipeline projetada; scripts a incorporar ao repositório; extração pendente de credenciais do Acervo Folha"

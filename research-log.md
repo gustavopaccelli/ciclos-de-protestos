@@ -179,6 +179,29 @@ DOI: 10.11606/issn.2176-8099.pcso.2024.233335
 de inferência causal" e passa a ser "consolidação do artigo para preprint",
 incluindo integração do quadro de 14 hipóteses como seção de discussão.
 
+## 2026-08-22 — Tradução institucional ortogonalizada; correção de achado de auditoria
+
+**Redesenho.** A escala 0–3 de `traducao_institucional` embutia o critério de canal nos
+níveis 2 e 3, que por isso não diferiam em magnitude e sim em tipo. A escala passa a medir
+só magnitude; direção, valência e controle do gatilho viram variáveis próprias
+(`codebook/cycle_phases_codebook.yaml`). As 13 células não-zero foram reexaminadas sob a
+nova definição — nenhuma magnitude mudou. Novo validador: `codebook/valida_cycle_phases.py`.
+
+A categoria `antecipacao_pelo_alvo` veio da evidência oficial recuperada nesta data: a
+Resolução nº 101/1992 mostra que a renúncia de Collor **prejudicou** o pedido de perda do
+cargo, extinguindo o processo nessa parte. `traducao_controle_gatilho` formaliza a questão
+aberta nº 1 de `findings.md`.
+
+**CORREÇÃO.** A auditoria desta mesma data havia relatado "seis escores alterados entre v2 e
+v3 nas fases ID-1 e ID-2 sem justificativa registrada", classificando isso como a lacuna mais
+séria do repositório. **O achado estava errado.** Resultou de comparar os datasets pela chave
+`phase_id`, que não é estável entre versões: a periodização v3 renumerou as fases do ciclo do
+impeachment (v2 `ID-1` = emergência de 2014-10-26 a 2015-02-28; v3 `ID-1` = emergência de
+2015-03-15 a 2015-08-16). Refeita a comparação por (ciclo, fase) e restrita às fases de
+período idêntico: **16 fases comparáveis, zero escores alterados.** As quatro restantes
+tiveram fronteiras redesenhadas pela v3, o que torna a diferença esperada. Não há lacuna de
+auditoria v2→v3. Registrado em `codebook/historico-codificacao.csv`.
+
 ## 2026-07-04 — Frente C: alinhamento do artigo a 4 ciclos (inclusão das Diretas Já)
 
 **Decisão do usuário:** o estudo de caso do artigo cobria apenas 3 ciclos (Fora
@@ -362,3 +385,125 @@ do comício de Goiânia (12/04/1984, ~200-250 mil).
 Nota sobre branches: main e claude/nifty-einstein-ullub6 estavam idênticas; o upload
 avançou a nifty em 1 commit. Reunificadas por fast-forward. As branches NÃO contêm
 conteúdo divergente entre si — são a mesma linha de trabalho.
+
+---
+
+## 2026-07-18 — Bibliografia analítica e revisão do pipeline de extração
+
+Sessão dirigida a dois objetivos do pesquisador: **incorporar bibliografia analítica** e
+**melhorar o processo de extração de dados**. Levantamento feito nas bases Consensus e
+Firecrawl (não existe ferramenta "hyperresearch" no ambiente; usados os equivalentes).
+
+### Bibliografia
+
+- **`artigo/referencias.bib` criado** — 116 entradas biblatex/abntex2, unificando a lista
+  ABNT (~99), o `.bib` encalhado em `artefatos/fases_ciclos/` (37) e 16 obras novas. Passa a
+  ser a **fonte canônica**; `referencias-abnt.md` vira saída formatada. Verificador de
+  paridade: `artigo/check_bib.py` (confirma que toda obra da ABNT tem entrada no `.bib`).
+- **Duas lacunas fechadas.** (1) *AEP automatizada / codificação por LLM* estava
+  **inteiramente ausente**, embora o projeto já codifique com LLM: Haunss et al. (2025,
+  PAPEA/PSRM), Halterman & Keith (2024, Political Analysis), Lorenzini et al. (2021/2020),
+  Hanna (2014), Hoffmann et al. (2022), GLOCON, correferência de eventos, ProtestNews,
+  Mamaev (2025). (2) *DOS pós-2015*: a base parava em McCammon 2007 — acrescentados Motta
+  (2015, **caso Brasil/Argentina/México**, prioridade máxima), Cammaerts (2012, mediation
+  opportunity structure), Wahlström & Törnberg (2019, DOS coproduzida), Li et al. (2024),
+  Caiani (2023, lacuna de framing à direita), Meyer & Staggenborg (1996).
+- **10 fichamentos** em `literature/fichamentos/`; `literature/survey.md` atualizado (estava
+  defasado desde 2026-06-10).
+- **Pendência declarada (V1/V2 em `docs/tarefas.md`):** 26 entradas marcadas `VERIFICAR`.
+  As obras novas foram fichadas **a partir de abstract**, e os conectores acadêmicos
+  (Scite/Elicit/Firecrawl) caíram durante a sessão antes de concluir a checagem de metadados.
+  Nada foi preenchido por inferência.
+
+### Pipeline de extração — 11 defeitos corrigidos (sem credenciais)
+
+Diagnóstico completo por exploração do repo. O mais grave: **a regra de tamanho de público
+se contradizia** — o system prompt do coder mandava registrar o *menor* valor, enquanto
+codebook e protocolo §5 mandam o *maior*. Enviesaria sistematicamente toda variável derivada
+de público. Corrigido, com o intervalo preservado em `crowd_size_min`/`crowd_size_max`.
+
+Demais correções: schema do coder de ~16 para **41 campos** (Blocos II–V do BEP com `actors`
+como objetos, e os campos MPEDS, antes inexistentes); UUID5 sobre `(url, data, cidade)` em
+vez do índice posicional (instável a reordenação); normalização contra o codebook e
+`canonical_event_id` no build (§10 do protocolo, antes só declarado); `location_state` na
+chave de dedup (cidades homônimas em UFs distintas colapsavam); `source_date` parseada antes
+de ordenar; `protest_events_raw.csv` emitido; kappa com bool/str normalizado (o `eligible`
+comparava `"TRUE"` com `"True"`) e ampliado de 5 para 16 variáveis; limiar de kappa unificado
+em 0,75 (o tutorial dizia 0,61); `queries.yaml` alinhado às palavras-chave do BEP §3.1 e às
+janelas da periodização v3 (começavam na emergência, ignorando as fases de articulação);
+passo kappa incluído no orquestrador.
+
+Novo teste **`pipeline/check_schema_coverage.py`** trava o alinhamento coder ↔ codebook — a
+divergência anterior era invisível. Verificado com fixtures: 3 extrações → 2 eventos
+canônicos, com São Paulo/SP colapsando entre duas fontes e São Paulo/MG **não** colapsando.
+
+### Documentação
+
+- **`docs/aep-protocol-bep.md` §12** (nova) — validação da codificação por LLM em 5 estágios,
+  operacionalizando Halterman & Keith e PAPEA: codebook legível por máquina, teste de
+  capacidade, **gold standard estratificado por ciclo** (não aleatório simples — a amostra
+  aleatória sub-representaria os ciclos pré-2011, os mais difíceis), tipologia de erro
+  (elegibilidade / unitização / categorização / extração numérica / alucinação), critério de
+  escalada e registro obrigatório. Fecha a lacuna do §8, que só invocava legitimidade.
+- **`docs/fontes-alternativas.md`** (novo) — parecer. Achado que motiva a busca: mesmo com
+  credenciais da Folha, **NEPAC e Mass Mobilization não cobrem Diretas Já**, e o Fora Collor
+  só parcialmente. Recomenda investigar a **Hemeroteca Digital/BN** para os ciclos pré-1993
+  (com a ressalva do OCR), **não adotar GDELT** como fonte primária (Hoffmann et al. 2022), e
+  ler os manuais de anotação do GLOCON para o gold standard. Nenhuma coleta realizada.
+- **`artefatos/mapeamamento/pea_acervo_folha/ARQUIVO-MORTO.md`** — congela a cópia divergente
+  do pipeline, que tinha um `doca_codebook.yaml` de mesmo nome e conteúdo diferente.
+
+### Não feito
+
+Coleta de dados (segue bloqueada por credenciais); separação de triagem e codificação em duas
+passagens no coder (D8); verificação dos metadados bibliográficos (V1).
+
+## 2026-07-18 (2ª sessão) — Revisão do código de coleta
+
+`01_scraper.py` era o único script do pipeline ainda não revisado. Diagnóstico: além dos
+seletores placeholders (já conhecidos), havia **defeitos que impediriam a coleta de
+funcionar mesmo com seletores corretos**.
+
+**Defeitos corrigidos:**
+1. **URL de busca sem codificação** — `keyword=manifestação` e `keyword=ato público` iam
+   crus na querystring. A coleta falharia no primeiro termo. Agora via `urlencode`.
+2. **Hrefs relativos nunca resolvidos** — `href="/materia/1"` ia direto para `page.goto()`.
+   Agora `urljoin` contra a URL da página. Testado com href absoluto, raiz-relativo e
+   path-relativo.
+3. **Login sem confirmação** — credencial errada, captcha ou mudança de layout produziam
+   coleta de zero artigos **sem erro nenhum**: o pior modo de falha possível. Agora há um
+   `logged_in_marker` e o script aborta com diagnóstico.
+4. **Paginação sem guarda** — se o seletor "próxima" casasse com elemento sempre presente,
+   loop infinito. Agora há teto de páginas e detecção de página sem resultados novos.
+5. **Vazamento de abas** — `browser.new_page()` dentro do `try`; falha em `goto()` deixava a
+   aba aberta. Em coleta longa, derrubaria o processo. Agora `finally`.
+6. **Sem retry** — qualquer instabilidade de rede perdia o artigo. Agora 3 tentativas com
+   backoff exponencial e jitter.
+7. **Estado grosso demais** — progresso só ao fim de termo×janela; interrupção no meio
+   refazia a janela inteira. Agora grava por página.
+
+**Mudança de desenho — seletores em `config/selectors.yaml`.** O modo de falha crônico deste
+scraper é o layout do Acervo mudar. Quem vai consertar é o pesquisador, não o programador, e
+não faz sentido exigir edição de Python para isso. Cada grupo aceita uma **lista de
+candidatos**, tentados em ordem, o que permite manter o seletor antigo como reserva ao testar
+um novo. Candidato com sintaxe inválida é ignorado em vez de derrubar a execução.
+
+**Modo `--diagnose`.** Faz login, roda uma busca e grava HTML, screenshot e um relatório com
+**quantos elementos cada candidato encontrou** — transformando "coletou zero, boa sorte" em
+um diagnóstico acionável. Mais `--dry-run` e `--limit N` para teste barato antes de gastar
+horas de coleta.
+
+Acrescentado User-Agent identificando o projeto: coleta acadêmica não deve se disfarçar de
+navegador comum.
+
+**Documentação alinhada.** O §11 do protocolo declarava campos de saída
+(`headline`, `body_text`, `query_used`) que o scraper nunca escreveu e o coder nunca leu —
+divergência puramente documental, sem efeito sobre dados, já que nenhuma coleta foi
+executada. Corrigido para os nomes reais, com a correspondência registrada. TUTORIAL
+reescrito: a validação de seletores passa a ser o **passo 2**, antes da coleta.
+
+**Testado offline** contra fixture HTML local com Chromium (interceptação de requisição, já
+que o proxy bloqueia o domínio): extração de 3 resultados de 4 itens (um sem link,
+corretamente descartado), resolução das três formas de href, tolerância a seletor inválido,
+fallback entre candidatos, e aborto imediato sem credenciais. **A validação contra o site
+real segue pendente (D1) — exige assinatura.**

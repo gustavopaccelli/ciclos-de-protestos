@@ -1,0 +1,377 @@
+ano,indicador,modelo_teorico,valor,unidade,fonte_orgao,fonte_serie,efeito_esperado,fonte_url,data_consulta,status_verificacao
+1970,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1970,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1970,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1970,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1970,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1970,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1970,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1970,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1971,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1971,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1971,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1971,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1971,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1971,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1971,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1971,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1972,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1972,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1972,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1972,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1972,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1972,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1972,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1972,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1973,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1973,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1973,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1973,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1973,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1973,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1973,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1973,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1974,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1974,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1974,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1974,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1974,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1974,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1974,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1974,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1975,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1975,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1975,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1975,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1975,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1975,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1975,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1975,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1976,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1976,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1976,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1976,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1976,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1976,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1976,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1976,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1977,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1977,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1977,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1977,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1977,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1977,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1977,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1977,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1978,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1978,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1978,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1978,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1978,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1978,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1978,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1978,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1979,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1979,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1979,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1979,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1979,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1979,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1979,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1979,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1980,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1980,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1980,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1980,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1980,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1980,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1980,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1980,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1981,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1981,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1981,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1981,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1981,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1981,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1981,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1981,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1982,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1982,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1982,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1982,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1982,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1982,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1982,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1982,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1983,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1983,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1983,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1983,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1983,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1983,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1983,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1983,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1984,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1984,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1984,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1984,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1984,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1984,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1984,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1984,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1985,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1985,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1985,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1985,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1985,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1985,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1985,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1985,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1986,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1986,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1986,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1986,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1986,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1986,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1986,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1986,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1987,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1987,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1987,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1987,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1987,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1987,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1987,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1987,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1988,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1988,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1988,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1988,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1988,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1988,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1988,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1988,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1989,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1989,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1989,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1989,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1989,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1989,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1989,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1989,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1990,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1990,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1990,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1990,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1990,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1990,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1990,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1990,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1991,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1991,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1991,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1991,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1991,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1991,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1991,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1991,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1992,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1992,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1992,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1992,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1992,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1992,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1992,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1992,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1993,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1993,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1993,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1993,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1993,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1993,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1993,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1993,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1994,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1994,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1994,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1994,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1994,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1994,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1994,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1994,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1995,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1995,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1995,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1995,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1995,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1995,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1995,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1995,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1996,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1996,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1996,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1996,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1996,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1996,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1996,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1996,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1997,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1997,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1997,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1997,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1997,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1997,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1997,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1997,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1998,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1998,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1998,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1998,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1998,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1998,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1998,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1998,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+1999,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+1999,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+1999,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+1999,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+1999,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+1999,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+1999,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+1999,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2000,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2000,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2000,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2000,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2000,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2000,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2000,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2000,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2001,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2001,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2001,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2001,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2001,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2001,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2001,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2001,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2002,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2002,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2002,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2002,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2002,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2002,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2002,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2002,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2003,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2003,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2003,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2003,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2003,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2003,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2003,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2003,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2004,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2004,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2004,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2004,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2004,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2004,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2004,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2004,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2005,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2005,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2005,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2005,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2005,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2005,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2005,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2005,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2006,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2006,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2006,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2006,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2006,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2006,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2006,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2006,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2007,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2007,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2007,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2007,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2007,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2007,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2007,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2007,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2008,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2008,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2008,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2008,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2008,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2008,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2008,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2008,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2009,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2009,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2009,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2009,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2009,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2009,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2009,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2009,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2010,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2010,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2010,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2010,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2010,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2010,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2010,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2010,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2011,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2011,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2011,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2011,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2011,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2011,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2011,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2011,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2012,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2012,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2012,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2012,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2012,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2012,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2012,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2012,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2013,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2013,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2013,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2013,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2013,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2013,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2013,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2013,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2014,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2014,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2014,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2014,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2014,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2014,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2014,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2014,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2015,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2015,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2015,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2015,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2015,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2015,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2015,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2015,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
+2016,inflacao,grievance,,,IBGE/BCB,IPCA anual (SIDRA 1737 / BCB-SGS 433),+,,,pendente
+2016,crescimento_pib_per_capita,grievance,,,IBGE,Contas Nacionais (SIDRA 6784),-,,,pendente
+2016,urbanizacao,mobilizacao_recursos,,,IBGE,% população urbana (SIDRA 202/6579),+,,,pendente
+2016,bonus_demografico_jovem,mobilizacao_recursos,,,IBGE,% pop. 15-24 anos (SIDRA 7358),+,,,pendente
+2016,capacidade_organizacional_greves,mobilizacao_recursos,,,DIEESE,nº de greves/ano (SAG),+,,,pendente
+2016,escolaridade,modernizacao,,,IBGE,taxa de escolarização líquida (PNAD/PNADC),+,,,pendente
+2016,comunicacao,modernizacao,,,ANATEL/IBGE,acessos móveis por 100 hab.; domicílios com internet,+,,,pendente
+2016,ano_eleitoral,oportunidade_politica,,,TSE,binário: houve eleição nacional no ano,+,,,pendente
