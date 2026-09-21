@@ -1,0 +1,56 @@
+{
+  "nome_base": "Acervo Folha de S.Paulo - Protocolo BEP-CEBRAP",
+  "responsáveis": [
+    "Gustavo Paccelli",
+    "CEBRAP (Centro Brasileiro de Análise e Planejamento)"
+  ],
+  "url_fonte": "https://acervo.folha.com.br/",
+  "protocolo_ética": "BEP-CEBRAP (Protocolo de Pesquisa com Dados Jornalísticos)",
+  "versão": "em desenvolvimento",
+  "data_integração_repositório": "2026-09-21",
+  "descrição": "Acervo digital da Folha de S.Paulo (1921-presente) - principal jornal de grande circulação do Brasil. Fornecerá cobertura jornalística sistemática de eventos de protesto, especialmente para ciclos anteriores a 2011 (Diretas Já, Fora Collor) e complementar para ciclos posteriores.",
+  "status_atual": "Aguardando credenciais de acesso + desenvolvimento de scraper",
+  "cobertura_temporal": {
+    "completa": "1921-presente",
+    "alvo_para_pesquisa": "1985-2024"
+  },
+  "cobertura_geográfica": "Principalmente São Paulo e Brasil (conforme cobertura editorial)",
+  "tipo_fonte": "Hemerográfica digital",
+  "fontes_de_dados": [
+    "Notícias (reportagens e notas)",
+    "Editoriais",
+    "Cartas de leitores",
+    "Cadernos especiais"
+  ],
+  "variáveis_esperadas": [
+    "data_publicação",
+    "título_matéria",
+    "seção_jornal",
+    "descrição_evento",
+    "localização_protesto",
+    "atores_mencionados",
+    "reivindicações",
+    "respostas_autoridades",
+    "estimativa_tamanho_evento"
+  ],
+  "formato_dados": "CSV ou JSON (a definir pós-scraping)",
+  "restrições_acesso": [
+    "Credenciais pessoais requeridas",
+    "Limites de taxa de scraping",
+    "Respeito a termos de serviço do Acervo"
+  ],
+  "metodologia_esperada": [
+    "Busca por termos-chave associados a ciclos (ex: 'Diretas Já', 'Collor', 'Junho 2013', 'Dilma impeachment')",
+    "Extração de texto completo e metadados",
+    "Limpeza e padronização de datas",
+    "Validação de menções de eventos"
+  ],
+  "próximas_ações": [
+    "Obter credenciais de acesso autorizado",
+    "Desenvolver scraper respeitoso com Folha API (se disponível)",
+    "Realizar coleta piloto para 2011-2016",
+    "Expandir para períodos anteriores (1985-2010)"
+  ],
+  "contato": "gustavopaccelli@gmail.com",
+  "última_atualização": "2026-09-21"
+}

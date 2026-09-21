@@ -19,13 +19,57 @@ cookies.txt
 SKILL.md
 claude_desktop_config.json
 
-# Data directories (preserve .gitkeep)
+# Data directories (preserve .gitkeep, metadata, and documentation)
 data/raw/**
 !data/raw/.gitkeep
+!data/raw/*/
+!data/raw/*/.gitkeep
+!data/raw/**/metadata*.json
+!data/raw/**/README.md
+!data/raw/**/livro-codigo.md
+!data/raw/**/crosswalk*.md
+# But block actual data files
+data/raw/**/*.csv
+data/raw/**/*.xlsx
+data/raw/**/*.xls
+data/raw/**/*.parquet
+data/raw/**/*.zip
+data/raw/**/*.tar.gz
+data/raw/**/*.docx
+
 data/interim/**
 !data/interim/.gitkeep
+!data/interim/*/
+!data/interim/*/.gitkeep
+!data/interim/**/metadata*.json
+!data/interim/**/README.md
+# But block actual data files
+data/interim/**/*.csv
+data/interim/**/*.xlsx
+data/interim/**/*.parquet
+
 data/processed/**
 !data/processed/.gitkeep
+!data/processed/*/
+!data/processed/*/.gitkeep
+!data/processed/**/metadata*.json
+!data/processed/**/README.md
+!data/processed/**/*.md
+# But block actual data files (except documentation)
+data/processed/**/*.csv
+data/processed/**/*.xlsx
+data/processed/**/*.parquet
+
+data/triangulacao/**
+!data/triangulacao/.gitkeep
+!data/triangulacao/*/
+!data/triangulacao/*/.gitkeep
+!data/triangulacao/**/metadata*.json
+!data/triangulacao/**/README.md
+# But block actual data files
+data/triangulacao/**/*.csv
+data/triangulacao/**/*.xlsx
+data/triangulacao/**/*.parquet
 
 # Pipeline/Cache
 __pycache__/

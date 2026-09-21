@@ -1,0 +1,41 @@
+{
+  "nome_base": "NEPAC/UNICAMP - Banco de Dados de Protestos (2011-2016)",
+  "responsáveis": [
+    "Luciana Tatagiba (UNICAMP)",
+    "Andreia Galvão (UNICAMP)",
+    "Thiago Trindade (UNICAMP)"
+  ],
+  "url_fonte": "https://www.ifch.unicamp.br/nepp/index.php",
+  "referência_publicada": "Tatagiba, L., Galvão, A., & Trindade, T. (2019). Movimentos sociais no Brasil: entre o institucional e o radical. Brasília: IPEA.",
+  "versão": "Original (2019)",
+  "data_coleta_original": "2011-2016",
+  "data_integração_repositório": "2026-09-21",
+  "descrição": "Banco de dados sistematizado de eventos de protesto no Brasil cobrindo o período 2011-2016. Inclui informações sobre datas, locais, atores, reivindicações, violência e repressão.",
+  "cobertura_temporal": {
+    "início": "2011-01-01",
+    "fim": "2016-12-31"
+  },
+  "cobertura_geográfica": "Brasil (todas as unidades federativas)",
+  "número_eventos": 9947,
+  "variáveis_principais": [
+    "data_evento",
+    "localização",
+    "tipo_ação",
+    "atores",
+    "reivindicações",
+    "violência_policial",
+    "repressão",
+    "tamanho_estimado"
+  ],
+  "formato_dados": "XLSX (original) + CSV (versão padronizada)",
+  "arquivos": {
+    "fonte_original": "protestos_no_brasil_2011-2016.xlsx",
+    "livro_código": "tatagiba_galvao_2019_livro_de_codigo.docx",
+    "dados_processados": "protestos_2011-2016.csv",
+    "documentação": "livro-de-codigo.md"
+  },
+  "licença": "Sob permissão de uso - consultar responsáveis originais",
+  "notas_integração": "Esta base foi integrada ao projeto de Ciclos de Protesto como fonte complementar ao período 2011-2016, cobrindo os ciclos de Junho 2013 e Impeachment de Dilma.",
+  "contato": "gustavopaccelli@gmail.com",
+  "última_atualização": "2026-09-21"
+}

@@ -1,0 +1,50 @@
+{
+  "nome_base": "Mass Mobilization Project - Global Protest Dataset (v16)",
+  "responsáveis": [
+    "David E. Clark (University of Michigan)",
+    "Patrick M. Regan (University of Notre Dame)"
+  ],
+  "url_fonte": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HAJQVZ",
+  "referência_publicada": "Clark, D. E., & Regan, P. M. (2016). Protest in the presence of security force: Evidence from African states, 1990-2011. Journal of Conflict Resolution, 60(4), 649-672.",
+  "versão": "v16 (2020)",
+  "data_coleta_original": "1990-2020",
+  "data_integração_repositório": "2026-09-21",
+  "descrição": "Base global de eventos de mobilização de massa (protestos) cobrindo 1990-2020. Para Brasil, contém registro sistemático de eventos de ação coletiva com informações sobre datas, locais, tamanhos estimados e características.",
+  "cobertura_temporal": {
+    "início": "1990-01-01",
+    "fim": "2020-12-31",
+    "para_brasil": {
+      "início": "1990-01-01",
+      "fim": "2020-12-31"
+    }
+  },
+  "cobertura_geográfica": "Mundo (176 países) - Brasil incluído",
+  "recorte_geográfico_brasil": "Todas as unidades federativas",
+  "número_eventos_brasil": 3487,
+  "variáveis_principais": [
+    "data_evento",
+    "localização",
+    "tipo_evento",
+    "tamanho_estimado",
+    "fonte_informação",
+    "confiabilidade_registro"
+  ],
+  "formato_dados": "PDF (manual original) + CSV (versão Brasil)",
+  "arquivos": {
+    "fonte_original": "MM_users_manual_0515.pdf",
+    "dados_brasil": "protestos_brasil_1990-2020.csv",
+    "documentação": [
+      "livro-de-codigo.md",
+      "crosswalk-codigos.md"
+    ]
+  },
+  "licença": "Domínio público (Harvard Dataverse)",
+  "notas_integração": "Esta base foi integrada como fonte externa para complementar e validar (triangulação) os dados de ciclos de protesto, especialmente os períodos não cobertos por fontes primárias brasileiras.",
+  "cuidados_metodológicos": [
+    "Cobertura variável por estado/município (concentração em capitais e grandes cidades)",
+    "Estimativas de tamanho de eventos são aproximadas",
+    "Algumas discrepâncias temporais possíveis entre Mass Mobilization e NEPAC no período 2011-2016"
+  ],
+  "contato": "gustavopaccelli@gmail.com",
+  "última_atualização": "2026-09-21"
+}

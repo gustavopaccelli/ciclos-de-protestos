@@ -1,0 +1,60 @@
+{
+  "nome_base": "Sementes Históricas de Ciclos de Protesto - Base Interna",
+  "responsáveis": [
+    "Gustavo Paccelli"
+  ],
+  "versão": "v1.0",
+  "data_criação": "2025-2026",
+  "data_integração_repositório": "2026-09-21",
+  "descrição": "Conjunto de sementes históricas (seeds) de eventos de protesto para ciclos específicos do Brasil. Servem como ponto de partida para coleta sistemática via web scraping e são baseadas em leitura de literatura secundária, cronologias publicadas e arquivos de jornais digitalizados.",
+  "subconjuntos": {
+    "diretas_ja": {
+      "ciclo": "Diretas Já (1983-1985)",
+      "período_cobertura": "1983-01-01 a 1985-12-31",
+      "descrição": "Eventos de protesto e mobilizações públicas relacionadas à campanha 'Diretas Já' pela reintrodução de eleições diretas para presidente durante a transição democrática.",
+      "número_registros": 245,
+      "fonte_primária": "Acervo Folha de S.Paulo (via scraping), cronologias institucionais, memórias de participantes",
+      "variáveis": [
+        "data_evento",
+        "localização",
+        "descrição_breve",
+        "tipo_evento",
+        "atores_principais",
+        "reivindicação_principal"
+      ],
+      "arquivos": [
+        "comicios_por_estado.csv",
+        "comicios_cronologia.csv",
+        "grupos_associacoes.csv"
+      ]
+    },
+    "fora_collor": {
+      "ciclo": "Fora Collor (1991-1993)",
+      "período_cobertura": "1991-01-01 a 1993-12-31",
+      "descrição": "Eventos de mobilização contra corrupção e pelo impeachment de Fernando Collor de Mello, incluindo o movimento dos 'Caras Pintadas'.",
+      "número_registros": 156,
+      "fonte_primária": "Acervo Folha de S.Paulo, cronologias políticas, documentos de movimento social",
+      "variáveis": [
+        "data_evento",
+        "localização",
+        "descrição_breve",
+        "tipo_evento",
+        "atores_principais",
+        "reivindicação_principal"
+      ],
+      "arquivos": [
+        "protest_events_fora_collor_seed.csv"
+      ]
+    }
+  },
+  "formato_dados": "CSV",
+  "metodologia_criação": "Coleta manual em fontes primárias digitalizadas e literatura secundária sobre ciclos de protesto no Brasil. Cada seed contém informações suficientes para rastreamento posterior e validação em fontes originais.",
+  "status_validação": "Submetido a revisão de especialistas em história dos movimentos sociais",
+  "próximas_etapas": [
+    "Validação de datas e locais em bases hemerográficas",
+    "Expansão via web scraping de acervos digitalizados",
+    "Triangulação com NEPAC e Mass Mobilization nos períodos de overlap"
+  ],
+  "contato": "gustavopaccelli@gmail.com",
+  "última_atualização": "2026-09-21"
+}
