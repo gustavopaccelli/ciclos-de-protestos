@@ -2,7 +2,7 @@
 
 Passagem 1 do protocolo (docs/aep-protocol-bep.md §11). Faz login, itera
 termos de busca × janelas temporais (config/queries.yaml), salva cada artigo
-como JSON em pipeline/data/raw/ e mantém estado incremental (interrompível).
+como JSON em data/raw/folha_acervo/ e mantém estado incremental (interrompível).
 
 Os seletores CSS ficam em config/selectors.yaml — editáveis sem tocar em
 Python. O Acervo é uma aplicação React e muda de layout sem aviso.
@@ -36,9 +36,9 @@ load_dotenv()
 BASE = Path(__file__).resolve().parent
 CFG = yaml.safe_load((BASE / "config" / "queries.yaml").read_text())
 SEL = yaml.safe_load((BASE / "config" / "selectors.yaml").read_text())
-ROOT = BASE.parent
-RAW_DIR = ROOT / "pipeline" / "data" / "raw"
-DIAG_DIR = ROOT / "pipeline" / "data" / "diagnose"
+ROOT = BASE.parent.parent  # src/data -> src -> raiz
+RAW_DIR = ROOT / "data" / "raw" / "folha_acervo"
+DIAG_DIR = RAW_DIR / "diagnose"
 STATE_FILE = ROOT / CFG["scraper"]["state_file"]
 
 LOGIN_URL = "https://login.folha.com.br/login"
@@ -311,7 +311,7 @@ def diagnose(browser) -> None:
                 relatorio.append(f"  primeiros 200: {corpo[:200]!r}")
             apage.close()
     else:
-        relatorio.append("\n>>> NENHUM RESULTADO CASOU. Abra pipeline/data/diagnose/"
+        relatorio.append("\n>>> NENHUM RESULTADO CASOU. Abra data/raw/folha_acervo/diagnose/"
                          "busca.html e ajuste 'search.result_item' em "
                          "config/selectors.yaml.")
 

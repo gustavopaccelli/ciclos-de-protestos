@@ -2,7 +2,7 @@
 
 Roda sem rede. Checa o que um parecerista checaria:
 
-  1. Chaves estrangeiras: fase_vinculada existe em data/cycle_phases.csv e a data
+  1. Chaves estrangeiras: fase_vinculada existe em data/processed/cycle_phases/cycle_phases.csv e a data
      do evento cai dentro da fase; hipotese_vinculada existe no quadro de hipóteses.
   2. Procedência: nada marcado como verificado_* sem fonte_url e data_consulta.
   3. Vocabulário: todo valor categórico consta do codebook.
@@ -44,7 +44,7 @@ def carregar():
     mi = pd.read_csv(DADOS / "marcos_institucionais.csv", dtype=str)
     q8 = pd.read_csv(DADOS / "quadro8_ampliado.csv", dtype=str)
     pr = pd.read_csv(DADOS / "predicoes.csv", dtype=str)
-    fases = pd.read_csv(RAIZ / "data" / "cycle_phases.csv", dtype=str)
+    fases = pd.read_csv(RAIZ / "data" / "processed" / "cycle_phases" / "cycle_phases.csv", dtype=str)
     hip = set(re.findall(r"H\d\.\d",
                          (RAIZ / "docs" / "quadro-hipoteses.md").read_text(encoding="utf-8")))
     return cb, ev, mi, q8, pr, fases, hip

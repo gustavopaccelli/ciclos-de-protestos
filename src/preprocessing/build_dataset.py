@@ -1,12 +1,12 @@
 """03_build_dataset.py — Consolida eventos codificados em protest_events.
 
 Passagem 4 do protocolo (docs/aep-protocol-bep.md §11). Lê
-pipeline/data/coded/*.json, normaliza contra o codebook, atribui
+data/interim/{base}/*.json, normaliza contra o codebook, atribui
 `canonical_event_id` e exporta:
 
-  - data/protest_events_raw.csv   (uma linha por EXTRAÇÃO, sem deduplicação)
-  - data/protest_events.csv       (uma linha por evento canônico)
-  - data/protest_events.xlsx      (4 abas: eventos, agregação anual,
+  - data/processed/harmonizado/protest_events_raw.csv   (uma linha por EXTRAÇÃO, sem deduplicação)
+  - data/processed/harmonizado/protest_events.csv       (uma linha por evento canônico)
+  - data/processed/harmonizado/protest_events.xlsx      (4 abas: eventos, agregação anual,
                                    frequência de claims, distribuição geográfica)
 
 O arquivo `_raw` é o registro auditável de tudo que foi extraído: sem ele não
@@ -24,8 +24,8 @@ import pandas as pd
 import yaml
 
 BASE = Path(__file__).resolve().parent
-CODED_DIR = BASE / "data" / "coded"
-OUT_DIR = BASE.parent / "data"
+CODED_DIR = BASE.parent.parent / "data" / "interim"  # src/preprocessing -> src -> raiz -> data/interim
+OUT_DIR = BASE.parent.parent / "data" / "processed" / "harmonizado"
 CODEBOOK = yaml.safe_load((BASE / "config" / "doca_codebook.yaml").read_text())
 
 CANONICAL_NAMESPACE = uuid.UUID("7c0e4d9a-1984-1992-2013-201520160001")
@@ -56,7 +56,7 @@ def load_events() -> pd.DataFrame:
         data = json.loads(path.read_text())
         rows.extend(data.get("events", []))
     if not rows:
-        raise SystemExit("Nenhum evento codificado em pipeline/data/coded/")
+        raise SystemExit("Nenhum evento codificado em data/interim/")
     return pd.DataFrame(rows)
 
 

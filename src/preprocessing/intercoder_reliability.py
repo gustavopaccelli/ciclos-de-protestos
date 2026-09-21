@@ -1,7 +1,7 @@
 """04_intercoder_reliability.py — Confiabilidade intercodificadores.
 
 Passagem 5 do protocolo (docs/aep-protocol-bep.md §11). Compara a codificação
-automática (pipeline/data/coded/) com a codificação manual de uma amostra e
+automática (data/interim/) com a codificação manual de uma amostra e
 calcula Cohen's Kappa por variável.
 
 Uso:
@@ -21,8 +21,8 @@ import yaml
 from sklearn.metrics import cohen_kappa_score
 
 BASE = Path(__file__).resolve().parent
-CODED_DIR = BASE / "data" / "coded"
-CODEBOOK = yaml.safe_load((BASE / "config" / "doca_codebook.yaml").read_text())
+CODED_DIR = BASE.parent.parent / "data" / "interim"  # src/preprocessing -> src -> raiz -> data/interim
+CODEBOOK = yaml.safe_load((BASE.parent.parent / "config" / "doca_codebook.yaml").read_text())
 KAPPA_MIN = CODEBOOK.get("intercoder_kappa_threshold", 0.75)
 
 # Cobertura ampliada: antes só 5 variáveis eram aferidas, das ~40 do codebook.
@@ -80,7 +80,7 @@ def load_auto() -> pd.DataFrame:
     for path in CODED_DIR.glob("*.json"):
         rows.extend(json.loads(path.read_text()).get("events", []))
     if not rows:
-        raise SystemExit("Nenhum evento codificado em pipeline/data/coded/")
+        raise SystemExit("Nenhum evento codificado em data/interim/")
     return pd.DataFrame(rows).set_index("event_id")
 
 

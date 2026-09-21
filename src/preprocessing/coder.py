@@ -1,8 +1,8 @@
 """02_doca_coder.py — Codificação DoCA/BEP de artigos via API Anthropic.
 
-Para cada artigo em pipeline/data/raw/, envia o texto ao Claude com o system
+Para cada artigo em data/raw/folha_acervo/, envia o texto ao Claude com o system
 prompt DoCA + codebook e extrai eventos de protesto em JSON validado
-(structured outputs). Saída: pipeline/data/coded/{hash}.json.
+(structured outputs). Saída: data/interim/{hash}.json.
 
 - Schema COMPLETO alinhado ao `event_schema` de config/doca_codebook.yaml:
   Blocos I–V do Protocolo BEP-CEBRAP (Alonso et al. 2024) + campos MPEDS
@@ -30,9 +30,9 @@ from tqdm import tqdm
 load_dotenv()
 
 BASE = Path(__file__).resolve().parent
-RAW_DIR = BASE / "data" / "raw"
-CODED_DIR = BASE / "data" / "coded"
-CODEBOOK = yaml.safe_load((BASE / "config" / "doca_codebook.yaml").read_text())
+RAW_DIR = BASE.parent.parent / "data" / "raw" / "folha_acervo"  # src/preprocessing -> src -> raiz
+CODED_DIR = BASE.parent.parent / "data" / "interim"
+CODEBOOK = yaml.safe_load((BASE.parent.parent / "config" / "doca_codebook.yaml").read_text())
 MODEL = os.environ.get("DOCA_MODEL", "claude-opus-4-8")
 
 DOCA_NAMESPACE = uuid.UUID("7c0e4d9a-1984-1992-2013-201520160000")

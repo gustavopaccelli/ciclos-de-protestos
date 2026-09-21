@@ -37,7 +37,7 @@ API = "https://dadosabertos.camara.leg.br/api/v2"
 PAUSA = 0.5          # cortesia com o servidor público
 TIMEOUT = 30
 
-# Janelas por ciclo: (inicio_T-1c, fim_T+1). Derivadas de data/cycle_phases.csv
+# Janelas por ciclo: (inicio_T-1c, fim_T+1). Derivadas de data/processed/cycle_phases/cycle_phases.csv
 # com a janela_fixa de 24 meses do codebook. Para C1 o T+1 é estendido até 1989
 # porque a cadeia C1->C2 (Constituinte, CF/88, eleição direta) é o T-1 de C2.
 JANELAS = {

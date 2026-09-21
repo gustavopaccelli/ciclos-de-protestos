@@ -1,4 +1,4 @@
-"""valida_cycle_phases.py — Confere data/cycle_phases.csv contra o codebook.
+"""valida_cycle_phases.py — Confere data/processed/cycle_phases/cycle_phases.csv contra o codebook.
 
 Checa:
   1. Vocabulários: todo valor categórico consta de cycle_phases_codebook.yaml.
@@ -22,10 +22,10 @@ import pandas as pd
 import yaml
 
 BASE = Path(__file__).resolve().parent
-RAIZ = BASE.parent
-CSV = RAIZ / "data" / "cycle_phases.csv"
-CODEBOOK = BASE / "cycle_phases_codebook.yaml"
-HISTORICO = BASE / "historico-codificacao.csv"
+RAIZ = BASE.parent.parent  # src/preprocessing -> src -> raiz
+CSV = RAIZ / "data" / "processed" / "cycle_phases" / "cycle_phases.csv"
+CODEBOOK = RAIZ / "docs" / "codebook" / "cycle_phases_codebook.yaml"
+HISTORICO = RAIZ / "docs" / "codebook" / "historico-codificacao.csv"
 
 erros: list[str] = []
 avisos: list[str] = []
@@ -125,7 +125,7 @@ def checa_trilha(df):
     print(f"  {len(hist)} registros em historico-codificacao.csv")
 
     try:
-        git = subprocess.run(["git", "show", "HEAD:data/cycle_phases.csv"],
+        git = subprocess.run(["git", "show", "HEAD:data/processed/cycle_phases/cycle_phases.csv"],
                              cwd=RAIZ, capture_output=True, text=True, check=True)
     except (subprocess.CalledProcessError, FileNotFoundError):
         avisos.append("não foi possível ler a versão em git — trilha não comparada")
