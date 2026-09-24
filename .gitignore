@@ -59,3 +59,8 @@ desktop.ini
 pipeline/data/raw/
 pipeline/data/coded/
 pipeline/data/scrape_state.json
+
+# DoCA Pipeline output (generated at runtime)
+data/*.db
+data/acervo_protestos.json
+output/
