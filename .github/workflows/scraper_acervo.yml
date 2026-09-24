@@ -1,0 +1,39 @@
+name: Pipeline Acervo Folha
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Roda todo dia às 08:00 UTC
+  workflow_dispatch: # Permite execução manual a qualquer momento
+
+jobs:
+  scrape-acervo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Instalar Dependências, Scrapling e Navegadores
+        run: |
+          python -m pip install --upgrade pip
+          pip install "scrapling[fetchers]"
+          scrapling install --force
+
+      - name: Executar Coleta do Acervo Histórico
+        run: python src/coleta_acervo.py
+
+      - name: Commit e Push automático dos dados históricos coletados
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.io"
+          git add data/acervo_protestos.json
+          git diff --staged --quiet || git commit -m "Atualização automática: dados do Acervo Folha [skip ci]"
+          git push
