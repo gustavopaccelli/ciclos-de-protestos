@@ -545,3 +545,17 @@ real segue pendente (D1) — exige assinatura.**
 - O histórico da D foi mantido em `docs/tarefas.md`.
 - Bibliografia: a seção dizia que havia 26 pendências, mas a lista de verificação está zerada desde 2026-09-01. V1 foi marcada como concluída; V2 (leitura na íntegra) continua aberta.
 - `README.md`, `research-state.yaml` e as referências à "Frente D" na documentação viva foram atualizados.
+
+## 2026-10-07 — E1: cruzamento MM × NEPAC × fases dos ciclos
+
+- Os produtos estão em `data/triangulacao/e1_cruzamento_mm_nepac/`: painel HTML, relatório metodológico, script reprodutível e CSVs.
+- **Concentração:** a taxa de eventos nas fases é 3,2 vezes a de fora no MM e 1,5 vez no NEPAC.
+- **Convergência:** mês a mês, ρ = 0,37 (p = 0,003), e o resultado se mantém sem junho de 2013.
+- **Pico:** a fase "pico" é o máximo de frequência no MM (2 de 3 ciclos), mas não no NEPAC. Em Junho 2013, o NEPAC concentra mais atos na radicalização. Escala/visibilidade e frequência são dimensões distintas do ciclo.
+- **EOP e DOS:** só a repressão acompanha a frequência (NEPAC ρ = 0,94, q = 0,001), inclusive dentro de Junho 2013. Abertura e DOS não acompanham a frequência; ficam para a E2, com tamanho dos eventos, alvos e repertórios.
+- **Decisões de método:**
+  - fora da cobertura da fonte, a contagem é NA e não zero;
+  - a taxa é normalizada por 30 dias, com IC exato de Poisson;
+  - cobertura mínima de 50% dos dias da fase para entrar nos testes;
+  - Spearman com permutação e correção de Benjamini-Hochberg, mais um teste dentro de cada ciclo.
+- **Pendência bibliográfica:** incluir no `.bib` Benjamini e Hochberg (1995), Garwood (1936) e os datasets do MM e do NEPAC.

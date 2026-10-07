@@ -15,6 +15,10 @@ Pasta dedicada a análises de triangulação entre diferentes bases de dados de 
 Outputs de análises de séries temporais e agregações por período, região ou tipo de evento.
 - Exemplo: `series_temporais_eventos.csv` contendo contagens mensais/semanais de protestos por ciclo
 
+### `e1_cruzamento_mm_nepac/`
+Tarefa E1: cruzamento das séries MM e NEPAC com as fases dos ciclos e as variáveis de EOP e DOS.
+Contém o painel `painel_e1.html`, o `relatorio_metodologico.md`, o script e os CSVs em `dados/`.
+
 ### `discrepancias/`
 Registros de eventos com conflitos entre bases (datas diferentes, locais ambíguos, tamanhos discrepantes).
 - Inclui relatórios de investigação e resoluções
@@ -44,4 +48,4 @@ data/processed/harmonizado/ [versão final canônica]
 
 Gustavo Paccelli (gustavopaccelli@gmail.com)
 
-Última atualização: 2026-09-21
+Última atualização: 2026-10-07
