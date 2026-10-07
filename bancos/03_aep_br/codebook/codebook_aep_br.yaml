@@ -1,5 +1,5 @@
 # Codebook AEP-BR — banco próprio de eventos de protesto no Brasil (1983–presente)
-# Versão 0.1 (rascunho) — 2026-10-07
+# Versão 1.0 — 2026-10-07 (questões em aberto da v0.1 decididas; ver `decisoes`)
 #
 # Âncora metodológica: Alonso, Rezende, Souza & Souza (2024). "Análise de Eventos de
 # Protesto: decisões metodológicas na organização do BEP 2013-2016". Plural 31(2):288-323.
@@ -22,10 +22,31 @@
 #   nepac_equiv   variável correspondente no NEPAC (null = sem equivalente)
 # Os equivalentes MM/NEPAC são a base do codebook híbrido (bancos/crosswalk/).
 
-versao: "0.1"
+versao: "1.0"
 periodo_alvo: {inicio: "1983-01-01", fim: null}   # null = até o presente
 unidade_analise: evento_de_protesto              # evento ≠ notícia (BEP §4)
 vocabularios_herdados: config/doca_codebook.yaml
+
+decisoes:   # fechadas em 2026-10-07 (antes "questões em aberto" da v0.1)
+  piso_publico: >
+    Sem número mínimo de participantes (como o BEP). O filtro é aplicado na análise,
+    por exemplo publico_max >= 50 para comparar com o MM ou >= 2 para o NEPAC.
+  greves: >
+    Toda greve noticiada entra, com repertorio "greve". A variável greve_com_ato_publico
+    indica se houve ação na rua (passeata, piquete, concentração).
+  comicios: >
+    Comícios contestatórios entram (Diretas Já, Fora Collor, impeachment). O comício
+    eleitoral de candidato fica fora (ver exclusoes).
+  ocr: >
+    Cada fonte de acervo digitalizado recebe qualidade_ocr (boa/regular/ruim), separada
+    da confianca do codificador.
+  impresso_online: >
+    A edição impressa é a fonte principal. A versão online do mesmo veículo só cria
+    evento se o fato não saiu no impresso; nos outros casos, apenas complementa
+    variáveis (papel_fonte = complemento). Ver vocabulario prioridade_fonte.
+  ciclo: >
+    Atribuído por script (src/analysis/atribui_ciclo.py) a partir de data_inicio e das
+    janelas de data/processed/cycle_phases/cycle_phases.csv; nunca codificado à mão.
 
 criterios_elegibilidade:   # os 4 critérios BEP; todos precisam ser satisfeitos
   - id: publica_coletiva
@@ -41,7 +62,7 @@ exclusoes:
   - "Ação individual em nome próprio"
   - "Ação disruptiva sem reivindicação (criminalidade comum)"
   - "Ação lúdica sem contestação (festa, jogo, comemoração esportiva)"
-  - "Ato político rotineiro não contestatório (convenção, reunião, comício eleitoral de candidato)"
+  - "Ato político rotineiro não contestatório (convenção, reunião, comício eleitoral de candidato); comícios por reivindicação entram"
   - "Evento exclusivamente virtual"
   - "Evento anunciado sem evidência de realização na fonte"
 
@@ -58,6 +79,8 @@ regras_unitizacao:   # BEP §4; detalhadas em codebook_aep_br.md
     Atos convocados nacionalmente e realizados em várias cidades geram um registro por
     cidade, todos com o mesmo `evento_coordenado_id`. Isso reproduz a lógica
     cidade-evento do NEPAC (Codigo_evento) e permite contar tanto por evento quanto por cidade.
+
+regra_publico_piso: null   # sem mínimo; filtrar na análise (decisoes.piso_publico)
 
 regra_publico: >
   Registrar em `publico_max` a MAIOR estimativa encontrada e em `publico_min` a menor;
@@ -116,12 +139,20 @@ vocabularios:
     alta: "Informação explícita e corroborada por mais de uma fonte"
     media: "Informação explícita em uma única fonte"
     baixa: "Informação inferida, ambígua ou de OCR degradado"
-  ciclo:   # periodização do projeto (data/processed/cycle_phases/cycle_phases.csv)
-    - c1_diretas_ja
-    - c2_fora_collor
-    - c3_junho_2013
-    - c4_impeachment_dilma
+  ciclo:   # valores da coluna cycle de data/processed/cycle_phases/cycle_phases.csv
+    - diretas_ja
+    - fora_collor
+    - junho_2013
+    - impeachment_dilma
     - fora_de_ciclo
+  qualidade_ocr:
+    boa: "Texto legível; nenhuma informação perdida"
+    regular: "Erros pontuais de OCR; foi preciso conferir a imagem da página"
+    ruim: "Trechos ilegíveis; alguma variável pode ter ficado sem preenchimento por isso"
+    nao_se_aplica: "Fonte digital nativa, sem OCR"
+  prioridade_fonte:   # ordem para criar evento quando o mesmo veículo tem duas edições
+    1: "Edição impressa (ou acervo digitalizado da impressa)"
+    2: "Edição online do mesmo veículo: só cria evento se o fato não saiu no impresso"
 
 variaveis:
   # ---------------- Bloco I — Identificação do evento ----------------
@@ -336,6 +367,14 @@ variaveis:
     doca: symbols
     mm_equiv: null
     nepac_equiv: null
+  - nome: greve_com_ato_publico
+    bloco: III
+    tipo: bool
+    obrigatoria: false
+    definicao: "Só para greves: houve passeata, piquete ou concentração em espaço público (null se não é greve)"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
   - nome: violencia_manifestantes
     bloco: III
     tipo: bool
@@ -471,10 +510,19 @@ variaveis:
     bloco: P
     tipo: list[obj]
     obrigatoria: true
-    definicao: "Cada matéria usada: {veiculo, fonte_tipo, papel_fonte, data_publicacao, secao, pagina, titulo, url}"
+    definicao: "Cada matéria usada: {veiculo, fonte_tipo, papel_fonte, edicao (impressa|online), data_publicacao, secao, pagina, titulo, url, qualidade_ocr}"
     doca: "source_url+source_date"
     mm_equiv: sources
     nepac_equiv: Identificacao_do_veiculo
+  - nome: qualidade_ocr
+    bloco: P
+    tipo: enum
+    vocabulario: qualidade_ocr
+    obrigatoria: true
+    definicao: "Pior qualidade de OCR entre as fontes do registro (o detalhe por fonte fica em fontes[])"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
   - nome: n_fontes
     bloco: P
     tipo: int
@@ -496,7 +544,7 @@ variaveis:
     tipo: enum
     vocabulario: ciclo
     obrigatoria: false
-    definicao: "Ciclo de protesto do projeto (atribuído na análise, não na codificação)"
+    definicao: "Ciclo do projeto, atribuído por src/analysis/atribui_ciclo.py a partir de data_inicio; não codificar à mão"
     doca: null
     mm_equiv: null
     nepac_equiv: null

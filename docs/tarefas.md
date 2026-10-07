@@ -14,7 +14,7 @@ Os três bancos agora ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
 - [x] **B0.** Reorganizar MM, NEPAC e AEP-BR em `bancos/` e corrigir os `metadata.json`, que tinham contagens incorretas.
 - [x] **B1.** Codebook AEP-BR v0.1, com crosswalk por variável para o MM e o NEPAC (`bancos/03_aep_br/codebook/`).
 - [x] **B2.** Desativar o agendamento diário do workflow "Pipeline Acervo Folha", que falhava todos os dias.
-- [ ] **B3.** Decidir as questões em aberto do codebook (§6 de `codebook_aep_br.md`): piso de público, greves, comícios, OCR e fontes online.
+- [x] **B3.** Questões em aberto do codebook decididas; codebook v1.0 (2026-10-07). Ver §6 de `codebook_aep_br.md`.
 - [ ] **B4.** Baixar o MM completo do Dataverse e do GitHub (`bancos/01_mass_mobilization/download.py`) e conferir o portal do NEPAC. Bloqueado na nuvem pela rede; fazer localmente ou liberar os domínios.
 - [ ] **B5.** Adaptar `coder.py` e `init_doca_database.py` ao `codebook_aep_br.yaml`.
 - [ ] **B6.** Fazer um piloto em 2013 na Folha e validar contra o NEPAC. Antes de reativar o workflow, revisar `src/coleta_acervo.py`: hoje ele busca só "protesto", sem login e com seletores genéricos.

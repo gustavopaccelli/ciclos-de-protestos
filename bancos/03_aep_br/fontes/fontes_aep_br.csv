@@ -1,6 +1,6 @@
 veiculo,fonte_tipo,papel_fonte,abrangencia,ano_inicio,ano_fim,acesso,url,prioridade,observacoes
 Folha de S.Paulo (Acervo Folha),jornal_impresso,evento,nacional,1983,,assinatura,https://acervo.folha.com.br/,1,"Fonte principal; mesma do NEPAC e do BEP; scraper em src/data/scraper.py"
-Folha de S.Paulo (online),portal_noticias,evento,nacional,1996,,assinatura,https://www.folha.uol.com.br/,1,"Evitar duplicar com a edição impressa"
+Folha de S.Paulo (online),portal_noticias,evento,nacional,1996,,assinatura,https://www.folha.uol.com.br/,1,"Só cria evento se o fato não saiu na edição impressa; senão, papel complemento"
 O Estado de S. Paulo (Acervo Estadão),jornal_impresso,evento,nacional,1983,,assinatura,https://acervo.estadao.com.br/,2,"Validação cruzada; 92% de concordância com a Folha em jun/2013 (BEP)"
 O Globo (Acervo O Globo),jornal_impresso,evento,nacional,1983,,assinatura,https://acervo.oglobo.globo.com/,2,"Cobertura do Rio de Janeiro"
 Jornal do Brasil (Hemeroteca Digital BN),jornal_impresso,evento,nacional,1983,2010,aberto,https://bndigital.bn.gov.br/hemeroteca-digital/,2,"Edição impressa encerrada em 2010; OCR variável"

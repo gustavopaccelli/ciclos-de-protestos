@@ -1,6 +1,6 @@
 # Codebook AEP-BR: eventos de protesto no Brasil, de 1983 até hoje
 
-**Versão:** 0.1, rascunho para discussão (2026-10-07)
+**Versão:** 1.0 (2026-10-07). As questões em aberto da v0.1 foram decididas (ver §6).
 **Especificação legível por máquina:** [`codebook_aep_br.yaml`](codebook_aep_br.yaml), que traz 50 variáveis com o tipo, o vocabulário e os equivalentes no MM e no NEPAC.
 **Âncora metodológica:** ALONSO, A.; REZENDE, P. J.; SOUZA, R. de; SOUZA, V. B. de. Análise de Eventos de Protesto: decisões metodológicas na organização do Banco de Eventos de Protesto (BEP) 2013-2016. *Plural*, v. 31, n. 2, p. 288-323, 2024. DOI [10.11606/issn.2176-8099.pcso.2024.233335](https://doi.org/10.11606/issn.2176-8099.pcso.2024.233335).
 **Documentos de apoio:** [`docs/aep-protocol-bep.md`](../../../docs/aep-protocol-bep.md) (o protocolo BEP comentado) e [`config/doca_codebook.yaml`](../../../config/doca_codebook.yaml) (os vocabulários fechados).
@@ -39,7 +39,7 @@ O evento entra no banco somente se satisfizer os quatro critérios do BEP:
 - ação individual
 - criminalidade comum sem reivindicação
 - festa ou comemoração sem contestação
-- ato político rotineiro, como convenção ou comício eleitoral de candidato
+- ato político rotineiro, como convenção ou comício eleitoral de candidato. Comícios **por reivindicação** (Diretas Já, Fora Collor, impeachment) entram
 - evento só virtual
 - evento anunciado sem evidência de que aconteceu
 
@@ -59,6 +59,8 @@ A regra do `evento_coordenado_id` reproduz a lógica cidade-evento do NEPAC. Com
 
 ### 2.4 Regra do público
 
+**Não há número mínimo de participantes.** Para comparar com outros bancos, o filtro é aplicado na análise: `publico_max >= 50` para o MM e `>= 2` para o NEPAC.
+
 Registrar a **maior** estimativa em `publico_max` e a menor em `publico_min`. Todas as estimativas vão em `publico_estimativas`, com a fonte de cada uma. Exemplo: `"1.000.000 (organizadores); 300.000 (PM); 400.000 (Datafolha)"`. As sementes de Diretas Já já seguem esse formato.
 
 ## 3. Variáveis
@@ -77,6 +79,7 @@ As variáveis estão organizadas nos cinco blocos do BEP, mais um bloco de prove
 | II | `atores` ★ (nome, especificação, organização, formalização) | quem protesta | `protesteridentity` | `Org…` |
 | II | `base_social`, `ocupacao_atividade`, `organizacoes` | perfil social | — | `Base_social…`, `Ocupação/Atividade` |
 | III | `repertorio` ★, `acao_objeto`, `acao_instrumento`, `simbolos` | o que fazem (ator–ação–objeto, Franzosi) | — | `Tipo_Protesto` |
+| III | `greve_com_ato_publico` | só para greves: houve ação na rua | — | — |
 | III | `violencia_manifestantes` | depredação ou agressão | `protesterviolence` | `Depredacao` |
 | IV | `tema_codigo` ★, `tema_texto` ★, `valencia` | reivindicação | `protesterdemand1..4` | `Objetivo_1/2` |
 | IV | `alvo` ★ | a quem se dirige | (só o Estado) | `Alvo_protesto` |
@@ -84,7 +87,7 @@ As variáveis estão organizadas nos cinco blocos do BEP, mais um bloco de prove
 | V | `presenca_policia`, `resposta_estatal`, `conflito_policia`, `conflito_entre_grupos` | interação | `stateresponse1..7` | `Presenca_policia`, `Repressao_policial`, `Confronto…` |
 | V | `detidos`, `feridos`, `mortos` | resultado | `arrests`/`beatings`/`killings` | `Detidos`/`Feridos`/`Mortos` |
 | V | `atos_oficiais` | decretos de GLO, Força Nacional etc. | — | — |
-| P | `fontes` ★, `n_fontes` ★ | matérias usadas | `sources` | `Identificacao_do_veiculo` |
+| P | `fontes` ★, `n_fontes` ★, `qualidade_ocr` ★ | matérias usadas e qualidade do texto | `sources` | `Identificacao_do_veiculo` |
 | P | `elegivel` ★, `codificador` ★, `modelo_versao`, `confianca` ★, `ciclo`, `notas` | controle | `protest`, `notes` | — |
 | D | `evento_canonico_id`, `materia_multi_evento` | deduplicação | — | — |
 
@@ -109,7 +112,8 @@ A lista de veículos está em [`../fontes/fontes_aep_br.csv`](../fontes/fontes_a
 1. **Fonte principal: um jornal de circulação nacional com acervo contínuo.** A Folha de S.Paulo cobre 1983 até hoje e é a mesma fonte do NEPAC, o que facilita a validação em 2011–2016. O BEP encontrou 92% de concordância entre Folha e Estadão em junho de 2013.
 2. **Fontes secundárias completam variáveis e captam eventos pequenos.** São elas o Estadão, O Globo, o Jornal do Brasil (via Hemeroteca Digital, até 2010), a Agência Brasil e o G1 (a partir de 2006).
 3. **Diários oficiais têm papel `resposta_estatal`.** O DOU e os diários estaduais documentam decretos de GLO, convocação da Força Nacional e estados de defesa. Eles alimentam `atos_oficiais`, mas **não criam evento sozinhos**, porque o protesto precisa estar relatado na imprensa.
-4. **A fonte de cada variável fica registrada.** Cada matéria entra em `fontes` com veículo, tipo e papel.
+4. **A edição impressa tem prioridade sobre a online.** Quando o veículo tem as duas (Folha a partir de 1996, outros a partir de 2006), a impressa é a fonte principal. A online só cria evento se o fato não saiu no impresso; nos outros casos, entra com `papel_fonte = complemento`. Isso mantém a série comparável desde 1983 e com o NEPAC.
+5. **A fonte de cada variável fica registrada.** Cada matéria entra em `fontes` com veículo, tipo, papel, edição e `qualidade_ocr`.
 
 ### 4.1 Palavras-chave
 
@@ -127,11 +131,13 @@ O pipeline ainda **não roda**. O fluxo previsto tem cinco passos:
 
 **Validação cruzada obrigatória:** antes de usar o AEP-BR na análise, recodificar uma amostra de 2013 e 2015 e comparar com o NEPAC (mesma fonte, Folha) e com o MM. Discrepâncias acima do esperado indicam problema de triagem ou de unitização.
 
-## 6. Questões em aberto (decidir antes da versão 1.0)
+## 6. Decisões da versão 1.0 (2026-10-07)
 
-- [ ] **Piso de participantes.** O BEP não usa piso, o NEPAC exige 2 ou mais pessoas e o MM exige 50 ou mais. Proposta: não usar piso e filtrar na análise.
-- [ ] **Greves.** Toda greve noticiada entra, ou só as que têm ato público? O BEP inclui a greve como repertório.
-- [ ] **Comícios das Diretas Já.** São atos contestatórios, e não comícios eleitorais de candidato, então entram. Falta confirmar a redação da exclusão.
-- [ ] **OCR.** Para matérias de acervo digitalizado com OCR ruim, `confianca = baixa` basta, ou é preciso uma flag própria?
-- [ ] **Fontes digitais nativas a partir de 2006.** Definir a regra de prioridade entre Folha impressa e Folha online para não duplicar.
-- [ ] **`ciclo`.** Fazer a atribuição automática pela data, a partir de `data/processed/cycle_phases/cycle_phases.csv`.
+| Questão | Decisão | Por quê |
+|---|---|---|
+| Número mínimo de participantes | Nenhum; filtrar na análise | Segue o BEP e não perde eventos pequenos. Com o filtro, a comparação com o MM (≥ 50) e o NEPAC (≥ 2) continua possível |
+| Greves | Toda greve noticiada entra; `greve_com_ato_publico` indica ação na rua | O BEP e o NEPAC tratam a greve como repertório. A flag permite separar paralisação e protesto de rua na análise |
+| Comícios | Entram os contestatórios; o comício eleitoral de candidato fica fora | Sem isso, o ciclo das Diretas Já não existe no banco. Excluir o comício eleitoral evita inflar os anos de eleição |
+| OCR | `qualidade_ocr` (boa/regular/ruim/nao_se_aplica) por fonte e no registro | Separa problema do texto de dúvida de interpretação. Permite medir o efeito do OCR na confiabilidade dos anos 1980–90 |
+| Impresso × online | A impressa é a principal; a online só cria evento se o fato estiver ausente no impresso | Mantém a série comparável desde 1983 e com o NEPAC, que usa a Folha impressa |
+| `ciclo` | Atribuído por `src/analysis/atribui_ciclo.py` a partir das datas de `cycle_phases.csv` | Consistência total com a periodização e nenhum trabalho de codificação. O script também devolve a fase (`phase_id`) |

@@ -515,3 +515,12 @@ real segue pendente (D1) — exige assinatura.**
 - **Caminhos:** `src/paths.py` centraliza os caminhos. Os scripts quebrados desde o refactor de 09/2026 voltaram a rodar, e a série temporal foi reproduzida sem diferenças.
 - **Codebook:** o codebook AEP-BR v0.1 (Alonso et al. 2024) cobre 1983 até hoje, com 50 variáveis mapeadas para o MM e o NEPAC. As fontes são a imprensa nacional e os diários oficiais.
 - **Downloads:** não foram feitos. O MM completo, o GitHub MassMobilization e o portal do NEPAC estão bloqueados pela rede do ambiente de nuvem. Os arquivos que já estavam no repositório foram mantidos.
+
+## 2026-10-07 — Codebook AEP-BR v1.0: questões em aberto decididas
+
+- **Público:** não há número mínimo de participantes. O filtro é feito na análise (≥ 50 para comparar com o MM, ≥ 2 para o NEPAC).
+- **Greves:** toda greve noticiada entra. A nova variável `greve_com_ato_publico` indica se houve ação na rua.
+- **Comícios:** os contestatórios entram (Diretas Já, Fora Collor, impeachment). O comício eleitoral de candidato fica fora.
+- **OCR:** nova variável `qualidade_ocr` (boa/regular/ruim/nao_se_aplica), registrada por fonte e no registro.
+- **Impresso × online:** a edição impressa é a principal. A online só cria evento se o fato não saiu no impresso.
+- **`ciclo`:** atribuído automaticamente pela data com `src/analysis/atribui_ciclo.py`. O teste nas sementes acertou as 74 (59 de Diretas Já e 15 de Fora Collor).

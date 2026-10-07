@@ -6,7 +6,7 @@ Cada banco tem sua própria pasta, com os arquivos originais, os dados, o livro 
 |---|---|---|---|---|---|
 | [`01_mass_mobilization/`](01_mass_mobilization/) | Mass Mobilization (Clark & Regan, v16), recorte Brasil | 1990–2020 | 224 eventos | imprensa internacional | completo; os arquivos globais não foram baixados |
 | [`02_nepac/`](02_nepac/) | NEPAC/Unicamp (Tatagiba & Galvão 2019) | 2011–2016 | 1.284 eventos em 2.548 linhas cidade-evento | Folha de S.Paulo | completo |
-| [`03_aep_br/`](03_aep_br/) | **AEP-BR**, banco próprio (protocolo BEP, Alonso et al. 2024) | 1983–hoje | 74 eventos-semente (59 de Diretas Já e 15 de Fora Collor) | imprensa nacional e diários oficiais | codebook v0.1; coleta não iniciada |
+| [`03_aep_br/`](03_aep_br/) | **AEP-BR**, banco próprio (protocolo BEP, Alonso et al. 2024) | 1983–hoje | 74 eventos-semente (59 de Diretas Já e 15 de Fora Collor) | imprensa nacional e diários oficiais | codebook v1.0; coleta não iniciada |
 
 ## Cronologia combinada
 
