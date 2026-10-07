@@ -6,7 +6,7 @@ claude.ai), extraídos de `artefatos/fases_ciclos/` e convertidos para CSV em 20
 Cobrem os **dois ciclos mais antigos** — Diretas Já (1983-84) e Fora Collor (1992) —
 justamente os que os bancos externos não alcançam bem: o Mass Mobilization começa em
 1990 (poucos eventos por ano) e o NEPAC só cobre 2011-2016. Servem de **semente** para o
-banco `protest_events` a ser expandido pelo pipeline AEP/DoCA (Frente D).
+banco `protest_events` a ser expandido pelo pipeline AEP-BR (Frente B).
 
 ## Arquivos
 
