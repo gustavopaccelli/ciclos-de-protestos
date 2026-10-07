@@ -51,7 +51,7 @@ components:
     status: >
       Incorporadas dos artefatos (2026-07-04): Diretas Já (59 eventos) e Fora Collor
       (15 eventos), com estimativas de público por fonte. Preenchem a lacuna dos ciclos
-      que MM/NEPAC não cobrem; semente para o pipeline AEP (Frente D).
+      que MM/NEPAC não cobrem; semente para o pipeline AEP-BR (Frente B).
   dados_diretas_ja:
     descricao: "Dados complementares das Diretas Já (cronologia de comícios, roteiro por estado, atores)"
     local: "bancos/03_aep_br/sementes/diretas_ja/"
@@ -93,9 +93,16 @@ components:
 
 frentes_abertas:
   - id: B
-    titulo: "Refinamento da periodização"
-    detalhe: "CONCLUÍDA — v2 validada (docs/periodizacao-revisao.md); pendência menor: conferir datas dos comícios de abr/84 e atos de out/13 na redação final"
-    prioridade: concluida
+    titulo: "Bancos de dados e pipeline AEP-BR"
+    detalhe: >
+      Unificada em 2026-10-07 com a antiga Frente D (construção do banco
+      protest_events); vale a versão mais recente de cada tarefa. Feito:
+      bancos/ (um por pasta), codebook AEP-BR v1.0 (53 variáveis), coder e
+      scripts migrados, workflow diário desativado. Aberto: B4 (downloads MM/
+      NEPAC), B6 (piloto 2013 na Folha vs. NEPAC; requer credenciais e chave da
+      API), B7 (pipeline duplicado do PR #9), B8 (triagem e codificação em duas
+      passagens), B9 (validation_report.json). Ver docs/tarefas.md.
+    prioridade: media
   - id: C
     titulo: "Consolidação do artigo — preprint para publicação"
     detalhe: >
@@ -107,14 +114,6 @@ frentes_abertas:
       out/2013 na redação; (5) revisar referências ABNT e adequar às normas do
       periódico-alvo; (6) elaborar abstract e palavras-chave.
     prioridade: alta
-  - id: D
-    titulo: "Construção do banco protest_events"
-    detalhe: >
-      Protocolo BEP-CEBRAP incorporado como âncora metodológica (2026-06-16).
-      Codebook DoCA alinhado aos 5 blocos do BEP (docs/aep-protocol-bep.md).
-      Próximos passos: (1) incorporar scripts pipeline ao repo; (2) validar
-      codebook com usuário; (3) executar quando houver credenciais Acervo Folha.
-    prioridade: media
   - id: E
     titulo: "Análise de triangulação"
     detalhe: >

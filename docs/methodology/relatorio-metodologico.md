@@ -275,7 +275,7 @@ A articulação teórico-empírica produziu um conjunto de achados analíticos, 
 
 ## 7. Limitações e agenda
 
-- **Execução do pipeline** pendente de credenciais e validação de seletores (Frente D, em pausa).
+- **Execução do pipeline** pendente de credenciais e validação de seletores (Frente B, piloto aguardando credenciais).
 - **Scores das fases de articulação** e valores de `traducao_institucional` foram derivados
   analiticamente (a partir das versões dos artefatos e da tese) e comportam revisão do pesquisador.
   Desde 2026-08-22 toda alteração de codificação exige linha em `codebook/historico-codificacao.csv`,
@@ -283,7 +283,7 @@ A articulação teórico-empírica produziu um conjunto de achados analíticos, 
 - **Não coleta de dados primários originais**: as interpretações ancoram-se em fontes secundárias
   sistematizadas; a contribuição é conceitual e metodológica.
 - **Agenda:** consolidação do artigo em preprint (Frente C); análise de triangulação dos bancos e
-  sementes (Frente E); execução do pipeline (Frente D).
+  sementes (Frente E); execução do pipeline (Frente B).
 
 ---
 

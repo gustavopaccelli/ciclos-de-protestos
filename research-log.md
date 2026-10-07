@@ -534,3 +534,14 @@ real segue pendente (D1) — exige assinatura.**
 - O `load_acervo_to_doca.py` deixou de inventar um evento por matéria (cidade, tema e repertório padrão) e agora só grava as matérias brutas.
 - O codebook ganhou a variável `fase`, que acompanha `ciclo` e chega a 53 variáveis.
 - Os testes foram só offline. Nenhuma chamada real à API foi feita.
+
+## 2026-10-07 — Frentes B e D unificadas
+
+- A antiga Frente D (pipeline `protest_events`) entrou na Frente B ("Bancos de dados e pipeline AEP-BR"). Quando duas tarefas tratavam do mesmo assunto, prevaleceu a versão mais recente:
+  - D1, D2 e D4 foram absorvidas pela B6 (piloto de 2013);
+  - D0 foi substituída pela B5;
+  - D3 ficou obsoleta, porque o codebook de referência agora é o AEP-BR;
+  - D8 e D9 viraram B8 e B9.
+- O histórico da D foi mantido em `docs/tarefas.md`.
+- Bibliografia: a seção dizia que havia 26 pendências, mas a lista de verificação está zerada desde 2026-09-01. V1 foi marcada como concluída; V2 (leitura na íntegra) continua aberta.
+- `README.md`, `research-state.yaml` e as referências à "Frente D" na documentação viva foram atualizados.

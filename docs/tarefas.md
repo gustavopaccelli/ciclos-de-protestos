@@ -1,24 +1,48 @@
 # Tarefas do projeto — acompanhamento
 
 Inventário das tarefas pendentes e concluídas, organizado por frente.
-Última atualização: 2026-10-07 (reorganização em `bancos/` e codebook AEP-BR).
+Última atualização: 2026-10-07 (Frentes B e D unificadas; bibliografia atualizada).
 
 > Ver `research-state.yaml` (estado central) e `research-log.md` (linha do tempo de decisões).
 
 ---
 
-## Frente B — Bancos de dados e codebook AEP-BR · **nova (2026-10-07)**
+## Frente B — Bancos de dados e pipeline AEP-BR · **unificada em 2026-10-07**
 
-Os três bancos agora ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
+A antiga Frente D (pipeline `protest_events`, Acervo Folha) foi incorporada aqui. Onde
+uma tarefa da D e uma da B tratavam da mesma coisa, **vale a versão mais recente**; a
+antiga fica no histórico abaixo com a indicação de qual tarefa a substituiu.
+Os três bancos ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
 
-- [x] **B0.** Reorganizar MM, NEPAC e AEP-BR em `bancos/` e corrigir os `metadata.json`, que tinham contagens incorretas.
-- [x] **B1.** Codebook AEP-BR v0.1, com crosswalk por variável para o MM e o NEPAC (`bancos/03_aep_br/codebook/`).
-- [x] **B2.** Desativar o agendamento diário do workflow "Pipeline Acervo Folha", que falhava todos os dias.
-- [x] **B3.** Questões em aberto do codebook decididas; codebook v1.0 (2026-10-07). Ver §6 de `codebook_aep_br.md`.
+### Abertas
+
 - [ ] **B4.** Baixar o MM completo do Dataverse e do GitHub (`bancos/01_mass_mobilization/download.py`) e conferir o portal do NEPAC. Bloqueado na nuvem pela rede; fazer localmente ou liberar os domínios.
-- [x] **B5.** `coder.py`, `build_dataset.py`, `intercoder_reliability.py`, `init_doca_database.py` e `check_schema_coverage.py` migrados para o AEP-BR, todos lendo o codebook por `src/preprocessing/aep_codebook.py` (2026-10-07).
-- [ ] **B6.** Fazer um piloto em 2013 na Folha e validar contra o NEPAC. Antes de reativar o workflow, revisar `src/coleta_acervo.py`: hoje ele busca só "protesto", sem login e com seletores genéricos.
-- [ ] **B7.** Decidir o que fazer com o pipeline duplicado do PR #9 (`src/coleta_acervo.py` e `src/run_doca_pipeline.py`) em relação a `src/data/scraper.py`, que é o scraper com login e incremental.
+- [ ] **B6.** Piloto de 2013 na Folha, validado contra o NEPAC. Absorve as antigas D1, D2 e D4. Etapas:
+  1. instalar as dependências (`pip install -r requirements.txt`) e criar o `.env` a partir de `.env.example`, com as credenciais da Folha e a `ANTHROPIC_API_KEY` (nunca versionar o `.env`);
+  2. validar os seletores no site real: `python src/data/scraper.py --diagnose --headed` (ajustes em `config/selectors.yaml`);
+  3. coletar uma amostra pequena (cerca de 20 matérias) e codificar com `python src/preprocessing/coder.py --batch 20`, para medir o custo por matéria antes de ampliar;
+  4. aferir o kappa (κ ≥ 0,75) com `src/preprocessing/intercoder_reliability.py` contra uma codificação manual da mesma amostra.
+- [ ] **B7.** Decidir o que fazer com o pipeline duplicado do PR #9 (`src/coleta_acervo.py` e `src/run_doca_pipeline.py`) em relação a `src/data/scraper.py`, que é o scraper com login e incremental. Antes de reativar o workflow do GitHub Actions, revisar o `coleta_acervo.py`: hoje ele busca só "protesto", sem login e com seletores genéricos.
+- [ ] **B8.** (antiga D8) Separar triagem e codificação em duas passagens no coder AEP-BR, como prevê o protocolo §11 (Passagens 2 e 3). Apontado por PAPEA. Fazer depois do piloto, quando houver dados de custo.
+- [ ] **B9.** (antiga D9) Gerar um `validation_report.json` por execução do coder, com o registro obrigatório do protocolo §12.6: modelo, hash do prompt, tamanho do gold standard, κ por variável e tipologia de erro. Parte disso já vai em `modelo_versao`.
+
+### Concluídas
+
+- [x] **B0.** Reorganizar MM, NEPAC e AEP-BR em `bancos/` e corrigir os `metadata.json`, que tinham contagens incorretas (2026-10-07).
+- [x] **B1.** Codebook AEP-BR v0.1, com crosswalk por variável para o MM e o NEPAC (2026-10-07).
+- [x] **B2.** Desativar o agendamento diário do workflow "Pipeline Acervo Folha", que falhava todos os dias (2026-10-07).
+- [x] **B3.** Questões em aberto do codebook decididas; codebook v1.0 (2026-10-07). Ver §6 de `codebook_aep_br.md`.
+- [x] **B5.** `coder.py`, `build_dataset.py`, `intercoder_reliability.py`, `init_doca_database.py` e `check_schema_coverage.py` migrados para o AEP-BR, todos lendo o codebook por `src/preprocessing/aep_codebook.py` (2026-10-07). **Substitui a D0 e torna a D3 desnecessária.**
+
+### Histórico da antiga Frente D
+
+- [x] **D0.** Correção de 11 defeitos do coder e alinhamento ao codebook BEP (2026-07-18): schema de ~16 para 41 campos, regra do MAIOR público, UUID5, normalização e evento canônico no build, `protest_events_raw.csv`, kappa com 16 variáveis, `queries.yaml` alinhado ao BEP §3.1. *Substituída pela B5*: o schema agora é gerado do codebook AEP-BR (53 variáveis); as correções de regra continuam valendo.
+- [x] **D3.** ~~Validar o `config/doca_codebook.yaml` reconstruído contra o original.~~ *Obsoleta pela B5*: o codebook de referência passou a ser o `codebook_aep_br.yaml`; o `doca_codebook.yaml` só fornece vocabulários, conferidos por `check_schema_coverage.py`.
+- [x] **D5.** §12 do protocolo — validação da codificação por LLM (Halterman & Keith 2024; PAPEA/Haunss et al. 2025). 2026-07-18.
+- [x] **D6.** Duplicata do pipeline em `docs/artefatos/mapeamento/pea_acervo_folha/` congelada com `ARQUIVO-MORTO.md`. 2026-07-18.
+- [x] **D7.** Parecer sobre fontes alternativas ao Acervo Folha (`docs/fontes-alternativas.md`). Incorporado à lista de fontes do AEP-BR (`bancos/03_aep_br/fontes/fontes_aep_br.csv`). 2026-07-18.
+- [x] **D10.** Revisão do scraper (`src/data/scraper.py`): seletores em `config/selectors.yaml`, modo `--diagnose`, login confirmado antes de coletar, retry, `--dry-run` e `--limit`. 2026-07-18.
+- D1, D2 e D4 → incorporadas à **B6**. D8 → **B8**. D9 → **B9**.
 
 ## Frente C — Consolidação do artigo para preprint · **prioridade alta**
 
@@ -31,43 +55,6 @@ Estudo de caso já alinhado a 4 ciclos (Diretas Já incluída em 2026-07-04, sub
 - [ ] **C5.** Revisão final ABNT e adequação às normas do periódico-alvo.
 - [ ] **C6.** Conferência de datas na redação (comícios de abr/1984 e atos de out/2013) contra `docs/cronologia-validada.md`.
 
-## Frente D — Pipeline `protest_events` (Acervo Folha) · **em pausa quanto à execução**
-
-Guardada em 2026-07-04 quanto à COLETA. Em 2026-07-18 o pipeline foi revisado e corrigido
-offline (não exige credenciais): ver `research-log.md`.
-
-- [x] **D0.** Correção de 11 defeitos de codificação e alinhamento ao codebook BEP (2026-07-18):
-      schema do coder de ~16 para 41 campos; regra de público corrigida (o prompt mandava
-      registrar o MENOR valor, contra o MAIOR do protocolo — enviesava toda variável derivada
-      de tamanho); UUID5 sobre (url, data, cidade); normalização e `canonical_event_id` no
-      build; `protest_events_raw.csv`; kappa com bool/str normalizado e 16 variáveis;
-      `queries.yaml` alinhado às palavras-chave BEP §3.1 e às janelas da periodização v3;
-      limiar de kappa unificado em 0,75. Novo teste `src/data/check_schema_coverage.py`.
-- [x] **D5.** §12 do protocolo — validação da codificação por LLM (Halterman & Keith 2024;
-      PAPEA/Haunss et al. 2025): 5 estágios, gold standard estratificado por ciclo, tipologia
-      de erro, critério de escalada, registro obrigatório. 2026-07-18.
-- [x] **D6.** Duplicata do pipeline em `artefatos/mapeamento/pea_acervo_folha/` congelada
-      com `ARQUIVO-MORTO.md`. 2026-07-18.
-- [x] **D7.** Parecer sobre fontes alternativas ao Acervo Folha (`docs/fontes-alternativas.md`):
-      recomenda investigar a Hemeroteca Digital para Diretas Já e Fora Collor — lacuna que os
-      bancos externos não cobrem; não adotar GDELT como fonte primária. 2026-07-18.
-- [ ] **D8.** Separar triagem e codificação em duas passagens no coder (protocolo §11 prevê
-      Passagens 2 e 3 distintas; o código faz uma só). Apontado por PAPEA.
-- [ ] **D9.** Reintroduzir o `validation_report.json` que a cópia antiga emitia e a vigente não.
-- [x] **D10.** Revisão do coletor `01_scraper.py` (2026-07-18): seletores movidos para
-      `config/selectors.yaml` (editável sem Python, com lista de candidatos por grupo);
-      modo `--diagnose` que grava HTML/screenshot/relatório de casamento de seletores;
-      URL de busca codificada (acentos e espaços quebravam a requisição); hrefs relativos
-      resolvidos; login confirmado antes de coletar; guarda contra paginação infinita;
-      retry com backoff; vazamento de abas corrigido; `--dry-run` e `--limit`;
-      progresso salvo por página. Testado contra fixture local.
-- [ ] **D1.** Validar os seletores CSS contra o site real — **agora com ferramenta**:
-      `python 01_scraper.py --diagnose --headed` produz o relatório; ajustes vão em
-      `config/selectors.yaml`. Continua exigindo credenciais.
-- [ ] **D2.** Instalar dependências (`pip install -r requirements.txt`) e configurar `.env` com credenciais (NUNCA commitar o `.env`).
-- [ ] **D3.** Validar o `config/doca_codebook.yaml` reconstruído contra o original.
-- [ ] **D4.** Primeira execução de teste + aferição de Cohen's Kappa (≥ 0,75).
-
 ## Frente E — Análise dos bancos e sementes · **PRIORIZADA** (ativa desde 2026-07-16)
 
 Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e as sementes `protest_events` das Diretas Já e Fora Collor (`bancos/03_aep_br/sementes/`). Produtos ficam em `data/triangulacao/series_temporais/` (ver README da pasta para o escopo).
@@ -77,19 +64,15 @@ Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e 
 - [ ] **E2.** Usar os microdados como evidência para as hipóteses H1–H3 (repertórios, alvos, respostas estatais em Junho 2013 e Impeachment).
 - [ ] **E3.** Integrar as sementes `protest_events` (Diretas Já + Fora Collor) à análise dos ciclos pré-2011 que os bancos externos não cobrem.
 
-## Verificação bibliográfica — **concluída em 2026-09-01** (em 2026-10-07, `check_bib.py` OK e `lista_verificacao.py` mostra 0 pendentes)
+## Verificação bibliográfica
 
-26 entradas do `.bib` estão marcadas `VERIFICAR` (rodar `python src/analysis/check_bib.py` para a
-lista). Em 2026-08-30 fecharam-se as oito obras brasileiras: quatro saíram da lista (Ricci,
-Scartezini, Ortellado, Becker) e três eram **atribuição errada, não metadado faltando** --
-Sallum Jr. 2015 (o título correto é *O impeachment de Fernando Collor*, Editora 34, o que
-resolve a divergência com `survey.md`), Avritzer 2016 (é o livro *Impasses da democracia no
-Brasil*, não um capítulo) e Ortellado 2016 (Márcio Moretto não é coautor). Seguem abertas
-Limongi 2023, a paginação de Avritzer e a página final de Ortellado.
+A checagem automática está zerada: em 2026-10-07, `python src/analysis/check_bib.py` dá OK e
+`python src/analysis/lista_verificacao.py` mostra 0 entradas marcadas `VERIFICAR`. As 26
+pendências de 2026-07 foram fechadas nos commits `bib:` de 2026-08-30 a 2026-09-01; entre
+elas, três eram atribuição errada e não metadado faltando (Sallum Jr. 2015, Avritzer 2016,
+Ortellado 2016).
 
-- [ ] **V1.** Confirmar volume/número/páginas/DOI/coautoria via Scite ou Elicit. Os conectores
-      caíram durante a sessão de 2026-07-18 antes da checagem. **Registrar como não-verificada
-      qualquer entrada que não se confirme — não preencher por inferência.**
+- [x] **V1.** Metadados (volume, número, páginas, DOI, coautoria) conferidos; lista de verificação zerada em 2026-09-01.
 - [ ] **V2.** Ler na íntegra as obras fichadas a partir de abstract (ver aviso em
       `literature/fichamentos/README.md`) antes de citá-las no artigo.
 
@@ -106,7 +89,7 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 
 ## Concluídas ✅ (registro)
 
-- [x] **Frente A/B** — periodização v2 validada (21 fases; radicalização em J13; extensões do ciclo Dilma). Ver `docs/periodizacao-revisao.md`.
+- [x] **Frente A / antiga B (periodização)** — periodização v2 validada (21 fases; radicalização em J13; extensões do ciclo Dilma). Ver `docs/periodizacao-revisao.md`.
 - [x] Bibliografia ABNT expandida para 86 referências (`artigo/referencias-abnt.md`).
 - [x] Cronologia validada com fontes institucionais; correção do comício de Goiânia (12/abr/1984). Ver `docs/cronologia-validada.md`.
 - [x] Protocolo BEP-CEBRAP (Alonso et al. 2024) incorporado. Ver `docs/aep-protocol-bep.md`.
@@ -134,8 +117,9 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 
 ### Sequência recomendada
 
-**E (E1→E2→E3) → C (itens 1–6) → D (quando retomada).** Por decisão do usuário
-(2026-07-16), a Frente E foi priorizada: a triangulação dos bancos com o
+**E (E1→E2→E3) → C (itens 1–6) → B (B6 quando houver credenciais).** Por decisão do
+usuário (2026-07-16), a Frente E foi priorizada: a triangulação dos bancos com o
 `cycle_phases` produz evidência empírica que alimenta diretamente a discussão do
 artigo — a consolidação (C) encadeia logo depois, já incorporando os achados.
-A Frente D permanece em pausa até haver credenciais do Acervo Folha.
+Na Frente B, o que não depende de credenciais (B7, B4 localmente) pode andar em paralelo;
+o piloto (B6) espera as credenciais da Folha e a chave da API.

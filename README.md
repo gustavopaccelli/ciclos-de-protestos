@@ -135,8 +135,8 @@ O quadro completo — com variáveis independentes/dependentes, indicadores e ev
 
 | Frente | Objetivo | Status |
 |---|---|---|
+| **B** | Bancos de dados e pipeline AEP-BR (absorveu a antiga D): codebook v1.0 e coder prontos; piloto 2013 na Folha | piloto aguarda credenciais |
 | **C** | Consolidação do artigo em preprint (diagrama EOP–DOS–Conjuntura, abstract, revisão ABNT) | aberta |
-| **D** | Execução do pipeline AEP (Acervo Folha) | aguarda credenciais |
 | **E** | Triangulação NEPAC × Mass Mobilization × `cycle_phases` | **em curso (prioritária)** |
 
 ---
