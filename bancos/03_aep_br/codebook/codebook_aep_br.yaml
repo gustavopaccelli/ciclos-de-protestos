@@ -548,6 +548,14 @@ variaveis:
     doca: null
     mm_equiv: null
     nepac_equiv: null
+  - nome: fase
+    bloco: P
+    tipo: str
+    obrigatoria: false
+    definicao: "phase_id de cycle_phases.csv, atribuído junto com ciclo; não codificar à mão"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
   - nome: codificador
     bloco: P
     tipo: enum

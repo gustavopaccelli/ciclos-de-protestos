@@ -1,274 +1,263 @@
-"""02_doca_coder.py — Codificação DoCA/BEP de artigos via API Anthropic.
+"""coder.py — Codificação AEP-BR de matérias via API Anthropic.
 
-Para cada artigo em bancos/03_aep_br/coleta/folha_acervo/, envia o texto ao Claude com o system
-prompt DoCA + codebook e extrai eventos de protesto em JSON validado
-(structured outputs). Saída: data/interim/{hash}.json.
+Para cada matéria em bancos/03_aep_br/coleta/folha_acervo/, envia o texto ao
+Claude com o system prompt montado a partir do codebook AEP-BR e extrai os
+eventos de protesto em JSON validado (structured outputs).
+Saída: data/interim/{arquivo}.json.
 
-- Schema COMPLETO alinhado ao `event_schema` de config/doca_codebook.yaml:
-  Blocos I–V do Protocolo BEP-CEBRAP (Alonso et al. 2024) + campos MPEDS
-  (Hanna 2017). Ver docs/aep-protocol-bep.md.
-- UUID5 determinístico por evento: (source_url, event_date, location_city),
-  conforme codebook e protocolo §4.2 — estável a reordenações do modelo.
-- Prompt caching: system prompt (instruções + codebook) é estável e cacheado
-- Reexecução é incremental: artigos já codificados são pulados
-- Custo: ~1 chamada por artigo; use DOCA_MODEL=claude-sonnet-4-6 p/ triagem barata
+- Schema GERADO de bancos/03_aep_br/codebook/codebook_aep_br.yaml (variáveis)
+  e config/doca_codebook.yaml (vocabulários herdados): não há lista paralela
+  de campos. Ver src/preprocessing/aep_codebook.py.
+- Campos do pipeline (aep_codebook.CAMPOS_PIPELINE) não são pedidos ao modelo:
+  evento_id (UUID5 determinístico), ciclo/fase (pela data), codificador,
+  modelo_versao (modelo + hash do prompt, protocolo §12.6), n_fontes.
+- Prompt caching: o system prompt é estável e cacheado.
+- Recusa (stop_reason "refusal") é coberta pelo fallback no servidor; se a
+  cadeia inteira recusar, ou a saída for cortada por max_tokens, a matéria
+  fica pendente para nova execução.
+- Reexecução é incremental: matérias já codificadas são puladas.
 
-Uso: python 02_doca_coder.py [--batch 100]
+Uso: python src/preprocessing/coder.py [--batch 100]
 """
 
 import argparse
+import hashlib
 import json
 import os
 import uuid
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paths  # noqa: E402
+import aep_codebook as cb  # noqa: E402
+from analysis.atribui_ciclo import ciclo_e_fase  # noqa: E402
 
 import anthropic
-import yaml
 from dotenv import load_dotenv
 from tqdm import tqdm
 
 load_dotenv()
 
-BASE = Path(__file__).resolve().parent
 RAW_DIR = paths.FOLHA_RAW
 CODED_DIR = paths.INTERIM
-CODEBOOK = yaml.safe_load((paths.CONFIG / "doca_codebook.yaml").read_text())
-MODEL = os.environ.get("DOCA_MODEL", "claude-opus-4-8")
+MODEL = os.environ.get("DOCA_MODEL", "claude-opus-5-5")
+EFFORT = os.environ.get("DOCA_EFFORT", "high")
 
 DOCA_NAMESPACE = uuid.UUID("7c0e4d9a-1984-1992-2013-201520160000")
 
-# Limite de caracteres do corpo do artigo enviado ao modelo. Truncamento é
-# avisado explicitamente (antes era silencioso).
+# Limite de caracteres do corpo da matéria enviado ao modelo. Truncamento é
+# avisado explicitamente.
 MAX_ARTICLE_CHARS = 50_000
+
+CAMPOS_PIPELINE = cb.CAMPOS_PIPELINE
+
+# Campos de `fontes` que vêm dos metadados da matéria, não da leitura do modelo.
+FONTE_DO_ARTIGO = {"url", "data_publicacao", "titulo"}
+
+_TIPOS = {"date": "string", "str": "string", "int": "integer", "bool": "boolean", "enum": "string"}
 
 
 def _nullable(*types: str) -> list[str]:
     return [*types, "null"]
 
 
-# Vocabulários derivados do codebook — fonte única de verdade.
-VENUE_TYPES = CODEBOOK["location_venue_types"]
-ORG_TYPES = CODEBOOK["actor_org_types"]
-FORMALIZATION = sorted(CODEBOOK["actor_formalization"].keys())
-CITY_SIZES = sorted(CODEBOOK["city_size_classes"].keys())
-CROWD_BEP = sorted(CODEBOOK["crowd_size_bep"].keys())
-CROWD_SCALE = sorted(CODEBOOK["crowd_size_scale"].keys())
-REPRESSION = sorted(CODEBOOK["repression_levels"].keys())
-VALENCES = sorted(CODEBOOK["valences"].keys())
-TARGETS = CODEBOOK["mpeds_target_categories"]
-CLAIM_CODES = sorted(CODEBOOK["claim_codes"].keys())
-REPERTOIRES = CODEBOOK["repertoires"]
+def _enum_schema(vocab: str, nulo: bool) -> dict:
+    vals = cb.valores(vocab)
+    if nulo:
+        return {"type": _nullable("string"), "enum": [*vals, None]}
+    return {"type": "string", "enum": vals}
+
 
 ACTOR_SCHEMA = {
     "type": "object",
-    "description": "Ator coletivo — Bloco II do protocolo BEP",
+    "description": "Ator coletivo (Bloco II do BEP)",
     "properties": {
-        "name": {
-            "type": "string",
-            "description": "Sigla+nome quando disponível; senão categoria do movimento; senão 'manifestantes'",
-        },
-        "specification": {
-            "type": _nullable("string"),
-            "description": "Subgrupos ou indivíduos nomeados",
-        },
-        "org_type": {"type": "string", "enum": ORG_TYPES},
-        "formalization": {"type": "string", "enum": FORMALIZATION},
+        "name": {"type": "string",
+                 "description": "Sigla+nome quando disponível; senão categoria do movimento; senão 'manifestantes'"},
+        "specification": {"type": _nullable("string"), "description": "Subgrupos ou indivíduos nomeados"},
+        "org_type": {"type": "string", "enum": cb.valores("actor_org_types")},
+        "formalization": {"type": "string", "enum": cb.valores("actor_formalization")},
     },
     "required": ["name", "specification", "org_type", "formalization"],
     "additionalProperties": False,
 }
 
+FONTE_SCHEMA = {
+    "type": "object",
+    "description": "A matéria lida (uma entrada). url, data_publicacao e titulo são preenchidos pelo pipeline.",
+    "properties": {
+        "veiculo": {"type": "string"},
+        "fonte_tipo": {"type": "string", "enum": cb.valores("fonte_tipo")},
+        "papel_fonte": {"type": "string", "enum": cb.valores("papel_fonte")},
+        "edicao": {"type": "string", "enum": ["impressa", "online"]},
+        "secao": {"type": _nullable("string")},
+        "pagina": {"type": _nullable("string")},
+        "qualidade_ocr": {"type": "string", "enum": cb.valores("qualidade_ocr")},
+    },
+    "required": ["veiculo", "fonte_tipo", "papel_fonte", "edicao", "secao", "pagina", "qualidade_ocr"],
+    "additionalProperties": False,
+}
+
+ATO_OFICIAL_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "tipo": {"type": "string", "enum": cb.valores("ato_oficial_tipo")},
+        "orgao": {"type": _nullable("string")},
+        "data": {"type": _nullable("string"), "description": "YYYY-MM-DD"},
+        "url": {"type": _nullable("string")},
+    },
+    "required": ["tipo", "orgao", "data", "url"],
+    "additionalProperties": False,
+}
+
+_OBJETOS = {"atores": ACTOR_SCHEMA, "fontes": FONTE_SCHEMA, "atos_oficiais": ATO_OFICIAL_SCHEMA}
+
+
+def _propriedade(v: dict) -> dict:
+    """Schema JSON de uma variável do codebook."""
+    tipo, nulo, voc = v["tipo"], not v["obrigatoria"], v.get("vocabulario")
+    if tipo == "list[obj]":
+        prop = {"type": "array", "items": _OBJETOS[v["nome"]]}
+    elif tipo == "list[str]":
+        itens = {"type": "string"}
+        if voc and cb.valores(voc) is not None:
+            itens["enum"] = cb.valores(voc)
+        prop = {"type": "array", "items": itens}
+    elif tipo == "enum":
+        prop = _enum_schema(voc, nulo)
+    else:
+        base = _TIPOS[tipo]
+        prop = {"type": _nullable(base) if nulo else base}
+    prop["description"] = v["definicao"]
+    return prop
+
+
 EVENT_PROPERTIES = {
-    # ---- Bloco I — identificação ----
-    "event_date": {
-        "type": _nullable("string"),
-        "description": "Data do EVENTO (YYYY-MM-DD), não da publicação",
-    },
-    "location_venue": {
-        "type": "array",
-        "items": {"type": "string"},
-        "description": "Todos os locais/trajetos do evento",
-    },
-    "location_venue_type": {
-        "type": "string",
-        "enum": VENUE_TYPES,
-        "description": "Tipo do local principal; 'SI' se sem informação",
-    },
-    "location_conventional": {
-        "type": _nullable("boolean"),
-        "description": "Uso convencional do local (ver location_conventional no codebook)",
-    },
-    "location_city": {"type": _nullable("string")},
-    "city_size": {"type": _nullable("string"), "enum": [*CITY_SIZES, None]},
-    "location_state": {"type": _nullable("string"), "description": "UF, ex: SP"},
-    "crowd_size_reported": {
-        "type": _nullable("integer"),
-        "description": "MAIOR valor de público informado pelas fontes (protocolo §5 Bloco I)",
-    },
-    "crowd_size_min": {
-        "type": _nullable("integer"),
-        "description": "Menor estimativa informada, quando há divergência entre fontes",
-    },
-    "crowd_size_max": {
-        "type": _nullable("integer"),
-        "description": "Maior estimativa informada; igual a crowd_size_reported",
-    },
-    "crowd_size_scale": {"type": "string", "enum": CROWD_SCALE},
-    "crowd_size_bep": {
-        "type": _nullable("string"),
-        "enum": [*CROWD_BEP, None],
-        "description": "Derivado de crowd_size_reported",
-    },
-    # ---- Bloco II — atores ----
-    "actors": {"type": "array", "items": ACTOR_SCHEMA},
-    # ---- Bloco III — performances ----
-    "repertoire": {"type": "string", "enum": REPERTOIRES},
-    "action_object": {"type": _nullable("string")},
-    "action_instrument": {"type": _nullable("string")},
-    "symbols": {
-        "type": "array",
-        "items": {"type": "string"},
-        "description": "Bandeiras, signos visuais/corporais ostentados",
-    },
-    # ---- Bloco IV — temas e slogans ----
-    "claim_code": {"type": "string", "enum": CLAIM_CODES},
-    "claim_text": {"type": "string"},
-    "valence": {"type": "string", "enum": VALENCES},
-    "slogans": {
-        "type": "array",
-        "items": {"type": "string"},
-        "description": "Slogans verbatim, grafia original",
-    },
-    # ---- Bloco V — respostas e interação ----
-    "conflict_present": {"type": "boolean"},
-    "repression": {"type": "string", "enum": REPRESSION},
-    "conflict_police": {"type": "boolean"},
-    "conflict_inter_group": {"type": "boolean"},
-    "arrests_reported": {"type": _nullable("integer")},
-    "injuries_reported": {"type": _nullable("integer")},
-    # ---- Elegibilidade e notas ----
-    "eligible": {
-        "type": "boolean",
-        "description": "Atende aos 4 critérios de evento de protesto (protocolo §2)",
-    },
-    "notes": {"type": _nullable("string")},
-    # ---- Campos MPEDS (Hanna 2017) ----
-    "end_date": {"type": _nullable("string"), "description": "YYYY-MM-DD, null se não informado"},
-    "duration_days": {"type": _nullable("integer")},
-    "multi_event_article": {
-        "type": "boolean",
-        "description": "O artigo fonte cobre múltiplos eventos de protesto?",
-    },
-    "article_desc": {"type": "string", "description": "Descrição do artigo, máx. 300 chars"},
-    "event_desc": {"type": "string", "description": "Descrição do evento, máx. 300 chars"},
-    "counter_protest": {"type": "boolean"},
-    "smo": {
-        "type": "array",
-        "items": {"type": "string"},
-        "description": "Organizações de Movimento Social formais identificadas",
-    },
-    "target": {"type": "string", "enum": TARGETS, "description": "Alvo primário das reivindicações"},
+    v["nome"]: _propriedade(v) for v in cb.variaveis() if v["nome"] not in CAMPOS_PIPELINE
 }
 
 EVENT_SCHEMA = {
     "type": "object",
     "properties": {
-        "events": {
+        "eventos": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": EVENT_PROPERTIES,
-                "required": sorted(EVENT_PROPERTIES.keys()),
+                "required": sorted(EVENT_PROPERTIES),
                 "additionalProperties": False,
             },
         },
     },
-    "required": ["events"],
+    "required": ["eventos"],
     "additionalProperties": False,
 }
 
-# Campos atribuídos pelo pipeline, não pelo modelo (event_id, source_*,
-# canonical_event_id). Declarados aqui para a checagem de cobertura do schema.
-PIPELINE_ASSIGNED_FIELDS = {"event_id", "source_url", "source_date", "canonical_event_id"}
 
-SYSTEM_PROMPT = f"""Você é um codificador treinado em Análise de Eventos de Protesto (AEP) \
-seguindo o Protocolo BEP-CEBRAP (Alonso et al., 2024) com o esquema DoCA. Sua tarefa: ler uma \
-matéria jornalística e extrair TODOS os eventos de protesto distintos nela relatados, no \
-esquema JSON fornecido.
+def _dump(obj) -> str:
+    # sort_keys mantém o texto idêntico entre execuções (cache do prompt).
+    return json.dumps(obj, ensure_ascii=False, indent=2, sort_keys=True)
 
-CRITÉRIO DE ELEGIBILIDADE (campo eligible) — os 4 critérios do protocolo §2:
-(1) ação pública e coletiva (3+ participantes);
-(2) promovida por atores não-estatais;
-(3) de caráter contencioso;
-(4) portadora de demanda social ou política.
-Registre eligible=false quando qualquer critério falhar (ex.: coletiva de imprensa, nota de
-repúdio, ato fechado, evento apenas virtual, evento anunciado mas não confirmado) e explique
-em notes.
 
-EVENTO ≠ MATÉRIA (protocolo §4):
-- Um registro por EVENTO, não por matéria. Se a matéria cobre vários eventos, emita vários
-  registros e marque multi_event_article=true.
-- Mesmos atores em intervalo < 24h = UM evento. Ação contínua > 24h (ex.: ocupação de 5 dias)
-  = UM evento (use end_date/duration_days).
-- Mesmos atores com intervalo > 24h = eventos DISTINTOS.
-- Mesma localidade com atores iguais ou similares, mesmo em trajetos diferentes = UM evento.
-- Localidades distintas nomeadas separadamente = eventos DISTINTOS.
-- Pautas opostas em trajetos sobrepostos = eventos DISTINTOS (separe por organizador).
+def _monta_prompt() -> str:
+    a = cb.aep()
+    criterios = "\n".join(f"({i}) {c['definicao']}" for i, c in enumerate(a["criterios_elegibilidade"], 1))
+    exclusoes = "\n".join(f"- {e}" for e in a["exclusoes"])
+    u = a["regras_unitizacao"]
+    mesmo = "\n".join(f"- {r}" for r in u["mesmo_evento"])
+    distintos = "\n".join(f"- {r}" for r in u["eventos_distintos"])
+    decisoes = "\n".join(f"- {k}: {' '.join(t.split())}" for k, t in a["decisoes"].items())
+    vocabs = sorted({v["vocabulario"] for v in cb.variaveis()
+                     if v.get("vocabulario") and v["nome"] not in CAMPOS_PIPELINE
+                     and v["vocabulario"] != "actor_schema"}
+                    | {"actor_org_types", "actor_formalization", "fonte_tipo", "papel_fonte",
+                       "ato_oficial_tipo", "location_conventional"})
+    blocos_vocab = "\n\n".join(f"{n}:\n{_dump(cb.vocab_bruto(n))}" for n in vocabs)
 
-REGRAS DE CODIFICAÇÃO:
-- event_date é a data do evento; infira do texto e da data de publicação; null se impossível.
-- PÚBLICO: quando houver divergência entre fontes (ex.: PM vs. organizadores) ou intervalo,
-  registre o MAIOR valor em crowd_size_reported, e preserve o intervalo em crowd_size_min /
-  crowd_size_max; explique a divergência em notes. Se houver um único valor, os três campos
-  recebem esse valor. crowd_size_bep é derivado de crowd_size_reported.
-- claim_code: o código do codebook que melhor descreve a demanda PRINCIPAL; detalhe em claim_text.
-- repertoire: use o verbo/substantivo canônico; sinônimos convergem para o mais geral.
-- actors: um objeto por ator coletivo. Prioridade do nome: sigla+nome > categoria do movimento >
-  "manifestantes" (residual, com org_type="manifestantes").
-- Não invente informação ausente: use null, listas vazias, ou "SI" onde o enum permitir.
+    return f"""Você é um codificador treinado em Análise de Eventos de Protesto (AEP) e aplica o \
+codebook AEP-BR v{a['versao']}, baseado no protocolo do BEP (Alonso et al. 2024, Plural 31(2)). \
+Leia uma matéria jornalística e extraia TODOS os eventos de protesto distintos nela relatados, \
+no esquema JSON fornecido. Cada campo traz sua definição no esquema.
 
-CODEBOOK — claim_codes:
-{json.dumps(CODEBOOK["claim_codes"], ensure_ascii=False, indent=2)}
+ELEGIBILIDADE (campo elegivel) — o evento precisa satisfazer os 4 critérios:
+{criterios}
+Exclusões:
+{exclusoes}
+Quando algum critério falhar, registre o evento com elegivel=false e explique em notas.
 
-REPERTÓRIOS canônicos:
-{json.dumps(REPERTOIRES, ensure_ascii=False, indent=2)}
+EVENTO ≠ MATÉRIA. Um registro por evento. Se a matéria relata vários eventos, emita vários \
+registros e marque materia_multi_evento=true.
+É o mesmo evento quando:
+{mesmo}
+São eventos distintos quando:
+{distintos}
+Ações simultâneas: {' '.join(u['acoes_simultaneas'].split())}
+Dê o mesmo valor de evento_coordenado_id (um rótulo curto, ex.: "ato-nacional-2013-06-20") a \
+todos os registros de um mesmo ato em várias cidades; null se não for coordenado.
 
-ESCALA DE MULTIDÃO (crowd_size_scale):
-{json.dumps(CODEBOOK["crowd_size_scale"], ensure_ascii=False, indent=2)}
+PÚBLICO: {' '.join(a['regra_publico'].split())} Registre o MAIOR valor em publico_max. \
+Se houver um único valor, publico_max e publico_min recebem esse valor.
 
-CATEGORIAS BEP DE PÚBLICO (crowd_size_bep):
-{json.dumps(CODEBOOK["crowd_size_bep"], ensure_ascii=False, indent=2)}
+DECISÕES DO CODEBOOK v{a['versao']}:
+{decisoes}
 
-TIPOS DE LOCAL e uso convencional:
-{json.dumps(CODEBOOK["location_conventional"], ensure_ascii=False, indent=2)}
+CONTAGENS (detidos, feridos, mortos): null = a matéria não menciona; -1 = houve, sem número; \
+inteiro ≥ 0 = número informado.
 
-VALÊNCIAS:
-{json.dumps(CODEBOOK["valences"], ensure_ascii=False, indent=2)}
+FONTES: o campo fontes recebe UMA entrada, descrevendo a matéria que você está lendo \
+(veículo, tipo, papel, edição, seção, página, qualidade do OCR). Avalie qualidade_ocr pelo \
+próprio texto recebido: nao_se_aplica para texto digital nativo. O campo qualidade_ocr do \
+evento repete esse valor.
 
-NÍVEIS DE REPRESSÃO:
-{json.dumps(CODEBOOK["repression_levels"], ensure_ascii=False, indent=2)}
+NÃO preencha ciclo, fase, evento_id nem codificador: o pipeline atribui esses campos.
+Não invente informação ausente: use null, listas vazias ou "SI" onde o vocabulário permitir. \
+Use confianca para dizer quão segura é a codificação do registro.
+
+VOCABULÁRIOS:
+{blocos_vocab}
 """
 
 
-def deterministic_id(url: str, event_date: str | None, location_city: str | None,
-                     claim_code: str | None, repertoire: str | None) -> str:
-    """UUID5 sobre (source_url, event_date, location_city, claim, repertório).
+SYSTEM_PROMPT = _monta_prompt()
+PROMPT_HASH = hashlib.sha256(SYSTEM_PROMPT.encode()).hexdigest()[:12]
 
-    Protocolo §4.2. Deliberadamente NÃO usa o índice posicional do evento no
-    artigo: o índice muda se o modelo reordenar a saída, o que quebraria a
-    estabilidade do ID entre recodificações.
 
-    claim_code e repertoire entram na chave porque data+cidade não bastam para
-    distinguir eventos: uma mesma matéria costuma relatar manifestação e
-    contramanifestação no mesmo dia e cidade. Com a chave curta os dois
-    recebiam o mesmo event_id e um deles era descartado silenciosamente pelo
-    drop_duplicates da Passagem 4.
+def deterministic_id(url: str, data_inicio: str | None, cidade: str | None,
+                     tema_codigo: list | None, repertorio: list | None) -> str:
+    """UUID5 sobre (url, data, cidade, tema principal, repertório principal).
+
+    Não usa o índice do evento na matéria: ele muda se o modelo reordenar a
+    saída. Tema e repertório entram na chave porque data+cidade não separam
+    manifestação e contramanifestação relatadas na mesma matéria.
     """
-    chave = f"{url}|{event_date}|{location_city}|{claim_code}|{repertoire}"
+    tema = (tema_codigo or [None])[0]
+    rep = (repertorio or [None])[0]
+    chave = f"{url}|{data_inicio}|{cidade}|{tema}|{rep}"
     return str(uuid.uuid5(DOCA_NAMESPACE, chave))
+
+
+def completa_pipeline(ev: dict, art: dict, modelo: str) -> dict:
+    """Preenche os campos que o pipeline, e não o modelo, é responsável por atribuir."""
+    for fonte in ev.get("fontes") or []:
+        fonte["url"] = art.get("url")
+        fonte["data_publicacao"] = art.get("date_hint")
+        fonte["titulo"] = art.get("title")
+    ev["evento_id"] = deterministic_id(art.get("url", ""), ev.get("data_inicio"), ev.get("cidade"),
+                                       ev.get("tema_codigo"), ev.get("repertorio"))
+    ev["evento_canonico_id"] = None  # atribuído no build_dataset.py
+    ev["ciclo"], ev["fase"] = (ciclo_e_fase(ev["data_inicio"]) if ev.get("data_inicio")
+                               else ("fora_de_ciclo", None))
+    ev["codificador"] = "llm"
+    ev["modelo_versao"] = f"{modelo}#prompt:{PROMPT_HASH}"
+    ev["cidade_ibge"] = None   # normalização posterior
+    ev["porte_cidade"] = None  # normalização posterior (população IBGE)
+    ev["n_fontes"] = len({f.get("veiculo") for f in ev.get("fontes") or []})
+    return ev
+
+
+class CodificacaoIncompleta(Exception):
+    """Recusa da cadeia inteira ou saída cortada: a matéria fica pendente."""
 
 
 def code_article(client: anthropic.Anthropic, art: dict) -> dict:
@@ -277,40 +266,41 @@ def code_article(client: anthropic.Anthropic, art: dict) -> dict:
         print(f"[aviso] texto truncado em {MAX_ARTICLE_CHARS} chars: {art.get('url')}")
         body = body[:MAX_ARTICLE_CHARS]
 
-    response = client.messages.create(
+    with client.beta.messages.stream(
         model=MODEL,
-        max_tokens=16000,
+        max_tokens=32000,
         thinking={"type": "adaptive"},
-        system=[{
-            "type": "text",
-            "text": SYSTEM_PROMPT,
-            "cache_control": {"type": "ephemeral"},
-        }],
-        output_config={"format": {"type": "json_schema", "schema": EVENT_SCHEMA}},
+        betas=["server-side-fallback-2026-07-01"],
+        fallbacks="default",
+        system=[{"type": "text", "text": SYSTEM_PROMPT, "cache_control": {"type": "ephemeral"}}],
+        output_config={"effort": EFFORT, "format": {"type": "json_schema", "schema": EVENT_SCHEMA}},
         messages=[{
             "role": "user",
             "content": (
                 f"URL: {art.get('url')}\n"
+                f"Veículo (pista): {art.get('source', 'Folha de S.Paulo')}\n"
                 f"Data de publicação (pista): {art.get('date_hint')}\n"
                 f"Título: {art.get('title')}\n\n"
                 f"{body}"
             ),
         }],
-    )
+    ) as stream:
+        response = stream.get_final_message()
+
+    if response.stop_reason == "refusal":
+        cat = response.stop_details.category if response.stop_details else None
+        raise CodificacaoIncompleta(f"recusa (categoria {cat})")
+    if response.stop_reason == "max_tokens":
+        raise CodificacaoIncompleta("saída cortada por max_tokens")
     text = next((b.text for b in response.content if b.type == "text"), None)
     if text is None:
-        raise ValueError("resposta sem bloco de texto")
+        raise CodificacaoIncompleta("resposta sem bloco de texto")
+
     data = json.loads(text)
-    for ev in data["events"]:
-        ev["event_id"] = deterministic_id(
-            art.get("url", ""), ev.get("event_date"), ev.get("location_city"),
-            ev.get("claim_code"), ev.get("repertoire"),
-        )
-        ev["source_url"] = art.get("url")
-        ev["source_date"] = art.get("date_hint")
-        # Atribuído na Passagem 4 (03_build_dataset.py), por agrupamento entre fontes.
-        ev["canonical_event_id"] = None
+    for ev in data["eventos"]:
+        completa_pipeline(ev, art, response.model)
     data["_usage"] = {
+        "modelo": response.model,
         "input_tokens": response.usage.input_tokens,
         "output_tokens": response.usage.output_tokens,
         "cache_read": response.usage.cache_read_input_tokens,
@@ -325,7 +315,7 @@ def run(batch: int | None) -> None:
                if not (CODED_DIR / p.name).exists()]
     if batch:
         pending = pending[:batch]
-    print(f"{len(pending)} artigos a codificar (modelo: {MODEL})")
+    print(f"{len(pending)} matérias a codificar (modelo: {MODEL}, effort: {EFFORT}, prompt: {PROMPT_HASH})")
 
     falhas = 0
     for path in tqdm(pending):
@@ -334,24 +324,29 @@ def run(batch: int | None) -> None:
             continue
         try:
             result = code_article(client, art)
+        except anthropic.RateLimitError as e:
+            print(f"[limite de taxa] {path.name}: {e.message}")
+            falhas += 1
+            continue
         except anthropic.APIStatusError as e:
             print(f"[erro API] {path.name}: {e.status_code} {e.message}")
             falhas += 1
             continue
-        except (json.JSONDecodeError, ValueError, KeyError) as e:
-            # Antes, uma resposta malformada abortava o lote inteiro.
-            print(f"[erro parse] {path.name}: {type(e).__name__}: {e}")
+        except anthropic.APIConnectionError as e:
+            print(f"[erro de conexão] {path.name}: {e}")
             falhas += 1
             continue
-        (CODED_DIR / path.name).write_text(
-            json.dumps(result, ensure_ascii=False, indent=2)
-        )
+        except (CodificacaoIncompleta, json.JSONDecodeError, KeyError) as e:
+            print(f"[incompleta] {path.name}: {type(e).__name__}: {e}")
+            falhas += 1
+            continue
+        (CODED_DIR / path.name).write_text(json.dumps(result, ensure_ascii=False, indent=2))
     if falhas:
-        print(f"{falhas} artigo(s) falharam e permanecem pendentes para nova execução.")
+        print(f"{falhas} matéria(s) falharam e permanecem pendentes para nova execução.")
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--batch", type=int, default=None,
-                    help="codifica no máximo N artigos (controle de custo)")
+                    help="codifica no máximo N matérias (controle de custo)")
     run(ap.parse_args().batch)

@@ -65,7 +65,7 @@ Registrar a **maior** estimativa em `publico_max` e a menor em `publico_min`. To
 
 ## 3. Variáveis
 
-As variáveis estão organizadas nos cinco blocos do BEP, mais um bloco de proveniência (P) e um de deduplicação (D). Na tabela, **★** marca as variáveis obrigatórias. Os vocabulários e as definições completas estão no YAML.
+As variáveis estão organizadas nos cinco blocos do BEP, mais um bloco de proveniência (P) e um de deduplicação (D). Na tabela, **★** marca as variáveis obrigatórias. Os vocabulários e as definições completas estão no YAML, que tem 53 variáveis.
 
 | Bloco | Variável | Conteúdo | MM | NEPAC |
 |---|---|---|---|---|
@@ -88,7 +88,7 @@ As variáveis estão organizadas nos cinco blocos do BEP, mais um bloco de prove
 | V | `detidos`, `feridos`, `mortos` | resultado | `arrests`/`beatings`/`killings` | `Detidos`/`Feridos`/`Mortos` |
 | V | `atos_oficiais` | decretos de GLO, Força Nacional etc. | — | — |
 | P | `fontes` ★, `n_fontes` ★, `qualidade_ocr` ★ | matérias usadas e qualidade do texto | `sources` | `Identificacao_do_veiculo` |
-| P | `elegivel` ★, `codificador` ★, `modelo_versao`, `confianca` ★, `ciclo`, `notas` | controle | `protest`, `notes` | — |
+| P | `elegivel` ★, `codificador` ★, `modelo_versao`, `confianca` ★, `ciclo`, `fase`, `notas` | controle | `protest`, `notes` | — |
 | D | `evento_canonico_id`, `materia_multi_evento` | deduplicação | — | — |
 
 ### 3.1 Convenção para contagens

@@ -17,10 +17,9 @@ O banco SQLite gerado pelo pipeline (`protest_events.db`) fica nesta pasta e é 
 - A coleta não começou:
   - O scraper da Folha precisa de credenciais de assinante, definidas em `.env` na raiz a partir de `.env.example`.
   - O workflow diário do GitHub Actions foi **desativado em 2026-10-07** depois de falhar em todas as execuções desde 27/09. Ainda é possível rodá-lo à mão, pela aba Actions, com `workflow_dispatch`.
-- O `config/doca_codebook.yaml` continua sendo o que o codificador (`src/preprocessing/coder.py`) lê. A migração do codificador para o esquema AEP-BR é o próximo passo.
+- O codificador (`src/preprocessing/coder.py`) já usa o AEP-BR: o schema JSON, o prompt e a tabela SQLite são gerados de `codebook_aep_br.yaml`, com os vocabulários herdados de `config/doca_codebook.yaml`. O modelo padrão é `claude-opus-5-5`, com fallback por recusa ativado. `python src/data/check_schema_coverage.py` confere se coder e codebook estão alinhados.
 
 ## Próximos passos
 
-1. Adaptar `src/preprocessing/coder.py` e `src/data/init_doca_database.py` ao `codebook_aep_br.yaml`.
-2. Fazer um piloto em 2013 com a Folha e validar contra o NEPAC.
-3. Expandir para 1983–1992, onde as sementes servem de gold standard, e depois para 2017 em diante.
+1. Fazer um piloto em 2013 com a Folha e validar contra o NEPAC.
+2. Expandir para 1983–1992, onde as sementes servem de gold standard, e depois para 2017 em diante.

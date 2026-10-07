@@ -524,3 +524,13 @@ real segue pendente (D1) — exige assinatura.**
 - **OCR:** nova variável `qualidade_ocr` (boa/regular/ruim/nao_se_aplica), registrada por fonte e no registro.
 - **Impresso × online:** a edição impressa é a principal. A online só cria evento se o fato não saiu no impresso.
 - **`ciclo`:** atribuído automaticamente pela data com `src/analysis/atribui_ciclo.py`. O teste nas sementes acertou as 74 (59 de Diretas Já e 15 de Fora Collor).
+
+## 2026-10-07 — Coder migrado para o codebook AEP-BR
+
+- `src/preprocessing/aep_codebook.py` é o único leitor do codebook. Ele junta `codebook_aep_br.yaml` (variáveis) e `config/doca_codebook.yaml` (vocabulários herdados).
+- O `coder.py` agora gera o schema JSON e o system prompt a partir do codebook, com 44 campos pedidos ao modelo. O pipeline preenche nove campos: `evento_id`, `evento_canonico_id`, `ciclo`, `fase`, `codificador`, `modelo_versao` (modelo + hash do prompt), `cidade_ibge`, `porte_cidade` e `n_fontes`.
+- Modelo padrão: `claude-opus-5-5`, com effort `high`, streaming e fallback no servidor em caso de recusa. Uma recusa da cadeia inteira ou uma saída cortada deixam a matéria pendente.
+- `build_dataset.py`, `intercoder_reliability.py`, `init_doca_database.py` e `check_schema_coverage.py` passaram a usar os nomes do AEP-BR.
+- O `load_acervo_to_doca.py` deixou de inventar um evento por matéria (cidade, tema e repertório padrão) e agora só grava as matérias brutas.
+- O codebook ganhou a variável `fase`, que acompanha `ciclo` e chega a 53 variáveis.
+- Os testes foram só offline. Nenhuma chamada real à API foi feita.
