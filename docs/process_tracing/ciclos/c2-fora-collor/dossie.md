@@ -12,7 +12,7 @@ ancoragem em fonte oficial peça a peça — é isso que este dossiê produz.
 
 ## Fases
 
-Ver `data/cycle_phases.csv`, prefixo `FC-`. Ciclo de 1991-11-01 a 1992-12-31.
+Ver `data/processed/cycle_phases/cycle_phases.csv`, prefixo `FC-`. Ciclo de 1991-11-01 a 1992-12-31.
 
 ## Janelas
 

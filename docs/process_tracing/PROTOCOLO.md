@@ -9,7 +9,7 @@
 É um mapeamento, em **fontes oficiais**, dos quatro ciclos de protesto do projeto,
 organizado em três tempos: antecedente (T-1), ciclo (T0) e desfechos (T+1).
 
-**Não** é uma nova análise de eventos de protesto — isso é `pipeline/` + AEP-BEP. Não é uma
+**Não** é uma nova análise de eventos de protesto — isso é `src/` + `bancos/03_aep_br/` + AEP-BEP. Não é uma
 nova cronologia — isso é `docs/cronologia-validada.md`, que este protocolo referencia em
 vez de duplicar. E não é um substituto dos memorandos de `experiments/`, que permanecem
 como material exploratório.

@@ -21,7 +21,7 @@ constituída.
 No Quadro 8 ampliado, as **nove células de C1 estão vazias**: a tese não as formulou. Este
 dossiê é o que as preenche.
 
-## Fases (de `data/cycle_phases.csv`)
+## Fases (de `data/processed/cycle_phases/cycle_phases.csv`)
 
 | Fase | Período |
 |---|---|
@@ -81,7 +81,7 @@ Codificar pelas quatro categorias de Souza (1986). Nada preenchido ainda.
 ## T0 — o ciclo
 
 Cronologia de comícios já validada em `docs/cronologia-validada.md` e em
-`data/protest_events_seeds/` (59 eventos-semente) e `data/diretas_ja/` (50 comícios, 490
+`bancos/03_aep_br/sementes/` (59 eventos-semente) e `bancos/03_aep_br/sementes/diretas_ja/` (50 comícios, 490
 por estado). **Não reescrever aqui** — referenciar. O que este dossiê acrescenta é o rastro
 institucional paralelo: tramitação da PEC, sessões, requerimentos, estado de emergência.
 
@@ -146,7 +146,7 @@ Fonte de verdade: `dados/predicoes.csv`. Esta seção é gerada — não editar 
 
 - *Predição.* Teste fora de amostra: H2.3 prevê que frame alinhado a valores normativos dominantes amplie o recrutamento. Em 1984 o frame 'democracia/eleições diretas' deve ter recrutado além das bases orgânicas da oposição — atingindo públicos não mobilizados previamente.
 - *O que a refutaria.* Se a composição social dos comícios se restringir às bases já organizadas (sindicatos, estudantes, militância partidária), sem adesão de públicos não-orgânicos, o frame não produziu recrutamento ampliado e H2.3 falha no ciclo de maior escala da série.
-- *Teste previsto:* aro · *Indicador:* Composição sociológica dos comícios; adesão de públicos não-orgânicos · *Fonte prevista:* data/diretas_ja/; sementes; literatura
+- *Teste previsto:* aro · *Indicador:* Composição sociológica dos comícios; adesão de públicos não-orgânicos · *Fonte prevista:* bancos/03_aep_br/sementes/diretas_ja/; sementes; literatura
 
 **H2.4**
 

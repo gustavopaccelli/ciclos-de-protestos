@@ -12,7 +12,7 @@ ancoragem em fonte oficial peça a peça — é isso que este dossiê produz.
 
 ## Fases
 
-Ver `data/cycle_phases.csv`, prefixo `ID-`. Ciclo de 2014-10-27 a 2016-09-30.
+Ver `data/processed/cycle_phases/cycle_phases.csv`, prefixo `ID-`. Ciclo de 2014-10-27 a 2016-09-30.
 
 ## Janelas
 

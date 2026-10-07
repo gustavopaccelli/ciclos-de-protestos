@@ -26,9 +26,9 @@ própria. É exatamente o nosso caso.
 ## Onde entra no projeto
 - **`docs/aep-protocol-bep.md` §12** — a seção foi escrita operacionalizando estes cinco
   estágios (§12.1 a §12.5).
-- **`pipeline/config/doca_codebook.yaml`** — motivou converter o `actor_schema` de
+- **`config/doca_codebook.yaml`** — motivou converter o `actor_schema` de
   comentário YAML para estrutura real (estágio 1: codebook legível por máquina).
-- **`pipeline/check_schema_coverage.py`** — o teste existe para garantir o estágio 1.
+- **`src/data/check_schema_coverage.py`** — o teste existe para garantir o estágio 1.
 - **H*** — indiretamente: variáveis com κ insuficiente não podem sustentar teste de hipótese.
 
 ## Achado que muda a prática do projeto

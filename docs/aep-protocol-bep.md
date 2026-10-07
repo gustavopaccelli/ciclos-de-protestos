@@ -8,7 +8,7 @@ DOI: https://doi.org/10.11606/issn.2176-8099.pcso.2024.233335
 
 Este documento extrai as decisões metodológicas do artigo e as mapeia para o pipeline
 `protest_events` deste projeto. Deve ser lido em conjunto com
-`pipeline/config/doca_codebook.yaml` e `pipeline/docs/TUTORIAL.md`.
+`config/doca_codebook.yaml` e `src/data/pipeline_docs/TUTORIAL.md`.
 
 ---
 
@@ -101,7 +101,7 @@ depredação
 black bloc
 ```
 
-Estas palavras estão refletidas em `pipeline/config/queries.yaml`. Ao expandir para
+Estas palavras estão refletidas em `config/queries.yaml`. Ao expandir para
 novos períodos ou temas, testar novas palavras em amostra antes de incorporar ao conjunto
 principal.
 
@@ -356,7 +356,7 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 |---|---|
 | Entrada | Palavras-chave de `queries.yaml`; período de busca |
 | Processamento | Login no Acervo Folha; busca incremental por data; captura de HTML/texto da notícia |
-| Saída | Um JSON por matéria em `pipeline/data/raw/` com `{url, date_hint, title, text, search_term, date_range}` |
+| Saída | Um JSON por matéria em `bancos/03_aep_br/coleta/folha_acervo/` com `{url, date_hint, title, text, search_term, date_range}` |
 
 > Nomes de campo **alinhados ao código** em 2026-07-18. Versões anteriores deste
 > protocolo listavam `{source_url, source_date, headline, body_text, query_used}`, que o
@@ -430,7 +430,7 @@ O codebook precisa ser legível **tanto por humano quanto por LLM**. Requisitos:
 - regras de decisão explícitas onde há ambiguidade previsível — notadamente a **regra de
   público** (§5 Bloco I: registrar sempre o **maior** valor, preservando o intervalo em
   `crowd_size_min`/`crowd_size_max`);
-- o teste `pipeline/check_schema_coverage.py` trava a correspondência entre o codebook e o
+- o teste `src/data/check_schema_coverage.py` trava a correspondência entre o codebook e o
   `EVENT_SCHEMA` do coder, e falha se algum campo declarado não for implementado ou se algum
   enum divergir.
 

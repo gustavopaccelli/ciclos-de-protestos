@@ -75,7 +75,7 @@ O pico de 2013 (Junho) e a alta de 2015–2016 (impeachment) coincidem com dois 
 
 ## Relação com o projeto
 
-Este banco é **complementar** ao pipeline AEP próprio (`pipeline/`, Protocolo BEP-CEBRAP) e ao dataset `cycle_phases` (`data/cycle_phases.csv`). Enquanto o `cycle_phases` codifica **fases×ciclos** em escala ordinal, o banco NEPAC oferece **microdados evento-a-evento** para 2011–2016, permitindo:
+Este banco é **complementar** ao pipeline AEP próprio (`src/` + `bancos/03_aep_br/`, Protocolo BEP-CEBRAP) e ao dataset `cycle_phases` (`data/processed/cycle_phases/cycle_phases.csv`). Enquanto o `cycle_phases` codifica **fases×ciclos** em escala ordinal, o banco NEPAC oferece **microdados evento-a-evento** para 2011–2016, permitindo:
 
 - Validação empírica externa dos scores de EOP/DOS dos ciclos Junho 2013 e Impeachment Dilma.
 - Análise de repertórios, alvos e bases sociais como evidência para as hipóteses H1–H3 (`docs/quadro-hipoteses.md`).

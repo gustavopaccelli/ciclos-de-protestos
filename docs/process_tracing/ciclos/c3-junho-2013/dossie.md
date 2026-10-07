@@ -12,7 +12,7 @@ ancoragem em fonte oficial peça a peça — é isso que este dossiê produz.
 
 ## Fases
 
-Ver `data/cycle_phases.csv`, prefixo `J13-`. Ciclo de 2013-06-06 a 2013-12-31.
+Ver `data/processed/cycle_phases/cycle_phases.csv`, prefixo `J13-`. Ciclo de 2013-06-06 a 2013-12-31.
 
 ## Janelas
 

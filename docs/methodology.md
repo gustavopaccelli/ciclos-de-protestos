@@ -65,9 +65,9 @@
 
 | Fonte | Cobertura | Variáveis Chave | Acesso |
 |-------|-----------|-----------------|--------|
-| NEPAC | 2011-2016 | Tipo de ator, reivindicações, violência | dados/raw/bancos-externos/nepac-tatagiba-galvao-2019/ |
-| Mass Mobilization | 1990-2020 | Data, localização, estimativa de tamanho | dados/raw/bancos-externos/mass-mobilization-clark-regan-2020/ |
-| Acervo Folha | 1985-2016 | Eventos Diretas Já e cobertura geral | Scrapyng via pipeline/01_scraper.py |
+| NEPAC | 2011-2016 | Tipo de ator, reivindicações, violência | dados/raw/bancos/02_nepac/ |
+| Mass Mobilization | 1990-2020 | Data, localização, estimativa de tamanho | dados/raw/bancos/01_mass_mobilization/ |
+| Acervo Folha | 1985-2016 | Eventos Diretas Já e cobertura geral | Scrapyng via src/data/scraper.py |
 
 ---
 

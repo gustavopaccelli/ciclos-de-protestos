@@ -17,7 +17,7 @@ Kotscho (1984), Rodrigues (2003), Leonelli & Oliveira (2004), Bertoncelo (2007).
 
 ## Relação com os demais dados
 
-- **Não duplicar com** `data/protest_events_seeds/protest_events_diretas_ja_seed.csv`: a aba
+- **Não duplicar com** `bancos/03_aep_br/sementes/diretas_ja/protest_events_diretas_ja_seed.csv`: a aba
   "Manifestações por Mês" do arquivo original **sobrepõe-se** ao seed (mesmos eventos,
   mesmas fontes por estimativa) e por isso **não** foi reconvertida — o seed permanece a
   versão canônica no nível do evento, com mín/máx/mediana por fonte.

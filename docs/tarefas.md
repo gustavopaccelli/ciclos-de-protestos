@@ -29,7 +29,7 @@ offline (não exige credenciais): ver `research-log.md`.
       de tamanho); UUID5 sobre (url, data, cidade); normalização e `canonical_event_id` no
       build; `protest_events_raw.csv`; kappa com bool/str normalizado e 16 variáveis;
       `queries.yaml` alinhado às palavras-chave BEP §3.1 e às janelas da periodização v3;
-      limiar de kappa unificado em 0,75. Novo teste `pipeline/check_schema_coverage.py`.
+      limiar de kappa unificado em 0,75. Novo teste `src/data/check_schema_coverage.py`.
 - [x] **D5.** §12 do protocolo — validação da codificação por LLM (Halterman & Keith 2024;
       PAPEA/Haunss et al. 2025): 5 estágios, gold standard estratificado por ciclo, tipologia
       de erro, critério de escalada, registro obrigatório. 2026-07-18.
@@ -51,16 +51,16 @@ offline (não exige credenciais): ver `research-log.md`.
 - [ ] **D1.** Validar os seletores CSS contra o site real — **agora com ferramenta**:
       `python 01_scraper.py --diagnose --headed` produz o relatório; ajustes vão em
       `config/selectors.yaml`. Continua exigindo credenciais.
-- [ ] **D2.** Instalar dependências (`pip install -r pipeline/requirements.txt`) e configurar `.env` com credenciais (NUNCA commitar o `.env`).
-- [ ] **D3.** Validar o `pipeline/config/doca_codebook.yaml` reconstruído contra o original.
+- [ ] **D2.** Instalar dependências (`pip install -r requirements.txt`) e configurar `.env` com credenciais (NUNCA commitar o `.env`).
+- [ ] **D3.** Validar o `config/doca_codebook.yaml` reconstruído contra o original.
 - [ ] **D4.** Primeira execução de teste + aferição de Cohen's Kappa (≥ 0,75).
 
 ## Frente E — Análise dos bancos e sementes · **PRIORIZADA** (ativa desde 2026-07-16)
 
-Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e as sementes `protest_events` das Diretas Já e Fora Collor (`data/protest_events_seeds/`). Produtos ficam em `data/analise-triangulacao/` (ver README da pasta para o escopo).
+Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e as sementes `protest_events` das Diretas Já e Fora Collor (`bancos/03_aep_br/sementes/`). Produtos ficam em `data/triangulacao/series_temporais/` (ver README da pasta para o escopo).
 
-- [x] **E0.** Pasta de produtos criada (`data/analise-triangulacao/` com README de escopo: séries temporais por ciclo, teste de fronteiras de fase, convergência entre fontes, memorando analítico). 2026-07-16.
-- [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `data/bancos-externos/mass-mobilization-clark-regan-2020/livro-codigo/crosswalk-codigos.md`).
+- [x] **E0.** Pasta de produtos criada (`data/triangulacao/series_temporais/` com README de escopo: séries temporais por ciclo, teste de fronteiras de fase, convergência entre fontes, memorando analítico). 2026-07-16.
+- [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/processed/cycle_phases/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `bancos/01_mass_mobilization/livro-codigo/crosswalk-codigos.md`).
 - [ ] **E2.** Usar os microdados como evidência para as hipóteses H1–H3 (repertórios, alvos, respostas estatais em Junho 2013 e Impeachment).
 - [ ] **E3.** Integrar as sementes `protest_events` (Diretas Já + Fora Collor) à análise dos ciclos pré-2011 que os bancos externos não cobrem.
 
@@ -86,7 +86,7 @@ Ver `docs/artefatos-incorporacao.md` §4. Os artefatos trazem uma revisão (vari
 `traducao_institucional`, código NA≠0, fase de articulação do Fora Collor, fase de latência
 no Impeachment, remoção da radicalização em J13) que **conflita com a periodização validada**.
 
-- [x] **P1.** RESOLVIDO (2026-07-04): adotada periodização v3 revisada + variável `traducao_institucional`. `data/cycle_phases.csv` reescrito (24 fases); v2 preservada em `data/cycle_phases_v2_prearticulacao.csv`.
+- [x] **P1.** RESOLVIDO (2026-07-04): adotada periodização v3 revisada + variável `traducao_institucional`. `data/processed/cycle_phases/cycle_phases.csv` reescrito (24 fases); v2 preservada em `data/cycle_phases_v2_prearticulacao.csv`.
 - [x] **P2.** RESOLVIDO (2026-07-04): aplicadas as fases de articulação (`docs/periodizacao-articulacao.md`), fundamentada na tese: articulação forte no Fora Collor (nov/1991, Mische 2008) e no Impeachment Dilma (pós-eleições out/2014, Aécio contestando — McAdam & Tarrow 2011; Tatagiba 2018); Junho 2013 SEM articulação (ruptura, não articulação — confirmado pela tese); Diretas Já a decidir. Fronteira J13→Dilma redefinida.
 
 ---
@@ -103,7 +103,7 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 - [x] Banco Mass Mobilization (Clark & Regan v16) incorporado — 224 protestos do Brasil 1990–2020.
 - [x] Periodização v3 (24 fases) validada e aplicada: fases de articulação (Diretas Já, Fora Collor, Impeachment), latência (Impeachment), radicalização mantida (J13), variável `traducao_institucional` (2026-07-04).
 - [x] Relatório metodológico acadêmico criado (`metodologia/relatorio-metodologico.md`, 2026-07-04).
-- [x] Dados complementares das Diretas Já incorporados (`data/diretas_ja/`: 50 comícios, distribuição estadual dos 490, atores da coalizão — 2026-07-14).
+- [x] Dados complementares das Diretas Já incorporados (`bancos/03_aep_br/sementes/diretas_ja/`: 50 comícios, distribuição estadual dos 490, atores da coalizão — 2026-07-14).
 - [x] Inventário de artefatos concluído (`docs/artefatos-incorporacao.md`, 31 itens, incl. §6 uploads das Diretas Já).
 - [x] Bibliografia ABNT expandida para ~94 referências (+14 do `.bib` dos artefatos).
 - [x] README principal em formato de preprint (introdução, quadro metodológico, 14 hipóteses — 2026-07-17).

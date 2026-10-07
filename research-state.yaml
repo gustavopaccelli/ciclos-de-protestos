@@ -35,7 +35,7 @@ components:
     status: "periodização v3 validada em 2026-07-04 (24 fases): fases de articulação em Diretas Já, Fora Collor e Impeachment; radicalização mantida em J13; latência no Impeachment; variável traducao_institucional. Base: tese Costa 2024. Backup v2 em data/cycle_phases_v2_prearticulacao.csv"
   bancos_externos:
     descricao: "Bancos de dados de terceiros incorporados (fontes independentes, não somáveis)"
-    local: "data/bancos-externos/"
+    local: "bancos/"
     status: >
       Dois bancos incorporados como fontes independentes (não mescladas):
       (1) NEPAC/UNICAMP (Tatagiba & Galvão 2019, 2026-07-04): 2.548 registros /
@@ -47,18 +47,18 @@ components:
       longa disponível (cobre Fora Collor em diante). Uso conjunto = triangulação.
   protest_events_seeds:
     descricao: "Sementes do banco protest_events (ciclos pré-2011, codificação manual)"
-    local: "data/protest_events_seeds/"
+    local: "bancos/03_aep_br/sementes/"
     status: >
       Incorporadas dos artefatos (2026-07-04): Diretas Já (59 eventos) e Fora Collor
       (15 eventos), com estimativas de público por fonte. Preenchem a lacuna dos ciclos
       que MM/NEPAC não cobrem; semente para o pipeline AEP (Frente D).
   dados_diretas_ja:
     descricao: "Dados complementares das Diretas Já (cronologia de comícios, roteiro por estado, atores)"
-    local: "data/diretas_ja/"
+    local: "bancos/03_aep_br/sementes/diretas_ja/"
     status: "Incorporados em 2026-07-14: comicios_cronologia (50), comicios_por_estado (490 comícios, SP+MG = 52%), grupos_associacoes. Aba de eventos duplicava o seed (ignorada)."
   analise_triangulacao:
     descricao: "Produtos da Frente E — triangulação NEPAC + Mass Mobilization + seeds vs. cycle_phases"
-    local: "data/analise-triangulacao/"
+    local: "data/triangulacao/series_temporais/"
     status: "Pasta criada em 2026-07-16 (README com escopo e produtos previstos); análise a iniciar."
   metodologia:
     descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
@@ -81,7 +81,7 @@ components:
     status: "Quadro completo incorporado (2026-06-16); H1.2 com desenho de teste detalhado (process tracing + casos Coreia/Paraguai/Belarus)"
   pipeline_pea:
     descricao: "Scraper Acervo Folha + DoCA coder + dataset builder + kappa"
-    local: "pipeline/"
+    local: "src/ + bancos/03_aep_br/"
     status: >
       Protocolo BEP-CEBRAP incorporado (2026-06-16): docs/aep-protocol-bep.md.
       Integração MPEDS concluída (2026-07-03): codebook DoCA atualizado com
@@ -121,7 +121,7 @@ frentes_abertas:
       PRIORIZADA em 2026-07-16. Triangular NEPAC (1.284 eventos 2011-2016) e
       Mass Mobilization (224 protestos 1990-2020) com cycle_phases v3 e seeds:
       séries temporais por ciclo, teste das fronteiras de fase, convergência
-      entre fontes, memorando analítico. Produtos em data/analise-triangulacao/.
+      entre fontes, memorando analítico. Produtos em data/triangulacao/series_temporais/.
     prioridade: alta
 
 outer_loop:

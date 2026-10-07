@@ -9,7 +9,7 @@
 # COMO CONSERTAR
 #   1. Rode:  python 01_scraper.py --diagnose --headed
 #      O navegador abre visível, faz login, executa UMA busca e grava
-#      HTML + screenshot em pipeline/data/diagnose/.
+#      HTML + screenshot em bancos/03_aep_br/coleta/folha_acervo/diagnose/.
 #   2. O relatório diz quantos elementos cada candidato encontrou.
 #      Candidato com 0 elementos = seletor errado.
 #   3. No navegador (F12 → Elements), clique com o botão direito no elemento

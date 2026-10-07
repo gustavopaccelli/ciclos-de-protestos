@@ -34,4 +34,4 @@ trabalhista, estudantil, cívico/partidário etc.), ancorado em Mische (2008).
 - Convertidos fielmente dos `.xlsx` originais em `artefatos/fases_ciclos/` (preservados).
 - `doca_status` indica o estágio de codificação DoCA de cada semente.
 - São **dados do próprio projeto** (não banco de terceiros) — não confundir com
-  `data/bancos-externos/`. Alimentam diretamente o `protest_events` do pipeline.
+  `bancos/`. Alimentam diretamente o `protest_events` do pipeline.

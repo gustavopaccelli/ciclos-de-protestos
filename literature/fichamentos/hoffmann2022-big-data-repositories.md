@@ -19,7 +19,7 @@ face** — exigem recursos substanciais de conhecimento, trabalho, dinheiro e co
 - **`docs/fontes-alternativas.md`** — é a base da recomendação de **não adotar o GDELT como
   fonte primária**, reservando-o, se for o caso, a papel de triangulação explicitamente
   ressalvado.
-- **`data/bancos-externos/`** — reforça a regra já vigente no projeto de tratar NEPAC e Mass
+- **`bancos/`** — reforça a regra já vigente no projeto de tratar NEPAC e Mass
   Mobilization como **fontes independentes não somáveis**, cada uma com sua cadeia de
   decisões próprias, em vez de mesclá-las em um "banco maior".
 - **`metodologia/relatorio-metodologico.md` §7** — argumento para declarar as decisões de

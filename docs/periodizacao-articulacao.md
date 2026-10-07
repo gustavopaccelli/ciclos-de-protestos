@@ -4,7 +4,7 @@
 > Diretas Já, Fora Collor e Impeachment Dilma; (2) fase de radicalização mantida em Junho
 > 2013 (após a violência policial de 13/06 e o confronto black bloc de 17/06 — confirmado na
 > tese, §3.3.3); (3) fase de latência adotada no Impeachment; (4) variável
-> `traducao_institucional` incorporada. Dataset: `data/cycle_phases.csv` (24 fases);
+> `traducao_institucional` incorporada. Dataset: `data/processed/cycle_phases/cycle_phases.csv` (24 fases);
 > backup da v2 em `data/cycle_phases_v2_prearticulacao.csv`.
 
 
@@ -12,7 +12,7 @@ Data: 2026-07-04. Fonte primária: **Costa (2024), Tese de Doutorado** (UFJF), s
 2.2.4, 3.2 e 3.3. Esta proposta refina as fronteiras entre ciclos — em especial **Junho 2013 →
 Impeachment Dilma** — e introduz a **fase de articulação** onde há base empírico-bibliográfica.
 
-> Documento de decisão: revê a periodização validada (`data/cycle_phases.csv`). Não altera o
+> Documento de decisão: revê a periodização validada (`data/processed/cycle_phases/cycle_phases.csv`). Não altera o
 > dataset até confirmação do usuário. Relaciona-se com a decisão pendente P1 (`docs/tarefas.md`).
 
 ---
@@ -96,7 +96,7 @@ tempo, a razão para **não** postular articulação em 2013:
 
 ## 5. Impacto sobre o dataset (a confirmar)
 
-Se aprovado, as mudanças em `data/cycle_phases.csv` seriam:
+Se aprovado, as mudanças em `data/processed/cycle_phases/cycle_phases.csv` seriam:
 
 1. **Fora Collor** — inserir fase `articulacao` (1991-11-01 → 1992-05-31); a atual `emergencia`
    passa a começar em 1992-06-01 (denúncia/CPMI). *(Coincide com o início do v4 dos artefatos.)*

@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Pasta para armazenar dados em processamento - entre os dados brutos (`data/raw/`) e os dados finais processados (`data/processed/`).
+Pasta para armazenar dados em processamento - entre os dados brutos (`bancos/`) e os dados finais processados (`data/processed/`).
 
 ## Subpastas
 
@@ -28,7 +28,7 @@ Versão processada das sementes históricas após validação preliminar.
 ## Fluxo
 
 ```
-data/raw/ → scripts/preprocessing/ → data/interim/ → triangulação → data/processed/
+bancos/ → scripts/preprocessing/ → data/interim/ → triangulação → data/processed/
 ```
 
 ## Variáveis Esperadas

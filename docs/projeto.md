@@ -29,7 +29,7 @@ ABNT) — ver `artigo/`.
 Comparação dos quatro ciclos (Diretas Já, Fora Collor, Junho 2013, Impeachment
 Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
 - Codebook: `codebook/cycle_phases_codebook.yaml`
-- Dados (scores validados em 2026-06-05): `data/cycle_phases.csv`
+- Dados (scores validados em 2026-06-05): `data/processed/cycle_phases/cycle_phases.csv`
 
 ### 3. Quadro de hipóteses (14 hipóteses, 3 famílias)
 - **Família H1 (político-institucional)**: abertura do sistema; vulnerabilidade
@@ -93,9 +93,9 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
   com matrizes qualitativas EOP+DOS por ciclo e fontes verificadas; convergem
   com os padrões do artigo e alimentam as justificativas dos scores.
 - `literature/survey.md` — levantamento bibliográfico complementar.
-- `data/protest_events_seeds/` — sementes do banco `protest_events` (Diretas Já e
+- `bancos/03_aep_br/sementes/` — sementes do banco `protest_events` (Diretas Já e
   Fora Collor), codificação manual dos ciclos pré-2011.
-- `data/bancos-externos/` — bancos de dados de terceiros incorporados como
+- `bancos/` — bancos de dados de terceiros incorporados como
   **fontes independentes** (não mescladas; uso = triangulação):
   - **NEPAC/UNICAMP** (Tatagiba & Galvão 2019): 2.548 registros / 1.284 eventos
     2011-2016 (Acervo Folha) — microdados nacionais densos.

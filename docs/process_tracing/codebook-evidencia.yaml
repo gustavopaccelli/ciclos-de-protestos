@@ -63,7 +63,7 @@ tempos:
       duas demarcações de `janelas`; codificada pelas dimensões de Souza (1986).
   T0:
     nome: "Ciclo de protesto"
-    descricao: "Da primeira à última fase do ciclo em data/cycle_phases.csv."
+    descricao: "Da primeira à última fase do ciclo em data/processed/cycle_phases/cycle_phases.csv."
   T+1:
     nome: "Desfechos"
     descricao: >
