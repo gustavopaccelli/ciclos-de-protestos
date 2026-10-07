@@ -1,0 +1,17 @@
+{
+  "nome": "Coleta Acervo Folha de S.Paulo (fonte do banco AEP-BR)",
+  "url_fonte": "https://acervo.folha.com.br/",
+  "protocolo_metodologico": "Alonso et al. (2024), BEP/CEBRAP — ver ../codebook/codebook_aep_br.md",
+  "cobertura_acervo": "1921–presente",
+  "alvo": "1983–presente",
+  "status": "não executada: requer credenciais de assinante; o workflow diário foi desativado em 2026-10-07 após falhas seguidas",
+  "scripts": [
+    "src/coleta_acervo.py",
+    "src/data/scraper.py",
+    "src/data/init_doca_database.py",
+    "src/data/load_acervo_to_doca.py",
+    "src/run_doca_pipeline.py"
+  ],
+  "saida_esperada": "bancos/03_aep_br/coleta/acervo_protestos.json",
+  "verificado_em": "2026-10-07"
+}

@@ -20,7 +20,7 @@ concluir a verificação. Ela fica como pendência explícita da Frente C.
 ## Índice
 
 ### Bloco A — AEP automatizada e codificação por LLM
-Sustentam a §12 do `docs/aep-protocol-bep.md` e a revisão do `pipeline/`.
+Sustentam a §12 do `docs/aep-protocol-bep.md` e a revisão do `src/` + `bancos/03_aep_br/`.
 
 | Ficha | Obra | Entra em |
 |---|---|---|

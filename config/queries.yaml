@@ -48,7 +48,7 @@ date_ranges:
 # atores não-estatais, caráter contencioso, demanda social ou política.
 scraper:
   delay_seconds: 2          # respeitar o servidor
-  state_file: "pipeline/data/scrape_state.json"   # rastreamento incremental
+  state_file: "bancos/03_aep_br/coleta/folha_acervo/scrape_state.json"   # rastreamento incremental
 
 # NOTA: as chaves `sections_include`, `sections_exclude`, `results_per_page`,
 # `max_retries` e `scraper.output_dir` foram removidas nesta revisão porque

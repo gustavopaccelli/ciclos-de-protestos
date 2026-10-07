@@ -20,11 +20,11 @@ python 01_scraper.py --diagnose --headed
 ```
 
 O navegador abre visível, faz login, executa **uma** busca e grava em
-`pipeline/data/diagnose/`: HTML e screenshot das páginas de login, busca e
+`bancos/03_aep_br/coleta/folha_acervo/diagnose/`: HTML e screenshot das páginas de login, busca e
 artigo, mais um `relatorio.txt` dizendo **quantos elementos cada seletor
 encontrou**. Seletor com `0 elemento(s)` está errado.
 
-Para consertar, edite **`pipeline/config/selectors.yaml`** — não é preciso
+Para consertar, edite **`config/selectors.yaml`** — não é preciso
 mexer em Python. Cada chave aceita uma *lista de candidatos*, tentados em
 ordem; no navegador use `F12 → Elements`, botão direito no elemento certo →
 `Copy → Copy selector`, e cole como primeiro item. Repita o `--diagnose` até
@@ -38,9 +38,9 @@ python 01_scraper.py --limit 20         # teste barato: 20 artigos
 python run_pipeline.py --step scrape    # coleta completa
 ```
 
-- O estado fica em `pipeline/data/scrape_state.json`; interrompa e retome à
+- O estado fica em `bancos/03_aep_br/coleta/folha_acervo/scrape_state.json`; interrompa e retome à
   vontade. O progresso é gravado **a cada página** de resultados.
-- Artigos brutos: `pipeline/data/raw/*.json` (1 arquivo por matéria).
+- Artigos brutos: `bancos/03_aep_br/coleta/folha_acervo/*.json` (1 arquivo por matéria).
 - O script **aborta com mensagem** se o login não se confirmar, em vez de
   coletar zero silenciosamente.
 
@@ -59,7 +59,7 @@ python run_pipeline.py --step code --batch 100
 - Estimativa de custo (Opus 4.8, matéria média ~1.500 tokens): ~US$ 0,01–0,03
   por artigo com cache; um corpus de 10 mil matérias ≈ US$ 100–300.
   Com Sonnet 4.6, ~1/2 disso.
-- Incremental: artigos já codificados (`pipeline/data/coded/`) são pulados.
+- Incremental: artigos já codificados (`data/interim/`) são pulados.
 
 ## 5. Dataset final
 

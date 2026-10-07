@@ -69,7 +69,7 @@ Atualização anterior: 2026-06-10 (bootstrap).
 
 ## 5. Infraestrutura computacional de AEP — MPEDS e afins
 
-- **Hanna, A. (2017). *MPEDS: Machine-Learning Protest Event Data System* (v1.0). Zenodo. DOI: 10.5281/zenodo.886459.** Sistema ML para extração de eventos de protesto de jornais em inglês. Contribuições incorporadas ao projeto: conceito de *evento canônico* (deduplicação entre fontes e artigos), flag `multi_event_article`, workflow multi-passagem (artigo → evento → canônico → adjudicação), variáveis fechadas de `form` (11 categorias), `issue` (17 categorias) e `target` (7 categorias). Os classificadores ML em inglês não são reutilizados diretamente — substituídos pelo LLM DoCA via API Anthropic. Ver `docs/aep-protocol-bep.md` §§ 10-11 e `pipeline/config/doca_codebook.yaml` para o mapeamento MPEDS → DoCA/BEP. Repositório: https://github.com/MPEDS/mpeds
+- **Hanna, A. (2017). *MPEDS: Machine-Learning Protest Event Data System* (v1.0). Zenodo. DOI: 10.5281/zenodo.886459.** Sistema ML para extração de eventos de protesto de jornais em inglês. Contribuições incorporadas ao projeto: conceito de *evento canônico* (deduplicação entre fontes e artigos), flag `multi_event_article`, workflow multi-passagem (artigo → evento → canônico → adjudicação), variáveis fechadas de `form` (11 categorias), `issue` (17 categorias) e `target` (7 categorias). Os classificadores ML em inglês não são reutilizados diretamente — substituídos pelo LLM DoCA via API Anthropic. Ver `docs/aep-protocol-bep.md` §§ 10-11 e `config/doca_codebook.yaml` para o mapeamento MPEDS → DoCA/BEP. Repositório: https://github.com/MPEDS/mpeds
 
 ## 6. Fontes verificadas nesta sessão
 - [Changing Repertoires and Partisan Ambivalence in the New Brazilian Protests (Wiley)](https://onlinelibrary.wiley.com/doi/abs/10.1111/blar.12470)
@@ -91,7 +91,7 @@ repositório. Fichamentos individuais em [`fichamentos/`](fichamentos/); metadad
 
 ### 7.1 AEP automatizada e codificação por LLM — lacuna crítica
 
-O projeto codifica eventos com LLM (`pipeline/02_doca_coder.py`) apoiado unicamente em uma
+O projeto codifica eventos com LLM (`src/preprocessing/coder.py`) apoiado unicamente em uma
 passagem de Alonso et al. (2024, p. 320) que **legitima** o uso de NLP. Faltava toda a
 literatura que diz **como fazer e como validar**:
 

@@ -6,11 +6,14 @@ import sqlite3
 import uuid
 from datetime import datetime
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 from typing import Dict, List, Optional
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR.parent.parent / "data" / "protest_events.db"
-ACERVO_JSON = BASE_DIR.parent.parent / "data" / "acervo_protestos.json"
+DB_PATH = paths.DB_PATH
+ACERVO_JSON = paths.ACERVO_JSON
 
 def parse_date(date_str: str) -> Optional[str]:
     """Try to parse date strings in various Brazilian formats."""
@@ -81,7 +84,7 @@ def load_acervo_articles() -> List[Dict]:
         return []
 
 def ingest_articles_to_db(articles: List[Dict]) -> int:
-    """Ingest articles into protest_events table as preliminary records."""
+    """Grava as matérias coletadas na tabela raw_articles."""
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -105,46 +108,22 @@ def ingest_articles_to_db(articles: List[Dict]) -> int:
             if not parsed_date:
                 parsed_date = datetime.now().strftime("%Y-%m-%d")
 
-            # Infer location from article context (simplified; would need NER in production)
-            location_city = "São Paulo"  # Default; should be extracted from content
-            location_state = "SP"
+            article_id = create_event_id(source_url, parsed_date)
 
-            # Generate event ID
-            event_id = create_event_id(source_url, parsed_date, location_city)
-
-            # First: save raw article
+            # Só a matéria bruta entra aqui. Os eventos são criados pelo
+            # coder (src/preprocessing/coder.py) depois da leitura do texto;
+            # antes este passo inventava um evento por matéria com cidade,
+            # tema e repertório padrão, o que contaminaria o banco.
             cursor.execute("""
                 INSERT OR IGNORE INTO raw_articles
                 (article_id, source_url, source_date, title, publication)
                 VALUES (?, ?, ?, ?, ?)
             """, (
-                event_id,
+                article_id,
                 source_url,
                 parsed_date,
                 title,
                 "Folha de São Paulo"
-            ))
-
-            # Second: create preliminary protest event record
-            # (claim_code and repertoire TBD by DoCA coder)
-            cursor.execute("""
-                INSERT OR IGNORE INTO protest_events
-                (event_id, event_date, location_city, location_state,
-                 location_venue_type, claim_code, repertoire,
-                 source_url, source_date, article_desc, eligible)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                event_id,
-                parsed_date,
-                location_city,
-                location_state,
-                "praça-via-pública",  # Default venue assumption
-                "9900",  # "Outra demanda (especificar em claim_text)"
-                "concentrar",  # Default repertoire
-                source_url,
-                parsed_date,
-                title[:300],
-                False  # Will be set to True after human coding
             ))
 
             inserted += 1
@@ -180,7 +159,7 @@ def main():
     print(f"✓ Loaded {len(articles)} articles")
 
     # Ingest to database
-    print("\n💾 Ingesting into protest_events table...")
+    print("\n💾 Ingesting into raw_articles table...")
     inserted = ingest_articles_to_db(articles)
 
     print(f"\n✓ Ingestion complete:")
@@ -194,13 +173,13 @@ def main():
     cursor.execute("SELECT COUNT(*) FROM raw_articles")
     raw_count = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM protest_events WHERE eligible = False")
-    pending_count = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM protest_events")
+    coded_count = cursor.fetchone()[0]
 
     conn.close()
 
     print(f"  - Total raw articles: {raw_count}")
-    print(f"  - Pending human coding: {pending_count}")
+    print(f"  - Eventos codificados: {coded_count}")
 
 if __name__ == "__main__":
     main()

@@ -5,7 +5,7 @@ consolidado do projeto (codebook cycle_phases, scores validados, artigo do
 triângulo). Permanecem como material de apoio:
 
 - justificativas substantivas e fontes verificadas que alimentam os scores
-  de `data/cycle_phases.csv`;
+  de `data/processed/cycle_phases/cycle_phases.csv`;
 - convergências com os quatro padrões do artigo (convergência, abertura
   caótica, construção deliberada, assimetria DOS) e com o refinamento de
   H1.2 (vulnerabilidade + DOS moderadora);

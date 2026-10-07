@@ -31,4 +31,4 @@ liberalismo econômico), é a implementação dessa simetria.
 - **`artigo/secoes/05-discussao-conclusiva.md`** — sustenta a reivindicação de contribuição:
   aplicar framing/DOS simetricamente a ciclos de esquerda e de direita.
 - **Família H2** inteira — as hipóteses discursivas devem valer para ambos os campos.
-- **`pipeline/config/doca_codebook.yaml`** — justifica o domínio 8xxx dos claim_codes.
+- **`config/doca_codebook.yaml`** — justifica o domínio 8xxx dos claim_codes.

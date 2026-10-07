@@ -88,7 +88,7 @@ Examples:
     print("  ✓ PIPELINE COMPLETE")
     print("="*60)
     print("\nNext steps:")
-    print("  1. Review preliminary event records in data/protest_events.db")
+    print("  1. Review preliminary event records in bancos/03_aep_br/protest_events.db")
     print("  2. Run human coding: python run_analysis_pipeline.py --step code")
     print("  3. Build dataset: python run_analysis_pipeline.py --step build")
     print("="*60 + "\n")

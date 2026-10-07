@@ -9,7 +9,7 @@ Projeto do claude.ai. Este documento registra o parecer sobre cada artefato: **i
 ## Regra aplicada
 Instrução do usuário: incorporar o que **incrementa** o projeto; ignorar o que está
 **defasado** em relação ao que já construímos. Bancos de terceiros continuam separados
-(`data/bancos-externos/`); os artefatos são material do próprio projeto.
+(`bancos/`); os artefatos são material do próprio projeto.
 
 ---
 
@@ -17,13 +17,13 @@ Instrução do usuário: incorporar o que **incrementa** o projeto; ignorar o qu
 
 | Artefato | Parecer | Ação |
 |---|---|---|
-| `protest_events_diretas_seed.xlsx` (59 eventos) | **INCORPORADO** | → `data/protest_events_seeds/protest_events_diretas_ja_seed.csv` |
-| `protest_events_fora_collor_seed.xlsx` (15 eventos) | **INCORPORADO** | → `data/protest_events_seeds/protest_events_fora_collor_seed.csv` |
+| `protest_events_diretas_seed.xlsx` (59 eventos) | **INCORPORADO** | → `bancos/03_aep_br/sementes/diretas_ja/protest_events_diretas_ja_seed.csv` |
+| `protest_events_fora_collor_seed.xlsx` (15 eventos) | **INCORPORADO** | → `bancos/03_aep_br/sementes/fora_collor/protest_events_fora_collor_seed.csv` |
 | `referencias_ciclos_protesto.bib` (37 entradas) | **INCORPORADO (parcial)** | 14 referências ausentes adicionadas à ABNT |
 | `referencias_ciclos_protesto.md` | fonte | versão formatada do `.bib`; consultada |
 | `cycle_phases_v4.xlsx` | **DECISÃO PENDENTE** (ver §4) | periodização diverge da validada |
 | `cycle_phases_v2.xlsx`, `v3.xlsx` | superado | versões intermediárias do v4 |
-| `cycle_phases.xlsx` (v1) | superado | equivale ao nosso `data/cycle_phases.csv` inicial |
+| `cycle_phases.xlsx` (v1) | superado | equivale ao nosso `data/processed/cycle_phases/cycle_phases.csv` inicial |
 | `nota_teorico_metodologica.docx` | superado por → | versão de trabalho da nota consolidada |
 | `nota_consolidada_v2.docx` | **DECISÃO PENDENTE** (ver §4) | documenta `traducao_institucional`, NA≠0, periodização revisada |
 | `fase_articulacao_fora_collor.docx` | **DECISÃO PENDENTE** (ver §4) | fase de articulação (nov/1991–mai/1992) via Mische 2008 |
@@ -38,11 +38,11 @@ Instrução do usuário: incorporar o que **incrementa** o projeto; ignorar o qu
 | `artigo_processo_politico_conjuntura.docx` | **fonte Frente C** | versão do artigo com foco na análise de conjuntura |
 | `Estruturas-de-oportunidades-políticas-em-Ciclos-de-protesto.md` | fonte | notas de EOP |
 
-## 3. `mapeamamento/` — pipeline e relatórios
+## 3. `mapeamento/` — pipeline e relatórios
 
 | Artefato | Parecer | Ação |
 |---|---|---|
-| `pea_acervo_folha/` (pipeline completo) | superado | é o **original** do nosso `pipeline/`, já reconstruído e evoluído (BEP+MPEDS). Ver §5 |
+| `pea_acervo_folha/` (pipeline completo) | superado | é o **original** do nosso `src/` + `bancos/03_aep_br/`, já reconstruído e evoluído (BEP+MPEDS). Ver §5 |
 | `pea_acervo_folha/config/doca_codebook.yaml` | **INCORPORADO (parcial)** | `valences` (pró/anti/indeterminado) adicionadas ao nosso codebook |
 | `relatorio_aep_brasil_1985_2016.docx` | **fonte Frente C/E** | relatório AEP dos 4 ciclos; base para análise |
 | `relatorio_ciclos_protesto_academico.docx` | **fonte Frente C/E** | cronologias, atores, repertórios, desfechos dos 4 ciclos |
@@ -54,7 +54,7 @@ Instrução do usuário: incorporar o que **incrementa** o projeto; ignorar o qu
 ## 4. DECISÃO PENDENTE — periodização e esquema de codificação
 
 Os artefatos `cycle_phases_v4.xlsx` + `nota_consolidada_v2.docx` representam uma
-**revisão do esquema de codificação mais recente** que a nossa `data/cycle_phases.csv`
+**revisão do esquema de codificação mais recente** que a nossa `data/processed/cycle_phases/cycle_phases.csv`
 (validada em 2026-06-10). São incrementos reais, mas **conflitam com decisões já validadas**
 — por isso aguardam a escolha do usuário antes de substituir o dataset:
 
@@ -77,15 +77,15 @@ Os artefatos `cycle_phases_v4.xlsx` + `nota_consolidada_v2.docx` representam uma
 
 → **Ação recomendada:** adotar `cycle_phases_v4` como dataset canônico e a `traducao_institucional`,
 substituindo a v2, **se** o usuário confirmar a periodização revisada. Enquanto não houver
-confirmação, o `data/cycle_phases.csv` validado permanece o vigente.
+confirmação, o `data/processed/cycle_phases/cycle_phases.csv` validado permanece o vigente.
 
 ---
 
 ## 5. Pipeline: original vs. reconstruído
 
-O `artefatos/mapeamamento/pea_acervo_folha/` é o **pipeline original**. Comparação do codebook:
+O `artefatos/mapeamento/pea_acervo_folha/` é o **pipeline original**. Comparação do codebook:
 
-- **Nosso** (`pipeline/config/doca_codebook.yaml`): mais evoluído — 5 blocos BEP-CEBRAP,
+- **Nosso** (`config/doca_codebook.yaml`): mais evoluído — 5 blocos BEP-CEBRAP,
   campos MPEDS, event_schema completo. **Mantido como vigente.**
 - **Original**: mais simples (DoCA-Stanford), mas continha `valences` (pró/anti/indeterminado)
   e `eligibility.min_participants` que faltavam → **`valences` incorporadas**.
@@ -102,7 +102,7 @@ original"): a validação foi feita; nosso codebook cobre e supera o original, e
 
 | Artefato | Parecer | Ação |
 |---|---|---|
-| `Cronologia_Diretas_Ja.xlsx` (aba Cronologia Comícios) | **INCORPORADO** | → `data/diretas_ja/comicios_cronologia.csv` (50 comícios) |
-| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Roteiro por Estado) | **INCORPORADO** | → `data/diretas_ja/comicios_por_estado.csv` (490 comícios por UF) |
-| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Grupos e Associações) | **INCORPORADO** | → `data/diretas_ja/grupos_associacoes.csv` |
-| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Manifestações por Mês) | **DUPLICATA — ignorada** | sobrepõe `data/protest_events_seeds/protest_events_diretas_ja_seed.csv` (seed permanece canônico) |
+| `Cronologia_Diretas_Ja.xlsx` (aba Cronologia Comícios) | **INCORPORADO** | → `bancos/03_aep_br/sementes/diretas_ja/comicios_cronologia.csv` (50 comícios) |
+| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Roteiro por Estado) | **INCORPORADO** | → `bancos/03_aep_br/sementes/diretas_ja/comicios_por_estado.csv` (490 comícios por UF) |
+| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Grupos e Associações) | **INCORPORADO** | → `bancos/03_aep_br/sementes/diretas_ja/grupos_associacoes.csv` |
+| `Manifestacoes_e_Dados_Diretas_Ja.xlsx` (aba Manifestações por Mês) | **DUPLICATA — ignorada** | sobrepõe `bancos/03_aep_br/sementes/diretas_ja/protest_events_diretas_ja_seed.csv` (seed permanece canônico) |

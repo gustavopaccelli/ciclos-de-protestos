@@ -17,10 +17,13 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 BASE = Path(__file__).resolve().parent
-RAIZ = BASE.parent
-BIB = BASE / "referencias.bib"
+RAIZ = paths.RAIZ
+BIB = paths.BIB
 ALVOS = ["process-tracing", "codebook", "docs"]
 EXTENSOES = {".md", ".yaml", ".yml"}
 

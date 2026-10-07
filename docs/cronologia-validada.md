@@ -27,7 +27,7 @@
 | **25 abr. 1984** | Votação da Emenda Dante de Oliveira na Câmara | — | Portal da Câmara dos Deputados; Agência Brasil (EBC) | **Placar: 298 favoráveis × 65 contrários × 3 abstenções × 113 ausências.** Necessitava de 320 (2/3 do total). Derrota por apenas 22 votos. A emenda não foi ao Senado. |
 | **15 jan. 1985** | Eleição de Tancredo Neves no Colégio Eleitoral | — | Portal da Câmara; Agência Brasil | Desfecho indireto do ciclo: a pressão das Diretas abriu brecha para a vitória oposicionista no Colégio Eleitoral. |
 
-**Correção em `data/cycle_phases.csv`:** DJ-3 (pico) cobre 1984-04-01 a 1984-04-30 — compatível. Não há fase com "fevereiro/1984" como data de evento-chave; a menção ao comício de Goiânia em fase de expansão (DJ-2, jan–mar/1984) deve ser removida ou corrigida para indicar que o comício de Goiânia ocorreu no início da fase de pico (abr/1984).
+**Correção em `data/processed/cycle_phases/cycle_phases.csv`:** DJ-3 (pico) cobre 1984-04-01 a 1984-04-30 — compatível. Não há fase com "fevereiro/1984" como data de evento-chave; a menção ao comício de Goiânia em fase de expansão (DJ-2, jan–mar/1984) deve ser removida ou corrigida para indicar que o comício de Goiânia ocorreu no início da fase de pico (abr/1984).
 
 ---
 

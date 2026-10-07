@@ -22,7 +22,7 @@ Registros de eventos com conflitos entre bases (datas diferentes, locais ambígu
 ## Fluxo de Trabalho
 
 ```
-data/raw/nepac/ + data/raw/mass_mobilization/ + data/raw/seeds_historicas/ 
+bancos/02_nepac/ + bancos/01_mass_mobilization/ + bancos/03_aep_br/sementes/ 
         ↓
 data/interim/{nepac,mass_mobilization,seeds}/ [limpeza/padronização]
         ↓

@@ -507,3 +507,30 @@ que o proxy bloqueia o domínio): extração de 3 resultados de 4 itens (um sem 
 corretamente descartado), resolução das três formas de href, tolerância a seletor inválido,
 fallback entre candidatos, e aborto imediato sem credenciais. **A validação contra o site
 real segue pendente (D1) — exige assinatura.**
+
+## 2026-10-07 — Reorganização por banco de dados e codebook AEP-BR
+
+- **Pipeline:** o workflow "Pipeline Acervo Folha" (PR #9) falhou todos os dias desde 27/09. O workflow foi desativado no GitHub e o gatilho `schedule` foi removido do YAML. O disparo manual continua possível.
+- **Bancos:** cada banco ganhou uma pasta em `bancos/`: `01_mass_mobilization`, `02_nepac`, `03_aep_br` e `crosswalk`. Os `metadata_*.json` de 21/09 tinham contagens inventadas e foram reescritos com os números conferidos: 224 eventos, 1.284 eventos em 2.548 linhas, 59 e 15.
+- **Caminhos:** `src/paths.py` centraliza os caminhos. Os scripts quebrados desde o refactor de 09/2026 voltaram a rodar, e a série temporal foi reproduzida sem diferenças.
+- **Codebook:** o codebook AEP-BR v0.1 (Alonso et al. 2024) cobre 1983 até hoje, com 50 variáveis mapeadas para o MM e o NEPAC. As fontes são a imprensa nacional e os diários oficiais.
+- **Downloads:** não foram feitos. O MM completo, o GitHub MassMobilization e o portal do NEPAC estão bloqueados pela rede do ambiente de nuvem. Os arquivos que já estavam no repositório foram mantidos.
+
+## 2026-10-07 — Codebook AEP-BR v1.0: questões em aberto decididas
+
+- **Público:** não há número mínimo de participantes. O filtro é feito na análise (≥ 50 para comparar com o MM, ≥ 2 para o NEPAC).
+- **Greves:** toda greve noticiada entra. A nova variável `greve_com_ato_publico` indica se houve ação na rua.
+- **Comícios:** os contestatórios entram (Diretas Já, Fora Collor, impeachment). O comício eleitoral de candidato fica fora.
+- **OCR:** nova variável `qualidade_ocr` (boa/regular/ruim/nao_se_aplica), registrada por fonte e no registro.
+- **Impresso × online:** a edição impressa é a principal. A online só cria evento se o fato não saiu no impresso.
+- **`ciclo`:** atribuído automaticamente pela data com `src/analysis/atribui_ciclo.py`. O teste nas sementes acertou as 74 (59 de Diretas Já e 15 de Fora Collor).
+
+## 2026-10-07 — Coder migrado para o codebook AEP-BR
+
+- `src/preprocessing/aep_codebook.py` é o único leitor do codebook. Ele junta `codebook_aep_br.yaml` (variáveis) e `config/doca_codebook.yaml` (vocabulários herdados).
+- O `coder.py` agora gera o schema JSON e o system prompt a partir do codebook, com 44 campos pedidos ao modelo. O pipeline preenche nove campos: `evento_id`, `evento_canonico_id`, `ciclo`, `fase`, `codificador`, `modelo_versao` (modelo + hash do prompt), `cidade_ibge`, `porte_cidade` e `n_fontes`.
+- Modelo padrão: `claude-opus-5-5`, com effort `high`, streaming e fallback no servidor em caso de recusa. Uma recusa da cadeia inteira ou uma saída cortada deixam a matéria pendente.
+- `build_dataset.py`, `intercoder_reliability.py`, `init_doca_database.py` e `check_schema_coverage.py` passaram a usar os nomes do AEP-BR.
+- O `load_acervo_to_doca.py` deixou de inventar um evento por matéria (cidade, tema e repertório padrão) e agora só grava as matérias brutas.
+- O codebook ganhou a variável `fase`, que acompanha `ciclo` e chega a 53 variáveis.
+- Os testes foram só offline. Nenhuma chamada real à API foi feita.

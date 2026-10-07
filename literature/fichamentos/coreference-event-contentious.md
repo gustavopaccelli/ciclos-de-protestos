@@ -25,7 +25,7 @@ ignorá-lo é alto (informação parcial em ~metade dos casos, no corpus deles).
 ## Onde entra no projeto
 - **`docs/aep-protocol-bep.md` §10** — deve passar a citar esta literatura ao declarar o
   limite do critério implementado.
-- **`pipeline/03_build_dataset.py`** — referência para uma versão futura do agrupamento
+- **`src/preprocessing/build_dataset.py`** — referência para uma versão futura do agrupamento
   canônico (baseada em similaridade, não em chave exata).
 - **`docs/aep-protocol-bep.md` §12.4** — "unitização" como tipo de erro próprio na
   tipologia, distinto de erro de categorização, é consequência direta deste ponto.

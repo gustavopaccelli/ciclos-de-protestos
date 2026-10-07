@@ -40,7 +40,7 @@ O desenho é uma **comparação qualitativa de casos** (N=4) com codificação f
 
 ### 2.1 Periodização em fases (v3)
 
-Cada ciclo é decomposto em **fases analíticas** — articulação, emergência, expansão, pico, latência, radicalização, declínio e desfecho — totalizando **24 fases** (6 por ciclo) no dataset `data/cycle_phases.csv`. Decisões notáveis, ancoradas na tese de Costa (2024):
+Cada ciclo é decomposto em **fases analíticas** — articulação, emergência, expansão, pico, latência, radicalização, declínio e desfecho — totalizando **24 fases** (6 por ciclo) no dataset `data/processed/cycle_phases/cycle_phases.csv`. Decisões notáveis, ancoradas na tese de Costa (2024):
 
 - **Fases de articulação** identificadas nas Diretas Já, no Fora Collor (nov/1991–mai/1992, via Mische, 2008) e no Impeachment (a partir de 27/10/2014, dia seguinte à derrota eleitoral contestada de Aécio Neves — confronto eleitoral, McAdam & Tarrow, 2011). **Junho de 2013 não possui fase de articulação**: a pré-história autonomista dos anos 2000 é esparsa, não uma articulação deliberada.
 - **Radicalização** em Junho 2013 (pós-pico, após a violência policial de 13/06 e a saída do MPL).
@@ -61,13 +61,14 @@ Para cada fase são codificadas **5 variáveis de EOP** (abertura do sistema, vu
 
 A tipologia discrimina: os quatro ciclos têm direções **distintas** no desfecho — Diretas Já por canal alternativo (Colégio Eleitoral), Fora Collor por antecipação do alvo (a renúncia prejudica a perda do cargo, Resolução 101/1992), Junho 2013 por objeto substituído (PEC 37 no lugar da tarifa) e Impeachment por principal sem acessório (cassação aprovada, inabilitação rejeitada por quórum).
 
-Codebook completo: `codebook/cycle_phases_codebook.yaml`. Código `NA` distinto de `0` (não se aplica ≠ ausente). Toda alteração de codificação fica em `codebook/historico-codificacao.csv`; `python codebook/valida_cycle_phases.py` confere dataset, codebook e trilha.
+Codebook completo: `docs/codebook/cycle_phases_codebook.yaml`. Código `NA` distinto de `0` (não se aplica ≠ ausente). Toda alteração de codificação fica em `codebook/historico-codificacao.csv`; `python codebook/valida_cycle_phases.py` confere dataset, codebook e trilha.
 
 ### 2.3 Análise de Eventos de Protesto (AEP)
 
 - **Âncora metodológica:** Protocolo **BEP-CEBRAP** (Alonso et al., 2024, *Plural* 31.2) — definição de evento, seleção de fontes, 5 blocos de variáveis, critérios de continuidade espaço-temporal, deduplicação por evento canônico (ver `docs/aep-protocol-bep.md`).
-- **Pipeline** (`pipeline/`): scraper do Acervo Folha → codificador DoCA assistido por LLM (codebook alinhado a BEP + campos MPEDS) → construção do dataset → confiabilidade intercodificador (Kappa ≥ 0,75). Execução aguarda credenciais do Acervo Folha.
-- **Sementes manuais** (`data/protest_events_seeds/`): Diretas Já (59 eventos) e Fora Collor (15 eventos), com estimativas de público por fonte; complementadas por `data/diretas_ja/` (cronologia de 50 comícios, distribuição estadual dos 490 comícios, atores da coalizão).
+- **Codebook AEP-BR** (`bancos/03_aep_br/codebook/`): v0.1, 50 variáveis nos 5 blocos BEP, cada uma mapeada ao MM e ao NEPAC; base para o banco próprio de 1983 até hoje em imprensa nacional e diários oficiais.
+- **Pipeline** (`src/` + `bancos/03_aep_br/`): scraper do Acervo Folha → codificador DoCA assistido por LLM (codebook alinhado a BEP + campos MPEDS) → construção do dataset → confiabilidade intercodificador (Kappa ≥ 0,75). Execução aguarda credenciais do Acervo Folha; o agendamento diário no GitHub Actions foi desativado em 2026-10-07.
+- **Sementes manuais** (`bancos/03_aep_br/sementes/`): Diretas Já (59 eventos) e Fora Collor (15 eventos), com estimativas de público por fonte; complementadas por `bancos/03_aep_br/sementes/diretas_ja/` (cronologia de 50 comícios, distribuição estadual dos 490 comícios, atores da coalizão).
 
 ### 2.4 Triangulação com bancos independentes (Frente E)
 
@@ -78,7 +79,7 @@ Dois bancos de terceiros incorporados como **fontes independentes** — comparad
 | **NEPAC/UNICAMP** (Tatagiba & Galvão, 2019) | 1.284 eventos, 2011–2016 | Acervo Folha |
 | **Mass Mobilization** (Clark & Regan, v16) | 224 protestos no Brasil, 1990–2020 | imprensa internacional (Lexis-Nexis) |
 
-A triangulação (produtos em `data/analise-triangulacao/`) testa as fronteiras de fase do `cycle_phases` contra as séries temporais de eventos e mapeia convergências/divergências entre fontes (crosswalk de categorias em `data/bancos-externos/`).
+A triangulação (produtos em `data/triangulacao/series_temporais/`) testa as fronteiras de fase do `cycle_phases` contra as séries temporais de eventos e mapeia convergências/divergências entre fontes (crosswalk de categorias em `bancos/`).
 
 ---
 
@@ -121,17 +122,13 @@ O quadro completo — com variáveis independentes/dependentes, indicadores e ev
 
 | Caminho | Conteúdo |
 |---|---|
-| `artigo/` | Seções redigidas do artigo (introdução, DOS, metodologia, estudo de caso 4.1–4.6, discussão) + referências ABNT (~94) |
-| `codebook/` | Codebook do `cycle_phases` (fases, variáveis 0–3, regras de codificação) |
-| `data/cycle_phases.csv` | Dataset central: 24 fases × 9 variáveis (v3; backup v2 preservado) |
-| `data/protest_events_seeds/` | Sementes manuais: Diretas Já (59) e Fora Collor (15) |
-| `data/diretas_ja/` | Cronologia de comícios, distribuição estadual, atores da coalizão |
-| `data/bancos-externos/` | NEPAC e Mass Mobilization + crosswalk de códigos |
-| `data/analise-triangulacao/` | Produtos da Frente E (triangulação) |
-| `docs/` | Projeto, quadro de hipóteses, periodização, protocolo AEP-BEP, incorporação de artefatos |
-| `metodologia/` | Relatório metodológico acadêmico (documento vivo) |
-| `pipeline/` | Pipeline AEP: scraper Acervo Folha, codificador DoCA, builder, kappa |
-| `literature/`, `experiments/` | Levantamento bibliográfico e memorandos exploratórios |
+| `bancos/` | **Uma pasta por banco de dados** (ver `bancos/README.md`): `01_mass_mobilization/` (1990–2020), `02_nepac/` (2011–2016), `03_aep_br/` (banco próprio 1983–hoje: codebook BEP, fontes, sementes, coleta) e `crosswalk/` |
+| `data/` | Dados derivados: `processed/cycle_phases/` (24 fases × variáveis, v3), `triangulacao/series_temporais/` (Frente E), `interim/` |
+| `src/` | Scripts: `paths.py` (caminhos centrais), `data/` (coleta), `preprocessing/` (codificação, validação), `analysis/` (séries, bibliografia) |
+| `config/` | Vocabulários do codificador (`doca_codebook.yaml`), buscas e seletores do scraper |
+| `artigo/secoes/` | Seções redigidas do artigo |
+| `docs/` | Projeto, hipóteses, periodização, protocolo AEP-BEP, `codebook/` do cycle_phases, `process_tracing/`, `methodology/`, `artigo/` (referências .bib e ABNT), `artefatos/` (material importado) |
+| `literature/` | Fichamentos e levantamento bibliográfico |
 | `research-state.yaml`, `research-log.md` | Estado do projeto e changelog da pesquisa |
 
 ## 5. Frentes de trabalho

@@ -1,20 +1,46 @@
 #!/usr/bin/env python3
-"""Initialize SQLite database with DoCA schema for protest events collection."""
+"""Cria o banco SQLite do AEP-BR (bancos/03_aep_br/protest_events.db).
+
+A tabela protest_events é gerada a partir das variáveis de
+bancos/03_aep_br/codebook/codebook_aep_br.yaml: não há lista paralela de
+colunas. Os vocabulários de referência (temas, repertórios) vêm de
+config/doca_codebook.yaml.
+"""
 
 import sqlite3
 import json
 from pathlib import Path
-import yaml
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
+sys.path.insert(0, str(paths.RAIZ / "src" / "preprocessing"))
+import aep_codebook as cb  # noqa: E402
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DB_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "protest_events.db"
-CODEBOOK_PATH = BASE_DIR.parent / "config" / "doca_codebook.yaml"
+DB_PATH = paths.DB_PATH
+
+_SQL = {"date": "TEXT", "str": "TEXT", "enum": "TEXT", "int": "INTEGER", "bool": "BOOLEAN"}
+
+
+def _ddl_eventos() -> str:
+    linhas = []
+    for v in cb.variaveis():
+        tipo = "TEXT" if v["tipo"].startswith("list[") else _SQL[v["tipo"]]
+        if v["nome"] == "evento_id":
+            linhas.append("evento_id TEXT PRIMARY KEY")
+            continue
+        restr = ""
+        vals = cb.valores(v["vocabulario"]) if v["tipo"] == "enum" and v.get("vocabulario") else None
+        if vals:
+            lista = ", ".join("'" + x.replace("'", "''") + "'" for x in vals)
+            restr = f" CHECK({v['nome']} IN ({lista}))"
+        linhas.append(f"{v['nome']} {tipo}{restr}")
+    linhas.append("codificado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    return "CREATE TABLE IF NOT EXISTS protest_events (\n    " + ",\n    ".join(linhas) + "\n)"
 
 def init_database():
-    """Create tables for DoCA protest events data."""
+    """Cria as tabelas do banco AEP-BR."""
 
-    # Load codebook for validation
-    codebook = yaml.safe_load(CODEBOOK_PATH.read_text())
+    codebook = cb.doca()
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -35,107 +61,11 @@ def init_database():
     )
     """)
 
-    # 2. Protest events (main table after DoCA coding)
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS protest_events (
-        event_id TEXT PRIMARY KEY,
-        event_date TEXT NOT NULL,
-        end_date TEXT,
-        duration_days INTEGER,
+    # 2. Eventos — uma coluna por variável do codebook AEP-BR. Listas e objetos
+    # (atores, fontes, tema_codigo...) ficam como JSON em TEXT.
+    cursor.execute(_ddl_eventos())
 
-        -- Location
-        location_city TEXT NOT NULL,
-        location_state TEXT NOT NULL,
-        city_size TEXT CHECK(city_size IN ('pequeno', 'medio', 'grande')),
-        location_venue TEXT,
-        location_venue_type TEXT NOT NULL,
-        location_conventional BOOLEAN,
-
-        -- Crowd
-        crowd_size_reported INTEGER,
-        crowd_size_min INTEGER,
-        crowd_size_max INTEGER,
-        crowd_size_scale TEXT CHECK(crowd_size_scale IN ('0', '1', '2', '3', '4', '5')),
-        crowd_size_bep TEXT CHECK(crowd_size_bep IN ('pequena', 'media', 'grande', 'mega')),
-
-        -- Claims and political content
-        claim_code TEXT NOT NULL,
-        claim_text TEXT,
-        valence TEXT CHECK(valence IN ('01', '02', '03')),
-
-        -- Repertoires and performances
-        repertoire TEXT NOT NULL,
-        action_object TEXT,
-        action_instrument TEXT,
-
-        -- Conflict and repression
-        conflict_present BOOLEAN,
-        repression TEXT CHECK(repression IN ('none', 'dispersão', 'prisões', 'violência')),
-        conflict_police BOOLEAN,
-        conflict_inter_group BOOLEAN,
-        arrests_reported INTEGER,
-        injuries_reported INTEGER,
-
-        -- Source tracking
-        source_url TEXT,
-        source_date TEXT,
-        article_desc TEXT,
-        event_desc TEXT,
-        eligible BOOLEAN DEFAULT TRUE,
-
-        -- Multi-source deduplication
-        canonical_event_id TEXT,
-        multi_event_article BOOLEAN,
-        counter_protest BOOLEAN,
-
-        -- Metadata
-        coded_by TEXT,
-        coded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-        FOREIGN KEY (source_url) REFERENCES raw_articles(source_url)
-    )
-    """)
-
-    # 3. Actors/organizations
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS actors (
-        actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        event_id TEXT NOT NULL,
-        actor_name TEXT NOT NULL,
-        actor_specification TEXT,
-        org_type TEXT NOT NULL,
-        formalization TEXT CHECK(formalization IN ('formal', 'informal')),
-
-        FOREIGN KEY (event_id) REFERENCES protest_events(event_id) ON DELETE CASCADE
-    )
-    """)
-
-    # 4. Symbols and slogans
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS symbols_slogans (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        event_id TEXT NOT NULL,
-        type TEXT CHECK(type IN ('symbol', 'slogan')),
-        content TEXT NOT NULL,
-
-        FOREIGN KEY (event_id) REFERENCES protest_events(event_id) ON DELETE CASCADE
-    )
-    """)
-
-    # 5. SMOs (Formal protest organizations identified)
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS smos (
-        smo_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        event_id TEXT NOT NULL,
-        smo_name TEXT NOT NULL,
-        smo_type TEXT,
-
-        FOREIGN KEY (event_id) REFERENCES protest_events(event_id) ON DELETE CASCADE
-    )
-    """)
-
-    # 6. Codebook reference tables for validation/lookup
+    # 3. Tabelas de referência dos vocabulários
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS codebook_claims (
         claim_code TEXT PRIMARY KEY,
@@ -165,13 +95,10 @@ def init_database():
             (repertoire, None)
         )
 
-    # Create indexes for common queries
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_event_date ON protest_events(event_date)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_city ON protest_events(location_city, location_state)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_claim_code ON protest_events(claim_code)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_repertoire ON protest_events(repertoire)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_source_url ON protest_events(source_url)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_canonical ON protest_events(canonical_event_id)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_data ON protest_events(data_inicio)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_cidade ON protest_events(cidade, uf)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_ciclo ON protest_events(ciclo)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_canonico ON protest_events(evento_canonico_id)")
 
     conn.commit()
     conn.close()

@@ -1,6 +1,8 @@
 # Codebook DoCA — protest_events
 # Âncora metodológica: Alonso et al. (2024) — Protocolo BEP-CEBRAP
 # Ver docs/aep-protocol-bep.md para mapeamento completo BEP → DoCA
+# Especificação de variáveis do banco AEP-BR (1983–hoje), que usa os vocabulários
+# deste arquivo: bancos/03_aep_br/codebook/codebook_aep_br.yaml
 
 # ---------------------------------------------------------------------------
 # VALÊNCIAS — posição do protesto em relação à demanda

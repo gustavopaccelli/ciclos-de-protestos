@@ -28,7 +28,7 @@ Esperado conter:
 ## Fluxo
 
 ```
-data/raw/ + data/interim/ + data/triangulacao/ → scripts/analysis/ → data/processed/
+bancos/ + data/interim/ + data/triangulacao/ → scripts/analysis/ → data/processed/
                                                                        ↓
                                                           outputs/figures/ (visualizações)
                                                           outputs/tables/ (tabelas artigo)

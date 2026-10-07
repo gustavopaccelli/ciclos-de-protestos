@@ -1,49 +1,44 @@
-"""04_intercoder_reliability.py — Confiabilidade intercodificadores.
+"""intercoder_reliability.py — Confiabilidade intercodificadores (AEP-BR).
 
 Passagem 5 do protocolo (docs/aep-protocol-bep.md §11). Compara a codificação
 automática (data/interim/) com a codificação manual de uma amostra e
 calcula Cohen's Kappa por variável.
 
 Uso:
-  python 04_intercoder_reliability.py amostra_manual.csv [--out relatorio.csv]
+  python src/preprocessing/intercoder_reliability.py amostra_manual.csv [--out relatorio.csv]
 
-O CSV manual deve conter event_id e ao menos uma das variáveis categóricas
-listadas em CATEGORICAL. Variáveis ausentes do CSV são ignoradas.
+O CSV manual deve conter evento_id e ao menos uma das variáveis categóricas
+listadas em CATEGORICAL (lidas do codebook AEP-BR). Variáveis ausentes do CSV
+são ignoradas. Em variáveis de lista (tema_codigo, repertorio, alvo,
+resposta_estatal) compara-se o primeiro elemento, isto é, o principal; no CSV
+manual a lista vem separada por ";".
 """
 
 import argparse
 import json
 import unicodedata
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import aep_codebook as cb  # noqa: E402
 
 import pandas as pd
-import yaml
 from sklearn.metrics import cohen_kappa_score
 
-BASE = Path(__file__).resolve().parent
-CODED_DIR = BASE.parent.parent / "data" / "interim"  # src/preprocessing -> src -> raiz -> data/interim
-CODEBOOK = yaml.safe_load((BASE.parent.parent / "config" / "doca_codebook.yaml").read_text())
-KAPPA_MIN = CODEBOOK.get("intercoder_kappa_threshold", 0.75)
+CODED_DIR = paths.INTERIM
+KAPPA_MIN = cb.limiar_kappa()
 
-# Cobertura ampliada: antes só 5 variáveis eram aferidas, das ~40 do codebook.
-CATEGORICAL = [
-    # Bloco I
-    "location_venue_type", "location_conventional", "city_size",
-    "crowd_size_scale", "crowd_size_bep",
-    # Bloco III
-    "repertoire",
-    # Bloco IV
-    "claim_code", "valence",
-    # Bloco V
-    "conflict_present", "repression", "conflict_police", "conflict_inter_group",
-    # Elegibilidade e MPEDS
-    "eligible", "multi_event_article", "counter_protest", "target",
-]
-
-BOOL_FIELDS = {
-    "eligible", "conflict_present", "conflict_police", "conflict_inter_group",
-    "multi_event_article", "counter_protest", "location_conventional",
-}
+# Variáveis categóricas aferidas: todas as de vocabulário fechado e as booleanas,
+# exceto as atribuídas pelo pipeline (não há o que comparar) e as de qualidade
+# da fonte.
+_FORA = cb.CAMPOS_PIPELINE | {"qualidade_ocr", "confianca"}
+BOOL_FIELDS = set(cb.nomes("bool")) - _FORA
+CATEGORICAL = [n for n in cb.nomes()
+               if n not in _FORA and (n in cb.campos_enum() or n in BOOL_FIELDS)]
+LIST_FIELDS = set(cb.campos_lista())
 
 _TRUTHY = {"true", "1", "sim", "yes", "verdadeiro"}
 _FALSY = {"false", "0", "nao", "no", "falso"}
@@ -55,6 +50,15 @@ def _slug(value) -> str:
     text = unicodedata.normalize("NFKD", str(value))
     text = "".join(c for c in text if not unicodedata.combining(c))
     return " ".join(text.lower().split())
+
+
+def principal(value):
+    """Primeiro elemento de uma lista (JSON) ou de 'a; b' (CSV manual)."""
+    if isinstance(value, list):
+        return value[0] if value else None
+    if isinstance(value, str):
+        return value.split(";")[0].strip() or None
+    return value
 
 
 def canon(value, is_bool: bool) -> str:
@@ -78,18 +82,18 @@ def canon(value, is_bool: bool) -> str:
 def load_auto() -> pd.DataFrame:
     rows = []
     for path in CODED_DIR.glob("*.json"):
-        rows.extend(json.loads(path.read_text()).get("events", []))
+        rows.extend(json.loads(path.read_text()).get("eventos", []))
     if not rows:
         raise SystemExit("Nenhum evento codificado em data/interim/")
-    return pd.DataFrame(rows).set_index("event_id")
+    return pd.DataFrame(rows).set_index("evento_id")
 
 
 def main(manual_csv: str, out_csv: str | None) -> None:
-    manual = pd.read_csv(manual_csv, dtype=str).set_index("event_id")
+    manual = pd.read_csv(manual_csv, dtype=str).set_index("evento_id")
     auto = load_auto()
     common = manual.index.intersection(auto.index)
     if len(common) == 0:
-        raise SystemExit("Nenhum event_id em comum entre manual e automático.")
+        raise SystemExit("Nenhum evento_id em comum entre manual e automático.")
     print(f"{len(common)} eventos em comum (limiar do codebook: κ ≥ {KAPPA_MIN})\n")
 
     linhas = []
@@ -98,8 +102,9 @@ def main(manual_csv: str, out_csv: str | None) -> None:
         if var not in manual.columns or var not in auto.columns:
             continue
         is_bool = var in BOOL_FIELDS
-        a = auto.loc[common, var].map(lambda v: canon(v, is_bool))
-        m = manual.loc[common, var].map(lambda v: canon(v, is_bool))
+        prep = principal if var in LIST_FIELDS else (lambda v: v)
+        a = auto.loc[common, var].map(lambda v: canon(prep(v), is_bool))
+        m = manual.loc[common, var].map(lambda v: canon(prep(v), is_bool))
         mask = (a != "") & (m != "")
         if mask.sum() == 0:
             continue

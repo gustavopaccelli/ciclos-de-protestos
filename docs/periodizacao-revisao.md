@@ -1,6 +1,6 @@
 # Revisão da Periodização — Frente B (proposta para validação)
 
-Data: 2026-06-10 · Status: **PROPOSTA** — os scores da v1 (`data/cycle_phases.csv`,
+Data: 2026-06-10 · Status: **PROPOSTA** — os scores da v1 (`data/processed/cycle_phases/cycle_phases.csv`,
 validados em 05/06) permanecem intactos; as mudanças abaixo estão em
 `data/cycle_phases_v2_proposta.csv` e só substituem a v1 após sua validação.
 

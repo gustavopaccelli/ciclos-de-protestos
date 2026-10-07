@@ -86,7 +86,7 @@ fronteira, por ocorrerem sob regime autoritário em liberalização.
 
 ### 3.1 Unidade de análise e variáveis
 
-O dataset **`cycle_phases`** (`data/cycle_phases.csv`) tem como unidade a **fase de ciclo**
+O dataset **`cycle_phases`** (`data/processed/cycle_phases/cycle_phases.csv`) tem como unidade a **fase de ciclo**
 (cycle × phase) e codifica **9 variáveis** em escala ordinal 0–3:
 
 | Bloco | Variáveis |
@@ -134,7 +134,7 @@ agregação direta.
 
 ### 4.1 Pipeline de Análise de Eventos de Protesto (AEP) — Acervo Folha
 
-Foi projetado um pipeline em quatro passos (`pipeline/`) para a construção do banco
+Foi projetado um pipeline em quatro passos (`src/` + `bancos/03_aep_br/`) para a construção do banco
 `protest_events` a partir do **Acervo Folha de S.Paulo**:
 
 1. **`01_scraper.py`** — raspagem via **Playwright** (navegador headless Chromium). Realiza login
@@ -164,7 +164,7 @@ Kappa. A execução está em pausa por decisão do pesquisador.
 
 ### 4.2 Protocolo de codificação (DoCA / BEP-CEBRAP / MPEDS)
 
-O codebook do banco de eventos (`pipeline/config/doca_codebook.yaml`) integra três referências:
+O codebook do banco de eventos (`config/doca_codebook.yaml`) integra três referências:
 
 - **Protocolo BEP-CEBRAP** (Alonso et al., 2024) — âncora metodológica central: definição
   operacional de evento de protesto (4 critérios de inclusão + exclusões), critérios de
@@ -183,7 +183,7 @@ dígitos; os repertórios seguem os verbos canônicos de Tilly/BEP.
 ### 4.3 Bancos de dados de terceiros incorporados
 
 Foram incorporados dois bancos acadêmicos, mantidos como **fontes independentes** em
-`data/bancos-externos/`, cada qual com fonte original preservada, dados em CSV e livro de código:
+`bancos/`, cada qual com fonte original preservada, dados em CSV e livro de código:
 
 | Banco | Autoria | Cobertura | Unidade | N (Brasil) |
 |---|---|---|---|---|
@@ -193,7 +193,7 @@ Foram incorporados dois bancos acadêmicos, mantidos como **fontes independentes
 O banco NEPAC (fonte: Acervo Folha) oferece microdados nacionais densos para 2011–2016; o Mass
 Mobilization (fonte: imprensa internacional/Lexis-Nexis) oferece a série temporal mais longa
 (alcança o Fora Collor) e a dimensão comparada internacional. Um **crosswalk** documentado
-(`data/bancos-externos/mass-mobilization-clark-regan-2020/livro-codigo/crosswalk-codigos.md`)
+(`bancos/crosswalk/crosswalk_mm_nepac_aep.md`)
 relaciona — **sem mesclar** — as categorias do MM aos códigos DoCA/BEP e NEPAC, explicitando as
 diferenças metodológicas (limiares de inclusão, fontes e definições de alvo) que tornam as bases
 não somáveis.
@@ -201,7 +201,7 @@ não somáveis.
 ### 4.4 Sementes de dados próprios
 
 Para os ciclos **pré-2011**, não cobertos adequadamente pelos bancos externos, foram incorporadas
-**sementes de `protest_events`** codificadas manualmente (`data/protest_events_seeds/`): **59
+**sementes de `protest_events`** codificadas manualmente (`bancos/03_aep_br/sementes/`): **59
 eventos das Diretas Já** e **15 do Fora Collor**, com múltiplas estimativas de público por fonte
 (mín/máx/mediana) e fonte primária. Alimentam diretamente o banco a ser expandido pelo pipeline.
 

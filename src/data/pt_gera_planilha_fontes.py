@@ -15,12 +15,15 @@ import argparse
 import csv
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
-BASE = Path(__file__).resolve().parent.parent
+BASE = paths.PROCESS_TRACING
 CSV = BASE / "fontes" / "fontes-de-dados.csv"
 XLSX = BASE / "fontes" / "fontes-de-dados.xlsx"
 
