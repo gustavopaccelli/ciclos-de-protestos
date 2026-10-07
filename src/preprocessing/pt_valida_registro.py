@@ -22,12 +22,15 @@ import argparse
 import re
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import pandas as pd
 import yaml
 
-BASE = Path(__file__).resolve().parent.parent
-RAIZ = BASE.parent
+BASE = paths.PROCESS_TRACING
+RAIZ = paths.RAIZ
 DADOS = BASE / "dados"
 
 erros: list[str] = []

@@ -1,0 +1,28 @@
+{
+  "banco": "02_nepac",
+  "nome": "Os protestos no Brasil em tempos de crise (2011-2016)",
+  "autoria": [
+    "Luciana Tatagiba (coord.)",
+    "Andreia Galvão (coord.)"
+  ],
+  "instituicao": "NEPAC/CEMARX — IFCH/UNICAMP, 2019",
+  "fonte_url": "https://nepac.ifch.unicamp.br/banco-de-dados",
+  "fonte_primaria_eventos": "Acervo Folha de S.Paulo",
+  "periodo": {
+    "inicio": 2011,
+    "fim": 2016
+  },
+  "registros_cidade_evento": 2548,
+  "eventos_unicos": 1284,
+  "colunas": 27,
+  "arquivos": {
+    "dados": "dados/protestos_2011-2016.csv",
+    "planilha_original": "fonte-original/protestos_no_brasil_2011-2016.xlsx",
+    "livro_codigo_original": "fonte-original/tatagiba_galvao_2019_livro_de_codigo.docx",
+    "livro_codigo": "livro-codigo/livro-de-codigo.md"
+  },
+  "pendencias": [
+    "Não foi possível conferir se o portal tem outros arquivos (a rede do ambiente bloqueia nepac.ifch.unicamp.br)."
+  ],
+  "verificado_em": "2026-10-07"
+}

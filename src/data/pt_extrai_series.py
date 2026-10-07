@@ -31,8 +31,11 @@ import urllib.request
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
-BASE = Path(__file__).resolve().parent.parent
+BASE = paths.PROCESS_TRACING
 CSV_SERIES = BASE / "dados" / "series_estruturais.csv"
 TIMEOUT = 45
 

@@ -1,0 +1,30 @@
+{
+  "banco": "01_mass_mobilization",
+  "nome": "Mass Mobilization Protest Data — recorte Brasil",
+  "autoria": [
+    "David H. Clark (Binghamton University)",
+    "Patrick M. Regan (University of Notre Dame)"
+  ],
+  "fonte_url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HTTWYL",
+  "repositorio_github": "https://github.com/MassMobilization",
+  "arquivo_origem": "mmALL_073120 (v16, 31/07/2020)",
+  "cobertura_global": "162 países, 1990–2020",
+  "recorte": "country == 'Brazil' (ccode == 140), protest == 1",
+  "periodo": {
+    "inicio": 1990,
+    "fim": 2020
+  },
+  "registros": 224,
+  "colunas": 31,
+  "unidade": "evento de protesto (país-evento)",
+  "arquivos": {
+    "dados": "dados/protestos_brasil_1990-2020.csv",
+    "manual_original": "fonte-original/MM_users_manual_0515.pdf",
+    "livro_codigo": "livro-codigo/livro-de-codigo.md",
+    "crosswalk": "../crosswalk/crosswalk_mm_nepac_aep.md"
+  },
+  "pendencias": [
+    "Arquivos globais (CSV 15 MB/DTA 29 MB) e o repositório GitHub não foram baixados: a rede do ambiente bloqueia dataverse.harvard.edu e github.com. Rodar download.py quando liberado."
+  ],
+  "verificado_em": "2026-10-07"
+}

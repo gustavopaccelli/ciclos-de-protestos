@@ -22,9 +22,12 @@ import urllib.error
 import urllib.request
 from datetime import date
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
-BASE = Path(__file__).resolve().parent.parent
-SCRIPTS = BASE / "scripts"
+BASE = paths.PROCESS_TRACING
+SCRIPTS = Path(__file__).resolve().parent
 RELATORIO = BASE / "dados" / "relatorio_coleta.md"
 CICLOS = ["c1", "c2", "c3", "c4"]
 
@@ -126,10 +129,10 @@ def main() -> None:
     ciclos = [args.ciclo] if args.ciclo else CICLOS
     execucoes = []
     for c in ciclos:
-        ok, saida = roda("extrai_camara_senado.py", "--ciclo", c,
+        ok, saida = roda("pt_extrai_legislativo.py", "--ciclo", c,
                          "--saida", str(BASE / "dados" / f"candidatos_{c}.csv"))
         execucoes.append((f"extrai_camara_senado.py --ciclo {c}", ok, saida))
-    ok, saida = roda("extrai_series_estruturais.py", "--indicador", "inflacao")
+    ok, saida = roda("pt_extrai_series.py", "--indicador", "inflacao")
     execucoes.append(("extrai_series_estruturais.py --indicador inflacao", ok, saida))
 
     escreve_relatorio(diag, execucoes, ciclos)

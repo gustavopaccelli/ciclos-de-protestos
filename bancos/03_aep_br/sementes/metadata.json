@@ -1,0 +1,18 @@
+{
+  "nome": "Sementes do banco AEP-BR (codificação manual)",
+  "autoria": [
+    "Gustavo Paccelli Costa"
+  ],
+  "metodo": "codificação manual a partir de bibliografia e imprensa (ver README.md)",
+  "arquivos": {
+    "diretas_ja/protest_events_diretas_ja_seed.csv": {
+      "eventos": 59,
+      "periodo": "1983-11 a 1984-06"
+    },
+    "fora_collor/protest_events_fora_collor_seed.csv": {
+      "eventos": 15,
+      "periodo": "1992-03 a 1992-09"
+    }
+  },
+  "verificado_em": "2026-10-07"
+}

@@ -4,11 +4,14 @@
 import sqlite3
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 import yaml
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DB_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "protest_events.db"
-CODEBOOK_PATH = BASE_DIR.parent / "config" / "doca_codebook.yaml"
+DB_PATH = paths.DB_PATH
+CODEBOOK_PATH = paths.CONFIG / "doca_codebook.yaml"
 
 def init_database():
     """Create tables for DoCA protest events data."""

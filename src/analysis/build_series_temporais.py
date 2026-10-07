@@ -11,10 +11,13 @@ periodização é etapa analítica posterior (decisão do usuário, 2026-07-17).
 """
 import csv
 import os
+import sys
 from collections import Counter
 
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # data/
-OUT = os.path.join(BASE, "analise-triangulacao", "series_temporais_eventos.csv")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import paths  # noqa: E402
+
+OUT = paths.TRIANGULACAO / "series_temporais" / "series_temporais_eventos.csv"
 
 series = []  # (fonte, ano_mes) -> contagem
 
@@ -28,7 +31,7 @@ def add(counter, fonte):
 c = Counter()
 descartados_nepac = 0
 vistos = set()
-with open(os.path.join(BASE, "bancos-externos/nepac-tatagiba-galvao-2019/dados/protestos_2011-2016.csv"), encoding="utf-8") as f:
+with open(paths.NEPAC / "dados" / "protestos_2011-2016.csv", encoding="utf-8") as f:
     for row in csv.DictReader(f):
         cod = (row.get("Codigo_evento") or "").strip()
         d = (row.get("Data_de_Inicio_do_protesto") or "").strip()
@@ -45,7 +48,7 @@ add(c, "NEPAC")
 # --- Mass Mobilization ---
 c = Counter()
 descartados_mm = 0
-with open(os.path.join(BASE, "bancos-externos/mass-mobilization-clark-regan-2020/dados/protestos_brasil_1990-2020.csv"), encoding="utf-8") as f:
+with open(paths.MM / "dados" / "protestos_brasil_1990-2020.csv", encoding="utf-8") as f:
     for row in csv.DictReader(f):
         if row.get("protest") != "1":
             continue  # linhas país-ano sem protesto
@@ -58,11 +61,11 @@ add(c, "MassMobilization")
 
 # --- Seeds ---
 for path, fonte in [
-    ("protest_events_seeds/protest_events_diretas_ja_seed.csv", "Seed_DiretasJa"),
-    ("protest_events_seeds/protest_events_fora_collor_seed.csv", "Seed_ForaCollor"),
+    ("diretas_ja/protest_events_diretas_ja_seed.csv", "Seed_DiretasJa"),
+    ("fora_collor/protest_events_fora_collor_seed.csv", "Seed_ForaCollor"),
 ]:
     c = Counter()
-    with open(os.path.join(BASE, path), encoding="utf-8") as f:
+    with open(paths.AEP_SEMENTES / path, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             d = (row.get("date") or "").strip()
             if len(d) >= 7 and d[:4].isdigit():

@@ -13,6 +13,9 @@ Uso: python check_schema_coverage.py     (código de saída 1 se houver divergê
 import importlib.util
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import yaml
 
@@ -20,14 +23,14 @@ BASE = Path(__file__).resolve().parent
 
 
 def load_coder():
-    spec = importlib.util.spec_from_file_location("doca_coder", BASE / "02_doca_coder.py")
+    spec = importlib.util.spec_from_file_location("doca_coder", paths.RAIZ / "src" / "preprocessing" / "coder.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
 def main() -> int:
-    codebook = yaml.safe_load((BASE / "config" / "doca_codebook.yaml").read_text())
+    codebook = yaml.safe_load((paths.CONFIG / "doca_codebook.yaml").read_text())
     coder = load_coder()
 
     declared = set(codebook["event_schema"])

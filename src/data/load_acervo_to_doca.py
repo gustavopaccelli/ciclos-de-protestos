@@ -6,11 +6,14 @@ import sqlite3
 import uuid
 from datetime import datetime
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 from typing import Dict, List, Optional
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR.parent.parent / "data" / "protest_events.db"
-ACERVO_JSON = BASE_DIR.parent.parent / "data" / "acervo_protestos.json"
+DB_PATH = paths.DB_PATH
+ACERVO_JSON = paths.ACERVO_JSON
 
 def parse_date(date_str: str) -> Optional[str]:
     """Try to parse date strings in various Brazilian formats."""

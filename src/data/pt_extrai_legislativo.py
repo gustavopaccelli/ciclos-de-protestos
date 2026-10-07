@@ -31,8 +31,11 @@ import urllib.parse
 import urllib.request
 from datetime import date
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
-BASE = Path(__file__).resolve().parent.parent
+BASE = paths.PROCESS_TRACING
 API = "https://dadosabertos.camara.leg.br/api/v2"
 PAUSA = 0.5          # cortesia com o servidor público
 TIMEOUT = 30

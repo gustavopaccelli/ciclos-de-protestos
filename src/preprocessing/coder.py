@@ -1,6 +1,6 @@
 """02_doca_coder.py — Codificação DoCA/BEP de artigos via API Anthropic.
 
-Para cada artigo em data/raw/folha_acervo/, envia o texto ao Claude com o system
+Para cada artigo em bancos/03_aep_br/coleta/folha_acervo/, envia o texto ao Claude com o system
 prompt DoCA + codebook e extrai eventos de protesto em JSON validado
 (structured outputs). Saída: data/interim/{hash}.json.
 
@@ -21,6 +21,9 @@ import json
 import os
 import uuid
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import anthropic
 import yaml
@@ -30,9 +33,9 @@ from tqdm import tqdm
 load_dotenv()
 
 BASE = Path(__file__).resolve().parent
-RAW_DIR = BASE.parent.parent / "data" / "raw" / "folha_acervo"  # src/preprocessing -> src -> raiz
-CODED_DIR = BASE.parent.parent / "data" / "interim"
-CODEBOOK = yaml.safe_load((BASE.parent.parent / "config" / "doca_codebook.yaml").read_text())
+RAW_DIR = paths.FOLHA_RAW
+CODED_DIR = paths.INTERIM
+CODEBOOK = yaml.safe_load((paths.CONFIG / "doca_codebook.yaml").read_text())
 MODEL = os.environ.get("DOCA_MODEL", "claude-opus-4-8")
 
 DOCA_NAMESPACE = uuid.UUID("7c0e4d9a-1984-1992-2013-201520160000")

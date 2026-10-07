@@ -15,10 +15,13 @@ Uso:
 import argparse
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import pandas as pd
 
-BASE = Path(__file__).resolve().parent.parent
+BASE = paths.PROCESS_TRACING
 CSV = BASE / "dados" / "predicoes.csv"
 INICIO = "<!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->"
 FIM = "<!-- PREDICOES:FIM -->"

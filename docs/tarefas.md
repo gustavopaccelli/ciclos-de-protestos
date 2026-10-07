@@ -33,7 +33,7 @@ offline (não exige credenciais): ver `research-log.md`.
 - [x] **D5.** §12 do protocolo — validação da codificação por LLM (Halterman & Keith 2024;
       PAPEA/Haunss et al. 2025): 5 estágios, gold standard estratificado por ciclo, tipologia
       de erro, critério de escalada, registro obrigatório. 2026-07-18.
-- [x] **D6.** Duplicata do pipeline em `artefatos/mapeamamento/pea_acervo_folha/` congelada
+- [x] **D6.** Duplicata do pipeline em `artefatos/mapeamento/pea_acervo_folha/` congelada
       com `ARQUIVO-MORTO.md`. 2026-07-18.
 - [x] **D7.** Parecer sobre fontes alternativas ao Acervo Folha (`docs/fontes-alternativas.md`):
       recomenda investigar a Hemeroteca Digital para Diretas Já e Fora Collor — lacuna que os

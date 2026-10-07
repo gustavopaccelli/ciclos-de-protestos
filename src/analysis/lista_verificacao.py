@@ -14,10 +14,13 @@ import argparse
 import re
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 BASE = Path(__file__).resolve().parent
-BIB = BASE / "referencias.bib"
-SAIDA = BASE.parent / "literature" / "verificacao-bibliografica.md"
+BIB = paths.BIB
+SAIDA = paths.RAIZ / "literature" / "verificacao-bibliografica.md"
 
 ENTRY = re.compile(r"^@(\w+)\{([^,]+),", re.MULTILINE)
 # Campos que não se aplicam a cada tipo — evita cobrar volume de livro.
@@ -101,7 +104,7 @@ def main(check: bool) -> int:
         return 0
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
     SAIDA.write_text(novo, encoding="utf-8")
-    print(f"{len(itens)} entradas pendentes → {SAIDA.relative_to(BASE.parent)}")
+    print(f"{len(itens)} entradas pendentes → {SAIDA.relative_to(paths.RAIZ)}")
     return 0
 
 

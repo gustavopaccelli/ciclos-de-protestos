@@ -38,7 +38,7 @@ Instrução do usuário: incorporar o que **incrementa** o projeto; ignorar o qu
 | `artigo_processo_politico_conjuntura.docx` | **fonte Frente C** | versão do artigo com foco na análise de conjuntura |
 | `Estruturas-de-oportunidades-políticas-em-Ciclos-de-protesto.md` | fonte | notas de EOP |
 
-## 3. `mapeamamento/` — pipeline e relatórios
+## 3. `mapeamento/` — pipeline e relatórios
 
 | Artefato | Parecer | Ação |
 |---|---|---|
@@ -83,7 +83,7 @@ confirmação, o `data/cycle_phases.csv` validado permanece o vigente.
 
 ## 5. Pipeline: original vs. reconstruído
 
-O `artefatos/mapeamamento/pea_acervo_folha/` é o **pipeline original**. Comparação do codebook:
+O `artefatos/mapeamento/pea_acervo_folha/` é o **pipeline original**. Comparação do codebook:
 
 - **Nosso** (`pipeline/config/doca_codebook.yaml`): mais evoluído — 5 blocos BEP-CEBRAP,
   campos MPEDS, event_schema completo. **Mantido como vigente.**

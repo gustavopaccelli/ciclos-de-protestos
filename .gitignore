@@ -99,12 +99,7 @@ desktop.ini
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Old pipeline paths (deprecated)
-pipeline/data/raw/
-pipeline/data/coded/
-pipeline/data/scrape_state.json
-
 # DoCA Pipeline output (generated at runtime)
-data/*.db
-data/acervo_protestos.json
+bancos/03_aep_br/*.db
+bancos/03_aep_br/coleta/folha_acervo/
 output/

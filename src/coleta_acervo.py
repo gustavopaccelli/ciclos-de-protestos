@@ -4,6 +4,9 @@
 import json
 import logging
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paths  # noqa: E402
 from datetime import datetime, timedelta
 
 logging.basicConfig(level=logging.INFO)
@@ -116,8 +119,8 @@ def buscar_acervo_folha(termo_busca="protesto"):
     print(f"Total de registros coletados: {len(lista_final)}")
 
     # Salva em JSON
-    output_dir = Path("data")
-    output_dir.mkdir(exist_ok=True)
+    output_dir = paths.AEP_COLETA
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / "acervo_protestos.json"
     with open(output_file, "w", encoding="utf-8") as f:

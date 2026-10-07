@@ -15,14 +15,17 @@ import argparse
 import json
 import unicodedata
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import pandas as pd
 import yaml
 from sklearn.metrics import cohen_kappa_score
 
 BASE = Path(__file__).resolve().parent
-CODED_DIR = BASE.parent.parent / "data" / "interim"  # src/preprocessing -> src -> raiz -> data/interim
-CODEBOOK = yaml.safe_load((BASE.parent.parent / "config" / "doca_codebook.yaml").read_text())
+CODED_DIR = paths.INTERIM
+CODEBOOK = yaml.safe_load((paths.CONFIG / "doca_codebook.yaml").read_text())
 KAPPA_MIN = CODEBOOK.get("intercoder_kappa_threshold", 0.75)
 
 # Cobertura ampliada: antes só 5 variáveis eram aferidas, das ~40 do codebook.

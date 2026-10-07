@@ -2,7 +2,7 @@
 
 Passagem 1 do protocolo (docs/aep-protocol-bep.md §11). Faz login, itera
 termos de busca × janelas temporais (config/queries.yaml), salva cada artigo
-como JSON em data/raw/folha_acervo/ e mantém estado incremental (interrompível).
+como JSON em bancos/03_aep_br/coleta/folha_acervo/ e mantém estado incremental (interrompível).
 
 Os seletores CSS ficam em config/selectors.yaml — editáveis sem tocar em
 Python. O Acervo é uma aplicação React e muda de layout sem aviso.
@@ -24,6 +24,9 @@ import random
 import time
 import urllib.parse
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import yaml
 from dotenv import load_dotenv
@@ -34,10 +37,10 @@ from playwright.sync_api import sync_playwright
 load_dotenv()
 
 BASE = Path(__file__).resolve().parent
-CFG = yaml.safe_load((BASE / "config" / "queries.yaml").read_text())
-SEL = yaml.safe_load((BASE / "config" / "selectors.yaml").read_text())
-ROOT = BASE.parent.parent  # src/data -> src -> raiz
-RAW_DIR = ROOT / "data" / "raw" / "folha_acervo"
+CFG = yaml.safe_load((paths.CONFIG / "queries.yaml").read_text())
+SEL = yaml.safe_load((paths.CONFIG / "selectors.yaml").read_text())
+ROOT = paths.RAIZ
+RAW_DIR = paths.FOLHA_RAW
 DIAG_DIR = RAW_DIR / "diagnose"
 STATE_FILE = ROOT / CFG["scraper"]["state_file"]
 
@@ -136,8 +139,8 @@ def login(page) -> None:
     password = os.environ.get("FOLHA_PASSWORD")
     if not email or not password:
         raise SystemExit(
-            "FOLHA_EMAIL/FOLHA_PASSWORD ausentes. Copie pipeline/.env.example "
-            "para pipeline/.env e preencha (o .env nunca é versionado)."
+            "FOLHA_EMAIL/FOLHA_PASSWORD ausentes. Copie .env.example "
+            "para .env na raiz e preencha (o .env nunca é versionado)."
         )
 
     page.goto(LOGIN_URL, timeout=NAV_TIMEOUT_MS)
@@ -311,7 +314,7 @@ def diagnose(browser) -> None:
                 relatorio.append(f"  primeiros 200: {corpo[:200]!r}")
             apage.close()
     else:
-        relatorio.append("\n>>> NENHUM RESULTADO CASOU. Abra data/raw/folha_acervo/diagnose/"
+        relatorio.append("\n>>> NENHUM RESULTADO CASOU. Abra bancos/03_aep_br/coleta/folha_acervo/diagnose/"
                          "busca.html e ajuste 'search.result_item' em "
                          "config/selectors.yaml.")
 

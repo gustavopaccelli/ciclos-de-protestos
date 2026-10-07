@@ -19,14 +19,17 @@ import re
 import unicodedata
 import uuid
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 import pandas as pd
 import yaml
 
 BASE = Path(__file__).resolve().parent
-CODED_DIR = BASE.parent.parent / "data" / "interim"  # src/preprocessing -> src -> raiz -> data/interim
-OUT_DIR = BASE.parent.parent / "data" / "processed" / "harmonizado"
-CODEBOOK = yaml.safe_load((BASE / "config" / "doca_codebook.yaml").read_text())
+CODED_DIR = paths.INTERIM
+OUT_DIR = paths.PROCESSED / "harmonizado"
+CODEBOOK = yaml.safe_load((paths.CONFIG / "doca_codebook.yaml").read_text())
 
 CANONICAL_NAMESPACE = uuid.UUID("7c0e4d9a-1984-1992-2013-201520160001")
 

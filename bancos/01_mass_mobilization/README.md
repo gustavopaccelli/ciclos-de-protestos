@@ -5,7 +5,7 @@
 **Arquivo de origem:** `mmALL_073120` (versão **v16**, 31/07/2020) — cobertura global 162 países, **1990–2020**.
 **Distribuição:** Harvard Dataverse (Mass Mobilization Project).
 
-> **Uso neste projeto:** dado de terceiros incorporado para fins de pesquisa acadêmica, com atribuição integral aos autores. **Fonte independente** — não mesclada com os demais bancos (ver `livro-codigo/crosswalk-codigos.md`).
+> **Uso neste projeto:** dado de terceiros incorporado para fins de pesquisa acadêmica, com atribuição integral aos autores. **Fonte independente** — não mesclada com os demais bancos (ver `../crosswalk/crosswalk_mm_nepac_aep.md`).
 
 ---
 
@@ -24,7 +24,7 @@ metodológica essencial.
 ## Conteúdo da pasta
 
 ```
-mass-mobilization-clark-regan-2020/
+01_mass_mobilization/
 ├── README.md                          ← este manifesto
 ├── fonte-original/
 │   └── MM_users_manual_0515.pdf       ← codebook oficial (Clark & Regan 2015)
@@ -32,7 +32,7 @@ mass-mobilization-clark-regan-2020/
 │   └── protestos_brasil_1990-2020.csv ← 224 registros, 31 colunas (só Brasil)
 └── livro-codigo/
     ├── livro-de-codigo.md             ← variáveis + tabelas de código (demandas/respostas)
-    └── crosswalk-codigos.md           ← correspondência com códigos do projeto (SEM mesclar)
+    (crosswalk movido para ../crosswalk/crosswalk_mm_nepac_aep.md)
 ```
 
 ## Distribuição por ano (protestos no Brasil)

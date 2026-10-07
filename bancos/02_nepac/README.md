@@ -12,7 +12,7 @@
 ## Conteúdo da pasta
 
 ```
-nepac-tatagiba-galvao-2019/
+02_nepac/
 ├── README.md                       ← este arquivo (manifesto)
 ├── fonte-original/                 ← arquivos originais preservados, sem alteração
 │   ├── protestos_no_brasil_2011-2016.xlsx

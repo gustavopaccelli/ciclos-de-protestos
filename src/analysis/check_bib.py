@@ -11,10 +11,13 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
 
 BASE = Path(__file__).resolve().parent
-BIB = BASE / "referencias.bib"
-ABNT = BASE / "referencias-abnt.md"
+BIB = paths.BIB
+ABNT = paths.ABNT
 
 ENTRY_RE = re.compile(r"^@(\w+)\{([^,]+),", re.MULTILINE)
 FIELD_RE = re.compile(r"^\s*(\w+)\s*=\s*", re.MULTILINE)
