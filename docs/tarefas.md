@@ -1,11 +1,24 @@
 # Tarefas do projeto — acompanhamento
 
 Inventário das tarefas pendentes e concluídas, organizado por frente.
-Última atualização: 2026-07-18 (2ª sessão: revisão do coletor).
+Última atualização: 2026-10-07 (reorganização em `bancos/` e codebook AEP-BR).
 
 > Ver `research-state.yaml` (estado central) e `research-log.md` (linha do tempo de decisões).
 
 ---
+
+## Frente B — Bancos de dados e codebook AEP-BR · **nova (2026-10-07)**
+
+Os três bancos agora ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
+
+- [x] **B0.** Reorganizar MM, NEPAC e AEP-BR em `bancos/` e corrigir os `metadata.json`, que tinham contagens incorretas.
+- [x] **B1.** Codebook AEP-BR v0.1, com crosswalk por variável para o MM e o NEPAC (`bancos/03_aep_br/codebook/`).
+- [x] **B2.** Desativar o agendamento diário do workflow "Pipeline Acervo Folha", que falhava todos os dias.
+- [ ] **B3.** Decidir as questões em aberto do codebook (§6 de `codebook_aep_br.md`): piso de público, greves, comícios, OCR e fontes online.
+- [ ] **B4.** Baixar o MM completo do Dataverse e do GitHub (`bancos/01_mass_mobilization/download.py`) e conferir o portal do NEPAC. Bloqueado na nuvem pela rede; fazer localmente ou liberar os domínios.
+- [ ] **B5.** Adaptar `coder.py` e `init_doca_database.py` ao `codebook_aep_br.yaml`.
+- [ ] **B6.** Fazer um piloto em 2013 na Folha e validar contra o NEPAC. Antes de reativar o workflow, revisar `src/coleta_acervo.py`: hoje ele busca só "protesto", sem login e com seletores genéricos.
+- [ ] **B7.** Decidir o que fazer com o pipeline duplicado do PR #9 (`src/coleta_acervo.py` e `src/run_doca_pipeline.py`) em relação a `src/data/scraper.py`, que é o scraper com login e incremental.
 
 ## Frente C — Consolidação do artigo para preprint · **prioridade alta**
 
@@ -60,13 +73,13 @@ offline (não exige credenciais): ver `research-log.md`.
 Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e as sementes `protest_events` das Diretas Já e Fora Collor (`bancos/03_aep_br/sementes/`). Produtos ficam em `data/triangulacao/series_temporais/` (ver README da pasta para o escopo).
 
 - [x] **E0.** Pasta de produtos criada (`data/triangulacao/series_temporais/` com README de escopo: séries temporais por ciclo, teste de fronteiras de fase, convergência entre fontes, memorando analítico). 2026-07-16.
-- [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/processed/cycle_phases/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `bancos/01_mass_mobilization/livro-codigo/crosswalk-codigos.md`).
+- [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/processed/cycle_phases/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `bancos/crosswalk/crosswalk_mm_nepac_aep.md`).
 - [ ] **E2.** Usar os microdados como evidência para as hipóteses H1–H3 (repertórios, alvos, respostas estatais em Junho 2013 e Impeachment).
 - [ ] **E3.** Integrar as sementes `protest_events` (Diretas Já + Fora Collor) à análise dos ciclos pré-2011 que os bancos externos não cobrem.
 
-## Pendência de verificação bibliográfica — **bloqueia a redação final**
+## Verificação bibliográfica — **concluída em 2026-09-01** (em 2026-10-07, `check_bib.py` OK e `lista_verificacao.py` mostra 0 pendentes)
 
-26 entradas do `.bib` estão marcadas `VERIFICAR` (rodar `python artigo/check_bib.py` para a
+26 entradas do `.bib` estão marcadas `VERIFICAR` (rodar `python src/analysis/check_bib.py` para a
 lista). Em 2026-08-30 fecharam-se as oito obras brasileiras: quatro saíram da lista (Ricci,
 Scartezini, Ortellado, Becker) e três eram **atribuição errada, não metadado faltando** --
 Sallum Jr. 2015 (o título correto é *O impeachment de Fernando Collor*, Editora 34, o que

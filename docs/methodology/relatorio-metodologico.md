@@ -193,7 +193,7 @@ Foram incorporados dois bancos acadêmicos, mantidos como **fontes independentes
 O banco NEPAC (fonte: Acervo Folha) oferece microdados nacionais densos para 2011–2016; o Mass
 Mobilization (fonte: imprensa internacional/Lexis-Nexis) oferece a série temporal mais longa
 (alcança o Fora Collor) e a dimensão comparada internacional. Um **crosswalk** documentado
-(`bancos/01_mass_mobilization/livro-codigo/crosswalk-codigos.md`)
+(`bancos/crosswalk/crosswalk_mm_nepac_aep.md`)
 relaciona — **sem mesclar** — as categorias do MM aos códigos DoCA/BEP e NEPAC, explicitando as
 diferenças metodológicas (limiares de inclusão, fontes e definições de alvo) que tornam as bases
 não somáveis.

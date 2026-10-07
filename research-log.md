@@ -507,3 +507,11 @@ que o proxy bloqueia o domínio): extração de 3 resultados de 4 itens (um sem 
 corretamente descartado), resolução das três formas de href, tolerância a seletor inválido,
 fallback entre candidatos, e aborto imediato sem credenciais. **A validação contra o site
 real segue pendente (D1) — exige assinatura.**
+
+## 2026-10-07 — Reorganização por banco de dados e codebook AEP-BR
+
+- **Pipeline:** o workflow "Pipeline Acervo Folha" (PR #9) falhou todos os dias desde 27/09. O workflow foi desativado no GitHub e o gatilho `schedule` foi removido do YAML. O disparo manual continua possível.
+- **Bancos:** cada banco ganhou uma pasta em `bancos/`: `01_mass_mobilization`, `02_nepac`, `03_aep_br` e `crosswalk`. Os `metadata_*.json` de 21/09 tinham contagens inventadas e foram reescritos com os números conferidos: 224 eventos, 1.284 eventos em 2.548 linhas, 59 e 15.
+- **Caminhos:** `src/paths.py` centraliza os caminhos. Os scripts quebrados desde o refactor de 09/2026 voltaram a rodar, e a série temporal foi reproduzida sem diferenças.
+- **Codebook:** o codebook AEP-BR v0.1 (Alonso et al. 2024) cobre 1983 até hoje, com 50 variáveis mapeadas para o MM e o NEPAC. As fontes são a imprensa nacional e os diários oficiais.
+- **Downloads:** não foram feitos. O MM completo, o GitHub MassMobilization e o portal do NEPAC estão bloqueados pela rede do ambiente de nuvem. Os arquivos que já estavam no repositório foram mantidos.
