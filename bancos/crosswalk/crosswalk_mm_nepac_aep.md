@@ -1,6 +1,8 @@
-# Crosswalk de códigos — Mass Mobilization ↔ códigos do projeto
+# Crosswalk de códigos — Mass Mobilization ↔ NEPAC ↔ AEP-BR
 
-> **Natureza deste documento:** tabela de correspondência **conceitual** entre as categorias do Mass Mobilization (MM) e os códigos já existentes no projeto (`pipeline/config/doca_codebook.yaml` e banco NEPAC/Tatagiba-Galvão). **Não é uma mesclagem de dados.** Cada banco permanece uma fonte independente, com seus próprios valores intactos. Este crosswalk serve apenas para permitir leitura comparada e futuras análises cruzadas — conforme a instrução: *"Não mescle nada, trabalhe como fontes diferentes, mas que compõem o mesmo projeto."*
+> **Atualização 2026-10-07:** o mapeamento variável a variável dos três bancos agora está em `bancos/03_aep_br/codebook/codebook_aep_br.yaml` (campos `mm_equiv` e `nepac_equiv`). Este documento mantém o mapeamento das **categorias** (demandas, respostas, faixas de público).
+
+> **Natureza deste documento:** tabela de correspondência **conceitual** entre as categorias do Mass Mobilization (MM) e os códigos já existentes no projeto (`config/doca_codebook.yaml` e banco NEPAC/Tatagiba-Galvão). **Não é uma mesclagem de dados.** Cada banco permanece uma fonte independente, com seus próprios valores intactos. Este crosswalk serve apenas para permitir leitura comparada e futuras análises cruzadas — conforme a instrução: *"Não mescle nada, trabalhe como fontes diferentes, mas que compõem o mesmo projeto."*
 
 As correspondências abaixo são **aproximadas** e assimétricas: MM usa 7 categorias amplas de demanda; o codebook DoCA usa ~30 `claim_codes` granulares; o NEPAC usa 11 categorias de reivindicação. Um código MM pode mapear para vários códigos do projeto e vice-versa.
 

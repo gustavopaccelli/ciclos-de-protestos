@@ -1,0 +1,559 @@
+# Codebook AEP-BR — banco próprio de eventos de protesto no Brasil (1983–presente)
+# Versão 0.1 (rascunho) — 2026-10-07
+#
+# Âncora metodológica: Alonso, Rezende, Souza & Souza (2024). "Análise de Eventos de
+# Protesto: decisões metodológicas na organização do BEP 2013-2016". Plural 31(2):288-323.
+# DOI 10.11606/issn.2176-8099.pcso.2024.233335
+#
+# Este arquivo é a especificação legível por máquina das variáveis. O documento para
+# leitura humana é codebook_aep_br.md (mesma pasta). Os vocabulários fechados que já
+# existiam (tipos de local, repertórios, claim_codes, repressão etc.) NÃO são copiados
+# aqui: ficam em config/doca_codebook.yaml e são referenciados por `vocabulario:`.
+# Vocabulários novos do AEP-BR estão em `vocabularios:` abaixo.
+#
+# Cada variável traz:
+#   bloco         I–V (blocos BEP), P (proveniência) ou D (deduplicação)
+#   tipo          date | str | int | bool | enum | list[str] | list[obj]
+#   obrigatoria   true = não pode ficar vazia num evento elegível
+#   definicao     uma linha, legível por humano e por LLM
+#   vocabulario   chave em config/doca_codebook.yaml ou em `vocabularios:` abaixo
+#   doca          nome do campo no event_schema atual (null = campo novo)
+#   mm_equiv      variável correspondente no Mass Mobilization (null = sem equivalente)
+#   nepac_equiv   variável correspondente no NEPAC (null = sem equivalente)
+# Os equivalentes MM/NEPAC são a base do codebook híbrido (bancos/crosswalk/).
+
+versao: "0.1"
+periodo_alvo: {inicio: "1983-01-01", fim: null}   # null = até o presente
+unidade_analise: evento_de_protesto              # evento ≠ notícia (BEP §4)
+vocabularios_herdados: config/doca_codebook.yaml
+
+criterios_elegibilidade:   # os 4 critérios BEP; todos precisam ser satisfeitos
+  - id: publica_coletiva
+    definicao: "Ação pública e coletiva, em espaço público ou de acesso público, com mais de um participante"
+  - id: nao_estatal
+    definicao: "Organizada por atores não estatais (exclui solenidades oficiais de governo)"
+  - id: contestacao
+    definicao: "Expressa crítica a instituições, práticas ou valores, de qualquer orientação política"
+  - id: reivindicacao
+    definicao: "Carrega reivindicação social ou política, explícita ou mediada por símbolos"
+
+exclusoes:
+  - "Ação individual em nome próprio"
+  - "Ação disruptiva sem reivindicação (criminalidade comum)"
+  - "Ação lúdica sem contestação (festa, jogo, comemoração esportiva)"
+  - "Ato político rotineiro não contestatório (convenção, reunião, comício eleitoral de candidato)"
+  - "Evento exclusivamente virtual"
+  - "Evento anunciado sem evidência de realização na fonte"
+
+regras_unitizacao:   # BEP §4; detalhadas em codebook_aep_br.md
+  mesmo_evento:
+    - "Mesmos atores, intervalo < 24h entre ações"
+    - "Ação contínua sem interrupção (ex.: ocupação de vários dias)"
+    - "Mesma localidade e atores iguais ou similares, ainda que com trajetos distintos"
+  eventos_distintos:
+    - "Mesmos atores com descontinuidade > 24h"
+    - "Mesmos atores em localidades distintas e nomeadas (um registro por cidade)"
+    - "Atores com pautas opostas no mesmo espaço (um registro por organizador)"
+  acoes_simultaneas: >
+    Atos convocados nacionalmente e realizados em várias cidades geram um registro por
+    cidade, todos com o mesmo `evento_coordenado_id`. Isso reproduz a lógica
+    cidade-evento do NEPAC (Codigo_evento) e permite contar tanto por evento quanto por cidade.
+
+regra_publico: >
+  Registrar em `publico_max` a MAIOR estimativa encontrada e em `publico_min` a menor;
+  listar todas as estimativas com a fonte em `publico_estimativas` (ex.: "50.000 (PM);
+  200.000 (organizadores)"). Nunca calcular média.
+
+vocabularios:
+  fonte_tipo:
+    jornal_impresso: "Edição impressa de jornal de circulação nacional (inclui acervo digitalizado/OCR)"
+    portal_noticias: "Portal ou edição digital nativa (G1, UOL, Folha online etc.)"
+    agencia: "Agência de notícias (Agência Brasil/EBC, Estadão Conteúdo, Reuters, AFP)"
+    diario_oficial: "Diário Oficial da União, dos estados ou dos municípios"
+    bibliografia: "Fonte secundária acadêmica (usada nas sementes)"
+    outra: "Outra fonte; especificar em notas"
+  papel_fonte:
+    evento: "A fonte relata a ocorrência do evento (pode criar registro)"
+    resposta_estatal: "A fonte documenta ato estatal ligado ao evento (não cria registro sozinha)"
+    complemento: "A fonte só completa variáveis de um evento já registrado"
+  ambito:   # igual ao NEPAC Ambito_do_Protesto
+    - local
+    - municipal
+    - estadual
+    - nacional
+  alvo:   # união de NEPAC Alvo_protesto e mpeds_target_categories
+    - governo-federal
+    - governo-estadual
+    - governo-municipal
+    - legislativo
+    - judiciario-ministerio-publico
+    - forcas-de-seguranca
+    - empresa-privada-patronato
+    - universidade-instituicao-ensino
+    - sociedade-outros-grupos
+    - internacional-organismo-supranacional
+    - outro
+  base_social:   # 15 grupos do livro de código NEPAC, mantidos para comparabilidade
+    referencia: bancos/02_nepac/livro-codigo/livro-de-codigo.md
+  resposta_estatal:   # amplia repression_levels para cobrir MM stateresponse
+    nenhuma: "Nenhuma resposta reportada ou autoridades ignoram (MM: ignore)"
+    acomodacao: "Negociação, recebimento de comissão, atendimento parcial ou total (MM: accomodation)"
+    dispersao: "Dispersão com gás, spray, bombas, cavalaria (MM: crowd dispersal)"
+    prisoes: "Detenções ou prisões (MM: arrests)"
+    violencia: "Agressão física com feridos (MM: beatings)"
+    letal: "Disparos com arma de fogo ou mortes (MM: shootings, killings)"
+  ato_oficial_tipo:
+    - decreto_glo           # Garantia da Lei e da Ordem
+    - estado_de_defesa_sitio
+    - lei_ou_medida_provisoria
+    - portaria_forca_nacional
+    - outro
+  codificador:
+    - humano
+    - llm
+    - llm_revisado          # saída do LLM conferida por humano
+  confianca:
+    alta: "Informação explícita e corroborada por mais de uma fonte"
+    media: "Informação explícita em uma única fonte"
+    baixa: "Informação inferida, ambígua ou de OCR degradado"
+  ciclo:   # periodização do projeto (data/processed/cycle_phases/cycle_phases.csv)
+    - c1_diretas_ja
+    - c2_fora_collor
+    - c3_junho_2013
+    - c4_impeachment_dilma
+    - fora_de_ciclo
+
+variaveis:
+  # ---------------- Bloco I — Identificação do evento ----------------
+  - nome: evento_id
+    bloco: I
+    tipo: str
+    obrigatoria: true
+    definicao: "Identificador único do registro (UUID5 de fonte_url + data_inicio + cidade)"
+    doca: event_id
+    mm_equiv: id
+    nepac_equiv: Codigo_evento
+  - nome: data_inicio
+    bloco: I
+    tipo: date
+    obrigatoria: true
+    definicao: "Data em que o evento começou (YYYY-MM-DD); não é a data da matéria"
+    doca: event_date
+    mm_equiv: "startyear+startmonth+startday"
+    nepac_equiv: Data_de_Inicio_do_protesto
+  - nome: data_fim
+    bloco: I
+    tipo: date
+    obrigatoria: false
+    definicao: "Data de término; null se o evento durou um dia ou não foi informado"
+    doca: end_date
+    mm_equiv: "endyear+endmonth+endday"
+    nepac_equiv: Data_termino_do_protesto
+  - nome: cidade
+    bloco: I
+    tipo: str
+    obrigatoria: true
+    definicao: "Município onde o evento ocorreu (nome oficial IBGE)"
+    doca: location_city
+    mm_equiv: location
+    nepac_equiv: Cidade
+  - nome: cidade_ibge
+    bloco: I
+    tipo: str
+    obrigatoria: false
+    definicao: "Código IBGE de 7 dígitos do município (preenchido na normalização)"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: uf
+    bloco: I
+    tipo: str
+    obrigatoria: true
+    definicao: "Sigla da unidade federativa"
+    doca: location_state
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: porte_cidade
+    bloco: I
+    tipo: enum
+    vocabulario: city_size_classes
+    obrigatoria: false
+    definicao: "Porte do município pela população no ano do evento"
+    doca: city_size
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: local
+    bloco: I
+    tipo: list[str]
+    obrigatoria: false
+    definicao: "Todos os locais e trajetos citados (praça, avenida, prédio)"
+    doca: location_venue
+    mm_equiv: null
+    nepac_equiv: Local
+  - nome: local_tipo
+    bloco: I
+    tipo: enum
+    vocabulario: location_venue_types
+    obrigatoria: false
+    definicao: "Tipo do local principal"
+    doca: location_venue_type
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: local_convencional
+    bloco: I
+    tipo: bool
+    obrigatoria: false
+    definicao: "Uso convencional do local para protesto (BEP §6.3)"
+    doca: location_conventional
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: ambito
+    bloco: I
+    tipo: enum
+    vocabulario: ambito
+    obrigatoria: false
+    definicao: "Escala territorial da reivindicação"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: Ambito_do_Protesto
+  - nome: capilaridade
+    bloco: I
+    tipo: int
+    obrigatoria: false
+    definicao: "Número de unidades atingidas (vias bloqueadas, escolas ocupadas etc.)"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: "Capilaridade+Unidade_Capilaridade"
+  - nome: publico_max
+    bloco: I
+    tipo: int
+    obrigatoria: false
+    definicao: "Maior estimativa de participantes encontrada (ver regra_publico)"
+    doca: crowd_size_reported
+    mm_equiv: participants
+    nepac_equiv: N_Part
+  - nome: publico_min
+    bloco: I
+    tipo: int
+    obrigatoria: false
+    definicao: "Menor estimativa de participantes, quando há divergência"
+    doca: crowd_size_min
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: publico_estimativas
+    bloco: I
+    tipo: str
+    obrigatoria: false
+    definicao: "Todas as estimativas com a fonte de cada uma, como nas sementes"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: porte_manifestacao
+    bloco: I
+    tipo: enum
+    vocabulario: crowd_size_bep
+    obrigatoria: false
+    definicao: "Pequena/média/grande/mega, derivado de publico_max"
+    doca: crowd_size_bep
+    mm_equiv: participants_category
+    nepac_equiv: null
+  - nome: evento_coordenado_id
+    bloco: I
+    tipo: str
+    obrigatoria: false
+    definicao: "ID comum aos registros de um mesmo ato realizado em várias cidades"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: Codigo_evento
+
+  # ---------------- Bloco II — Atores coletivos ----------------
+  - nome: atores
+    bloco: II
+    tipo: list[obj]
+    vocabulario: actor_schema
+    obrigatoria: true
+    definicao: "Atores que protestam: nome, especificação, forma de organização e formalização"
+    doca: actors
+    mm_equiv: protesteridentity
+    nepac_equiv: "Org+Org_2+Org_3"
+  - nome: base_social
+    bloco: II
+    tipo: list[str]
+    vocabulario: base_social
+    obrigatoria: false
+    definicao: "Categoria social de quem protesta, nos 15 grupos do NEPAC"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: "Base_social+Base_social_2"
+  - nome: ocupacao_atividade
+    bloco: II
+    tipo: str
+    obrigatoria: false
+    definicao: "Categoria profissional, quando quem protesta são trabalhadores"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: "Ocupação/Atividade"
+  - nome: organizacoes
+    bloco: II
+    tipo: list[str]
+    obrigatoria: false
+    definicao: "Organizações formais (SMOs) que convocam ou apoiam"
+    doca: smo
+    mm_equiv: null
+    nepac_equiv: "Org+Org_2+Org_3"
+
+  # ---------------- Bloco III — Performances ----------------
+  - nome: repertorio
+    bloco: III
+    tipo: list[str]
+    vocabulario: repertoires
+    obrigatoria: true
+    definicao: "Ações realizadas, em verbo canônico no infinitivo"
+    doca: repertoire
+    mm_equiv: null
+    nepac_equiv: Tipo_Protesto
+  - nome: acao_objeto
+    bloco: III
+    tipo: str
+    obrigatoria: false
+    definicao: "Sobre o que a ação incide (ex.: 'avenida Paulista' em 'bloquear')"
+    doca: action_object
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: acao_instrumento
+    bloco: III
+    tipo: str
+    obrigatoria: false
+    definicao: "Com que meio a ação é feita (ex.: 'pneus queimados')"
+    doca: action_instrument
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: simbolos
+    bloco: III
+    tipo: list[str]
+    obrigatoria: false
+    definicao: "Bandeiras, cores, roupas, objetos e performances corporais"
+    doca: symbols
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: violencia_manifestantes
+    bloco: III
+    tipo: bool
+    obrigatoria: false
+    definicao: "Manifestantes praticaram depredação ou agressão"
+    doca: null
+    mm_equiv: protesterviolence
+    nepac_equiv: Depredacao
+
+  # ---------------- Bloco IV — Temas e slogans ----------------
+  - nome: tema_codigo
+    bloco: IV
+    tipo: list[str]
+    vocabulario: claim_codes
+    obrigatoria: true
+    definicao: "Códigos de reivindicação (4 dígitos), o principal primeiro"
+    doca: claim_code
+    mm_equiv: "protesterdemand1..4"
+    nepac_equiv: "Objetivo_1+Objetivo_2"
+  - nome: tema_texto
+    bloco: IV
+    tipo: str
+    obrigatoria: true
+    definicao: "Reivindicação em texto livre, como aparece na fonte"
+    doca: claim_text
+    mm_equiv: notes
+    nepac_equiv: "Objetivo_1+Objetivo_2"
+  - nome: valencia
+    bloco: IV
+    tipo: enum
+    vocabulario: valences
+    obrigatoria: false
+    definicao: "Posição do protesto em relação à demanda"
+    doca: valence
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: alvo
+    bloco: IV
+    tipo: list[str]
+    vocabulario: alvo
+    obrigatoria: true
+    definicao: "A quem a reivindicação se dirige"
+    doca: target
+    mm_equiv: null   # MM só inclui protestos contra o Estado
+    nepac_equiv: Alvo_protesto
+  - nome: slogans
+    bloco: IV
+    tipo: list[str]
+    obrigatoria: false
+    definicao: "Palavras de ordem e faixas, na grafia original"
+    doca: slogans
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: contra_protesto
+    bloco: IV
+    tipo: bool
+    obrigatoria: false
+    definicao: "Houve contramanifestação simultânea"
+    doca: counter_protest
+    mm_equiv: null
+    nepac_equiv: null
+
+  # ---------------- Bloco V — Respostas e interação ----------------
+  - nome: presenca_policia
+    bloco: V
+    tipo: bool
+    obrigatoria: false
+    definicao: "A fonte menciona presença de forças de segurança"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: Presenca_policia
+  - nome: resposta_estatal
+    bloco: V
+    tipo: list[str]
+    vocabulario: resposta_estatal
+    obrigatoria: false
+    definicao: "Todas as respostas estatais reportadas"
+    doca: repression
+    mm_equiv: "stateresponse1..7"
+    nepac_equiv: Repressao_policial
+  - nome: conflito_policia
+    bloco: V
+    tipo: bool
+    obrigatoria: false
+    definicao: "Houve confronto com forças de segurança"
+    doca: conflict_police
+    mm_equiv: null
+    nepac_equiv: Repressao_policial
+  - nome: conflito_entre_grupos
+    bloco: V
+    tipo: bool
+    obrigatoria: false
+    definicao: "Houve confronto entre grupos de manifestantes"
+    doca: conflict_inter_group
+    mm_equiv: null
+    nepac_equiv: Confronto_entre_manifestantes
+  - nome: detidos
+    bloco: V
+    tipo: int
+    obrigatoria: false
+    definicao: "Número de detidos (null = não mencionado; -1 = houve, sem número)"
+    doca: arrests_reported
+    mm_equiv: "stateresponse=arrests"
+    nepac_equiv: Detidos
+  - nome: feridos
+    bloco: V
+    tipo: int
+    obrigatoria: false
+    definicao: "Número de feridos (mesma convenção de detidos)"
+    doca: injuries_reported
+    mm_equiv: "stateresponse=beatings"
+    nepac_equiv: Feridos
+  - nome: mortos
+    bloco: V
+    tipo: int
+    obrigatoria: false
+    definicao: "Número de mortos (mesma convenção de detidos)"
+    doca: null
+    mm_equiv: "stateresponse=killings"
+    nepac_equiv: Mortos
+  - nome: atos_oficiais
+    bloco: V
+    tipo: list[obj]
+    vocabulario: ato_oficial_tipo
+    obrigatoria: false
+    definicao: "Atos publicados em diário oficial ligados ao evento: {tipo, orgao, data, url}"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+
+  # ---------------- P — Proveniência ----------------
+  - nome: fontes
+    bloco: P
+    tipo: list[obj]
+    obrigatoria: true
+    definicao: "Cada matéria usada: {veiculo, fonte_tipo, papel_fonte, data_publicacao, secao, pagina, titulo, url}"
+    doca: "source_url+source_date"
+    mm_equiv: sources
+    nepac_equiv: Identificacao_do_veiculo
+  - nome: n_fontes
+    bloco: P
+    tipo: int
+    obrigatoria: true
+    definicao: "Número de veículos distintos que relatam o evento"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: elegivel
+    bloco: P
+    tipo: bool
+    obrigatoria: true
+    definicao: "Satisfaz os 4 critérios de elegibilidade"
+    doca: eligible
+    mm_equiv: protest
+    nepac_equiv: null
+  - nome: ciclo
+    bloco: P
+    tipo: enum
+    vocabulario: ciclo
+    obrigatoria: false
+    definicao: "Ciclo de protesto do projeto (atribuído na análise, não na codificação)"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: codificador
+    bloco: P
+    tipo: enum
+    vocabulario: codificador
+    obrigatoria: true
+    definicao: "Quem codificou o registro"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: modelo_versao
+    bloco: P
+    tipo: str
+    obrigatoria: false
+    definicao: "Modelo e hash do prompt, quando codificador = llm ou llm_revisado"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: confianca
+    bloco: P
+    tipo: enum
+    vocabulario: confianca
+    obrigatoria: true
+    definicao: "Confiança geral do codificador no registro"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: notas
+    bloco: P
+    tipo: str
+    obrigatoria: false
+    definicao: "Motivo de exclusão, ambiguidades e decisões de codificação"
+    doca: notes
+    mm_equiv: notes
+    nepac_equiv: null
+
+  # ---------------- D — Deduplicação ----------------
+  - nome: evento_canonico_id
+    bloco: D
+    tipo: str
+    obrigatoria: false
+    definicao: "ID do evento canônico após agrupar registros do mesmo episódio vindos de fontes diferentes"
+    doca: canonical_event_id
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: materia_multi_evento
+    bloco: D
+    tipo: bool
+    obrigatoria: false
+    definicao: "A matéria de origem relata mais de um evento"
+    doca: multi_event_article
+    mm_equiv: null
+    nepac_equiv: null
+
+confiabilidade:
+  kappa_minimo: 0.75          # por variável, contra gold standard humano
+  exclusao_missing: 0.30      # variável com >30% de null sai da análise
+  gold_standard: "estratificado por ciclo; ≥10% do corpus ou 100 matérias por ciclo"

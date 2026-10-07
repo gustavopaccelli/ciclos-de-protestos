@@ -1,0 +1,13 @@
+veiculo,fonte_tipo,papel_fonte,abrangencia,ano_inicio,ano_fim,acesso,url,prioridade,observacoes
+Folha de S.Paulo (Acervo Folha),jornal_impresso,evento,nacional,1983,,assinatura,https://acervo.folha.com.br/,1,"Fonte principal; mesma do NEPAC e do BEP; scraper em src/data/scraper.py"
+Folha de S.Paulo (online),portal_noticias,evento,nacional,1996,,assinatura,https://www.folha.uol.com.br/,1,"Evitar duplicar com a edição impressa"
+O Estado de S. Paulo (Acervo Estadão),jornal_impresso,evento,nacional,1983,,assinatura,https://acervo.estadao.com.br/,2,"Validação cruzada; 92% de concordância com a Folha em jun/2013 (BEP)"
+O Globo (Acervo O Globo),jornal_impresso,evento,nacional,1983,,assinatura,https://acervo.oglobo.globo.com/,2,"Cobertura do Rio de Janeiro"
+Jornal do Brasil (Hemeroteca Digital BN),jornal_impresso,evento,nacional,1983,2010,aberto,https://bndigital.bn.gov.br/hemeroteca-digital/,2,"Edição impressa encerrada em 2010; OCR variável"
+Agência Brasil (EBC),agencia,evento,nacional,1997,,aberto,https://agenciabrasil.ebc.com.br/,3,"Cobertura regional; licença Creative Commons"
+G1,portal_noticias,evento,nacional,2006,,aberto,https://g1.globo.com/,3,"Fonte secundária do BEP; capta eventos pequenos e regionais"
+UOL Notícias,portal_noticias,complemento,nacional,1996,,aberto,https://noticias.uol.com.br/,4,"Completa variáveis"
+Veja (Acervo Veja),jornal_impresso,complemento,nacional,1983,,assinatura,https://veja.abril.com.br/acervo/,4,"Semanal; usada nas sementes de Diretas Já"
+Diário Oficial da União (Imprensa Nacional),diario_oficial,resposta_estatal,nacional,1983,,aberto,https://www.in.gov.br/,1,"Decretos de GLO, Força Nacional, estado de defesa; alimenta atos_oficiais"
+Diários oficiais estaduais,diario_oficial,resposta_estatal,estadual,1983,,aberto,,3,"Atos das secretarias de segurança; usar quando o evento for estadual"
+Bibliografia (sementes),bibliografia,evento,nacional,1983,1992,aberto,,1,"Rodrigues 2003; Bertoncelo 2007; Leonelli & Oliveira 2004; Mische 2008"
