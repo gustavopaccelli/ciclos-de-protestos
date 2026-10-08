@@ -60,7 +60,7 @@ Estudo de caso já alinhado a 4 ciclos (Diretas Já incluída em 2026-07-04, sub
 Bancos prontos para uso: NEPAC (2011–2016), Mass Mobilization (1990–2020) e as sementes `protest_events` das Diretas Já e Fora Collor (`bancos/03_aep_br/sementes/`). Produtos ficam em `data/triangulacao/series_temporais/` (ver README da pasta para o escopo).
 
 - [x] **E0.** Pasta de produtos criada (`data/triangulacao/series_temporais/` com README de escopo: séries temporais por ciclo, teste de fronteiras de fase, convergência entre fontes, memorando analítico). 2026-07-16.
-- [ ] **E1.** Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/processed/cycle_phases/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `bancos/crosswalk/crosswalk_mm_nepac_aep.md`).
+- [x] **E1.** (2026-10-07; produtos em `data/triangulacao/e1_cruzamento_mm_nepac/`: painel HTML, relatório metodológico, CSVs) Análise exploratória de triangulação — cruzar as séries dos dois bancos com as fases dos ciclos (`data/processed/cycle_phases/cycle_phases.csv`), corroborando picos e tendências. **Sem agregar as fontes** (não são somáveis — ver `bancos/crosswalk/crosswalk_mm_nepac_aep.md`).
 - [ ] **E2.** Usar os microdados como evidência para as hipóteses H1–H3 (repertórios, alvos, respostas estatais em Junho 2013 e Impeachment).
 - [ ] **E3.** Integrar as sementes `protest_events` (Diretas Já + Fora Collor) à análise dos ciclos pré-2011 que os bancos externos não cobrem.
 
