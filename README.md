@@ -128,6 +128,7 @@ O quadro completo — com variáveis independentes/dependentes, indicadores e ev
 | `config/` | Vocabulários do codificador (`doca_codebook.yaml`), buscas e seletores do scraper |
 | `artigo/secoes/` | Seções redigidas do artigo |
 | `docs/` | Projeto, hipóteses, periodização, protocolo AEP-BEP, `codebook/` do cycle_phases, `process_tracing/`, `methodology/`, `artigo/` (referências .bib e ABNT), `artefatos/` (material importado) |
+| `produtos/` | Relatórios interativos em HTML (ver `produtos/README.md`), publicados no GitHub Pages |
 | `literature/` | Fichamentos e levantamento bibliográfico |
 | `research-state.yaml`, `research-log.md` | Estado do projeto e changelog da pesquisa |
 

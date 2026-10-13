@@ -15,8 +15,8 @@ cookies.txt
 *.session
 
 # Claude Code / AI tools
-.claude/
-SKILL.md
+.claude/*
+!.claude/skills/
 claude_desktop_config.json
 
 # Data directories (preserve .gitkeep, metadata, and documentation)

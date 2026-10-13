@@ -1,0 +1,41 @@
+/* Estilo comum dos produtos. Cores como tokens; modo escuro automático. */
+:root {
+  --bg: #fbfaf7; --fg: #1d1f24; --muted: #5d636e; --line: #dcd8cf; --card: #ffffff;
+  --accent: #8a3b12;
+  /* escala sequencial 0–3 (ordinal) */
+  --s0: #f1ece2; --s1: #e8b48a; --s2: #c8662f; --s3: #7a2a0a;
+  --s0-fg: #1d1f24; --s1-fg: #1d1f24; --s2-fg: #ffffff; --s3-fg: #ffffff;
+  --na: repeating-linear-gradient(45deg, transparent 0 4px, var(--line) 4px 6px);
+  --font: "Source Serif 4", Georgia, serif; --sans: "Inter", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15171b; --fg: #e9e6df; --muted: #a2a7b1; --line: #33373f; --card: #1d2026;
+    --accent: #f0a06a;
+    --s0: #2a2d33; --s1: #6e3b1d; --s2: #c0612b; --s3: #f2a46c;
+    --s0-fg: #e9e6df; --s1-fg: #ffffff; --s2-fg: #ffffff; --s3-fg: #15171b;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15171b; --fg: #e9e6df; --muted: #a2a7b1; --line: #33373f; --card: #1d2026;
+  --accent: #f0a06a;
+  --s0: #2a2d33; --s1: #6e3b1d; --s2: #c0612b; --s3: #f2a46c;
+  --s0-fg: #e9e6df; --s1-fg: #ffffff; --s2-fg: #ffffff; --s3-fg: #15171b;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 var(--font); }
+main { max-width: 980px; margin: 0 auto; padding: 32px 16px 64px; }
+h1, h2, h3, nav, table, .meta, .sans { font-family: var(--sans); }
+h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.2; margin: .2em 0 .3em; }
+h2 { font-size: 1.2rem; margin-top: 2.2em; border-top: 1px solid var(--line); padding-top: 1em; }
+a { color: var(--accent); }
+.meta { color: var(--muted); font-size: .9rem; }
+.kicker { font-family: var(--sans); text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; color: var(--accent); }
+.nota { border-left: 3px solid var(--accent); padding: .4em 1em; background: var(--card); font-size: .95rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; text-decoration: none; color: inherit; display: block; }
+.card:hover { border-color: var(--accent); }
+.card h3 { margin: .2em 0; }
+.scroll { overflow-x: auto; }
+code, pre { font-size: .85em; overflow-wrap: anywhere; }
+pre { background: var(--card); border: 1px solid var(--line); padding: 12px; white-space: pre-wrap; }
