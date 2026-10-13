@@ -70,6 +70,9 @@ data/triangulacao/**
 data/triangulacao/**/*.csv
 data/triangulacao/**/*.xlsx
 data/triangulacao/**/*.parquet
+# Resultados derivados da E1 (pequenos; versionados para o painel ser auditável)
+!data/triangulacao/e1_cruzamento_mm_nepac/dados/
+!data/triangulacao/e1_cruzamento_mm_nepac/dados/*
 
 # Pipeline/Cache
 __pycache__/

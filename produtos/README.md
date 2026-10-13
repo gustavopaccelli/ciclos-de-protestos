@@ -5,6 +5,7 @@ Relatórios interativos da pesquisa, em HTML autocontido, publicados no GitHub P
 | Pasta | Produto | Dados |
 |---|---|---|
 | [`mapa-fases/`](mapa-fases/) | Mapa das 24 fases (EOP, DOS e tradução institucional, 0–3) | `data/processed/cycle_phases/cycle_phases.csv` + `docs/codebook/cycle_phases_codebook.yaml` |
+| [`e1-triangulacao/`](e1-triangulacao/) | Triangulação MM × NEPAC × fases (tarefa E1) | `data/triangulacao/e1_cruzamento_mm_nepac/dados/painel_dados.json`, gerado por `src/analysis/e1_cruzamento_series.py` |
 
 ## Convenções
 
