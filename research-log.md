@@ -575,3 +575,12 @@ real segue pendente (D1) — exige assinatura.**
 
   A diferença na razão do MM não pode ser rastreada sem o script original; as conclusões qualitativas do registro se mantêm.
 - **Produtos:** nova pasta `produtos/` (publicada via GitHub Pages) com `mapa-fases/` e `e1-triangulacao/`; a segunda absorve o antigo `relatorio_metodologico.md`.
+
+## 2026-10-21 — Reorganização em torno do banco AEP-BR
+
+- **Decisão do usuário:** Frentes C e E em stand-by; foco na construção do banco próprio (Frente B).
+- **B7 concluída:** o pipeline do PR #9 (`coleta_acervo.py`, `run_doca_pipeline.py`, `load_acervo_to_doca.py`, `PIPELINE_DOCA.md`, workflow `scraper_acervo.yml`) e o `TUTORIAL.md` desatualizado foram arquivados em `bancos/03_aep_br/arquivo-morto/pr9/`.
+- **Etapas reunidas em `bancos/03_aep_br/`:** `coleta/` (bruto, fora do git), `codificacao/`, `banco/` e `validacao/` (versionados). Antes, as extrações iam para `data/interim/` e o banco para `data/processed/harmonizado/`, ambos bloqueados pelo `.gitignore`. Só os caminhos em `src/paths.py` e nos três scripts mudaram.
+- **Defeito corrigido:** `src/analysis/run_pipeline.py` chamava `01_scraper.py`, `02_doca_coder.py` etc., que não existiam mais; agora chama os scripts reais e grava o kappa em `validacao/`. Referências antigas atualizadas em `config/` e nos documentos de protocolo.
+- **Documentação única do processo:** `bancos/03_aep_br/README.md`.
+- **Próximo:** B9 → B6 (piloto 2013) → B8; B4 localmente.

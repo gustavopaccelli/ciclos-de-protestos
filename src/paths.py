@@ -19,7 +19,10 @@ AEP_CODEBOOK = AEP_BR / "codebook" / "codebook_aep_br.yaml"
 AEP_SEMENTES = AEP_BR / "sementes"
 AEP_COLETA = AEP_BR / "coleta"
 FOLHA_RAW = AEP_COLETA / "folha_acervo"
-ACERVO_JSON = AEP_COLETA / "acervo_protestos.json"
+# Etapas do banco, em ordem: coleta (bruto, fora do git) → codificação → banco → validação
+AEP_CODIFICACAO = AEP_BR / "codificacao"
+AEP_BANCO = AEP_BR / "banco"
+AEP_VALIDACAO = AEP_BR / "validacao"
 DB_PATH = AEP_BR / "protest_events.db"
 
 # Dados derivados

@@ -197,7 +197,7 @@ mpeds_target_categories:   # 7 alvos MPEDS → adaptados para o Brasil
   - "outro"
 
 # ---------------------------------------------------------------------------
-# Schema do evento — campos do JSON de saída do 02_doca_coder.py
+# Schema do evento — campos do JSON de saída do src/preprocessing/coder.py
 # ---------------------------------------------------------------------------
 
 event_schema:

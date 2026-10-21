@@ -1,5 +1,5 @@
 # Protocolo de busca no Acervo Folha (acervo.folha.com.br)
-# Usado por 01_scraper.py
+# Usado por src/data/scraper.py
 #
 # O conjunto abaixo reproduz as palavras-chave validadas pelo BEP-CEBRAP
 # (docs/aep-protocol-bep.md §3.1). Antes desta revisão, queries.yaml trazia um
@@ -52,6 +52,6 @@ scraper:
 
 # NOTA: as chaves `sections_include`, `sections_exclude`, `results_per_page`,
 # `max_retries` e `scraper.output_dir` foram removidas nesta revisão porque
-# eram declaradas e NUNCA lidas por 01_scraper.py — davam a falsa impressão de
+# eram declaradas e NUNCA lidas por src/data/scraper.py — davam a falsa impressão de
 # que a filtragem por editoria estava ativa. Reintroduzir apenas junto com a
 # implementação correspondente no scraper.

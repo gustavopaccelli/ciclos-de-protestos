@@ -105,5 +105,6 @@ desktop.ini
 # DoCA Pipeline output (generated at runtime)
 bancos/03_aep_br/*.db
 bancos/03_aep_br/coleta/folha_acervo/
+bancos/03_aep_br/banco/*.xlsx
 output/
 bancos/01_mass_mobilization/fonte-original/global/

@@ -6,7 +6,7 @@ Data: 2026-07-18. Frente D (pipeline AEP).
 
 O pipeline `src/` + `bancos/03_aep_br/` depende do **Acervo Folha**, que exige assinatura pessoal paga
 (`FOLHA_EMAIL` / `FOLHA_PASSWORD` em `.env`). Enquanto não houver credenciais, a coleta não
-roda — e os seletores CSS de `01_scraper.py` sequer podem ser validados, porque não há como
+roda — e os seletores CSS de `src/data/scraper.py` sequer podem ser validados, porque não há como
 inspecionar o site logado. É o gargalo declarado em `metodologia/relatorio-metodologico.md` §7.
 
 Há um segundo problema, independente do primeiro e mais grave para o desenho comparativo:

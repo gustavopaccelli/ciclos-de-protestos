@@ -8,7 +8,7 @@ DOI: https://doi.org/10.11606/issn.2176-8099.pcso.2024.233335
 
 Este documento extrai as decisões metodológicas do artigo e as mapeia para o pipeline
 `protest_events` deste projeto. Deve ser lido em conjunto com
-`config/doca_codebook.yaml` e `src/data/pipeline_docs/TUTORIAL.md`.
+`config/doca_codebook.yaml` e `bancos/03_aep_br/README.md`.
 
 ---
 
@@ -50,7 +50,7 @@ Toda fonte jornalística carrega **viés de seleção** (quais eventos noticiado
 - **Pressuposto de sobre-noticiação em ciclos**: ciclos de confronto são super-cobertos;
   as notícias se corrigem e complementam mutuamente.
 
-Implicação para o projeto: o `01_scraper.py` usa Acervo Folha como fonte primária.
+Implicação para o projeto: o `src/data/scraper.py` usa Acervo Folha como fonte primária.
 Quando e se disponível, G1/outros portais devem ser usados como fonte secundária para
 enriquecer variáveis com muitos `null`s (especialmente `crowd_size_reported` e `location`
 para eventos menores). O campo `source_url` no schema permite rastrear a fonte por evento.
@@ -115,8 +115,8 @@ principal.
 4. **Codificação** por codificador.
 5. **Validação** pela editoria: checar duplicatas, cruzar ID de evento.
 
-No pipeline automatizado, os passos 2–5 são executados pelo `02_doca_coder.py` com
-supervisão humana amostral (ver `04_intercoder_reliability.py` para Cohen's Kappa).
+No pipeline automatizado, os passos 2–5 são executados pelo `src/preprocessing/coder.py` com
+supervisão humana amostral (ver `src/preprocessing/intercoder_reliability.py` para Cohen's Kappa).
 
 ---
 
@@ -260,8 +260,8 @@ O BEP usa **codificação mista** (*bottom-up* + *top-down*):
 1. Primeiro registro aberto: valores coletados como aparecem na notícia.
 2. Recategorização posterior: aplicar códigos fechados ao material compilado.
 
-No pipeline automatizado (`02_doca_coder.py`), o LLM produz valores em texto livre que
-são normalizados pelo `03_build_dataset.py` contra os dicionários do codebook. Variáveis
+No pipeline automatizado (`src/preprocessing/coder.py`), o LLM produz valores em texto livre que
+são normalizados pelo `src/preprocessing/build_dataset.py` contra os dicionários do codebook. Variáveis
 com >30% de `null` após triangulação de fontes devem ser excluídas da análise final
 (conforme decisão BEP para variáveis com excesso de *missings*).
 
@@ -279,10 +279,10 @@ Ao mesmo tempo, alertam:
 > pesquisa, que, por sua vez, depende da experiência e da destreza analítica de um
 > pesquisador teoricamente informado."
 
-**Implicação direta para este projeto**: o `02_doca_coder.py` com API Anthropic é
+**Implicação direta para este projeto**: o `src/preprocessing/coder.py` com API Anthropic é
 metodologicamente legítimo dentro do Protocolo BEP — desde que:
 - O system prompt esteja ancorado nas definições do §2 e §4 deste documento
-- A confiabilidade inter-codificadores seja aferida por `04_intercoder_reliability.py`
+- A confiabilidade inter-codificadores seja aferida por `src/preprocessing/intercoder_reliability.py`
   (Cohen's Kappa ≥ 0,75 como threshold mínimo aceitável)
 - Variáveis ambíguas recebam revisão editorial amostral
 
@@ -324,18 +324,18 @@ Dois eventos codificados (possivelmente de artigos diferentes) são agrupados em
 2. A localidade é a mesma ou contígua (critério espacial do §4.1).
 3. Os atores principais e as reivindicações são compatíveis.
 
-O `canonical_event_id` é atribuído manualmente pelo editor na etapa de validação (ver §10.4) ou por algoritmo de deduplicação no `03_build_dataset.py` (implementação futura).
+O `canonical_event_id` é atribuído manualmente pelo editor na etapa de validação (ver §10.4) ou por algoritmo de deduplicação no `src/preprocessing/build_dataset.py` (implementação futura).
 
 ### 10.3 Artigos com múltiplos eventos
 
-Quando um artigo relata dois ou mais eventos de protesto distintos (ex.: "protestos simultâneos em SP e RJ"), o campo `multi_event_article: true` sinaliza que o `02_doca_coder.py` deve desmembrar a notícia e produzir múltiplos registros no JSON de saída, cada um com seu próprio `event_id`.
+Quando um artigo relata dois ou mais eventos de protesto distintos (ex.: "protestos simultâneos em SP e RJ"), o campo `multi_event_article: true` sinaliza que o `src/preprocessing/coder.py` deve desmembrar a notícia e produzir múltiplos registros no JSON de saída, cada um com seu próprio `event_id`.
 
 ### 10.4 Fluxo de canonização
 
 ```
 Artigo → scraper → JSON bruto (event_id por linha)
                            ↓
-           03_build_dataset.py — clustering por (data, cidade, ator_principal)
+           src/preprocessing/build_dataset.py — clustering por (data, cidade, ator_principal)
                            ↓
            Editor humano — revisão de conflitos de ID e atribuição de canonical_event_id
                            ↓
@@ -350,7 +350,7 @@ Artigo → scraper → JSON bruto (event_id por linha)
 
 O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem entrada, processamento e saída definidos:
 
-### Passagem 1 — Captura (01_scraper.py)
+### Passagem 1 — Captura (src/data/scraper.py)
 
 | Item | Descrição |
 |---|---|
@@ -365,7 +365,7 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 > `date_hint`→source_date, `title`→headline, `text`→body_text, `search_term`→query_used.
 > A saída é um arquivo por matéria, não JSONL agregado.
 
-### Passagem 2 — Triagem (02_doca_coder.py, step 1)
+### Passagem 2 — Triagem (src/preprocessing/coder.py, step 1)
 
 | Item | Descrição |
 |---|---|
@@ -373,7 +373,7 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 | Processamento | LLM aplica critérios §2: marca `eligible: bool`; se `false`, registra motivo em `notes` |
 | Saída | JSONL filtrado com campo `eligible` preenchido |
 
-### Passagem 3 — Codificação (02_doca_coder.py, step 2)
+### Passagem 3 — Codificação (src/preprocessing/coder.py, step 2)
 
 | Item | Descrição |
 |---|---|
@@ -381,7 +381,7 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 | Processamento | LLM preenche todos os campos do `event_schema` (Blocos I–V + campos MPEDS) |
 | Saída | JSONL com event_schema completo; `multi_event_article` sinaliza desmembramento |
 
-### Passagem 4 — Construção do dataset (03_build_dataset.py)
+### Passagem 4 — Construção do dataset (src/preprocessing/build_dataset.py)
 
 | Item | Descrição |
 |---|---|
@@ -389,7 +389,7 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 | Processamento | Normalização contra dicionários do codebook; clustering para `canonical_event_id`; exportação CSV/XLSX |
 | Saída | `protest_events.csv` (uma linha por evento canônico) + `protest_events_raw.csv` (uma linha por extração) |
 
-### Passagem 5 — Confiabilidade (04_intercoder_reliability.py)
+### Passagem 5 — Confiabilidade (src/preprocessing/intercoder_reliability.py)
 
 | Item | Descrição |
 |---|---|
