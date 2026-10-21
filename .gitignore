@@ -15,8 +15,8 @@ cookies.txt
 *.session
 
 # Claude Code / AI tools
-.claude/
-SKILL.md
+.claude/*
+!.claude/skills/
 claude_desktop_config.json
 
 # Data directories (preserve .gitkeep, metadata, and documentation)
@@ -70,6 +70,9 @@ data/triangulacao/**
 data/triangulacao/**/*.csv
 data/triangulacao/**/*.xlsx
 data/triangulacao/**/*.parquet
+# Resultados derivados da E1 (pequenos; versionados para o painel ser auditável)
+!data/triangulacao/e1_cruzamento_mm_nepac/dados/
+!data/triangulacao/e1_cruzamento_mm_nepac/dados/*
 
 # Pipeline/Cache
 __pycache__/
@@ -102,5 +105,6 @@ desktop.ini
 # DoCA Pipeline output (generated at runtime)
 bancos/03_aep_br/*.db
 bancos/03_aep_br/coleta/folha_acervo/
+bancos/03_aep_br/banco/*.xlsx
 output/
 bancos/01_mass_mobilization/fonte-original/global/

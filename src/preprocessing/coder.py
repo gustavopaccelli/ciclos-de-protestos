@@ -3,7 +3,7 @@
 Para cada matéria em bancos/03_aep_br/coleta/folha_acervo/, envia o texto ao
 Claude com o system prompt montado a partir do codebook AEP-BR e extrai os
 eventos de protesto em JSON validado (structured outputs).
-Saída: data/interim/{arquivo}.json.
+Saída: bancos/03_aep_br/codificacao/{arquivo}.json.
 
 - Schema GERADO de bancos/03_aep_br/codebook/codebook_aep_br.yaml (variáveis)
   e config/doca_codebook.yaml (vocabulários herdados): não há lista paralela
@@ -40,7 +40,7 @@ from tqdm import tqdm
 load_dotenv()
 
 RAW_DIR = paths.FOLHA_RAW
-CODED_DIR = paths.INTERIM
+CODED_DIR = paths.AEP_CODIFICACAO
 MODEL = os.environ.get("DOCA_MODEL", "claude-opus-5-5")
 EFFORT = os.environ.get("DOCA_EFFORT", "high")
 

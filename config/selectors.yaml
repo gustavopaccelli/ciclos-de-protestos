@@ -7,7 +7,7 @@
 # contra o site logado (falta assinatura). Trate-os como ponto de partida.
 #
 # COMO CONSERTAR
-#   1. Rode:  python 01_scraper.py --diagnose --headed
+#   1. Rode:  python src/data/scraper.py --diagnose --headed
 #      O navegador abre visível, faz login, executa UMA busca e grava
 #      HTML + screenshot em bancos/03_aep_br/coleta/folha_acervo/diagnose/.
 #   2. O relatório diz quantos elementos cada candidato encontrou.

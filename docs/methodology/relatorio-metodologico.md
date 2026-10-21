@@ -137,18 +137,18 @@ agregação direta.
 Foi projetado um pipeline em quatro passos (`src/` + `bancos/03_aep_br/`) para a construção do banco
 `protest_events` a partir do **Acervo Folha de S.Paulo**:
 
-1. **`01_scraper.py`** — raspagem via **Playwright** (navegador headless Chromium). Realiza login
+1. **`src/data/scraper.py`** — raspagem via **Playwright** (navegador headless Chromium). Realiza login
    no Acervo, itera termos de busca × janelas temporais definidas em `config/queries.yaml`, salva
    cada artigo como JSON e mantém **estado incremental** (permite interromper e retomar). Os
    seletores CSS são centralizados para manutenção, dado que o Acervo é uma aplicação dinâmica
    (React) sujeita a mudanças de layout.
-2. **`02_doca_coder.py`** — codificação assistida por IA via **API Anthropic** com *structured
+2. **`src/preprocessing/coder.py`** — codificação assistida por IA via **API Anthropic** com *structured
    outputs* (JSON validado por esquema), *prompt caching* do system prompt e **UUID5
    determinístico** por evento (deduplicação estável). Aplica os critérios de elegibilidade e o
    codebook.
-3. **`03_build_dataset.py`** — normalização contra os dicionários do codebook, *clustering* para
+3. **`src/preprocessing/build_dataset.py`** — normalização contra os dicionários do codebook, *clustering* para
    evento canônico (deduplicação entre fontes) e exportação CSV/XLSX multi-aba.
-4. **`04_intercoder_reliability.py`** — aferição de confiabilidade inter-codificadores por
+4. **`src/preprocessing/intercoder_reliability.py`** — aferição de confiabilidade inter-codificadores por
    **Cohen's Kappa** (limiar ≥ 0,75; Krippendorff, 2004).
 
 **Organização do scrap.** A busca replica o protocolo BEP: palavras-chave validadas

@@ -66,8 +66,8 @@ Codebook completo: `docs/codebook/cycle_phases_codebook.yaml`. Código `NA` dist
 ### 2.3 Análise de Eventos de Protesto (AEP)
 
 - **Âncora metodológica:** Protocolo **BEP-CEBRAP** (Alonso et al., 2024, *Plural* 31.2) — definição de evento, seleção de fontes, 5 blocos de variáveis, critérios de continuidade espaço-temporal, deduplicação por evento canônico (ver `docs/aep-protocol-bep.md`).
-- **Codebook AEP-BR** (`bancos/03_aep_br/codebook/`): v0.1, 50 variáveis nos 5 blocos BEP, cada uma mapeada ao MM e ao NEPAC; base para o banco próprio de 1983 até hoje em imprensa nacional e diários oficiais.
-- **Pipeline** (`src/` + `bancos/03_aep_br/`): scraper do Acervo Folha → codificador DoCA assistido por LLM (codebook alinhado a BEP + campos MPEDS) → construção do dataset → confiabilidade intercodificador (Kappa ≥ 0,75). Execução aguarda credenciais do Acervo Folha; o agendamento diário no GitHub Actions foi desativado em 2026-10-07.
+- **Codebook AEP-BR** (`bancos/03_aep_br/codebook/`): v1.0, 53 variáveis nos 5 blocos BEP, cada uma mapeada ao MM e ao NEPAC; base para o banco próprio de 1983 até hoje em imprensa nacional e diários oficiais.
+- **Pipeline** (`src/analysis/run_pipeline.py`; etapas e comandos em `bancos/03_aep_br/README.md`): coleta no Acervo Folha → codificação assistida por LLM (codebook alinhado ao BEP + campos MPEDS) → construção do banco → confiabilidade intercodificador (κ ≥ 0,75). Cada etapa tem sua pasta em `bancos/03_aep_br/`. Execução aguarda credenciais do Acervo Folha.
 - **Sementes manuais** (`bancos/03_aep_br/sementes/`): Diretas Já (59 eventos) e Fora Collor (15 eventos), com estimativas de público por fonte; complementadas por `bancos/03_aep_br/sementes/diretas_ja/` (cronologia de 50 comícios, distribuição estadual dos 490 comícios, atores da coalizão).
 
 ### 2.4 Triangulação com bancos independentes (Frente E)
@@ -122,12 +122,13 @@ O quadro completo — com variáveis independentes/dependentes, indicadores e ev
 
 | Caminho | Conteúdo |
 |---|---|
-| `bancos/` | **Uma pasta por banco de dados** (ver `bancos/README.md`): `01_mass_mobilization/` (1990–2020), `02_nepac/` (2011–2016), `03_aep_br/` (banco próprio 1983–hoje: codebook BEP, fontes, sementes, coleta) e `crosswalk/` |
-| `data/` | Dados derivados: `processed/cycle_phases/` (24 fases × variáveis, v3), `triangulacao/series_temporais/` (Frente E), `interim/` |
+| `bancos/` | **Uma pasta por banco de dados** (ver `bancos/README.md`): `01_mass_mobilization/` (1990–2020), `02_nepac/` (2011–2016), `03_aep_br/` (banco próprio 1983–hoje: codebook BEP, fontes, sementes e uma pasta por etapa — coleta, codificação, banco, validação) e `crosswalk/` |
+| `data/` | Dados derivados: `processed/cycle_phases/` (24 fases × variáveis, v3), `triangulacao/` (Frente E) |
 | `src/` | Scripts: `paths.py` (caminhos centrais), `data/` (coleta), `preprocessing/` (codificação, validação), `analysis/` (séries, bibliografia) |
 | `config/` | Vocabulários do codificador (`doca_codebook.yaml`), buscas e seletores do scraper |
 | `artigo/secoes/` | Seções redigidas do artigo |
 | `docs/` | Projeto, hipóteses, periodização, protocolo AEP-BEP, `codebook/` do cycle_phases, `process_tracing/`, `methodology/`, `artigo/` (referências .bib e ABNT), `artefatos/` (material importado) |
+| `produtos/` | Relatórios interativos em HTML (ver `produtos/README.md`), publicados no GitHub Pages |
 | `literature/` | Fichamentos e levantamento bibliográfico |
 | `research-state.yaml`, `research-log.md` | Estado do projeto e changelog da pesquisa |
 

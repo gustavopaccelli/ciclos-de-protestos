@@ -59,7 +59,7 @@ components:
   analise_triangulacao:
     descricao: "Produtos da Frente E — triangulação NEPAC + Mass Mobilization + seeds vs. cycle_phases"
     local: "data/triangulacao/series_temporais/"
-    status: "Pasta criada em 2026-07-16 (README com escopo e produtos previstos); análise a iniciar."
+    status: "E1 concluída (data/triangulacao/e1_cruzamento_mm_nepac/, produtos/e1-triangulacao/); E2 e E3 em stand-by desde 2026-10-21."
   metodologia:
     descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
     local: "metodologia/relatorio-metodologico.md"
@@ -100,9 +100,11 @@ frentes_abertas:
       bancos/ (um por pasta), codebook AEP-BR v1.0 (53 variáveis), coder e
       scripts migrados, workflow diário desativado. Aberto: B4 (downloads MM/
       NEPAC), B6 (piloto 2013 na Folha vs. NEPAC; requer credenciais e chave da
-      API), B7 (pipeline duplicado do PR #9), B8 (triagem e codificação em duas
-      passagens), B9 (validation_report.json). Ver docs/tarefas.md.
-    prioridade: media
+      API), B8 (triagem e codificação em duas passagens), B9
+      (validation_report.json). B7 concluída em 2026-10-21: pipeline do PR #9
+      arquivado; etapas em bancos/03_aep_br/ (coleta, codificacao, banco,
+      validacao). Ver docs/tarefas.md e bancos/03_aep_br/README.md.
+    prioridade: alta
   - id: C
     titulo: "Consolidação do artigo — preprint para publicação"
     detalhe: >
@@ -113,15 +115,16 @@ frentes_abertas:
       de Conjuntura; (4) conferir datas dos comícios de abr/1984 e atos de
       out/2013 na redação; (5) revisar referências ABNT e adequar às normas do
       periódico-alvo; (6) elaborar abstract e palavras-chave.
-    prioridade: alta
+    prioridade: stand-by (2026-10-21)
   - id: E
     titulo: "Análise de triangulação"
     detalhe: >
       PRIORIZADA em 2026-07-16. Triangular NEPAC (1.284 eventos 2011-2016) e
       Mass Mobilization (224 protestos 1990-2020) com cycle_phases v3 e seeds:
       séries temporais por ciclo, teste das fronteiras de fase, convergência
-      entre fontes, memorando analítico. Produtos em data/triangulacao/series_temporais/.
-    prioridade: alta
+      entre fontes, memorando analítico. E1 concluída (2026-10-07; reconstruída
+      em 2026-10-13): src/analysis/e1_cruzamento_series.py e produtos/e1-triangulacao/.
+    prioridade: stand-by (2026-10-21)
 
 outer_loop:
   cycle: 2

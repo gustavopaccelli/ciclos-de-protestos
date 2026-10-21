@@ -49,10 +49,10 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
 > repositório quando disponível.
 
 ### 4. Pipeline PEA — `protest_events` via Acervo Folha
-- `01_scraper.py` (Playwright, login Acervo Folha, busca incremental)
-- `02_doca_coder.py` (API Anthropic, system prompt DoCA, JSON validado)
-- `03_build_dataset.py` (CSV/XLSX multi-aba)
-- `04_intercoder_reliability.py` (Cohen's Kappa ≥ 0,75)
+- `src/data/scraper.py` (Playwright, login Acervo Folha, busca incremental)
+- `src/preprocessing/coder.py` (API Anthropic, system prompt DoCA, JSON validado)
+- `src/preprocessing/build_dataset.py` (CSV/XLSX multi-aba)
+- `src/preprocessing/intercoder_reliability.py` (Cohen's Kappa ≥ 0,75)
 - Config: `.env`, `queries.yaml`, `doca_codebook.yaml`
 - **Âncora metodológica**: Alonso, A. et al. "Análise de Eventos de Protesto:
   decisões metodológicas na organização do BEP 2013-2016." *Plural*, v. 31.2,
