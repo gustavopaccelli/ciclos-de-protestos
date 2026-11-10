@@ -18,7 +18,7 @@ src/
   data/                     scraper da Folha, banco SQLite, coleta de process tracing (pt_*)
   preprocessing/            codificador LLM, build_dataset, kappa, validadores
   analysis/                 run_pipeline.py (orquestrador do AEP-BR), séries temporais, E1, bibliografia
-config/                     doca_codebook.yaml (vocabulários), queries.yaml, selectors.yaml
+config/                     doca_codebook.yaml (vocabulários), queries.yaml, veiculos/ (um arquivo por jornal)
 docs/
   codebook/                 codebook do cycle_phases e histórico de codificação
   process_tracing/          PROTOCOLO, codebook-evidencia.yaml, ciclos/, dados/, fontes/
