@@ -9,7 +9,7 @@ repositórios; a recuperação dos documentos exige máquina com acesso à inter
 
 **Dados abertos (API v2)** — `https://dadosabertos.camara.leg.br/api/v2`
 Proposições, tramitação, votações nominais, órgãos, CPIs. Automatizado em
-`scripts/extrai_camara_senado.py`.
+`src/data/pt_extrai_legislativo.py`.
 *Limite:* cobertura sólida no período recente; para 1983–1992 as proposições existem mas
 as votações nominais frequentemente não.
 
@@ -67,7 +67,7 @@ Agregados usados: 1737 (IPCA), 6784 (Contas Nacionais), 202/6579 (população e 
 ## Banco Central
 
 `https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json`
-Série 433 = IPCA mensal. Automatizado em `scripts/extrai_series_estruturais.py`.
+Série 433 = IPCA mensal. Automatizado em `src/data/pt_extrai_series.py`.
 
 ## DIEESE
 

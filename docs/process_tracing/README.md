@@ -58,23 +58,23 @@ dados/
   marcos_institucionais.csv atos oficiais datados; encadeia ciclos via ciclo_seguinte_afetado
   series_estruturais.csv    bateria Chenoweth & Ulfelder, 1970-2016
   quadro8_ampliado.csv      36 células (9 categorias x 4 ciclos)
-scripts/                  extratores das APIs oficiais + validador
+(scripts em src/data/pt_*.py, src/analysis/pt_renderiza_predicoes.py e src/preprocessing/pt_valida_registro.py)
 ```
 
 ## Uso
 
 ```bash
 # validação completa — roda offline, sem dependência de rede
-python process-tracing/scripts/valida_registro.py
+python src/preprocessing/pt_valida_registro.py
 
 # extração (exige máquina com acesso à internet)
-python process-tracing/scripts/extrai_camara_senado.py --ciclo c2 --dry-run
-python process-tracing/scripts/extrai_series_estruturais.py --listar
-python process-tracing/scripts/extrai_series_estruturais.py --indicador inflacao
+python src/data/pt_extrai_legislativo.py --ciclo c2 --dry-run
+python src/data/pt_extrai_series.py --listar
+python src/data/pt_extrai_series.py --indicador inflacao
 
 # artefatos derivados — regerar sempre que o CSV de origem mudar
-python process-tracing/scripts/renderiza_predicoes.py      # CSV -> dossiês
-python process-tracing/scripts/gera_planilha_fontes.py     # CSV -> xlsx
+python src/analysis/pt_renderiza_predicoes.py      # CSV -> dossiês
+python src/data/pt_gera_planilha_fontes.py     # CSV -> xlsx
 ```
 
 **Dois artefatos são derivados e não devem ser editados à mão:** a seção de predições dos
@@ -124,7 +124,7 @@ o impeachment é o último da série.
 ## Estado da coleta (2026-08-22)
 
 Os extratores **não rodam no ambiente remoto**: os onze hosts oficiais retornam 403 no
-CONNECT por política de egresso. `scripts/executa_coleta.py --dry-run` diagnostica isso e
+CONNECT por política de egresso. `src/data/pt_coleta.py --dry-run` diagnostica isso e
 grava `dados/relatorio_coleta.md`.
 
 O que foi recuperado por busca server-side, que não passa por esse proxy:
@@ -144,7 +144,7 @@ Continua pendente o que é imagem digitalizada ou série de API.
 
 ## Próximo passo
 
-Rodar `scripts/executa_coleta.py` em máquina com rede e recuperar as fontes de nível 1 já mapeadas em
+Rodar `src/data/pt_coleta.py` em máquina com rede e recuperar as fontes de nível 1 já mapeadas em
 `fontes/fontes-de-dados.csv` — a começar pelos três documentos que resolvem divergências
 abertas: Diário da Câmara de 30/09/1992 (p. 22067), Diário do Congresso de 30/12/1992
 (p. 4811) e a ata do julgamento de 31/08/2016 no Diário do Senado.

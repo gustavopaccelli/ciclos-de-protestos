@@ -133,7 +133,7 @@ para um ciclo, registrar no dossiê correspondente, com data, o que cada hipóte
 encontrar e — mais importante — **o que a refutaria**.
 
 **Cumprido em 2026-08-22.** As 56 predições estão em `dados/predicoes.csv` e renderizadas
-nos dossiês por `scripts/renderiza_predicoes.py`. Cada uma traz `o_que_refutaria` — campo
+nos dossiês por `src/analysis/pt_renderiza_predicoes.py`. Cada uma traz `o_que_refutaria` — campo
 obrigatório: predição cuja refutação não é enunciável em termos de dado observável não é
 testável, e o validador acusa.
 

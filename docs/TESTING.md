@@ -2,6 +2,12 @@
 
 **Atualizado em:** 2026-10-07, depois da reorganização em `bancos/`. Esta versão substitui o relatório de 2026-09-21, que afirmava compatibilidade total quando vários scripts não encontravam as entradas.
 
+## Checagem automática
+
+Desde 2026-11-10, `.github/workflows/checks.yml` roda em todo PR e em todo push na `main`: bibliografia (`check_bib.py`, `lista_verificacao.py --check`), periodização (`valida_cycle_phases.py`), process tracing (`pt_valida_registro.py`, `pt_renderiza_predicoes.py --check`), codificador × codebook (`check_schema_coverage.py`) e a reprodução da E1 (os CSVs regenerados têm de ser idênticos aos versionados). Nenhuma etapa usa credenciais nem rede além da instalação das dependências.
+
+## Última verificação manual
+
 | Script | Resultado |
 |---|---|
 | `src/analysis/build_series_temporais.py` | Roda e reproduz `series_temporais_eventos.csv` sem diferenças: NEPAC 1.284, MM 224, Diretas Já 59, Fora Collor 15 |

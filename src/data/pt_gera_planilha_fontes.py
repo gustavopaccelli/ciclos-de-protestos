@@ -63,7 +63,7 @@ def monta(linhas: list[dict]) -> Workbook:
                 "projeto Ciclos de Protesto no Brasil")
     ws["A1"].font = Font(bold=True, size=13)
     ws["A2"] = ("ARQUIVO DERIVADO — gerado de fontes/fontes-de-dados.csv por "
-                "scripts/gera_planilha_fontes.py. Não edite aqui: a próxima geração "
+                "src/data/pt_gera_planilha_fontes.py. Não edite aqui: a próxima geração "
                 "sobrescreve. Nível 1 = ato oficial primário · 2 = registro "
                 "institucional · 3 = imprensa (só corroboração) · 4 = literatura. "
                 "Ver fontes/hierarquia-fontes.md.")

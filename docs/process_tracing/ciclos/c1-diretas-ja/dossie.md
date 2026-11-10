@@ -58,7 +58,7 @@ Se essa cadeia não fecha em fonte oficial, H3.5 não tem lastro empírico neste
 
 ## T-1e — antecedente estrutural
 
-A ser preenchido por `scripts/extrai_series_estruturais.py`. Recorte: 1970–1985, dentro do
+A ser preenchido por `src/data/pt_extrai_series.py`. Recorte: 1970–1985, dentro do
 "ciclo de oportunidades políticas (1970–2015)" do cap. 2.2 da tese.
 
 Atenção específica deste caso: os indicadores do Quadro 3 pressupõem regime competitivo.
@@ -94,7 +94,7 @@ vencem o desfecho por outro canal**. É o caso paradigmático de `traducao_insti
 
 ## Predições registradas
 
-<!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
+<!-- PREDICOES:INICIO — gerado por src/analysis/pt_renderiza_predicoes.py, não editar à mão -->
 
 **Registradas em 2026-08-23**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 14 fora de amostra, 0 de âncora, 0 não pertinentes.
 

@@ -1,6 +1,6 @@
 """varre_citacoes.py — Nenhuma obra citada sem entrada no .bib.
 
-Varre process-tracing/ e docs/codebook/ atrás de citações no formato autor-data
+Varre docs/ (inclusive docs/process_tracing/ e docs/codebook/) atrás de citações no formato autor-data
 — "SOBRENOME (2019)", "Sobrenome e Outro (2001)", "(SOBRENOME, 2019)" — e
 confere se o sobrenome aparece em algum campo author/editor de
 docs/artigo/referencias.bib.
@@ -24,7 +24,7 @@ import paths  # noqa: E402
 BASE = Path(__file__).resolve().parent
 RAIZ = paths.RAIZ
 BIB = paths.BIB
-ALVOS = ["process-tracing", "codebook", "docs"]
+ALVOS = ["docs"]  # inclui docs/process_tracing/ e docs/codebook/
 EXTENSOES = {".md", ".yaml", ".yml"}
 
 # Sobrenome seguido de ano entre parênteses. Captura "Tarrow (2009)",

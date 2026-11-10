@@ -96,8 +96,8 @@ def escreve_relatorio(diag, execucoes, ciclos) -> None:
           "Abra-as manualmente e atualize `status_verificacao` e `fonte_nivel` no registro.", "",
           "## Depois da coleta", "",
           "```bash",
-          "python process-tracing/scripts/valida_registro.py --estrito",
-          "python process-tracing/scripts/gera_planilha_fontes.py",
+          "python src/preprocessing/pt_valida_registro.py --estrito",
+          "python src/data/pt_gera_planilha_fontes.py",
           "```"]
     RELATORIO.write_text("\n".join(L), encoding="utf-8")
     print(f"\nRelatório → {RELATORIO}")

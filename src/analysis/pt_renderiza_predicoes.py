@@ -23,7 +23,7 @@ import pandas as pd
 
 BASE = paths.PROCESS_TRACING
 CSV = BASE / "dados" / "predicoes.csv"
-INICIO = "<!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->"
+INICIO = "<!-- PREDICOES:INICIO — gerado por src/analysis/pt_renderiza_predicoes.py, não editar à mão -->"
 FIM = "<!-- PREDICOES:FIM -->"
 
 DOSSIES = {

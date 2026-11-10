@@ -82,7 +82,7 @@ Ver `docs/artefatos-incorporacao.md` §4. Os artefatos trazem uma revisão (vari
 `traducao_institucional`, código NA≠0, fase de articulação do Fora Collor, fase de latência
 no Impeachment, remoção da radicalização em J13) que **conflita com a periodização validada**.
 
-- [x] **P1.** RESOLVIDO (2026-07-04): adotada periodização v3 revisada + variável `traducao_institucional`. `data/processed/cycle_phases/cycle_phases.csv` reescrito (24 fases); v2 preservada em `data/cycle_phases_v2_prearticulacao.csv`.
+- [x] **P1.** RESOLVIDO (2026-07-04): adotada periodização v3 revisada + variável `traducao_institucional`. `data/processed/cycle_phases/cycle_phases.csv` reescrito (24 fases); v2 preservada em `data/processed/cycle_phases/cycle_phases_v2_prearticulacao.csv`.
 - [x] **P2.** RESOLVIDO (2026-07-04): aplicadas as fases de articulação (`docs/periodizacao-articulacao.md`), fundamentada na tese: articulação forte no Fora Collor (nov/1991, Mische 2008) e no Impeachment Dilma (pós-eleições out/2014, Aécio contestando — McAdam & Tarrow 2011; Tatagiba 2018); Junho 2013 SEM articulação (ruptura, não articulação — confirmado pela tese); Diretas Já a decidir. Fronteira J13→Dilma redefinida.
 
 ---
@@ -98,14 +98,14 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 - [x] Banco NEPAC/UNICAMP (Tatagiba & Galvão 2019) incorporado — 2.548 registros / 1.284 eventos 2011–2016.
 - [x] Banco Mass Mobilization (Clark & Regan v16) incorporado — 224 protestos do Brasil 1990–2020.
 - [x] Periodização v3 (24 fases) validada e aplicada: fases de articulação (Diretas Já, Fora Collor, Impeachment), latência (Impeachment), radicalização mantida (J13), variável `traducao_institucional` (2026-07-04).
-- [x] Relatório metodológico acadêmico criado (`metodologia/relatorio-metodologico.md`, 2026-07-04).
+- [x] Relatório metodológico acadêmico criado (`docs/methodology/relatorio-metodologico.md`, 2026-07-04).
 - [x] Dados complementares das Diretas Já incorporados (`bancos/03_aep_br/sementes/diretas_ja/`: 50 comícios, distribuição estadual dos 490, atores da coalizão — 2026-07-14).
 - [x] Inventário de artefatos concluído (`docs/artefatos-incorporacao.md`, 31 itens, incl. §6 uploads das Diretas Já).
 - [x] Bibliografia ABNT expandida para ~94 referências (+14 do `.bib` dos artefatos).
 - [x] README principal em formato de preprint (introdução, quadro metodológico, 14 hipóteses — 2026-07-17).
 - [x] Bibliografia canônica máquina-legível: `artigo/referencias.bib` (116 entradas, biblatex),
       unificando a lista ABNT, o .bib dos artefatos e 16 obras novas do levantamento de
-      2026-07-18 (AEP automatizada + DOS pós-2015). Verificador `artigo/check_bib.py`.
+      2026-07-18 (AEP automatizada + DOS pós-2015). Verificador `src/analysis/check_bib.py`.
 - [x] Fichamentos analíticos de 10 obras-chave em `literature/fichamentos/`; `survey.md`
       atualizado (estava defasado desde 2026-06-10).
 

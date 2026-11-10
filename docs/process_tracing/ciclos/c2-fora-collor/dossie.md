@@ -21,7 +21,7 @@ Ver `data/processed/cycle_phases/cycle_phases.csv`, prefixo `FC-`. Ciclo de 1991
 
 ## T-1e — antecedente estrutural
 
-A preencher por `scripts/extrai_series_estruturais.py`. Lembrete do PROTOCOLO §6.3: usar
+A preencher por `src/data/pt_extrai_series.py`. Lembrete do PROTOCOLO §6.3: usar
 NEPAC e Mass Mobilization para o indicador de aprendizado organizacional, **nunca** o
 `protest_events` do próprio projeto — isso seria circular.
 
@@ -68,7 +68,7 @@ H1.2 — e um argumento a favor de manter `marcos_institucionais.csv` com `canal
 
 ## Predições registradas
 
-<!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->
+<!-- PREDICOES:INICIO — gerado por src/analysis/pt_renderiza_predicoes.py, não editar à mão -->
 
 **Registradas em 2026-08-23**, antes de qualquer varredura (PROTOCOLO §5). 14 predições: 9 fora de amostra, 5 de âncora, 0 não pertinentes.
 

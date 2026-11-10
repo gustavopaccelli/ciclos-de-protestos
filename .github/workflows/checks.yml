@@ -1,0 +1,37 @@
+name: Checagens
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validadores:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Dependências (sem navegadores)
+        run: pip install -r requirements.txt
+      - name: Bibliografia (.bib × ABNT e lista de verificação)
+        run: |
+          python src/analysis/check_bib.py
+          python src/analysis/lista_verificacao.py --check
+      - name: Periodização (cycle_phases × codebook × histórico)
+        run: python src/preprocessing/valida_cycle_phases.py
+      - name: Process tracing (registro e dossiês)
+        run: |
+          python src/preprocessing/pt_valida_registro.py
+          python src/analysis/pt_renderiza_predicoes.py --check
+      - name: Codificador AEP-BR × codebook
+        run: python src/data/check_schema_coverage.py
+      - name: E1 reproduz os resultados versionados
+        run: |
+          python src/analysis/e1_cruzamento_series.py
+          git diff --exit-code -- data/triangulacao/e1_cruzamento_mm_nepac/dados ':!*.json'

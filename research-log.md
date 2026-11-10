@@ -584,3 +584,11 @@ real segue pendente (D1) — exige assinatura.**
 - **Defeito corrigido:** `src/analysis/run_pipeline.py` chamava `01_scraper.py`, `02_doca_coder.py` etc., que não existiam mais; agora chama os scripts reais e grava o kappa em `validacao/`. Referências antigas atualizadas em `config/` e nos documentos de protocolo.
 - **Documentação única do processo:** `bancos/03_aep_br/README.md`.
 - **Próximo:** B9 → B6 (piloto 2013) → B8; B4 localmente.
+
+## 2026-11-10 — Revisão do repositório
+
+- **Branch paralelo incorporado:** `claude/awesome-tesla-zlvxkc` (outra sessão, sem PR) corrigia contagens e caminhos em 49 arquivos e conflitava com o PR #13 em 17. Foi integrado por merge, mantendo a estrutura atual (E1 reconstruída, pipeline do PR #9 arquivado, etapas do AEP-BR); suas edições em arquivos já arquivados foram descartadas.
+- **Caminhos quebrados corrigidos:** referências aos antigos `process-tracing/scripts/*.py` (agora `src/data/pt_*.py`, `src/analysis/pt_renderiza_predicoes.py`, `src/preprocessing/pt_valida_registro.py`) em docs, dossiês, CSV de fontes (xlsx regenerado) e mensagens dos scripts; três caminhos em `docs/tarefas.md`.
+- **Fonte de verdade fora de sincronia:** o dossiê C1 tinha o caminho das sementes corrigido à mão, mas `docs/process_tracing/dados/predicoes.csv` ainda dizia `data/diretas_ja/`; o `--check` acusava. Corrigido no CSV e regenerado.
+- **`varre_citacoes.py`:** a lista de alvos apontava para pastas que não existem mais; resultado da varredura idêntico.
+- **CI:** `.github/workflows/checks.yml` roda os validadores e confere que a E1 reproduz os CSVs versionados.
