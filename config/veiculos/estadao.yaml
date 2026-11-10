@@ -1,0 +1,88 @@
+# O Estado de S. Paulo — acervo digital (https://acervo.estadao.com.br/)
+# Configuração do coletor src/data/scraper.py (--veiculo estadao).
+#
+# ⚠️ ESQUELETO NÃO VALIDADO. A URL de base vem de bancos/03_aep_br/fontes/fontes_aep_br.csv;
+# a página de login, o formulário de busca e todos os seletores abaixo são
+# candidatos genéricos, nunca testados (não há assinatura nem acesso de rede
+# no ambiente em que foram escritos). Antes de coletar:
+#   python src/data/scraper.py --veiculo estadao --diagnose --headed
+# e ajuste aqui até o relatório (coleta/estadao_acervo/diagnose/) acusar elementos em
+# todos os grupos. Se a busca aceitar parâmetros na URL, troque busca.modo para
+# "url" e preencha busca.parametros, como em folha.yaml.
+
+nome: "O Estado de S. Paulo"
+pasta: estadao_acervo
+fonte_tipo: jornal_impresso
+unidade: materia
+cobertura: {inicio: null, fim: null}
+
+login:
+  url: "https://acervo.estadao.com.br/"                   # A VALIDAR: página onde fica o formulário de login
+  env_usuario: ESTADAO_EMAIL
+  env_senha: ESTADAO_PASSWORD
+
+busca:
+  modo: formulario
+  url: "https://acervo.estadao.com.br/"                   # A VALIDAR: página com o formulário de busca
+  formato_data: "%d/%m/%Y"      # A VALIDAR: formato que os campos de data aceitam
+
+seletores:
+  login:
+    abrir:                      # opcional: link/botão que abre o formulário de login
+      - 'a:has-text("Entrar")'
+      - 'button:has-text("Entrar")'
+      - 'a:has-text("Login")'
+    email:
+      - 'input[type="email"]'
+      - 'input[name="email"]'
+      - 'input[name="login"]'
+    password:
+      - 'input[type="password"]'
+    submit:
+      - 'button[type="submit"]'
+      - 'input[type="submit"]'
+      - 'button:has-text("Entrar")'
+    logged_in_marker:
+      - 'a[href*="logout"]'
+      - 'a:has-text("Sair")'
+      - 'button:has-text("Sair")'
+  search:
+    termo:
+      - 'input[type="search"]'
+      - 'input[name="q"]'
+      - 'input[name*="busca"]'
+    data_inicio:
+      - 'input[name*="inicio"]'
+      - 'input[name*="dataInicial"]'
+    data_fim:
+      - 'input[name*="fim"]'
+      - 'input[name*="dataFinal"]'
+    enviar:
+      - 'button[type="submit"]'
+      - 'button:has-text("Buscar")'
+      - 'button:has-text("Pesquisar")'
+    result_item:
+      - '.resultado'
+      - '.result'
+      - 'article'
+    result_link:
+      - 'a[href]'
+    result_date:
+      - '.data'
+      - 'time'
+    next_page:
+      - 'a[rel="next"]'
+      - 'a:has-text("Próxima")'
+      - 'button:has-text("Próxima")'
+  article:
+    secao:
+      - '.secao'
+      - '.caderno'
+    pagina:
+      - '.pagina'
+    title:
+      - 'h1'
+    body:
+      - '.texto'
+      - '.conteudo'
+      - 'article'

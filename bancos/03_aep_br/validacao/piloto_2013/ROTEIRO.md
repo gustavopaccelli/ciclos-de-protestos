@@ -20,10 +20,10 @@ O `.env` nunca vai para o git.
 ## 2. Validar os seletores do Acervo
 
 ```bash
-python src/data/scraper.py --diagnose --headed
+python src/data/scraper.py --veiculo folha --diagnose --headed
 ```
 
-Confira o relatório em `bancos/03_aep_br/coleta/folha_acervo/diagnose/`. Seletor com 0 elementos está errado: corrija em `config/selectors.yaml` e repita até todos acharem algo. Confira também se a matéria salva traz seção e página: elas alimentam a medida de visibilidade (`teoria/matriz.yaml`, `dos_visibilidade`).
+Confira o relatório em `bancos/03_aep_br/coleta/folha_acervo/diagnose/`. Seletor com 0 elementos está errado: corrija em `config/veiculos/folha.yaml` e repita até todos acharem algo. Confira também se a matéria salva traz seção e página: elas alimentam a medida de visibilidade (`teoria/matriz.yaml`, `dos_visibilidade`).
 
 ## 3. Coletar 2013
 

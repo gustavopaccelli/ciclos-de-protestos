@@ -1,0 +1,63 @@
+# Jornal do Brasil — Hemeroteca Digital da Biblioteca Nacional
+# (https://bndigital.bn.gov.br/hemeroteca-digital/). Acesso aberto, sem login.
+# Configuração do coletor src/data/scraper.py (--veiculo jb).
+#
+# UNIDADE = PÁGINA. A Hemeroteca oferece páginas inteiras digitalizadas com OCR,
+# não matérias separadas (decisão de 2026-11-10). Cada página encontrada pela busca
+# vira um documento; o codificador separa os eventos e registra qualidade_ocr.
+#
+# ⚠️ ESQUELETO NÃO VALIDADO. A URL vem de bancos/03_aep_br/fontes/fontes_aep_br.csv;
+# o formulário de busca, o visualizador de páginas e todos os seletores abaixo são
+# candidatos genéricos, nunca testados. Antes de coletar:
+#   python src/data/scraper.py --veiculo jb --diagnose --headed
+# e ajuste aqui até o relatório (coleta/jb_hemeroteca/diagnose/) acusar elementos.
+# Em especial: onde o visualizador expõe o TEXTO do OCR da página (article.body).
+
+nome: "Jornal do Brasil"
+pasta: jb_hemeroteca
+fonte_tipo: jornal_impresso
+unidade: pagina
+cobertura: {inicio: null, fim: "2010-12-31"}   # edição impressa encerrada em 2010 (fontes_aep_br.csv)
+
+login: null                     # acesso aberto
+
+busca:
+  modo: formulario
+  url: "https://bndigital.bn.gov.br/hemeroteca-digital/"   # A VALIDAR: página com o formulário de busca
+  formato_data: "%Y"            # A VALIDAR: a busca da Hemeroteca pode filtrar por período (ano/década)
+
+seletores:
+  search:
+    termo:
+      - 'input[type="search"]'
+      - 'input[name*="pesq"]'
+      - 'input[type="text"]'
+    data_inicio:
+      - 'select[name*="periodo"]'
+      - 'input[name*="ano"]'
+    data_fim: []
+    enviar:
+      - 'button:has-text("Pesquisar")'
+      - 'input[type="submit"]'
+      - 'button[type="submit"]'
+    result_item:
+      - '.resultado'
+      - 'li'
+    result_link:
+      - 'a[href]'
+    result_date:
+      - '.data'
+    next_page:
+      - 'a:has-text("Próxima")'
+      - 'a[rel="next"]'
+  article:
+    secao: []
+    pagina:
+      - '.pagina'
+    title:
+      - 'h1'
+      - 'title'
+    body:
+      - '.ocr'
+      - 'textarea'
+      - 'pre'

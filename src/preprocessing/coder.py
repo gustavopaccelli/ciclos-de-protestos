@@ -1,6 +1,7 @@
 """coder.py — Codificação AEP-BR de matérias via API Anthropic.
 
-Para cada matéria em bancos/03_aep_br/coleta/folha_acervo/, envia o texto ao
+Para cada documento em bancos/03_aep_br/coleta/<veículo>/ (matéria ou página
+inteira, conforme config/veiculos/), envia o texto ao
 Claude com o system prompt montado a partir do codebook AEP-BR e extrai os
 eventos de protesto em JSON validado (structured outputs).
 Saída: bancos/03_aep_br/codificacao/{arquivo}.json.
@@ -40,7 +41,7 @@ from tqdm import tqdm
 
 load_dotenv()
 
-RAW_DIR = paths.FOLHA_RAW
+RAW_DIR = paths.AEP_COLETA   # uma subpasta por veículo
 CODED_DIR = paths.AEP_CODIFICACAO
 MODEL = os.environ.get("DOCA_MODEL", "claude-opus-5-5")
 EFFORT = os.environ.get("DOCA_EFFORT", "high")
@@ -319,6 +320,8 @@ def code_article(client: anthropic.Anthropic, art: dict) -> dict:
             "content": (
                 f"URL: {art.get('url')}\n"
                 f"Veículo (pista): {art.get('source', 'Folha de S.Paulo')}\n"
+                f"Unidade: {'página inteira do jornal, texto de OCR (pode conter várias matérias)' if art.get('unidade') == 'pagina' else 'matéria'}\n"
+                f"Seção (pista): {art.get('secao')} · Página (pista): {art.get('pagina')}\n"
                 f"Data de publicação (pista): {art.get('date_hint')}\n"
                 f"Título: {art.get('title')}\n\n"
                 f"{body}"
@@ -351,7 +354,7 @@ def code_article(client: anthropic.Anthropic, art: dict) -> dict:
 def run(batch: int | None, amostra: str | None = None) -> None:
     CODED_DIR.mkdir(parents=True, exist_ok=True)
     client = anthropic.Anthropic()
-    candidatas = sorted(RAW_DIR.glob("*.json"))
+    candidatas = sorted(p for p in RAW_DIR.glob("*/*.json") if p.name != "scrape_state.json")
     if amostra:
         with open(amostra, encoding="utf-8") as f:
             sorteadas = {r["arquivo"] for r in csv.DictReader(f)}

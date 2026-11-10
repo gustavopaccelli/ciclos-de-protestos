@@ -1,0 +1,85 @@
+# Folha de S.Paulo — Acervo Folha (acervo.folha.com.br)
+# Configuração do coletor src/data/scraper.py (--veiculo folha).
+#
+# Seletores ⚠️ NÃO VALIDADOS contra o site logado. Para conferir:
+#   python src/data/scraper.py --veiculo folha --diagnose --headed
+# O relatório (coleta/folha_acervo/diagnose/) diz quantos elementos cada
+# candidato encontrou; o que der 0 está errado. No navegador (F12 → Elements),
+# copie o seletor certo e cole como PRIMEIRO item da lista.
+
+nome: "Folha de S.Paulo"
+pasta: folha_acervo            # bancos/03_aep_br/coleta/<pasta>/ (fora do git)
+fonte_tipo: jornal_impresso
+unidade: materia               # materia | pagina
+cobertura: {inicio: null, fim: null}   # null = sem recorte; as janelas vêm de config/queries.yaml
+
+login:
+  url: "https://login.folha.com.br/login"
+  env_usuario: FOLHA_EMAIL
+  env_senha: FOLHA_PASSWORD
+
+busca:
+  modo: url                    # url (parâmetros na URL) | formulario (preenche a página de busca)
+  url: "https://acervo.folha.com.br/busca.do"
+  parametros:                  # {termo}, {inicio} e {fim} são substituídos; datas em formato_data
+    keyword: "{termo}"
+    periododesc: "{inicio} a {fim}"
+  formato_data: "%Y-%m-%d"
+
+seletores:
+  login:
+    email:
+      - 'input[name="email"]'
+      - 'input[type="email"]'
+      - '#email'
+    password:
+      - 'input[name="password"]'
+      - 'input[type="password"]'
+      - '#password'
+    submit:
+      - 'button[type="submit"]'
+      - 'input[type="submit"]'
+      - 'button:has-text("Entrar")'
+    # Como confirmar que o login DEU CERTO. Se nenhum casar, o script aborta
+    # em vez de coletar zero artigos silenciosamente.
+    logged_in_marker:
+      - 'a[href*="logout"]'
+      - '.usuario-logado'
+      - 'button:has-text("Sair")'
+
+  search:
+    # Container de cada resultado na página de busca.
+    result_item:
+      - '.resultado-busca .item'
+      - 'article.result'
+      - '.busca-resultado li'
+    # Link do resultado (procurado DENTRO de result_item).
+    result_link:
+      - 'a[href]'
+    # Data exibida no resultado (opcional; null se não houver).
+    result_date:
+      - '.data'
+      - 'time'
+    # Botão/link de próxima página.
+    next_page:
+      - 'a[rel="next"]'
+      - '.paginacao .proxima'
+      - 'a:has-text("Próxima")'
+
+  article:
+    # Seção e página da edição impressa (opcionais): alimentam a medida de
+    # visibilidade (teoria/matriz.yaml, dos_visibilidade).
+    secao:
+      - '.secao'
+      - '.caderno'
+    pagina:
+      - '.pagina'
+      - '.page-number'
+    title:
+      - 'h1'
+      - '.titulo-materia'
+    body:
+      - '.content'
+      - '.news'
+      - 'article'
+      - '.corpo-materia'

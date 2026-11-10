@@ -1,23 +1,28 @@
-"""scraper.py — Coleta de artigos do Acervo Folha via Playwright.
+"""scraper.py — Coleta de matérias (ou páginas) de acervos de jornais via Playwright.
 
-Passagem 1 do protocolo (docs/aep-protocol-bep.md §11). Faz login, itera
-termos de busca × janelas temporais (config/queries.yaml), salva cada artigo
-como JSON em bancos/03_aep_br/coleta/folha_acervo/ e mantém estado incremental (interrompível).
+Passagem 1 do protocolo (docs/aep-protocol-bep.md §11). Para o veículo escolhido,
+faz login (se houver), itera termos de busca × janelas temporais
+(config/queries.yaml), salva cada documento como JSON em
+bancos/03_aep_br/coleta/<pasta do veículo>/ e mantém estado incremental
+(interrompível).
 
-Os seletores CSS ficam em config/selectors.yaml — editáveis sem tocar em
-Python. O Acervo é uma aplicação React e muda de layout sem aviso.
+Cada veículo tem um arquivo em config/veiculos/ (folha, estadao, oglobo, jb) com
+login, modo de busca (parâmetros na URL ou formulário), cobertura temporal,
+unidade (matéria ou página) e seletores CSS — editáveis sem tocar em Python.
+Os acervos mudam de layout sem aviso.
 
 MODOS DE USO
-  python src/data/scraper.py --diagnose --headed   # PRIMEIRO PASSO: valida seletores
+  python src/data/scraper.py --veiculo folha --diagnose --headed   # PRIMEIRO PASSO: valida seletores
   python src/data/scraper.py --dry-run             # lista o que coletaria, sem baixar
-  python src/data/scraper.py --limit 20            # coleta no máximo 20 artigos
+  python src/data/scraper.py --limit 20            # coleta no máximo 20 documentos
   python src/data/scraper.py --janela junho_2013   # só uma janela de config/queries.yaml
-  python src/data/scraper.py                       # coleta completa
+  python src/data/scraper.py --veiculo jb          # outro veículo (padrão: folha)
 
 Comece SEMPRE por --diagnose: sem seletores validados a coleta retorna zero.
 """
 
 import argparse
+import datetime as dt
 import hashlib
 import json
 import os
@@ -37,16 +42,28 @@ from playwright.sync_api import sync_playwright
 
 load_dotenv()
 
-BASE = Path(__file__).resolve().parent
 CFG = yaml.safe_load((paths.CONFIG / "queries.yaml").read_text())
-SEL = yaml.safe_load((paths.CONFIG / "selectors.yaml").read_text())
-ROOT = paths.RAIZ
-RAW_DIR = paths.FOLHA_RAW
-DIAG_DIR = RAW_DIR / "diagnose"
-STATE_FILE = ROOT / CFG["scraper"]["state_file"]
+VEICULOS_DIR = paths.CONFIG / "veiculos"
+VEICULOS = sorted(p.stem for p in VEICULOS_DIR.glob("*.yaml"))
 
-LOGIN_URL = "https://login.folha.com.br/login"
-SEARCH_URL = "https://acervo.folha.com.br/busca.do"
+# Definidos por configura() a partir de config/veiculos/<veiculo>.yaml.
+V: dict = {}
+SEL: dict = {}
+RAW_DIR = DIAG_DIR = STATE_FILE = Path()
+
+
+def configura(veiculo: str) -> None:
+    global V, SEL, RAW_DIR, DIAG_DIR, STATE_FILE
+    V = yaml.safe_load((VEICULOS_DIR / f"{veiculo}.yaml").read_text(encoding="utf-8"))
+    V["chave"] = veiculo
+    SEL = V["seletores"]
+    RAW_DIR = paths.AEP_COLETA / V["pasta"]
+    DIAG_DIR = RAW_DIR / "diagnose"
+    STATE_FILE = RAW_DIR / "scrape_state.json"
+
+
+def config_veiculo() -> str:
+    return f"config/veiculos/{V['chave']}.yaml"
 
 # Identificação honesta do coletor. Scraping acadêmico não se disfarça de
 # navegador comum: se o mantenedor do acervo quiser nos contatar ou bloquear,
@@ -116,18 +133,51 @@ def article_path(url: str) -> Path:
 # Navegação
 # ---------------------------------------------------------------------------
 
+def recorta(dr: dict) -> dict | None:
+    """Janela de busca limitada à cobertura do veículo; None se não houver interseção."""
+    cob = V.get("cobertura") or {}
+    ini = max(dr["start"], cob.get("inicio") or dr["start"])
+    fim = min(dr["end"], cob.get("fim") or dr["end"])
+    return {**dr, "start": ini, "end": fim} if ini <= fim else None
+
+
+def _data(iso: str) -> str:
+    return dt.date.fromisoformat(iso).strftime(V["busca"]["formato_data"])
+
+
 def search_url(term: str, dr: dict) -> str:
-    """URL de busca com parâmetros CODIFICADOS.
+    """URL de busca com parâmetros CODIFICADOS (busca.modo = url).
 
     Antes os parâmetros iam crus na URL: termos com acento ('manifestação')
     ou espaço ('ato público') produziam requisição inválida — a coleta
     falharia logo no primeiro termo.
     """
-    params = urllib.parse.urlencode({
-        "keyword": term,
-        "periododesc": f'{dr["start"]} a {dr["end"]}',
-    })
-    return f"{SEARCH_URL}?{params}"
+    valores = {"termo": term, "inicio": _data(dr["start"]), "fim": _data(dr["end"])}
+    params = urllib.parse.urlencode({k: v.format(**valores) for k, v in V["busca"]["parametros"].items()})
+    return f"{V['busca']['url']}?{params}"
+
+
+def abre_busca(page, term: str, dr: dict) -> str:
+    """Abre a página de resultados de um termo × janela e devolve a URL usada."""
+    if V["busca"]["modo"] == "url":
+        url = search_url(term, dr)
+        page.goto(url, timeout=NAV_TIMEOUT_MS)
+    else:
+        url = V["busca"]["url"]
+        page.goto(url, timeout=NAV_TIMEOUT_MS)
+        campo = first_match(page, SEL["search"]["termo"])
+        enviar = first_match(page, SEL["search"]["enviar"])
+        if not (campo and enviar):
+            raise SystemExit(f"Formulário de busca não encontrado — ajuste search.termo/enviar em "
+                             f"{config_veiculo()} (rode --diagnose --headed).")
+        campo.fill(term)
+        for chave, iso in (("data_inicio", dr["start"]), ("data_fim", dr["end"])):
+            el = first_match(page, SEL["search"].get(chave) or [])
+            if el:
+                el.fill(_data(iso))
+        enviar.click()
+    page.wait_for_load_state("networkidle", timeout=NAV_TIMEOUT_MS)
+    return url
 
 
 def login(page) -> None:
@@ -136,22 +186,29 @@ def login(page) -> None:
     Sem a confirmação, credencial errada ou mudança de layout produziam uma
     coleta de zero artigos sem nenhum erro — o pior modo de falha possível.
     """
-    email = os.environ.get("FOLHA_EMAIL")
-    password = os.environ.get("FOLHA_PASSWORD")
+    if not V.get("login"):
+        return   # acervo aberto
+    cfg = V["login"]
+    email = os.environ.get(cfg["env_usuario"])
+    password = os.environ.get(cfg["env_senha"])
     if not email or not password:
         raise SystemExit(
-            "FOLHA_EMAIL/FOLHA_PASSWORD ausentes. Copie .env.example "
+            f"{cfg['env_usuario']}/{cfg['env_senha']} ausentes. Copie .env.example "
             "para .env na raiz e preencha (o .env nunca é versionado)."
         )
 
-    page.goto(LOGIN_URL, timeout=NAV_TIMEOUT_MS)
+    page.goto(cfg["url"], timeout=NAV_TIMEOUT_MS)
+    abrir = first_match(page, SEL["login"].get("abrir") or [])
+    if abrir and not first_match(page, SEL["login"]["password"]):
+        abrir.click()
+        page.wait_for_load_state("networkidle", timeout=NAV_TIMEOUT_MS)
     campo_email = first_match(page, SEL["login"]["email"])
     campo_senha = first_match(page, SEL["login"]["password"])
     botao = first_match(page, SEL["login"]["submit"])
     if not (campo_email and campo_senha and botao):
         raise SystemExit(
-            "Formulário de login não encontrado — seletores desatualizados.\n"
-            "Rode: python src/data/scraper.py --diagnose --headed"
+            f"Formulário de login não encontrado — seletores desatualizados em {config_veiculo()}.\n"
+            f"Rode: python src/data/scraper.py --veiculo {V['chave']} --diagnose --headed"
         )
 
     campo_email.fill(email)
@@ -163,8 +220,8 @@ def login(page) -> None:
         raise SystemExit(
             "Login não confirmado. Causas prováveis: credencial incorreta, "
             "captcha, assinatura expirada, ou o marcador 'logged_in_marker' "
-            "em config/selectors.yaml está desatualizado.\n"
-            "Rode: python src/data/scraper.py --diagnose --headed"
+            f"em {config_veiculo()} está desatualizado.\n"
+            f"Rode: python src/data/scraper.py --veiculo {V['chave']} --diagnose --headed"
         )
     print("[login] confirmado")
 
@@ -192,12 +249,11 @@ def extract_search_results(page) -> list[dict]:
 
 
 def extract_article_content(page) -> dict:
-    title = first_match(page, SEL["article"]["title"])
-    body = first_match(page, SEL["article"]["body"])
-    return {
-        "title": title.inner_text().strip() if title else None,
-        "text": body.inner_text().strip() if body else None,
-    }
+    def texto(chave):
+        el = first_match(page, SEL["article"].get(chave) or [])
+        return el.inner_text().strip() if el else None
+    return {"title": texto("title"), "text": texto("body"),
+            "secao": texto("secao"), "pagina": texto("pagina")}
 
 
 def fetch_article(browser, url: str) -> dict | None:
@@ -256,29 +312,39 @@ def diagnose(browser) -> None:
 
     print("\n=== DIAGNÓSTICO DE SELETORES ===\n")
 
-    print("[1/3] Página de login")
-    page.goto(LOGIN_URL, timeout=NAV_TIMEOUT_MS)
-    relatorio.append("LOGIN:")
-    for chave in ("email", "password", "submit"):
-        checar(chave, page, SEL["login"][chave])
-    (DIAG_DIR / "login.html").write_text(page.content(), encoding="utf-8")
-    page.screenshot(path=str(DIAG_DIR / "login.png"), full_page=True)
+    relatorio.append(f"VEÍCULO: {V['nome']} ({config_veiculo()}), unidade: {V['unidade']}")
+    if V.get("login"):
+        print("[1/3] Página de login")
+        page.goto(V["login"]["url"], timeout=NAV_TIMEOUT_MS)
+        relatorio.append("LOGIN:")
+        for chave in ("abrir", "email", "password", "submit"):
+            checar(chave, page, SEL["login"].get(chave) or [])
+        (DIAG_DIR / "login.html").write_text(page.content(), encoding="utf-8")
+        page.screenshot(path=str(DIAG_DIR / "login.png"), full_page=True)
 
-    print("[2/3] Autenticando")
-    try:
-        login(page)
-        relatorio.append("LOGIN CONFIRMADO: sim")
-    except SystemExit as e:
-        relatorio.append(f"LOGIN CONFIRMADO: NÃO — {e}")
-        print(f"  {e}")
+        print("[2/3] Autenticando")
+        try:
+            login(page)
+            relatorio.append("LOGIN CONFIRMADO: sim")
+        except SystemExit as e:
+            relatorio.append(f"LOGIN CONFIRMADO: NÃO — {e}")
+            print(f"  {e}")
+    else:
+        relatorio.append("LOGIN: acervo aberto, sem login")
 
-    print("[3/3] Página de busca (primeiro termo × primeira janela)")
+    print("[3/3] Página de busca (primeiro termo × primeira janela coberta)")
     term = CFG["search_terms"][0]
-    dr = CFG["date_ranges"][0]
-    url = search_url(term, dr)
+    dr = next(r for r in map(recorta, CFG["date_ranges"]) if r)
+    if V["busca"]["modo"] == "formulario":
+        page.goto(V["busca"]["url"], timeout=NAV_TIMEOUT_MS)
+        relatorio.append("FORMULÁRIO DE BUSCA:")
+        for chave in ("termo", "data_inicio", "data_fim", "enviar"):
+            checar(chave, page, SEL["search"].get(chave) or [])
+    try:
+        url = abre_busca(page, term, dr)
+    except SystemExit as e:
+        url = f"(não aberta: {e})"
     relatorio.append(f"\nBUSCA: {url}")
-    page.goto(url, timeout=NAV_TIMEOUT_MS)
-    page.wait_for_load_state("networkidle", timeout=NAV_TIMEOUT_MS)
     (DIAG_DIR / "busca.html").write_text(page.content(), encoding="utf-8")
     page.screenshot(path=str(DIAG_DIR / "busca.png"), full_page=True)
 
@@ -305,8 +371,8 @@ def diagnose(browser) -> None:
             (DIAG_DIR / "artigo.html").write_text(apage.content(), encoding="utf-8")
             apage.screenshot(path=str(DIAG_DIR / "artigo.png"), full_page=True)
             relatorio.append("ARTIGO:")
-            checar("title", apage, SEL["article"]["title"])
-            checar("body", apage, SEL["article"]["body"])
+            for chave in ("title", "body", "secao", "pagina"):
+                checar(chave, apage, SEL["article"].get(chave) or [])
             conteudo = extract_article_content(apage)
             corpo = conteudo["text"] or ""
             relatorio.append(f"  título extraído: {conteudo['title']!r}")
@@ -315,16 +381,15 @@ def diagnose(browser) -> None:
                 relatorio.append(f"  primeiros 200: {corpo[:200]!r}")
             apage.close()
     else:
-        relatorio.append("\n>>> NENHUM RESULTADO CASOU. Abra bancos/03_aep_br/coleta/folha_acervo/diagnose/"
-                         "busca.html e ajuste 'search.result_item' em "
-                         "config/selectors.yaml.")
+        relatorio.append(f"\n>>> NENHUM RESULTADO CASOU. Abra {DIAG_DIR}/busca.html e "
+                         f"ajuste 'search.result_item' em {config_veiculo()}.")
 
     page.close()
     texto = "\n".join(relatorio)
     (DIAG_DIR / "relatorio.txt").write_text(texto, encoding="utf-8")
     print("\n" + texto)
     print(f"\nHTML, screenshots e relatório em: {DIAG_DIR}")
-    print("Ajuste config/selectors.yaml e rode o diagnóstico de novo.")
+    print(f"Ajuste {config_veiculo()} e rode o diagnóstico de novo.")
 
 
 # ---------------------------------------------------------------------------
@@ -332,8 +397,11 @@ def diagnose(browser) -> None:
 # ---------------------------------------------------------------------------
 
 def run(limit: int | None, dry_run: bool, headed: bool, janela: str | None = None) -> None:
-    janelas = [dr for dr in CFG["date_ranges"] if janela in (None, dr["label"])]
-    if not janelas:
+    escolhidas = [dr for dr in CFG["date_ranges"] if janela in (None, dr["label"])]
+    janelas = [r for r in map(recorta, escolhidas) if r]
+    if escolhidas and not janelas:
+        raise SystemExit(f"A janela pedida fica fora da cobertura de {V['nome']} ({V.get('cobertura')}).")
+    if not escolhidas:
         raise SystemExit(f"janela {janela!r} não existe em config/queries.yaml "
                          f"(opções: {', '.join(dr['label'] for dr in CFG['date_ranges'])})")
     RAW_DIR.mkdir(parents=True, exist_ok=True)
@@ -352,8 +420,7 @@ def run(limit: int | None, dry_run: bool, headed: bool, janela: str | None = Non
                 if task_id in state["done"]:
                     continue
                 print(f"[busca] {task_id}")
-                page.goto(search_url(term, dr), timeout=NAV_TIMEOUT_MS)
-                page.wait_for_load_state("networkidle", timeout=NAV_TIMEOUT_MS)
+                abre_busca(page, term, dr)
 
                 vistas: set[str] = set()
                 for n_pagina in range(1, MAX_PAGES_PER_QUERY + 1):
@@ -384,6 +451,9 @@ def run(limit: int | None, dry_run: bool, headed: bool, janela: str | None = Non
                         if conteudo is None:
                             continue
                         out.write_text(json.dumps({
+                            "source": V["nome"],
+                            "veiculo": V["chave"],
+                            "unidade": V["unidade"],
                             "url": r["url"],
                             "date_hint": r["date_hint"],
                             "search_term": term,
@@ -418,7 +488,7 @@ def run(limit: int | None, dry_run: bool, headed: bool, janela: str | None = Non
         browser.close()
 
     rotulo = "listados (dry-run)" if dry_run else "coletados"
-    print(f"Coleta concluída. {coletados} artigos {rotulo}. Destino: {RAW_DIR}")
+    print(f"Coleta concluída ({V['nome']}). {coletados} documentos {rotulo}. Destino: {RAW_DIR}")
 
 
 def main() -> None:
@@ -432,9 +502,12 @@ def main() -> None:
                     help="para após N artigos (teste barato)")
     ap.add_argument("--headed", action="store_true",
                     help="abre o navegador visível (necessário para inspecionar)")
+    ap.add_argument("--veiculo", default="folha", choices=VEICULOS,
+                    help="arquivo de config/veiculos/ a usar (padrão: folha)")
     ap.add_argument("--janela", default=None,
                     help="coleta só a janela com este label em config/queries.yaml (ex.: junho_2013)")
     args = ap.parse_args()
+    configura(args.veiculo)
 
     if args.diagnose:
         with sync_playwright() as pw:

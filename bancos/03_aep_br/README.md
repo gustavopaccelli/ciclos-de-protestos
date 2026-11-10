@@ -6,35 +6,46 @@ Este é o banco de eventos de protesto construído pelo projeto a partir da impr
 
 | Etapa | Pasta | Script | Git |
 |---|---|---|---|
-| Especificação | [`codebook/`](codebook/) | `codebook_aep_br.yaml` (v1.0) lido por `src/preprocessing/aep_codebook.py` | versionado |
+| Especificação | [`codebook/`](codebook/) | `codebook_aep_br.yaml` (1.1-piloto) lido por `src/preprocessing/aep_codebook.py` | versionado |
 | Fontes | [`fontes/`](fontes/) | `fontes_aep_br.csv`: veículos, períodos, acesso, prioridade | versionado |
 | Gold standard histórico | [`sementes/`](sementes/) | 59 eventos de Diretas Já e 15 de Fora Collor, codificados à mão | versionado |
-| 1. Coleta | `coleta/folha_acervo/` | `src/data/scraper.py` — uma matéria por JSON | **fora do git** (direitos autorais e tamanho) |
+| 1. Coleta | `coleta/<veículo>/` | `src/data/scraper.py --veiculo folha\|estadao\|oglobo\|jb` — um documento por JSON (matéria; no JB, página inteira com OCR) | **fora do git** (direitos autorais e tamanho) |
 | 2. Codificação | [`codificacao/`](codificacao/) | `src/preprocessing/coder.py` — uma extração do LLM por matéria | versionado |
 | 3. Banco | [`banco/`](banco/) | `src/preprocessing/build_dataset.py` — `protest_events.csv` (evento canônico) e `protest_events_raw.csv` (uma linha por extração) | versionado (`.xlsx` fora do git) |
 | 4. Validação | [`validacao/`](validacao/) | `src/preprocessing/intercoder_reliability.py` — gold standard e κ | versionado |
 
-Os caminhos ficam em `src/paths.py` (`FOLHA_RAW`, `AEP_CODIFICACAO`, `AEP_BANCO`, `AEP_VALIDACAO`). O pipeline antigo do PR #9 está em [`arquivo-morto/pr9/`](arquivo-morto/pr9/) e não deve ser usado.
+Os caminhos ficam em `src/paths.py` (`AEP_COLETA`, `AEP_CODIFICACAO`, `AEP_BANCO`, `AEP_VALIDACAO`). O pipeline antigo do PR #9 está em [`arquivo-morto/pr9/`](arquivo-morto/pr9/) e não deve ser usado.
 
 ## Como rodar
 
 Tudo a partir da raiz do repositório. O orquestrador é `src/analysis/run_pipeline.py`.
 
-**0. Preparar (uma vez).** `pip install -r requirements.txt`, `python -m playwright install chromium` e criar o `.env` a partir de `.env.example` (credenciais da Folha e `ANTHROPIC_API_KEY`; nunca versionar o `.env`). Conferir que coder e codebook estão alinhados:
+**0. Preparar (uma vez).** `pip install -r requirements.txt`, `python -m playwright install chromium` e criar o `.env` a partir de `.env.example` (credenciais dos acervos com assinatura e `ANTHROPIC_API_KEY`; nunca versionar o `.env`). Conferir que coder e codebook estão alinhados:
 
 ```bash
 python src/data/check_schema_coverage.py
 ```
 
-**1. Validar os seletores antes de coletar.** O Acervo é uma aplicação React e muda de layout; sem seletores válidos a coleta retorna zero.
+**1. Validar os seletores antes de coletar.** Os acervos mudam de layout; sem seletores válidos a coleta retorna zero.
 
 ```bash
-python src/data/scraper.py --diagnose --headed
+python src/data/scraper.py --veiculo folha --diagnose --headed
 ```
 
-O relatório em `coleta/folha_acervo/diagnose/` diz quantos elementos cada seletor encontrou. Seletor com 0 está errado: corrija em `config/selectors.yaml` (lista de candidatos, tentados em ordem) e repita.
+O relatório em `coleta/<veículo>/diagnose/` diz quantos elementos cada seletor encontrou. Seletor com 0 está errado: corrija em `config/veiculos/<veículo>.yaml` (lista de candidatos, tentados em ordem) e repita.
 
-**2. Coletar.** Retomável: o estado fica em `coleta/folha_acervo/scrape_state.json`. As buscas vêm de `config/queries.yaml`.
+**Veículos** (`config/veiculos/`): cada arquivo traz login, modo de busca (parâmetros na URL ou preenchimento do formulário), cobertura temporal, unidade e seletores.
+
+| Veículo | Arquivo | Acesso | Unidade | Situação |
+|---|---|---|---|---|
+| Folha de S.Paulo | `folha.yaml` | assinatura (`FOLHA_EMAIL`/`FOLHA_PASSWORD`) | matéria | seletores não validados |
+| O Estado de S. Paulo | `estadao.yaml` | assinatura (`ESTADAO_EMAIL`/`ESTADAO_PASSWORD`) | matéria | esqueleto: URLs de login e busca e seletores a validar; sem assinatura ainda |
+| O Globo | `oglobo.yaml` | assinatura (`OGLOBO_EMAIL`/`OGLOBO_PASSWORD`) | matéria | esqueleto, idem; sem assinatura ainda |
+| Jornal do Brasil (Hemeroteca Digital) | `jb.yaml` | aberto | página inteira com OCR | esqueleto: formulário e local do texto do OCR a validar; janelas cortadas em 2010 |
+
+Para incluir outro veículo, copie um desses arquivos; o código não muda.
+
+**2. Coletar.** Retomável: o estado fica em `coleta/<veículo>/scrape_state.json`. As buscas vêm de `config/queries.yaml`; as janelas são cortadas pela cobertura do veículo. Sem `--veiculo`, coleta a Folha.
 
 ```bash
 python src/data/scraper.py --dry-run     # lista o que coletaria
