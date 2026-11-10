@@ -24,8 +24,13 @@ Os três bancos ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
   4. aferir o kappa (κ ≥ 0,75) com `src/preprocessing/intercoder_reliability.py` contra uma codificação manual da mesma amostra.
 - [ ] **B8.** (antiga D8) Separar triagem e codificação em duas passagens no coder AEP-BR, como prevê o protocolo §11 (Passagens 2 e 3). Apontado por PAPEA. Fazer depois do piloto, quando houver dados de custo.
 - [ ] **B9.** (antiga D9) Gerar um `validation_report.json` por execução do coder, com o registro obrigatório do protocolo §12.6: modelo, hash do prompt, tamanho do gold standard, κ por variável e tipologia de erro. Parte disso já vai em `modelo_versao`.
+- [ ] **B11.** Decidir as candidatas da v1.1 do codebook listadas em `teoria/matriz.yaml` (status `a_criar`: `aliados_institucionais`, `reacoes_publicas`, `tom_cobertura`) e testá-las no piloto antes de adotar.
+- [ ] **B12.** Coletores para Estadão, O Globo e Jornal do Brasil (Hemeroteca Digital), gravando no mesmo formato da Folha, inclusive `secao` e `pagina` (visibilidade).
+- [ ] **B13.** Scripts das medidas de ciclo derivadas (status `derivado` na matriz), a rodar quando houver dados do piloto.
 
 ### Concluídas
+
+- [x] **B10.** Matriz teoria → indicadores (`teoria/matriz.yaml`, validada por `src/preprocessing/valida_matriz.py` e no CI): 26 conceitos da teoria do processo político e de ciclos de protesto ligados às variáveis do codebook, com nível (evento, série, externo) e status (2026-11-10).
 
 - [x] **B7.** Pipeline duplicado do PR #9 arquivado em `bancos/03_aep_br/arquivo-morto/pr9/` (com o workflow do Actions). Etapas do banco reunidas em `bancos/03_aep_br/` (coleta, codificacao, banco, validacao); `run_pipeline.py` corrigido; processo documentado no README da pasta (2026-10-21).
 - [x] **B0.** Reorganizar MM, NEPAC e AEP-BR em `bancos/` e corrigir os `metadata.json`, que tinham contagens incorretas (2026-10-07).
@@ -117,7 +122,9 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 
 ### Sequência recomendada
 
-**Desde 2026-10-21 (decisão do usuário): C e E em stand-by; foco na Frente B — B9 → B6 (piloto, quando houver credenciais) → B8; B4 localmente, em paralelo.**
+**Desde 2026-11-10 (decisão do usuário): o repositório é centrado na construção do banco AEP-BR; o material do artigo fica como uma das análises. Sequência: B10 (matriz, feita) → B11 (candidatas da v1.1) → B9 → B12 (coletores Estadão, O Globo, JB) → B6 (piloto, quando houver credenciais) → B8 → B13; B4 localmente, em paralelo.**
+
+Anterior (2026-10-21): C e E em stand-by; foco na Frente B — B9 → B6 → B8.
 
 Sequência anterior: **E (E1→E2→E3) → C (itens 1–6) → B (B6 quando houver credenciais).** Por decisão do
 usuário (2026-07-16), a Frente E foi priorizada: a triangulação dos bancos com o

@@ -13,6 +13,8 @@ Pesquisa "Ciclos de Protesto no Brasil" (EOP, DOS e análise de conjuntura). Vis
 
 ## Banco AEP-BR
 
+O repositório existe para construir o banco de eventos de protesto AEP-BR; o artigo e o process tracing são análises que usam o banco. Toda variável nova do codebook nasce de um conceito de `teoria/matriz.yaml` (validada por `src/preprocessing/valida_matriz.py`); propriedades de ciclo (difusão, intensificação, inovação de repertório) são medidas derivadas da série, não variáveis codificadas por evento.
+
 O banco próprio é construído em `bancos/03_aep_br/`, uma pasta por etapa (coleta → codificacao → banco → validacao). Processo e comandos: `bancos/03_aep_br/README.md`; orquestrador: `src/analysis/run_pipeline.py`. Matérias brutas da Folha nunca entram no git. `arquivo-morto/` não se executa nem se edita.
 
 ## Produtos
