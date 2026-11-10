@@ -20,16 +20,16 @@ Os três bancos ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
 - [ ] **B6.** Piloto de 2013 na Folha, validado contra o NEPAC. Absorve as antigas D1, D2 e D4. Roda no computador do pesquisador, seguindo `bancos/03_aep_br/validacao/piloto_2013/ROTEIRO.md` (100 matérias estratificadas por fase; testa também as variáveis experimentais da B11). Etapas originais:
   1. instalar as dependências (`pip install -r requirements.txt`) e criar o `.env` a partir de `.env.example`, com as credenciais da Folha e a `ANTHROPIC_API_KEY` (nunca versionar o `.env`);
   2. validar os seletores no site real: `python src/data/scraper.py --veiculo folha --diagnose --headed` (ajustes em `config/veiculos/folha.yaml`);
-  3. coletar uma amostra pequena (cerca de 20 matérias) e codificar com `python src/preprocessing/coder.py --batch 20`, para medir o custo por matéria antes de ampliar;
+  3. coletar, sortear a amostra (`python src/preprocessing/piloto.py amostra`) e codificar primeiro 20 com `python src/preprocessing/coder.py --amostra bancos/03_aep_br/validacao/piloto_2013/amostra.csv --batch 20`, para medir o custo por matéria (registro em `validacao/execucoes/`) antes de ampliar;
   4. aferir o kappa (κ ≥ 0,75) com `src/preprocessing/intercoder_reliability.py` contra uma codificação manual da mesma amostra.
 - [ ] **B8.** (antiga D8) Separar triagem e codificação em duas passagens no coder AEP-BR, como prevê o protocolo §11 (Passagens 2 e 3). Apontado por PAPEA. Fazer depois do piloto, quando houver dados de custo.
-- [ ] **B9.** (antiga D9) Gerar um `validation_report.json` por execução do coder, com o registro obrigatório do protocolo §12.6: modelo, hash do prompt, tamanho do gold standard, κ por variável e tipologia de erro. Parte disso já vai em `modelo_versao`.
 - [ ] **B11.** Decidir as candidatas da v1.1 do codebook listadas em `teoria/matriz.yaml` (status `a_criar`: `aliados_institucionais`, `reacoes_publicas`, `tom_cobertura`). **Em andamento (2026-11-10):** as três entraram como bloco X experimental no codebook 1.1-piloto; coder, planilha cega e kappa prontos; falta rodar o piloto (B6) e codificar à mão. Roteiro: `bancos/03_aep_br/validacao/piloto_2013/ROTEIRO.md`.
 - [ ] **B12.** Coletores para Estadão, O Globo e Jornal do Brasil (Hemeroteca Digital), gravando no mesmo formato da Folha, inclusive `secao` e `pagina` (visibilidade). **Em andamento (2026-11-10):** `src/data/scraper.py` passou a ler `config/veiculos/<veículo>.yaml`; esqueletos de `estadao`, `oglobo` e `jb` criados e testados contra um acervo local falso. Falta validar URLs e seletores nos sites reais (`--diagnose`), o que depende de assinatura (Estadão, O Globo) ou de rede local (JB). JB usa a página inteira como unidade.
 - [ ] **B13.** Scripts das medidas de ciclo derivadas (status `derivado` na matriz), a rodar quando houver dados do piloto.
 
 ### Concluídas
 
+- [x] **B9.** Registro do protocolo §12.6: cada execução do coder grava `validacao/execucoes/<data-hora>.json` (modelo pedido e servido, hash do prompt, versão do codebook, matérias por veículo, tokens, falhas); a aferição de κ grava `validation_report_<data>.json` com composição do gold standard, κ por variável, tipologia de erro do §12.4 e a decisão do §12.5. A planilha cega ganhou as contagens (público, detidos, feridos, mortos) para medir a extração numérica (2026-11-10).
 - [x] **B10.** Matriz teoria → indicadores (`teoria/matriz.yaml`, validada por `src/preprocessing/valida_matriz.py` e no CI): 26 conceitos da teoria do processo político e de ciclos de protesto ligados às variáveis do codebook, com nível (evento, série, externo) e status (2026-11-10).
 
 - [x] **B7.** Pipeline duplicado do PR #9 arquivado em `bancos/03_aep_br/arquivo-morto/pr9/` (com o workflow do Actions). Etapas do banco reunidas em `bancos/03_aep_br/` (coleta, codificacao, banco, validacao); `run_pipeline.py` corrigido; processo documentado no README da pasta (2026-10-21).
@@ -122,7 +122,7 @@ no Impeachment, remoção da radicalização em J13) que **conflita com a period
 
 ### Sequência recomendada
 
-**Desde 2026-11-10 (decisão do usuário): o repositório é centrado na construção do banco AEP-BR; o material do artigo fica como uma das análises. Sequência: B10 (matriz, feita) → B11 (candidatas da v1.1) → B9 → B12 (coletores Estadão, O Globo, JB) → B6 (piloto, quando houver credenciais) → B8 → B13; B4 localmente, em paralelo.**
+**Desde 2026-11-10 (decisão do usuário): o repositório é centrado na construção do banco AEP-BR; o material do artigo fica como uma das análises. Sequência: B10 (matriz, feita) → B11 (candidatas da v1.1) → B9 (feita) → B12 (coletores Estadão, O Globo, JB) → B6 (piloto, quando houver credenciais) → B8 → B13; B4 localmente, em paralelo.**
 
 Anterior (2026-10-21): C e E em stand-by; foco na Frente B — B9 → B6 → B8.
 
