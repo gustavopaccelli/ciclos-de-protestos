@@ -23,6 +23,7 @@ Uso: python src/preprocessing/coder.py [--batch 100] [--amostra amostra.csv]
 
 import argparse
 import csv
+import datetime as dt
 import hashlib
 import json
 import os
@@ -366,32 +367,73 @@ def run(batch: int | None, amostra: str | None = None) -> None:
         pending = pending[:batch]
     print(f"{len(pending)} matérias a codificar (modelo: {MODEL}, effort: {EFFORT}, prompt: {PROMPT_HASH})")
 
-    falhas = 0
+    registro = novo_registro(amostra, batch, len(pending))
     for path in tqdm(pending):
         art = json.loads(path.read_text())
         if not art.get("text"):
+            registro["sem_texto"] += 1
             continue
         try:
             result = code_article(client, art)
         except anthropic.RateLimitError as e:
-            print(f"[limite de taxa] {path.name}: {e.message}")
-            falhas += 1
+            falha(registro, path, "limite de taxa", e.message)
             continue
         except anthropic.APIStatusError as e:
-            print(f"[erro API] {path.name}: {e.status_code} {e.message}")
-            falhas += 1
+            falha(registro, path, "erro API", f"{e.status_code} {e.message}")
             continue
         except anthropic.APIConnectionError as e:
-            print(f"[erro de conexão] {path.name}: {e}")
-            falhas += 1
+            falha(registro, path, "erro de conexão", str(e))
             continue
         except (CodificacaoIncompleta, json.JSONDecodeError, KeyError) as e:
-            print(f"[incompleta] {path.name}: {type(e).__name__}: {e}")
-            falhas += 1
+            falha(registro, path, "incompleta", f"{type(e).__name__}: {e}")
             continue
         (CODED_DIR / path.name).write_text(json.dumps(result, ensure_ascii=False, indent=2))
-    if falhas:
-        print(f"{falhas} matéria(s) falharam e permanecem pendentes para nova execução.")
+        conta(registro, path, result)
+    grava_registro(registro)
+    if registro["falhas"]:
+        print(f"{len(registro['falhas'])} matéria(s) falharam e permanecem pendentes para nova execução.")
+
+
+# Registro de execução (protocolo §12.6): modelo, prompt, corpus e custo de cada rodada.
+EXECUCOES_DIR = paths.AEP_VALIDACAO / "execucoes"
+
+
+def novo_registro(amostra: str | None, batch: int | None, n_pendentes: int) -> dict:
+    return {
+        "inicio": dt.datetime.now().isoformat(timespec="seconds"),
+        "codebook_versao": cb.aep()["versao"],
+        "modelo_pedido": MODEL, "modelos_servidos": {}, "effort": EFFORT,
+        "prompt_hash": PROMPT_HASH, "amostra": amostra, "batch": batch,
+        "materias_pendentes": n_pendentes, "materias_codificadas": 0, "sem_texto": 0,
+        "eventos_extraidos": 0, "por_veiculo": {},
+        "tokens": {"input": 0, "output": 0, "cache_read": 0},
+        "falhas": [],
+    }
+
+
+def falha(registro: dict, path: Path, tipo: str, detalhe: str) -> None:
+    print(f"[{tipo}] {path.name}: {detalhe}")
+    registro["falhas"].append({"arquivo": path.name, "tipo": tipo, "detalhe": detalhe})
+
+
+def conta(registro: dict, path: Path, result: dict) -> None:
+    uso = result["_usage"]
+    registro["materias_codificadas"] += 1
+    registro["eventos_extraidos"] += len(result["eventos"])
+    registro["modelos_servidos"][uso["modelo"]] = registro["modelos_servidos"].get(uso["modelo"], 0) + 1
+    veiculo = path.parent.name
+    registro["por_veiculo"][veiculo] = registro["por_veiculo"].get(veiculo, 0) + 1
+    registro["tokens"]["input"] += uso["input_tokens"] or 0
+    registro["tokens"]["output"] += uso["output_tokens"] or 0
+    registro["tokens"]["cache_read"] += uso["cache_read"] or 0
+
+
+def grava_registro(registro: dict) -> None:
+    registro["fim"] = dt.datetime.now().isoformat(timespec="seconds")
+    EXECUCOES_DIR.mkdir(parents=True, exist_ok=True)
+    destino = EXECUCOES_DIR / f"{registro['inicio'].replace(':', '')}.json"
+    destino.write_text(json.dumps(registro, ensure_ascii=False, indent=2))
+    print(f"Registro da execução → {destino}")
 
 
 if __name__ == "__main__":

@@ -66,6 +66,7 @@ Para cada matéria, leia o texto em `coleta/folha_acervo/` e preencha:
   - `tom_cobertura`: `legitimadora`, `neutra`, `criminalizadora` ou `SI`, julgando o texto do jornal, não as falas citadas.
   - `aliado_presente` (`true`/`false`) e `aliado_tipo_principal` (`parlamentar`, `governante`, `judiciario_mp`, `partido`, `outro` ou `nenhum`).
   - `reacao_apoio` e `reacao_rejeicao` (`true`/`false`): a matéria registra reação de apoio, ou de rejeição, de alguém que não participa do ato.
+- **Contagens** (`publico_max`, `detidos`, `feridos`, `mortos`): o número que a matéria informa; `-1` se houve sem número; `NA` se a matéria não menciona. Deixe vazio só o que você não codificou. Um número do LLM onde você marcou `NA` é contado como possível alucinação.
 - **Unitização:** se a linha não é um evento de protesto, marque `elegivel = false`. Se a matéria relata um evento que não está na planilha, acrescente uma linha com `evento_id` = `manual-<arquivo>-<n>`. Linhas com `evento_id` vazio são matérias em que o LLM não achou evento: preencha `evento_id` só se você achar um.
 
 As definições completas estão no `codebook_aep_br.yaml` (vocabulários `aliado_tipo`, `reacao_sinal`, `tom_cobertura`) e no §7 do `codebook_aep_br.md`.
@@ -76,7 +77,7 @@ As definições completas estão no `codebook_aep_br.yaml` (vocabulários `aliad
 python src/analysis/run_pipeline.py --step kappa --manual bancos/03_aep_br/validacao/piloto_2013/gold_standard.csv
 ```
 
-O relatório sai em `bancos/03_aep_br/validacao/kappa_<data>.csv`, separado em `nucleo` e `experimental`, com a contagem de eventos que só um dos lados encontrou.
+Saem dois arquivos em `bancos/03_aep_br/validacao/`: `kappa_<data>.csv`, separado em `nucleo` e `experimental`, e `validation_report_<data>.json`, o registro do protocolo §12.6 com a tipologia de erro (elegibilidade, unitização, categorização, extração numérica, alucinação detectável). Cada execução do codificador também deixa um registro em `validacao/execucoes/`, com modelo, prompt, tokens e falhas: o custo por matéria do passo 5 sai daí.
 
 ## 8. Decidir (B11)
 

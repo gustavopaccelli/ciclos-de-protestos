@@ -613,3 +613,10 @@ real segue pendente (D1) — exige assinatura.**
 - **Esqueletos** de `estadao.yaml`, `oglobo.yaml` e `jb.yaml`: só as URLs de base vêm de `fontes_aep_br.csv`; páginas de login e busca e seletores são candidatos genéricos a validar com `--diagnose`. Estadão e O Globo dependem de assinatura (o pesquisador ainda não tem). JB (Hemeroteca, aberta): unidade = página inteira com OCR (decisão do usuário), janelas cortadas em 2010.
 - **Codificador** lê todas as subpastas de `coleta/` e informa ao modelo a unidade e as pistas de seção e página. **`.gitignore`** passa a excluir as matérias brutas de todos os veículos.
 - **Teste:** coleta completa (login, formulário, resultados, matéria, estado, diagnóstico) contra um acervo HTML falso servido localmente, fora do repositório. Nenhum site real foi acessado: a rede da nuvem bloqueia os acervos.
+
+## 2026-11-10 — B9: registro obrigatório do protocolo §12.6
+
+- **Por execução do codificador:** `bancos/03_aep_br/validacao/execucoes/<data-hora>.json` com versão do codebook, modelo pedido e servido, esforço, hash do prompt, amostra, matérias codificadas por veículo, eventos, tokens e falhas (com o motivo).
+- **Por aferição de κ:** `validation_report_<data>.json` com modelo e prompt das codificações comparadas, tamanho e composição do gold standard por ciclo e fase, κ por variável e a tipologia de erro do §12.4: elegibilidade (falsos positivos e negativos), unitização, categorização (discordâncias por variável), extração numérica (público, detidos, feridos, mortos) e alucinação detectável (número do LLM onde o humano marcou `NA`). A detecção automática de alucinação é parcial e está declarada no próprio relatório.
+- **Defeito corrigido:** a leitura da planilha manual convertia o texto `NA` em célula vazia (padrão do pandas), o que apagaria a marcação "a matéria não menciona".
+- **Teste** com execução e gold standard fictícios, fora do repositório: contagens, discordâncias e alucinações conhecidas recuperadas exatamente.

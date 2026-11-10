@@ -51,8 +51,9 @@ def main() -> None:
             cmd += ["--batch", str(args.batch)]
         if step == "kappa":
             out = paths.AEP_VALIDACAO / f"kappa_{date.today().isoformat()}.csv"
+            rel = paths.AEP_VALIDACAO / f"validation_report_{date.today().isoformat()}.json"
             out.parent.mkdir(parents=True, exist_ok=True)
-            cmd += [args.manual, "--out", str(out)]
+            cmd += [args.manual, "--out", str(out), "--relatorio", str(rel)]
         print(f"\n=== {step} ===")
         subprocess.run(cmd, check=True)
 
