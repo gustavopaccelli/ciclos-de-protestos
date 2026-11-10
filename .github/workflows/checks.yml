@@ -29,6 +29,8 @@ jobs:
         run: |
           python src/preprocessing/pt_valida_registro.py
           python src/analysis/pt_renderiza_predicoes.py --check
+      - name: Matriz teórica × codebook × bibliografia
+        run: python src/preprocessing/valida_matriz.py --check
       - name: Codificador AEP-BR × codebook
         run: python src/data/check_schema_coverage.py
       - name: E1 reproduz os resultados versionados

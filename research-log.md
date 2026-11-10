@@ -592,3 +592,10 @@ real segue pendente (D1) — exige assinatura.**
 - **Fonte de verdade fora de sincronia:** o dossiê C1 tinha o caminho das sementes corrigido à mão, mas `docs/process_tracing/dados/predicoes.csv` ainda dizia `data/diretas_ja/`; o `--check` acusava. Corrigido no CSV e regenerado.
 - **`varre_citacoes.py`:** a lista de alvos apontava para pastas que não existem mais; resultado da varredura idêntico.
 - **CI:** `.github/workflows/checks.yml` roda os validadores e confere que a E1 reproduz os CSVs versionados.
+
+## 2026-11-10 — Foco no banco; matriz teoria → indicadores
+
+- **Decisão do usuário:** o repositório é centrado na construção do banco de eventos de protesto (AEP-BR), com codebook que permita rodar o pipeline na Folha e depois no Estadão, O Globo e Jornal do Brasil; a teoria do processo político e a literatura de ciclos de protesto devem entrar no banco. O material do artigo permanece como uma das análises.
+- **Matriz (`teoria/matriz.yaml`, B10):** 26 conceitos, cada um com definição atribuída, chaves do `.bib`, nível e status — coberto 6, parcial 3, a_criar 3, derivado 9, contexto_externo 4, fora_do_alcance 1. Princípio: o que só existe na série (intensificação, difusão, inovação de repertório, radicalização) é medida derivada, não variável por evento.
+- **Achados:** visibilidade discursiva já pode ser medida por `fontes.secao`/`pagina`, desde que os coletores gravem esses campos; aliados institucionais só aparecem hoje quando são partidos que protestam; ressonância e legitimidade discursivas não têm variável. Candidatas à v1.1: `aliados_institucionais`, `reacoes_publicas`, `tom_cobertura` — não adotadas, a testar no piloto.
+- **Controle:** `src/preprocessing/valida_matriz.py` (chaves do `.bib`, variáveis do codebook, tabela do README) entra no CI.

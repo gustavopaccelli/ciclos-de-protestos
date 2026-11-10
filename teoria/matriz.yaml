@@ -1,0 +1,446 @@
+# Matriz conceito → indicador do AEP-BR
+#
+# Fonte de verdade da ligação entre a teoria (processo político e ciclos de
+# protesto) e o banco. Validada e transformada em tabela por
+# src/preprocessing/valida_matriz.py, que também confere as chaves do .bib e os
+# nomes de variáveis do codebook.
+#
+# Campos de cada conceito
+#   id              identificador curto
+#   conceito        nome do conceito
+#   dimensao        um de `dimensoes`
+#   definicao       definição atribuída à literatura citada (paráfrase)
+#   referencias     chaves de docs/artigo/referencias.bib
+#   nivel           evento | serie | externo
+#   status          um de `status`
+#   variaveis       variáveis de bancos/03_aep_br/codebook/codebook_aep_br.yaml usadas
+#   medida_derivada como se calcula na série (nivel = serie)
+#   candidata       variável proposta para a v1.1 (status = a_criar): nome, conteudo, risco
+#   nota            limites e decisões em aberto
+
+versao: "0.1 (2026-11-10)"
+
+dimensoes:
+  oportunidades_politicas: "Estrutura de oportunidades políticas (EOP)"
+  estruturas_mobilizacao: "Estruturas de mobilização"
+  enquadramento_dos: "Enquadramento e oportunidades discursivas (DOS)"
+  repertorio: "Repertório de ação"
+  interacao_estado: "Interação com o Estado"
+  ciclo: "Dinâmica do ciclo de protesto"
+  vies_fonte: "Viés da fonte (dados de imprensa)"
+
+status:
+  coberto: "Medido por variáveis existentes"
+  parcial: "Medido em parte; a nota diz o que falta"
+  a_criar: "Candidata a variável na v1.1 do codebook (decisão do pesquisador)"
+  derivado: "Propriedade da série, calculada a partir do banco; não se codifica por evento"
+  contexto_externo: "Vem de outra fonte (cycle_phases, séries oficiais); não se observa no evento"
+  fora_do_alcance: "A imprensa não permite observar de forma confiável"
+
+conceitos:
+
+  # --- Oportunidades políticas ---------------------------------------------
+  - id: eop_abertura
+    conceito: Abertura do acesso institucional
+    dimensao: oportunidades_politicas
+    definicao: >
+      Grau em que o sistema político é permeável a demandas de desafiantes; uma das
+      dimensões da estrutura de oportunidades políticas na formulação de Tarrow e
+      nas comparações de Kriesi et al. sobre estruturas institucionais.
+    referencias: [tarrow2011power, kriesi1995new, mcadam1982political]
+    nivel: externo
+    status: contexto_externo
+    variaveis: []
+    nota: >
+      Atributo do sistema político, não do evento. No projeto, medido por fase em
+      data/processed/cycle_phases/cycle_phases.csv (op_abertura_institucional), que
+      o banco recebe pelas variáveis ciclo e fase.
+
+  - id: eop_alinhamentos
+    conceito: Instabilidade dos alinhamentos políticos
+    dimensao: oportunidades_politicas
+    definicao: >
+      Mudanças nas coalizões governantes e nos alinhamentos eleitorais que abrem
+      incerteza e incentivam a ação coletiva, na formulação de Tarrow.
+    referencias: [tarrow2011power]
+    nivel: externo
+    status: contexto_externo
+    variaveis: []
+    nota: >
+      Exige dados eleitorais e de coalizão (fontes oficiais), não de imprensa sobre
+      o protesto. Hoje não há variável correspondente em cycle_phases.
+
+  - id: eop_divisao_elites
+    conceito: Divisão entre elites
+    dimensao: oportunidades_politicas
+    definicao: >
+      Conflitos dentro das elites que incentivam desafiantes e podem levar parte
+      delas a apoiar o movimento (Tarrow; McAdam, Tarrow e Tilly tratam a defecção
+      de elites como mecanismo).
+    referencias: [tarrow2011power, mcadam2001dynamics]
+    nivel: externo
+    status: contexto_externo
+    variaveis: []
+    nota: >
+      Medido por fase em cycle_phases (op_divisao_elites). No nível do evento, só o
+      apoio público de membros da elite ao ato é observável — ver eop_aliados.
+
+  - id: eop_aliados
+    conceito: Aliados influentes
+    dimensao: oportunidades_politicas
+    definicao: >
+      Presença de aliados dentro do sistema político que ampliam as chances do
+      movimento (Tarrow); Kriesi et al. tratam a configuração de alianças como
+      parte da estrutura de oportunidades.
+    referencias: [tarrow2011power, kriesi1995new]
+    nivel: evento
+    status: a_criar
+    variaveis: [atores, organizacoes]
+    candidata:
+      nome: aliados_institucionais
+      conteudo: >
+        Lista de agentes do sistema político relatados como participantes ou
+        apoiadores públicos do ato (parlamentares, governantes, juízes e promotores,
+        partidos), com o tipo de vínculo (participa | apoia publicamente).
+      risco: >
+        Médio. A matéria nem sempre nomeia apoiadores; distinguir apoio de simples
+        menção exige regra explícita no codebook e entra no gold standard.
+    nota: >
+      Hoje só partidos aparecem, como atores que protestam (org_type =
+      partido-político). Parlamentares e autoridades que apoiam sem organizar o ato
+      não têm onde ser registrados.
+
+  # --- Interação com o Estado ----------------------------------------------
+  - id: est_repressao
+    conceito: Repressão e facilitação
+    dimensao: interacao_estado
+    definicao: >
+      Ações de autoridades que aumentam (repressão) ou reduzem (facilitação) o custo
+      da ação coletiva para o desafiante, na formulação de Tilly; Davenport analisa
+      a repressão estatal em regimes democráticos.
+    referencias: [tilly1978mobilization, davenport2007state, tarrow2011power]
+    nivel: evento
+    status: coberto
+    variaveis: [presenca_policia, resposta_estatal, conflito_policia, detidos, feridos, mortos, atos_oficiais]
+    nota: >
+      resposta_estatal inclui acomodacao (facilitação/concessão). O nível de
+      repressão por fase, usado em cycle_phases (op_repressao), pode ser agora
+      calculado a partir do banco e comparado com a codificação qualitativa.
+
+  - id: est_escalada
+    conceito: Escalada repressiva ao longo do ciclo
+    dimensao: interacao_estado
+    definicao: >
+      Tarrow descreve o ciclo como fase de interação intensificada entre
+      desafiantes e autoridades.
+    referencias: [tarrow2011power]
+    nivel: serie
+    status: derivado
+    variaveis: [resposta_estatal, detidos, feridos, mortos, data_inicio]
+    medida_derivada: >
+      Proporção mensal de eventos com dispersão, prisões, violência ou letalidade;
+      soma mensal de detidos, feridos e mortos (respeitando a convenção null/-1).
+
+  # --- Estruturas de mobilização -------------------------------------------
+  - id: mob_organizacoes
+    conceito: Organizações e formalização dos atores
+    dimensao: estruturas_mobilizacao
+    definicao: >
+      Recursos organizativos preexistentes que tornam a ação coletiva possível
+      (McAdam: força organizativa das comunidades; Tilly: organização como
+      componente da mobilização).
+    referencias: [mcadam1982political, tilly1978mobilization]
+    nivel: evento
+    status: coberto
+    variaveis: [atores, organizacoes, base_social, ocupacao_atividade]
+
+  - id: mob_coalizoes
+    conceito: Coalizões e coordenação entre organizações
+    dimensao: estruturas_mobilizacao
+    definicao: >
+      Ligação entre atores antes desconectados; McAdam, Tarrow e Tilly chamam de
+      intermediação (brokerage) o mecanismo que produz essas conexões.
+    referencias: [mcadam2001dynamics]
+    nivel: serie
+    status: derivado
+    variaveis: [atores, organizacoes, evento_coordenado_id]
+    medida_derivada: >
+      Número de organizações por evento; rede de coparticipação de organizações por
+      período (quem protesta junto); atos coordenados em várias cidades.
+
+  # --- Enquadramento e oportunidades discursivas ---------------------------
+  - id: enq_reivindicacao
+    conceito: Reivindicações e alvos
+    dimensao: enquadramento_dos
+    definicao: >
+      O protesto como apresentação de reivindicações a um alvo; o par
+      ator–ação–objeto da gramática narrativa de Franzosi organiza a codificação.
+    referencias: [franzosi2004words, alonso2024analise, tilly2015contentious]
+    nivel: evento
+    status: coberto
+    variaveis: [tema_codigo, tema_texto, alvo, ambito, valencia]
+
+  - id: enq_tarefas
+    conceito: Tarefas de enquadramento (diagnóstico, prognóstico, motivação)
+    dimensao: enquadramento_dos
+    definicao: >
+      Snow e Benford distinguem os enquadramentos que identificam um problema e
+      seus responsáveis, que propõem soluções e que chamam à ação.
+    referencias: [snow1988ideology, benford2000framing]
+    nivel: evento
+    status: parcial
+    variaveis: [tema_texto, slogans]
+    nota: >
+      Slogans e o texto da reivindicação guardam o material, mas não há
+      classificação das tarefas. Codificá-las por evento a partir de notícia tem
+      confiabilidade incerta; decidir depois do piloto se vale codificar ou
+      analisar os slogans à parte.
+
+  - id: enq_master_frame
+    conceito: Enquadramentos-mestre do ciclo
+    dimensao: enquadramento_dos
+    definicao: >
+      Snow e Benford associam os ciclos de protesto a enquadramentos amplos,
+      adotados por vários movimentos, que organizam a mobilização do ciclo.
+    referencias: [snow1992master]
+    nivel: serie
+    status: derivado
+    variaveis: [tema_codigo, slogans, atores]
+    medida_derivada: >
+      Concentração de temas e de slogans recorrentes entre atores diferentes no
+      mesmo período (quantos setores usam o mesmo tema ou slogan).
+
+  - id: dos_visibilidade
+    conceito: Visibilidade discursiva
+    dimensao: enquadramento_dos
+    definicao: >
+      Koopmans e Olzak definem a visibilidade como a extensão em que uma mensagem
+      chega à esfera pública pela mídia; componente das oportunidades discursivas.
+    referencias: [koopmans2004discursive, koopmans1999ethnic]
+    nivel: evento
+    status: parcial
+    variaveis: [fontes, n_fontes]
+    medida_derivada: >
+      Número de matérias e de veículos por evento; matéria de capa (pagina = 1) e
+      seção, a partir dos metadados já previstos em `fontes`.
+    nota: >
+      `fontes` já prevê secao e pagina; falta garantir que cada coletor grave esses
+      campos (o scraper da Folha precisa ser conferido quando os seletores forem
+      validados).
+
+  - id: dos_legitimidade
+    conceito: Ressonância e legitimidade discursivas
+    dimensao: enquadramento_dos
+    definicao: >
+      Para Koopmans e Olzak, ressonância e legitimidade dependem das reações
+      públicas de outros atores à mensagem; Ferree discute a ressonância dos
+      enquadramentos conforme o contexto discursivo de cada país.
+    referencias: [koopmans2004discursive, ferree2003resonance, mccammon2007movement]
+    nivel: evento
+    status: a_criar
+    variaveis: []
+    candidata:
+      nome: reacoes_publicas
+      conteudo: >
+        Atores não participantes que a matéria registra reagindo ao protesto, com o
+        tipo (autoridade, partido, entidade, especialista) e o sinal da reação
+        (apoio | rejeição | neutra).
+      risco: >
+        Alto. Aproxima o banco da análise de reivindicações (claims analysis) e
+        aumenta o custo de codificação; testar no piloto antes de adotar.
+    nota: >
+      Sem esta variável a legitimidade só pode ser tratada por fase, como em
+      cycle_phases (od_legitimidade_narrativa).
+
+  - id: dos_enquadramento_midiatico
+    conceito: Enquadramento do protesto pela imprensa
+    dimensao: enquadramento_dos
+    definicao: >
+      O modo como a cobertura caracteriza os manifestantes e o ato interfere na
+      visibilidade e na legitimidade (Koopmans e Olzak); Earl et al. lembram que a
+      descrição jornalística também é fonte de viés.
+    referencias: [koopmans2004discursive, earl2004use]
+    nivel: evento
+    status: a_criar
+    variaveis: []
+    candidata:
+      nome: tom_cobertura
+      conteudo: >
+        Caracterização predominante dos manifestantes na matéria principal
+        (legitimadora | neutra | criminalizadora), com o trecho que justifica.
+      risco: >
+        Alto. Juízo interpretativo; exige definição operacional estrita e κ próprio.
+        Os termos de busca do BEP já incluem vocabulário criminalizador
+        (baderna, vândalos), o que facilita a regra.
+
+  # --- Repertório ----------------------------------------------------------
+  - id: rep_formas
+    conceito: Repertório de ação
+    dimensao: repertorio
+    definicao: >
+      Conjunto limitado de formas de ação conhecidas e disponíveis em um tempo e
+      lugar, na formulação de Tilly.
+    referencias: [tilly1978mobilization, tilly2006regimes, tilly2015contentious]
+    nivel: evento
+    status: coberto
+    variaveis: [repertorio, acao_objeto, acao_instrumento, simbolos, local_tipo, local_convencional, greve_com_ato_publico]
+
+  - id: rep_inovacao
+    conceito: Inovação e modularidade do repertório
+    dimensao: repertorio
+    definicao: >
+      Tarrow aponta a inovação nas formas de ação e a difusão de formas modulares
+      como traços dos ciclos.
+    referencias: [tarrow2011power]
+    nivel: serie
+    status: derivado
+    variaveis: [repertorio, atores, data_inicio, uf]
+    medida_derivada: >
+      Primeira ocorrência de cada forma na série e sua adoção posterior por outros
+      atores e UFs; diversidade de repertórios por período.
+    nota: >
+      O vocabulário fechado de repertórios só registra formas já previstas; formas
+      novas aparecem em acao_instrumento e notas e precisam de revisão periódica do
+      vocabulário.
+
+  - id: rep_radicalizacao
+    conceito: Radicalização e institucionalização
+    dimensao: repertorio
+    definicao: >
+      Tarrow descreve o fim dos ciclos pela combinação de radicalização de uma parte
+      dos atores e institucionalização de outra.
+    referencias: [tarrow2011power]
+    nivel: serie
+    status: derivado
+    variaveis: [repertorio, violencia_manifestantes, local_convencional, atores]
+    medida_derivada: >
+      Proporção de eventos com violência ou repertórios disruptivos por período,
+      separada por tipo de ator; peso de atores formais nos meses finais do ciclo.
+
+  - id: rep_contramovimento
+    conceito: Contramovimentos
+    dimensao: interacao_estado
+    definicao: >
+      Meyer e Staggenborg analisam as condições em que movimentos geram
+      contramovimentos e como eles passam a disputar as mesmas oportunidades.
+    referencias: [meyer1996movements]
+    nivel: evento
+    status: coberto
+    variaveis: [contra_protesto, conflito_entre_grupos, valencia]
+
+  # --- Ciclo de protesto ---------------------------------------------------
+  - id: cic_intensificacao
+    conceito: Intensificação do conflito
+    dimensao: ciclo
+    definicao: >
+      Tarrow define o ciclo como uma fase de conflito intensificado no sistema
+      social, com rápida difusão e alta frequência de ação coletiva.
+    referencias: [tarrow2011power, tatagiba2014ciclos]
+    nivel: serie
+    status: derivado
+    variaveis: [data_inicio, publico_max, publico_min, porte_manifestacao, capilaridade, evento_canonico_id]
+    medida_derivada: >
+      Eventos canônicos por mês e público somado ou mediano por mês, com a mesma
+      lógica de taxa por 30 dias da E1.
+
+  - id: cic_difusao_geografica
+    conceito: Difusão geográfica e mudança de escala
+    dimensao: ciclo
+    definicao: >
+      Difusão rápida entre lugares (Tarrow) e mudança de escala, mecanismo pelo qual
+      a ação coordenada passa a outro nível (McAdam, Tarrow e Tilly).
+    referencias: [tarrow2011power, mcadam2001dynamics]
+    nivel: serie
+    status: derivado
+    variaveis: [uf, cidade, cidade_ibge, porte_cidade, ambito, evento_coordenado_id, data_inicio]
+    medida_derivada: >
+      Número de UFs e municípios com eventos por semana ou mês; proporção de atos
+      coordenados; passagem de reivindicações de âmbito local para nacional.
+
+  - id: cic_difusao_setorial
+    conceito: Difusão entre setores sociais
+    dimensao: ciclo
+    definicao: >
+      Tarrow inclui a difusão de grupos mobilizados para setores menos mobilizados
+      entre os traços do ciclo.
+    referencias: [tarrow2011power]
+    nivel: serie
+    status: derivado
+    variaveis: [base_social, ocupacao_atividade, atores, tema_codigo]
+    medida_derivada: >
+      Número de bases sociais e de categorias de tema distintas por período;
+      entrada de setores ausentes nos meses anteriores.
+
+  - id: cic_organizados
+    conceito: Atores organizados e não organizados
+    dimensao: ciclo
+    definicao: >
+      Tarrow descreve a coexistência de participação organizada e não organizada
+      como característica dos ciclos.
+    referencias: [tarrow2011power]
+    nivel: serie
+    status: derivado
+    variaveis: [atores, organizacoes]
+    medida_derivada: >
+      Proporção de eventos sem organização formal (formalization = informal ou
+      org_type = manifestantes) por período.
+
+  - id: cic_fases
+    conceito: Fases do ciclo
+    dimensao: ciclo
+    definicao: >
+      Periodização dos ciclos brasileiros em fases, apoiada na tese de Costa e na
+      comparação de Tatagiba entre 1984, 1992 e 2013.
+    referencias: [costa2024estruturas, tatagiba2014ciclos]
+    nivel: externo
+    status: contexto_externo
+    variaveis: [ciclo, fase]
+    nota: >
+      Atribuídas pela data a partir de cycle_phases (src/analysis/atribui_ciclo.py).
+      Com o banco pronto, as fronteiras de fase podem ser testadas contra as medidas
+      derivadas acima, como a E1 fez com MM e NEPAC.
+
+  - id: cic_emocoes
+    conceito: Emoções e dimensão cultural
+    dimensao: ciclo
+    definicao: >
+      Goodwin e Jasper criticam o viés estrutural da teoria do processo político e
+      defendem incluir emoções e cultura na explicação.
+    referencias: [goodwin1999caught, jasper2016protest]
+    nivel: evento
+    status: fora_do_alcance
+    variaveis: []
+    nota: >
+      A notícia raramente registra emoções dos participantes de forma comparável;
+      fica como limite declarado do banco.
+
+  # --- Viés da fonte -------------------------------------------------------
+  - id: vies_selecao
+    conceito: Viés de seleção da imprensa
+    dimensao: vies_fonte
+    definicao: >
+      Nem todo protesto é noticiado; a probabilidade de cobertura depende do tamanho,
+      da violência, do local e da agenda do veículo (Earl et al.; Fillieule e
+      Jiménez; Hutter).
+    referencias: [earl2004use, fillieule2003appendix, hutter2014protest]
+    nivel: serie
+    status: parcial
+    variaveis: [fontes, n_fontes, publico_max, porte_cidade, violencia_manifestantes]
+    medida_derivada: >
+      Comparação entre veículos (Folha, Estadão, O Globo, JB) e com NEPAC e MM nos
+      anos de sobreposição; perfil dos eventos cobertos por um só veículo.
+    nota: >
+      Só se mede com mais de uma fonte. É a razão de incluir Estadão, O Globo e JB
+      no pipeline.
+
+  - id: vies_descricao
+    conceito: Viés de descrição e qualidade do texto
+    dimensao: vies_fonte
+    definicao: >
+      Os fatos centrais (quem, o quê, onde, quando) tendem a ser relatados com mais
+      precisão que os detalhes; Earl et al. chamam de viés de descrição o desvio
+      no relato do que foi coberto.
+    referencias: [earl2004use, franzosi2004words, alonso2024analise]
+    nivel: evento
+    status: coberto
+    variaveis: [fontes, qualidade_ocr, confianca, publico_estimativas, codificador, modelo_versao]
