@@ -61,6 +61,11 @@ def variavel(nome: str) -> dict:
     return next(v for v in variaveis() if v["nome"] == nome)
 
 
+def experimentais() -> list[str]:
+    """Variáveis em teste (bloco X): fora do banco final até a decisão."""
+    return [v["nome"] for v in variaveis() if v.get("experimental")]
+
+
 def nomes(tipo: str | None = None) -> list[str]:
     return [v["nome"] for v in variaveis() if tipo is None or v["tipo"] == tipo]
 

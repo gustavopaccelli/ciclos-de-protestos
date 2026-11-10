@@ -1,7 +1,7 @@
 # Codebook AEP-BR: eventos de protesto no Brasil, de 1983 até hoje
 
-**Versão:** 1.0 (2026-10-07). As questões em aberto da v0.1 foram decididas (ver §6).
-**Especificação legível por máquina:** [`codebook_aep_br.yaml`](codebook_aep_br.yaml), que traz 50 variáveis com o tipo, o vocabulário e os equivalentes no MM e no NEPAC.
+**Versão:** 1.1-piloto (2026-11-10): a v1.0 (2026-10-07, decisões no §6) mais três variáveis experimentais em teste no piloto de 2013 (§7).
+**Especificação legível por máquina:** [`codebook_aep_br.yaml`](codebook_aep_br.yaml), que traz 56 variáveis (53 da v1.0 e 3 experimentais) com o tipo, o vocabulário e os equivalentes no MM e no NEPAC.
 **Âncora metodológica:** ALONSO, A.; REZENDE, P. J.; SOUZA, R. de; SOUZA, V. B. de. Análise de Eventos de Protesto: decisões metodológicas na organização do Banco de Eventos de Protesto (BEP) 2013-2016. *Plural*, v. 31, n. 2, p. 288-323, 2024. DOI [10.11606/issn.2176-8099.pcso.2024.233335](https://doi.org/10.11606/issn.2176-8099.pcso.2024.233335).
 **Documentos de apoio:** [`docs/aep-protocol-bep.md`](../../../docs/aep-protocol-bep.md) (o protocolo BEP comentado) e [`config/doca_codebook.yaml`](../../../config/doca_codebook.yaml) (os vocabulários fechados).
 
@@ -141,3 +141,15 @@ O pipeline ainda **não roda**. O fluxo previsto tem cinco passos:
 | OCR | `qualidade_ocr` (boa/regular/ruim/nao_se_aplica) por fonte e no registro | Separa problema do texto de dúvida de interpretação. Permite medir o efeito do OCR na confiabilidade dos anos 1980–90 |
 | Impresso × online | A impressa é a principal; a online só cria evento se o fato estiver ausente no impresso | Mantém a série comparável desde 1983 e com o NEPAC, que usa a Folha impressa |
 | `ciclo` | Atribuído por `src/analysis/atribui_ciclo.py` a partir das datas de `cycle_phases.csv` | Consistência total com a periodização e nenhum trabalho de codificação. O script também devolve a fase (`phase_id`) |
+
+## 7. Variáveis experimentais (bloco X, piloto de 2013)
+
+Três variáveis estão em teste. Elas vêm dos conceitos com status `a_criar` em [`teoria/matriz.yaml`](../../../teoria/matriz.yaml) e ficam **fora do `protest_events.csv`** até a decisão (tarefa B11): entram só no `protest_events_raw.csv` e no cálculo de confiabilidade. Cada uma é adotada se atingir κ ≥ 0,75 no gold standard do piloto. O roteiro está em [`../validacao/piloto_2013/ROTEIRO.md`](../validacao/piloto_2013/ROTEIRO.md).
+
+| Variável | Conceito na matriz | O que registra | Regra principal |
+|---|---|---|---|
+| `aliados_institucionais` | `eop_aliados` | agentes do sistema político (parlamentar, governante, judiciário/MP, partido) que participam do ato ou o apoiam publicamente, com o vínculo | quem é alvo do protesto ou só comenta não é aliado |
+| `reacoes_publicas` | `dos_legitimidade` | atores que não participam do ato e reagem a ele, com o tipo e o sinal (apoio, rejeição, neutra) | não inclui manifestantes nem o repórter |
+| `tom_cobertura` | `dos_enquadramento_midiatico` | caracterização predominante dos manifestantes pelo jornal: legitimadora, neutra, criminalizadora ou SI | julga o texto do jornal, não as falas citadas; o trecho que justifica vai em `notas` |
+
+Na comparação com o gold standard, as duas listas são reduzidas a indicadores: presença de aliado e tipo do primeiro aliado; presença de reação de apoio e de rejeição.

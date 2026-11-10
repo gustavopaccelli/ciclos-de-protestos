@@ -11,6 +11,7 @@ MODOS DE USO
   python src/data/scraper.py --diagnose --headed   # PRIMEIRO PASSO: valida seletores
   python src/data/scraper.py --dry-run             # lista o que coletaria, sem baixar
   python src/data/scraper.py --limit 20            # coleta no máximo 20 artigos
+  python src/data/scraper.py --janela junho_2013   # só uma janela de config/queries.yaml
   python src/data/scraper.py                       # coleta completa
 
 Comece SEMPRE por --diagnose: sem seletores validados a coleta retorna zero.
@@ -330,7 +331,11 @@ def diagnose(browser) -> None:
 # Coleta
 # ---------------------------------------------------------------------------
 
-def run(limit: int | None, dry_run: bool, headed: bool) -> None:
+def run(limit: int | None, dry_run: bool, headed: bool, janela: str | None = None) -> None:
+    janelas = [dr for dr in CFG["date_ranges"] if janela in (None, dr["label"])]
+    if not janelas:
+        raise SystemExit(f"janela {janela!r} não existe em config/queries.yaml "
+                         f"(opções: {', '.join(dr['label'] for dr in CFG['date_ranges'])})")
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     state = load_state()
     delay = CFG["scraper"]["delay_seconds"]
@@ -341,7 +346,7 @@ def run(limit: int | None, dry_run: bool, headed: bool) -> None:
         page = browser.new_page(user_agent=USER_AGENT)
         login(page)
 
-        for dr in CFG["date_ranges"]:
+        for dr in janelas:
             for term in CFG["search_terms"]:
                 task_id = f'{dr["label"]}|{term}'
                 if task_id in state["done"]:
@@ -427,6 +432,8 @@ def main() -> None:
                     help="para após N artigos (teste barato)")
     ap.add_argument("--headed", action="store_true",
                     help="abre o navegador visível (necessário para inspecionar)")
+    ap.add_argument("--janela", default=None,
+                    help="coleta só a janela com este label em config/queries.yaml (ex.: junho_2013)")
     args = ap.parse_args()
 
     if args.diagnose:
@@ -438,7 +445,7 @@ def main() -> None:
                 browser.close()
         return
 
-    run(limit=args.limit, dry_run=args.dry_run, headed=args.headed)
+    run(limit=args.limit, dry_run=args.dry_run, headed=args.headed, janela=args.janela)
 
 
 if __name__ == "__main__":

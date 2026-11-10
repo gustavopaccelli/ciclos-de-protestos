@@ -5,7 +5,7 @@ bancos/03_aep_br/codificacao/*.json, normaliza contra o codebook AEP-BR, atribui
 `evento_canonico_id` e exporta:
 
   - bancos/03_aep_br/banco/protest_events_raw.csv   (uma linha por EXTRAÇÃO, sem deduplicação)
-  - bancos/03_aep_br/banco/protest_events.csv       (uma linha por evento canônico)
+  - bancos/03_aep_br/banco/protest_events.csv       (uma linha por evento canônico; sem as variáveis experimentais do bloco X)
   - bancos/03_aep_br/banco/protest_events.xlsx      (4 abas: eventos, agregação anual,
                                    frequência de temas, distribuição geográfica)
 
@@ -245,7 +245,8 @@ def export(raw: pd.DataFrame, df: pd.DataFrame) -> None:
     eligible["ano"] = eligible["data_inicio"].dt.year
     eligible["tema_principal"] = eligible["tema_codigo"].map(
         lambda v: v[0] if isinstance(v, list) and v else None)
-    df = para_planilha(df)
+    # Variáveis experimentais (bloco X) ficam só no _raw até a decisão (tarefa B11).
+    df = para_planilha(df.drop(columns=cb.experimentais(), errors="ignore"))
     df.to_csv(OUT_DIR / "protest_events.csv", index=False)
 
     with pd.ExcelWriter(OUT_DIR / "protest_events.xlsx", engine="xlsxwriter") as xw:

@@ -17,14 +17,14 @@ Os três bancos ficam em `bancos/`, um por pasta (ver `bancos/README.md`).
 ### Abertas
 
 - [ ] **B4.** Baixar o MM completo do Dataverse e do GitHub (`bancos/01_mass_mobilization/download.py`) e conferir o portal do NEPAC. Bloqueado na nuvem pela rede; fazer localmente ou liberar os domínios.
-- [ ] **B6.** Piloto de 2013 na Folha, validado contra o NEPAC. Absorve as antigas D1, D2 e D4. Etapas:
+- [ ] **B6.** Piloto de 2013 na Folha, validado contra o NEPAC. Absorve as antigas D1, D2 e D4. Roda no computador do pesquisador, seguindo `bancos/03_aep_br/validacao/piloto_2013/ROTEIRO.md` (100 matérias estratificadas por fase; testa também as variáveis experimentais da B11). Etapas originais:
   1. instalar as dependências (`pip install -r requirements.txt`) e criar o `.env` a partir de `.env.example`, com as credenciais da Folha e a `ANTHROPIC_API_KEY` (nunca versionar o `.env`);
   2. validar os seletores no site real: `python src/data/scraper.py --diagnose --headed` (ajustes em `config/selectors.yaml`);
   3. coletar uma amostra pequena (cerca de 20 matérias) e codificar com `python src/preprocessing/coder.py --batch 20`, para medir o custo por matéria antes de ampliar;
   4. aferir o kappa (κ ≥ 0,75) com `src/preprocessing/intercoder_reliability.py` contra uma codificação manual da mesma amostra.
 - [ ] **B8.** (antiga D8) Separar triagem e codificação em duas passagens no coder AEP-BR, como prevê o protocolo §11 (Passagens 2 e 3). Apontado por PAPEA. Fazer depois do piloto, quando houver dados de custo.
 - [ ] **B9.** (antiga D9) Gerar um `validation_report.json` por execução do coder, com o registro obrigatório do protocolo §12.6: modelo, hash do prompt, tamanho do gold standard, κ por variável e tipologia de erro. Parte disso já vai em `modelo_versao`.
-- [ ] **B11.** Decidir as candidatas da v1.1 do codebook listadas em `teoria/matriz.yaml` (status `a_criar`: `aliados_institucionais`, `reacoes_publicas`, `tom_cobertura`) e testá-las no piloto antes de adotar.
+- [ ] **B11.** Decidir as candidatas da v1.1 do codebook listadas em `teoria/matriz.yaml` (status `a_criar`: `aliados_institucionais`, `reacoes_publicas`, `tom_cobertura`). **Em andamento (2026-11-10):** as três entraram como bloco X experimental no codebook 1.1-piloto; coder, planilha cega e kappa prontos; falta rodar o piloto (B6) e codificar à mão. Roteiro: `bancos/03_aep_br/validacao/piloto_2013/ROTEIRO.md`.
 - [ ] **B12.** Coletores para Estadão, O Globo e Jornal do Brasil (Hemeroteca Digital), gravando no mesmo formato da Folha, inclusive `secao` e `pagina` (visibilidade).
 - [ ] **B13.** Scripts das medidas de ciclo derivadas (status `derivado` na matriz), a rodar quando houver dados do piloto.
 
