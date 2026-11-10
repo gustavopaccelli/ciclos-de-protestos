@@ -4,7 +4,8 @@
 Checa que cada conceito usa só chaves de docs/artigo/referencias.bib, só
 variáveis de bancos/03_aep_br/codebook/codebook_aep_br.yaml e só dimensões e
 status declarados; que conceitos `a_criar` trazem a candidata e conceitos
-`derivado` trazem a medida. Depois reescreve a tabela entre os marcadores
+`derivado` trazem a medida; e que o campo `conceito` das variáveis do codebook
+aponta para um conceito existente. Depois reescreve a tabela entre os marcadores
 MATRIZ:INICIO e MATRIZ:FIM do README e lista as variáveis do codebook que nenhum
 conceito usa.
 
@@ -78,6 +79,9 @@ def main() -> int:
     variaveis = {v["nome"] for v in codebook["variaveis"]}
 
     erros = erros_da_matriz(m, chaves_bib, variaveis)
+    ids = {c["id"] for c in m["conceitos"]}
+    erros += [f"codebook: {v['nome']} aponta para o conceito inexistente {v['conceito']!r}"
+              for v in codebook["variaveis"] if v.get("conceito") and v["conceito"] not in ids]
     if erros:
         print("Matriz com problemas:")
         print("\n".join(f"  - {e}" for e in erros))
@@ -93,7 +97,8 @@ def main() -> int:
     if novo != texto:
         README.write_text(novo, encoding="utf-8")
 
-    usadas = {v for c in m["conceitos"] for v in c["variaveis"]}
+    usadas = ({v for c in m["conceitos"] for v in c["variaveis"]}
+              | {v["nome"] for v in codebook["variaveis"] if v.get("conceito")})
     contagem = {s: sum(c["status"] == s for c in m["conceitos"]) for s in m["status"]}
     print(f"OK: {len(m['conceitos'])} conceitos; " + ", ".join(f"{s} {n}" for s, n in contagem.items()))
     sem_conceito = sorted(variaveis - usadas)

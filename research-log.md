@@ -599,3 +599,10 @@ real segue pendente (D1) — exige assinatura.**
 - **Matriz (`teoria/matriz.yaml`, B10):** 26 conceitos, cada um com definição atribuída, chaves do `.bib`, nível e status — coberto 6, parcial 3, a_criar 3, derivado 9, contexto_externo 4, fora_do_alcance 1. Princípio: o que só existe na série (intensificação, difusão, inovação de repertório, radicalização) é medida derivada, não variável por evento.
 - **Achados:** visibilidade discursiva já pode ser medida por `fontes.secao`/`pagina`, desde que os coletores gravem esses campos; aliados institucionais só aparecem hoje quando são partidos que protestam; ressonância e legitimidade discursivas não têm variável. Candidatas à v1.1: `aliados_institucionais`, `reacoes_publicas`, `tom_cobertura` — não adotadas, a testar no piloto.
 - **Controle:** `src/preprocessing/valida_matriz.py` (chaves do `.bib`, variáveis do codebook, tabela do README) entra no CI.
+
+## 2026-11-10 — Piloto 2013 preparado com as variáveis experimentais
+
+- **Decisão do usuário:** testar no piloto as três candidatas da matriz; o piloto roda no computador do pesquisador (login de assinante da Folha); amostra de 100 matérias de 2013.
+- **Codebook 1.1-piloto:** bloco X experimental com `aliados_institucionais`, `reacoes_publicas` e `tom_cobertura`, cada uma ligada ao conceito da matriz (campo `conceito`). Ficam fora de `protest_events.csv` até a decisão (B11).
+- **Pipeline:** coder com schemas e regras das experimentais e opção `--amostra`; scraper com `--janela`; `src/preprocessing/piloto.py` sorteia a amostra estratificada por fase (semente fixa) e gera a planilha cega, sem sobrescrever codificação manual; o cálculo de κ separa núcleo e experimentais e mede a unitização.
+- **Teste offline com dados fictícios** (fora do repositório): schema valida, amostra estratificada, planilha com colunas vazias, κ calculado (e abaixo de 1 quando há discordância), experimentais ausentes do banco final. Nenhum resultado do piloto existe ainda: a codificação manual é do pesquisador.

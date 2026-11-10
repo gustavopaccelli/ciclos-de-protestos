@@ -17,10 +17,11 @@ Saída: bancos/03_aep_br/codificacao/{arquivo}.json.
   fica pendente para nova execução.
 - Reexecução é incremental: matérias já codificadas são puladas.
 
-Uso: python src/preprocessing/coder.py [--batch 100]
+Uso: python src/preprocessing/coder.py [--batch 100] [--amostra amostra.csv]
 """
 
 import argparse
+import csv
 import hashlib
 import json
 import os
@@ -111,7 +112,32 @@ ATO_OFICIAL_SCHEMA = {
     "additionalProperties": False,
 }
 
-_OBJETOS = {"atores": ACTOR_SCHEMA, "fontes": FONTE_SCHEMA, "atos_oficiais": ATO_OFICIAL_SCHEMA}
+ALIADO_SCHEMA = {
+    "type": "object",
+    "description": "Agente do sistema político que participa do ato ou o apoia publicamente (bloco X)",
+    "properties": {
+        "nome": {"type": "string"},
+        "tipo": {"type": "string", "enum": cb.valores("aliado_tipo")},
+        "vinculo": {"type": "string", "enum": cb.valores("aliado_vinculo")},
+    },
+    "required": ["nome", "tipo", "vinculo"],
+    "additionalProperties": False,
+}
+
+REACAO_SCHEMA = {
+    "type": "object",
+    "description": "Ator não participante cuja reação ao protesto a matéria registra (bloco X)",
+    "properties": {
+        "ator": {"type": "string"},
+        "tipo": {"type": "string", "enum": cb.valores("reacao_tipo")},
+        "sinal": {"type": "string", "enum": cb.valores("reacao_sinal")},
+    },
+    "required": ["ator", "tipo", "sinal"],
+    "additionalProperties": False,
+}
+
+_OBJETOS = {"atores": ACTOR_SCHEMA, "fontes": FONTE_SCHEMA, "atos_oficiais": ATO_OFICIAL_SCHEMA,
+            "aliados_institucionais": ALIADO_SCHEMA, "reacoes_publicas": REACAO_SCHEMA}
 
 
 def _propriedade(v: dict) -> dict:
@@ -172,7 +198,8 @@ def _monta_prompt() -> str:
                      if v.get("vocabulario") and v["nome"] not in CAMPOS_PIPELINE
                      and v["vocabulario"] != "actor_schema"}
                     | {"actor_org_types", "actor_formalization", "fonte_tipo", "papel_fonte",
-                       "ato_oficial_tipo", "location_conventional"})
+                       "ato_oficial_tipo", "location_conventional",
+                       "aliado_tipo", "aliado_vinculo", "reacao_tipo", "reacao_sinal"})
     blocos_vocab = "\n\n".join(f"{n}:\n{_dump(cb.vocab_bruto(n))}" for n in vocabs)
 
     return f"""Você é um codificador treinado em Análise de Eventos de Protesto (AEP) e aplica o \
@@ -209,6 +236,19 @@ FONTES: o campo fontes recebe UMA entrada, descrevendo a matéria que você est�
 (veículo, tipo, papel, edição, seção, página, qualidade do OCR). Avalie qualidade_ocr pelo \
 próprio texto recebido: nao_se_aplica para texto digital nativo. O campo qualidade_ocr do \
 evento repete esse valor.
+
+VARIÁVEIS EXPERIMENTAIS (bloco X, em teste): {', '.join(cb.experimentais())}. Codifique-as \
+com o mesmo cuidado das demais, sem inferir além do texto.
+- aliados_institucionais: só agentes do sistema político (parlamentares, governantes, \
+juízes e promotores, partidos) que a matéria diz terem participado do ato ou declarado \
+apoio a ele. Quem é alvo do protesto ou só comenta não é aliado. Partido que organiza o \
+ato continua em atores; registre-o também aqui só se a matéria o apresentar como apoiador.
+- reacoes_publicas: atores que NÃO participam do ato e cuja reação a ele a matéria registra \
+(declaração, nota, entrevista). Não inclua os próprios manifestantes nem o repórter.
+- tom_cobertura: avalie o texto do próprio jornal, não as falas citadas. Rótulos de desordem \
+ou crime atribuídos pelo jornal aos manifestantes = criminalizadora; reivindicação explicada \
+e voz dos manifestantes sem esses rótulos = legitimadora; relato factual = neutra. Copie em \
+notas, entre aspas, o trecho que justifica.
 
 NÃO preencha ciclo, fase, evento_id nem codificador: o pipeline atribui esses campos.
 Não invente informação ausente: use null, listas vazias ou "SI" onde o vocabulário permitir. \
@@ -308,11 +348,17 @@ def code_article(client: anthropic.Anthropic, art: dict) -> dict:
     return data
 
 
-def run(batch: int | None) -> None:
+def run(batch: int | None, amostra: str | None = None) -> None:
     CODED_DIR.mkdir(parents=True, exist_ok=True)
     client = anthropic.Anthropic()
-    pending = [p for p in sorted(RAW_DIR.glob("*.json"))
-               if not (CODED_DIR / p.name).exists()]
+    candidatas = sorted(RAW_DIR.glob("*.json"))
+    if amostra:
+        with open(amostra, encoding="utf-8") as f:
+            sorteadas = {r["arquivo"] for r in csv.DictReader(f)}
+        candidatas = [p for p in candidatas if p.name in sorteadas]
+        if len(candidatas) < len(sorteadas):
+            print(f"[aviso] {len(sorteadas) - len(candidatas)} matéria(s) da amostra não estão em {RAW_DIR}")
+    pending = [p for p in candidatas if not (CODED_DIR / p.name).exists()]
     if batch:
         pending = pending[:batch]
     print(f"{len(pending)} matérias a codificar (modelo: {MODEL}, effort: {EFFORT}, prompt: {PROMPT_HASH})")
@@ -349,4 +395,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--batch", type=int, default=None,
                     help="codifica no máximo N matérias (controle de custo)")
-    run(ap.parse_args().batch)
+    ap.add_argument("--amostra", default=None,
+                    help="CSV com a coluna `arquivo`: codifica só essas matérias (piloto)")
+    args = ap.parse_args()
+    run(args.batch, args.amostra)

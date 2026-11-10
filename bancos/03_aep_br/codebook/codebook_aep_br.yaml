@@ -1,5 +1,5 @@
 # Codebook AEP-BR — banco próprio de eventos de protesto no Brasil (1983–presente)
-# Versão 1.0 — 2026-10-07 (questões em aberto da v0.1 decididas; ver `decisoes`)
+# Versão 1.1-piloto — 2026-11-10: v1.0 (2026-10-07) + bloco X experimental, em teste no piloto 2013
 #
 # Âncora metodológica: Alonso, Rezende, Souza & Souza (2024). "Análise de Eventos de
 # Protesto: decisões metodológicas na organização do BEP 2013-2016". Plural 31(2):288-323.
@@ -12,7 +12,7 @@
 # Vocabulários novos do AEP-BR estão em `vocabularios:` abaixo.
 #
 # Cada variável traz:
-#   bloco         I–V (blocos BEP), P (proveniência) ou D (deduplicação)
+#   bloco         I–V (blocos BEP), P (proveniência), D (deduplicação) ou X (experimental)
 #   tipo          date | str | int | bool | enum | list[str] | list[obj]
 #   obrigatoria   true = não pode ficar vazia num evento elegível
 #   definicao     uma linha, legível por humano e por LLM
@@ -20,9 +20,11 @@
 #   doca          nome do campo no event_schema atual (null = campo novo)
 #   mm_equiv      variável correspondente no Mass Mobilization (null = sem equivalente)
 #   nepac_equiv   variável correspondente no NEPAC (null = sem equivalente)
+#   experimental  true = em teste no piloto; fica fora do banco final até a decisão (tarefa B11)
+#   conceito      id do conceito de teoria/matriz.yaml que motivou a variável
 # Os equivalentes MM/NEPAC são a base do codebook híbrido (bancos/crosswalk/).
 
-versao: "1.0"
+versao: "1.1-piloto"
 periodo_alvo: {inicio: "1983-01-01", fim: null}   # null = até o presente
 unidade_analise: evento_de_protesto              # evento ≠ notícia (BEP §4)
 vocabularios_herdados: config/doca_codebook.yaml
@@ -150,6 +152,30 @@ vocabularios:
     regular: "Erros pontuais de OCR; foi preciso conferir a imagem da página"
     ruim: "Trechos ilegíveis; alguma variável pode ter ficado sem preenchimento por isso"
     nao_se_aplica: "Fonte digital nativa, sem OCR"
+  aliado_tipo:   # bloco X (experimental)
+    parlamentar: "Vereador, deputado estadual ou federal, senador"
+    governante: "Prefeito, governador, presidente, ministro ou secretário"
+    judiciario_mp: "Juiz, desembargador, ministro de tribunal, promotor ou procurador"
+    partido: "Partido político ou dirigente partidário falando em nome do partido"
+    outro: "Outro agente do sistema político; especificar em nome"
+  aliado_vinculo:
+    participa: "Esteve presente no ato, discursou ou marchou"
+    apoia_publicamente: "Declarou apoio ao ato ou à reivindicação, sem estar presente"
+  reacao_tipo:
+    autoridade: "Governante, parlamentar, juiz, promotor ou comando policial"
+    partido: "Partido político ou dirigente partidário"
+    entidade: "Entidade da sociedade civil, empresarial, religiosa ou sindical que não protesta no ato"
+    especialista: "Pesquisador, analista ou outro especialista ouvido pela matéria"
+    outro: "Outro ator; especificar em ator"
+  reacao_sinal:
+    apoio: "Apoia o protesto ou a reivindicação"
+    rejeicao: "Critica o protesto, os manifestantes ou a reivindicação"
+    neutra: "Comenta sem tomar posição"
+  tom_cobertura:
+    legitimadora: "A matéria apresenta os manifestantes como cidadãos com reivindicação legítima (voz própria dos manifestantes, reivindicação explicada, sem rótulos de desordem)"
+    neutra: "Relato factual, sem caracterização positiva ou negativa dominante"
+    criminalizadora: "A matéria caracteriza os manifestantes pela desordem ou pelo crime (baderna, vândalos, arruaceiros, 'invasores') no texto do próprio jornal"
+    SI: "Matéria curta demais para avaliar o tom"
   prioridade_fonte:   # ordem para criar evento quando o mesmo veículo tem duas edições
     1: "Edição impressa (ou acervo digitalizado da impressa)"
     2: "Edição online do mesmo veículo: só cria evento se o fato não saiu no impresso"
@@ -606,6 +632,41 @@ variaveis:
     obrigatoria: false
     definicao: "A matéria de origem relata mais de um evento"
     doca: multi_event_article
+    mm_equiv: null
+    nepac_equiv: null
+
+  # ---------------- X — Experimental (piloto 2013; decisão na tarefa B11) ----------------
+  # Origem: teoria/matriz.yaml (status a_criar). Ficam fora de protest_events.csv
+  # até a decisão; entram só em protest_events_raw.csv e no cálculo de kappa.
+  - nome: aliados_institucionais
+    bloco: X
+    tipo: list[obj]
+    obrigatoria: false
+    experimental: true
+    conceito: eop_aliados
+    definicao: "Agentes do sistema político que a matéria relata participando do ato ou apoiando-o publicamente: {nome, tipo, vinculo}. Não inclui quem só é alvo ou só comenta; lista vazia se não houver"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: reacoes_publicas
+    bloco: X
+    tipo: list[obj]
+    obrigatoria: false
+    experimental: true
+    conceito: dos_legitimidade
+    definicao: "Atores que não participam do ato e cuja reação a ele a matéria registra (declaração, nota, entrevista): {ator, tipo, sinal}. Lista vazia se não houver"
+    doca: null
+    mm_equiv: null
+    nepac_equiv: null
+  - nome: tom_cobertura
+    bloco: X
+    tipo: enum
+    vocabulario: tom_cobertura
+    obrigatoria: false
+    experimental: true
+    conceito: dos_enquadramento_midiatico
+    definicao: "Caracterização predominante dos manifestantes no texto da própria matéria (não nas falas citadas de terceiros). Registrar em notas o trecho que justifica"
+    doca: null
     mm_equiv: null
     nepac_equiv: null
 

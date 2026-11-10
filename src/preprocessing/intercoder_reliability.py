@@ -36,10 +36,22 @@ KAPPA_MIN = cb.limiar_kappa()
 # exceto as atribuídas pelo pipeline (não há o que comparar) e as de qualidade
 # da fonte.
 _FORA = cb.CAMPOS_PIPELINE | {"qualidade_ocr", "confianca"}
-BOOL_FIELDS = set(cb.nomes("bool")) - _FORA
+EXPERIMENTAIS = set(cb.experimentais())
+# Indicadores comparáveis das variáveis experimentais que são listas de objetos
+# (bloco X): o codificador manual preenche estas colunas; do lado automático
+# elas são derivadas das listas por derivar_experimentais().
+DERIVADAS = {
+    "aliado_presente": "bool", "aliado_tipo_principal": "str",
+    "reacao_apoio": "bool", "reacao_rejeicao": "bool",
+}
+BOOL_FIELDS = (set(cb.nomes("bool")) - _FORA) | {k for k, t in DERIVADAS.items() if t == "bool"}
 CATEGORICAL = [n for n in cb.nomes()
-               if n not in _FORA and (n in cb.campos_enum() or n in BOOL_FIELDS)]
+               if n not in _FORA and n not in EXPERIMENTAIS
+               and (n in cb.campos_enum() or n in BOOL_FIELDS)]
+CATEGORICAL_X = [n for n in cb.experimentais() if n in cb.campos_enum()] + list(DERIVADAS)
 LIST_FIELDS = set(cb.campos_lista())
+# Colunas que o codificador humano preenche na planilha do gold standard.
+COLUNAS_MANUAIS = CATEGORICAL + CATEGORICAL_X
 
 _TRUTHY = {"true", "1", "sim", "yes", "verdadeiro"}
 _FALSY = {"false", "0", "nao", "no", "falso"}
@@ -80,26 +92,61 @@ def canon(value, is_bool: bool) -> str:
     return s
 
 
+def derivar_experimentais(df: pd.DataFrame) -> pd.DataFrame:
+    """Transforma as listas de objetos do bloco X em indicadores comparáveis."""
+    def lista(v):
+        return v if isinstance(v, list) else []
+    if "aliados_institucionais" in df.columns:
+        al = df["aliados_institucionais"].map(lista)
+        df["aliado_presente"] = al.map(bool)
+        df["aliado_tipo_principal"] = al.map(lambda v: v[0].get("tipo") if v else "nenhum")
+    if "reacoes_publicas" in df.columns:
+        re_ = df["reacoes_publicas"].map(lista)
+        df["reacao_apoio"] = re_.map(lambda v: any(r.get("sinal") == "apoio" for r in v))
+        df["reacao_rejeicao"] = re_.map(lambda v: any(r.get("sinal") == "rejeicao" for r in v))
+    return df
+
+
 def load_auto() -> pd.DataFrame:
     rows = []
     for path in CODED_DIR.glob("*.json"):
-        rows.extend(json.loads(path.read_text()).get("eventos", []))
+        for ev in json.loads(path.read_text()).get("eventos", []):
+            rows.append({**ev, "arquivo": path.name})
     if not rows:
         raise SystemExit("Nenhum evento codificado em bancos/03_aep_br/codificacao/")
-    return pd.DataFrame(rows).set_index("evento_id")
+    return derivar_experimentais(pd.DataFrame(rows)).set_index("evento_id")
 
 
 def main(manual_csv: str, out_csv: str | None) -> None:
-    manual = pd.read_csv(manual_csv, dtype=str).set_index("evento_id")
+    manual = pd.read_csv(manual_csv, dtype=str)
     auto = load_auto()
+    if "arquivo" in manual.columns:
+        # Piloto: compara só as matérias da planilha e mede a unitização.
+        auto = auto[auto["arquivo"].isin(set(manual["arquivo"]))]
+    manual = manual[manual["evento_id"].fillna("").str.strip() != ""].set_index("evento_id")
     common = manual.index.intersection(auto.index)
     if len(common) == 0:
         raise SystemExit("Nenhum evento_id em comum entre manual e automático.")
-    print(f"{len(common)} eventos em comum (limiar do codebook: κ ≥ {KAPPA_MIN})\n")
+    so_manual, so_auto = len(manual.index.difference(auto.index)), len(auto.index.difference(manual.index))
+    print(f"Unitização: {len(common)} eventos em comum; {so_manual} só no manual "
+          f"(o LLM não viu); {so_auto} só no automático (removidos na revisão manual).")
+    print(f"Limiar do codebook: κ ≥ {KAPPA_MIN}\n")
 
     linhas = []
-    print(f"{'variável':<24}{'kappa':>8}{'n':>6}  situação")
-    for var in CATEGORICAL:
+    for grupo, variaveis in (("nucleo", CATEGORICAL), ("experimental", CATEGORICAL_X)):
+        print(f"[{grupo}]\n{'variável':<24}{'kappa':>8}{'n':>6}  situação")
+        linhas += _kappas(grupo, variaveis, manual, auto, common)
+        print()
+    _rodape(linhas)
+
+    if out_csv:
+        pd.DataFrame(linhas).to_csv(out_csv, index=False)
+        print(f"\nRelatório → {out_csv}")
+
+
+def _kappas(grupo, variaveis, manual, auto, common) -> list[dict]:
+    linhas = []
+    for var in variaveis:
         if var not in manual.columns or var not in auto.columns:
             continue
         is_bool = var in BOOL_FIELDS
@@ -116,11 +163,14 @@ def main(manual_csv: str, out_csv: str | None) -> None:
         else:
             kappa = cohen_kappa_score(m[mask], a[mask])
             situacao = "OK" if kappa >= KAPPA_MIN else "ABAIXO DO LIMIAR"
-        linhas.append({"variavel": var, "kappa": kappa,
+        linhas.append({"grupo": grupo, "variavel": var, "kappa": kappa,
                        "n": int(mask.sum()), "situacao": situacao})
         print(f"{var:<24}{kappa:>8.3f}{mask.sum():>6}  {situacao}")
+    return linhas
 
-    print("\nPadrão de confiabilidade (Krippendorff, 2018): >= 0.800 permite conclusões; "
+
+def _rodape(linhas: list[dict]) -> None:
+    print("Padrão de confiabilidade (Krippendorff, 2018): >= 0.800 permite conclusões; "
           "0.667-0.799 apenas conclusões provisórias; abaixo de 0.667 não se conclui.")
     print(f"Ressalva: esse padrão é para o alpha de Krippendorff e aqui se calcula o kappa de "
           f"Cohen — o corte é aplicado por analogia. E o limiar do projeto (KAPPA_MIN = "
@@ -129,10 +179,6 @@ def main(manual_csv: str, out_csv: str | None) -> None:
     if reprovadas:
         print(f"\n[atenção] κ < {KAPPA_MIN} em: {', '.join(reprovadas)} — protocolo §11 "
               f"Passagem 5: revisar o prompt ou excluir a variável da análise.")
-
-    if out_csv:
-        pd.DataFrame(linhas).to_csv(out_csv, index=False)
-        print(f"\nRelatório → {out_csv}")
 
 
 if __name__ == "__main__":

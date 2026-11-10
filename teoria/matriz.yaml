@@ -15,10 +15,11 @@
 #   status          um de `status`
 #   variaveis       variáveis de bancos/03_aep_br/codebook/codebook_aep_br.yaml usadas
 #   medida_derivada como se calcula na série (nivel = serie)
-#   candidata       variável proposta para a v1.1 (status = a_criar): nome, conteudo, risco
+#   candidata       variável proposta para a v1.1 (status = a_criar): nome, conteudo, risco,
+#                   em_teste (onde está sendo testada, quando estiver)
 #   nota            limites e decisões em aberto
 
-versao: "0.1 (2026-11-10)"
+versao: "0.2 (2026-11-10)"
 
 dimensoes:
   oportunidades_politicas: "Estrutura de oportunidades políticas (EOP)"
@@ -98,6 +99,7 @@ conceitos:
     variaveis: [atores, organizacoes]
     candidata:
       nome: aliados_institucionais
+      em_teste: "piloto 2013 (bloco X do codebook 1.1-piloto; tarefa B11)"
       conteudo: >
         Lista de agentes do sistema político relatados como participantes ou
         apoiadores públicos do ato (parlamentares, governantes, juízes e promotores,
@@ -241,6 +243,7 @@ conceitos:
     variaveis: []
     candidata:
       nome: reacoes_publicas
+      em_teste: "piloto 2013 (bloco X do codebook 1.1-piloto; tarefa B11)"
       conteudo: >
         Atores não participantes que a matéria registra reagindo ao protesto, com o
         tipo (autoridade, partido, entidade, especialista) e o sinal da reação
@@ -265,6 +268,7 @@ conceitos:
     variaveis: []
     candidata:
       nome: tom_cobertura
+      em_teste: "piloto 2013 (bloco X do codebook 1.1-piloto; tarefa B11)"
       conteudo: >
         Caracterização predominante dos manifestantes na matéria principal
         (legitimadora | neutra | criminalizadora), com o trecho que justifica.

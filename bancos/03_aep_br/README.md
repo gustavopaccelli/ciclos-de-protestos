@@ -64,7 +64,7 @@ O relatório sai em `validacao/kappa_<data>.csv`. Limiar do projeto: κ ≥ 0,75
 
 ## Estado atual
 
-- Codebook v1.0 (decisões no §6 de `codebook/codebook_aep_br.md`).
-- A coleta não começou: depende das credenciais de assinante da Folha.
-- Próximos passos, em ordem: B9 (`validation_report.json`), B6 (piloto de 2013 validado contra o NEPAC, que usa a mesma fonte), B8 (triagem e codificação em passagens separadas). Depois, expandir para 1983–1992, onde as sementes servem de gold standard, e para 2017 em diante. Ver `docs/tarefas.md`.
+- Codebook 1.1-piloto: a v1.0 (decisões no §6 de `codebook/codebook_aep_br.md`) e três variáveis experimentais em teste (§7).
+- A coleta não começou: depende das credenciais de assinante da Folha. O piloto de 2013 está pronto para rodar localmente: [`validacao/piloto_2013/ROTEIRO.md`](validacao/piloto_2013/ROTEIRO.md).
+- Próximos passos, em ordem: B6 + B11 (piloto de 2013, que também testa as variáveis experimentais), B9 (`validation_report.json`), B8 (triagem e codificação em passagens separadas). Depois, expandir para 1983–1992, onde as sementes servem de gold standard, e para 2017 em diante. Ver `docs/tarefas.md`.
 - `src/data/init_doca_database.py` gera uma versão SQLite do banco (`protest_events.db`, fora do git). É opcional: o pipeline acima não depende dela.
