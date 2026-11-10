@@ -1,15 +1,15 @@
 """varre_citacoes.py — Nenhuma obra citada sem entrada no .bib.
 
-Varre process-tracing/ e codebook/ atrás de citações no formato autor-data
+Varre process-tracing/ e docs/codebook/ atrás de citações no formato autor-data
 — "SOBRENOME (2019)", "Sobrenome e Outro (2001)", "(SOBRENOME, 2019)" — e
 confere se o sobrenome aparece em algum campo author/editor de
-artigo/referencias.bib.
+docs/artigo/referencias.bib.
 
 Foi esta varredura que revelou, em 2026-08-23, doze obras citadas nos codebooks
 e no protocolo de process tracing sem entrada bibliográfica — inclusive José de
 Souza (1986), âncora das quatro dimensões do T-1 conjuntural.
 
-Uso: python artigo/varre_citacoes.py [--estrito]
+Uso: python src/analysis/varre_citacoes.py [--estrito]
 """
 
 import argparse

@@ -12,7 +12,7 @@ ficha traz o campo `Nível de leitura`. Antes de citar qualquer uma destas obras
 1. obter o texto integral;
 2. confirmar o argumento resumido aqui;
 3. verificar os metadados (volume, número, páginas, DOI) — todas estão marcadas
-   `VERIFICAR` em `artigo/referencias.bib`.
+   `VERIFICAR` em `docs/artigo/referencias.bib`.
 
 Os conectores acadêmicos (Scite, Elicit, Firecrawl) caíram durante a sessão, o que impediu
 concluir a verificação. Ela fica como pendência explícita da Frente C.

@@ -40,7 +40,7 @@ O desenho é uma **comparação qualitativa de casos** (N=4) com codificação f
 
 ### 2.1 Periodização em fases (v3)
 
-Cada ciclo é decomposto em **fases analíticas** — articulação, emergência, expansão, pico, latência, radicalização, declínio e desfecho — totalizando **24 fases** (6 por ciclo) no dataset `data/processed/cycle_phases/cycle_phases.csv`. Decisões notáveis, ancoradas na tese de Costa (2024):
+Cada ciclo é decomposto em **fases analíticas** — emergência, expansão, pico, declínio e desfecho, mais articulação (exceto Junho de 2013), radicalização (só Junho de 2013) e latência (só no Impeachment) — totalizando **24 fases** (6 por ciclo) no dataset `data/processed/cycle_phases/cycle_phases.csv`. Decisões notáveis, ancoradas na tese de Costa (2024):
 
 - **Fases de articulação** identificadas nas Diretas Já, no Fora Collor (nov/1991–mai/1992, via Mische, 2008) e no Impeachment (a partir de 27/10/2014, dia seguinte à derrota eleitoral contestada de Aécio Neves — confronto eleitoral, McAdam & Tarrow, 2011). **Junho de 2013 não possui fase de articulação**: a pré-história autonomista dos anos 2000 é esparsa, não uma articulação deliberada.
 - **Radicalização** em Junho 2013 (pós-pico, após a violência policial de 13/06 e a saída do MPL).
@@ -61,12 +61,12 @@ Para cada fase são codificadas **5 variáveis de EOP** (abertura do sistema, vu
 
 A tipologia discrimina: os quatro ciclos têm direções **distintas** no desfecho — Diretas Já por canal alternativo (Colégio Eleitoral), Fora Collor por antecipação do alvo (a renúncia prejudica a perda do cargo, Resolução 101/1992), Junho 2013 por objeto substituído (PEC 37 no lugar da tarifa) e Impeachment por principal sem acessório (cassação aprovada, inabilitação rejeitada por quórum).
 
-Codebook completo: `docs/codebook/cycle_phases_codebook.yaml`. Código `NA` distinto de `0` (não se aplica ≠ ausente). Toda alteração de codificação fica em `codebook/historico-codificacao.csv`; `python codebook/valida_cycle_phases.py` confere dataset, codebook e trilha.
+Codebook completo: `docs/codebook/cycle_phases_codebook.yaml`. Código `NA` distinto de `0` (não se aplica ≠ ausente). Toda alteração de codificação fica em `docs/codebook/historico-codificacao.csv`; `python src/preprocessing/valida_cycle_phases.py` confere dataset, codebook e trilha.
 
 ### 2.3 Análise de Eventos de Protesto (AEP)
 
 - **Âncora metodológica:** Protocolo **BEP-CEBRAP** (Alonso et al., 2024, *Plural* 31.2) — definição de evento, seleção de fontes, 5 blocos de variáveis, critérios de continuidade espaço-temporal, deduplicação por evento canônico (ver `docs/aep-protocol-bep.md`).
-- **Codebook AEP-BR** (`bancos/03_aep_br/codebook/`): v0.1, 50 variáveis nos 5 blocos BEP, cada uma mapeada ao MM e ao NEPAC; base para o banco próprio de 1983 até hoje em imprensa nacional e diários oficiais.
+- **Codebook AEP-BR** (`bancos/03_aep_br/codebook/`): v1.0, 53 variáveis (blocos I–V do BEP, além de proveniência e deduplicação), cada uma mapeada ao MM e ao NEPAC; base para o banco próprio de 1983 até hoje em imprensa nacional e diários oficiais.
 - **Pipeline** (`src/` + `bancos/03_aep_br/`): scraper do Acervo Folha → codificador DoCA assistido por LLM (codebook alinhado a BEP + campos MPEDS) → construção do dataset → confiabilidade intercodificador (Kappa ≥ 0,75). Execução aguarda credenciais do Acervo Folha; o agendamento diário no GitHub Actions foi desativado em 2026-10-07.
 - **Sementes manuais** (`bancos/03_aep_br/sementes/`): Diretas Já (59 eventos) e Fora Collor (15 eventos), com estimativas de público por fonte; complementadas por `bancos/03_aep_br/sementes/diretas_ja/` (cronologia de 50 comícios, distribuição estadual dos 490 comícios, atores da coalizão).
 
@@ -127,7 +127,7 @@ O quadro completo — com variáveis independentes/dependentes, indicadores e ev
 | `src/` | Scripts: `paths.py` (caminhos centrais), `data/` (coleta), `preprocessing/` (codificação, validação), `analysis/` (séries, bibliografia) |
 | `config/` | Vocabulários do codificador (`doca_codebook.yaml`), buscas e seletores do scraper |
 | `artigo/secoes/` | Seções redigidas do artigo |
-| `docs/` | Projeto, hipóteses, periodização, protocolo AEP-BEP, `codebook/` do cycle_phases, `process_tracing/`, `methodology/`, `artigo/` (referências .bib e ABNT), `artefatos/` (material importado) |
+| `docs/` | Projeto, hipóteses, periodização, protocolo AEP-BEP, `docs/codebook/` do cycle_phases, `process_tracing/`, `methodology/`, `artigo/` (referências .bib e ABNT), `docs/artefatos/` (material importado) |
 | `literature/` | Fichamentos e levantamento bibliográfico |
 | `research-state.yaml`, `research-log.md` | Estado do projeto e changelog da pesquisa |
 
@@ -145,4 +145,4 @@ O quadro completo — com variáveis independentes/dependentes, indicadores e ev
 
 ALONSO, A. et al. Análise de Eventos de Protesto: decisões metodológicas na organização do BEP 2013-2016. *Plural*, v. 31, n. 2, 2024. · BEACH, D.; PEDERSEN, R. B. *Process-Tracing Methods*. Michigan, 2013. · COSTA, G. P. *Estruturas de mobilização e oportunidades políticas: análise dos ciclos de protestos no Brasil contemporâneo*. Tese (Doutorado) — UFJF, 2024. · DELLA PORTA, D. Protests as critical junctures. *Social Movement Studies*, 2018. · DOBRY, M. *Sociologie des crises politiques*. Paris, 1986. · FERREE, M. M. Resonance and radicalism. *AJS*, 2003. · KOOPMANS, R.; STATHAM, P. Ethnic and civic conceptions of nationhood… 1999. · McADAM, D.; TARROW, S. Ballots and Barricades. *Perspectives on Politics*, 2011. · MISCHE, A. *Partisan Publics*. Princeton, 2008. · TARROW, S. *Power in Movement*. Cambridge, 1994. · TATAGIBA, L. Entre as ruas e as instituições. *Lusotopie*, 2018.
 
-Lista completa (~94 referências, formato ABNT): [`artigo/referencias-abnt.md`](artigo/referencias-abnt.md).
+Lista completa em formato ABNT: [`docs/artigo/referencias-abnt.md`](docs/artigo/referencias-abnt.md). O `.bib` canônico tem 130 entradas; a lista ABNT reúne 95 sobrenomes distintos (conferir com `python src/analysis/check_bib.py`).

@@ -180,7 +180,7 @@ censitárias. Toda quebra vai anotada na linha da série; comparar antes e depoi
 ressalva produz achado espúrio.
 
 **6.6 Não sobrescrever série revisada em silêncio.** Órgãos oficiais revisam dados
-retroativamente. `extrai_series_estruturais.py` preserva valor já preenchido salvo
+retroativamente. `src/data/pt_extrai_series.py` preserva valor já preenchido salvo
 `--forcar`, para que uma revisão do IPCA não mude a base do argumento sem deixar rastro.
 
 ## 7. Regra de admissibilidade

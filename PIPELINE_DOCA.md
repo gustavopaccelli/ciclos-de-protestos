@@ -16,7 +16,7 @@ Pipeline de coleta, processamento e codificação de eventos de protesto no Bras
 
 - **Entrada**: URL de busca do Acervo Folha (termo: "protesto")
 - **Tecnologia**: Scrapling StealthyFetcher (simula navegador real)
-- **Saída**: `data/acervo_protestos.json` (lista de artigos com título, link, data)
+- **Saída**: `bancos/03_aep_br/coleta/acervo_protestos.json` (lista de artigos com título, link, data)
 
 ```bash
 python src/coleta_acervo.py
@@ -134,7 +134,7 @@ python src/data/init_doca_database.py
 
 # 2. Raspar Acervo Folha
 python src/coleta_acervo.py
-# Saída: data/acervo_protestos.json (raw articles)
+# Saída: bancos/03_aep_br/coleta/acervo_protestos.json (raw articles)
 
 # 3. Ingerir em banco (DoCA preliminar)
 python src/data/load_acervo_to_doca.py

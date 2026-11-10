@@ -17,7 +17,7 @@ usando casos europeus. Identifica **quatro lacunas** na pesquisa:
 ## Por que a lacuna 1 é decisiva neste projeto
 Dois dos nossos quatro ciclos são **de direita ou majoritariamente conservadores** — o
 ciclo do Impeachment (2014–2016) explicitamente, e Junho de 2013 em sua deriva. Um dos
-insights registrados em `metodologia/relatorio-metodologico.md` §9 é justamente que a
+insights registrados em `docs/methodology/relatorio-metodologico.md` §9 é justamente que a
 definição de evento **neutra em valor** permite que ciclos de esquerda (Diretas, Junho) e de
 direita (2015–16) compartilhem uma mesma grade analítica.
 

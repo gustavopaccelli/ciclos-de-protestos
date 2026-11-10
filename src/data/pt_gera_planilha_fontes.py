@@ -2,7 +2,7 @@
 
 xlsx é binário: o git não versiona diferença legível dele. Por isso a fonte de
 verdade é fontes/fontes-de-dados.csv, versionável e diffável, e o .xlsx é
-derivado — mesmo padrão de artigo/referencias.bib -> referencias-abnt.md.
+derivado — mesmo padrão de docs/artigo/referencias.bib -> referencias-abnt.md.
 
 NÃO edite o .xlsx: a próxima execução sobrescreve.
 

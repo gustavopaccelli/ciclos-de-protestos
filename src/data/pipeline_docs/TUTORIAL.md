@@ -16,7 +16,7 @@ aplicação é React: eles mudam. Sem esta etapa a coleta retorna zero.
 
 ```bash
 cd pipeline
-python 01_scraper.py --diagnose --headed
+python src/data/scraper.py --diagnose --headed
 ```
 
 O navegador abre visível, faz login, executa **uma** busca e grava em
@@ -33,8 +33,8 @@ todos os grupos acusarem mais de zero.
 ## 3. Coleta (retomável; horas a dias)
 
 ```bash
-python 01_scraper.py --dry-run          # lista o que coletaria, sem baixar
-python 01_scraper.py --limit 20         # teste barato: 20 artigos
+python src/data/scraper.py --dry-run          # lista o que coletaria, sem baixar
+python src/data/scraper.py --limit 20         # teste barato: 20 artigos
 python run_pipeline.py --step scrape    # coleta completa
 ```
 
@@ -68,10 +68,10 @@ python run_pipeline.py --step build
 ```
 
 Gera três saídas:
-- `data/protest_events_raw.csv` — **uma linha por extração**, sem deduplicação
+- `data/processed/harmonizado/protest_events_raw.csv` — **uma linha por extração**, sem deduplicação
   (registro auditável: quantas fontes cobriram cada evento);
-- `data/protest_events.csv` — uma linha por **evento canônico**;
-- `data/protest_events.xlsx` — 4 abas: eventos, agregação anual, frequência de
+- `data/processed/harmonizado/protest_events.csv` — uma linha por **evento canônico**;
+- `data/processed/harmonizado/protest_events.xlsx` — 4 abas: eventos, agregação anual, frequência de
   claims, distribuição geográfica.
 
 Durante a execução o script avisa sobre valores fora do codebook e variáveis
@@ -87,7 +87,7 @@ com mais de 30% de ausência (protocolo §7).
 2. Rode:
 
 ```bash
-python 04_intercoder_reliability.py amostra_manual.csv --out kappa.csv
+python src/preprocessing/intercoder_reliability.py amostra_manual.csv --out kappa.csv
 ```
 
 Reporte o Kappa por variável no paper. **Limiar do projeto: κ ≥ 0,75**
@@ -98,10 +98,10 @@ prompt ou exclusão da análise — não são reportadas como válidas.
 ## 7. Exportação para R/Stata
 
 ```r
-df <- read.csv("data/protest_events.csv")          # R
+df <- read.csv("data/processed/harmonizado/protest_events.csv")          # R
 ```
 ```stata
-import delimited "data/protest_events.csv", clear  // Stata
+import delimited "data/processed/harmonizado/protest_events.csv", clear  // Stata
 ```
 
 ## Avisos

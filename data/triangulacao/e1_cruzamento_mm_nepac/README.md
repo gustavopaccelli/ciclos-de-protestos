@@ -1,5 +1,7 @@
 # E1 — Cruzamento das séries Mass Mobilization e NEPAC com as fases dos ciclos
 
+> **Estado no repositório (2026-11-10):** só este README foi versionado (commit `da7a529`). O painel, o script, o relatório metodológico e os CSVs citados abaixo **não estão no repositório**, e os resultados da seção final não podem ser reproduzidos a partir dele até que esses arquivos sejam versionados.
+
 Produtos da tarefa E1 (Frente E). Cruza as séries de eventos do MM (1990–2020) e do NEPAC (2011–2016) com a periodização v3 e com as variáveis observáveis de EOP e DOS de cada fase. **As fontes nunca são somadas.**
 
 | Arquivo | O que é |
@@ -18,7 +20,7 @@ Produtos da tarefa E1 (Frente E). Cruza as séries de eventos do MM (1990–2020
 | `dados/convergencia_fontes.csv` | Spearman entre as duas séries mensais e os meses de pico comuns. |
 | `dados/painel_dados.json` | Os mesmos resultados, no formato que o painel lê. |
 
-## Resultados em uma linha cada
+## Resultados relatados (não verificados no repositório)
 
 - **Concentração:** a taxa de eventos nas fases de ciclo é 3,2 vezes a de fora no MM e 1,5 vez no NEPAC.
 - **Convergência:** MM e NEPAC variam juntos mês a mês (ρ = 0,37), mesmo sem junho de 2013.

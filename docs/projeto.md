@@ -27,8 +27,8 @@ ABNT) — ver `artigo/`.
 
 ### 2. Projeto comparativo — 4 ciclos com codebook `cycle_phases`
 Comparação dos quatro ciclos (Diretas Já, Fora Collor, Junho 2013, Impeachment
-Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
-- Codebook: `codebook/cycle_phases_codebook.yaml`
+Dilma) com periodização em 6 fases por ciclo (24 no total) e 9 variáveis na escala 0–3 (5 de EOP, 3 de DOS e a tradução institucional).
+- Codebook: `docs/codebook/cycle_phases_codebook.yaml`
 - Dados (scores validados em 2026-06-05): `data/processed/cycle_phases/cycle_phases.csv`
 
 ### 3. Quadro de hipóteses (14 hipóteses, 3 famílias)
@@ -49,11 +49,11 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
 > repositório quando disponível.
 
 ### 4. Pipeline PEA — `protest_events` via Acervo Folha
-- `01_scraper.py` (Playwright, login Acervo Folha, busca incremental)
-- `02_doca_coder.py` (API Anthropic, system prompt DoCA, JSON validado)
-- `03_build_dataset.py` (CSV/XLSX multi-aba)
-- `04_intercoder_reliability.py` (Cohen's Kappa ≥ 0,75)
-- Config: `.env`, `queries.yaml`, `doca_codebook.yaml`
+- `src/data/scraper.py` (Playwright, login Acervo Folha, busca incremental)
+- `src/preprocessing/coder.py` (API Anthropic, system prompt DoCA, JSON validado)
+- `src/preprocessing/build_dataset.py` (CSV/XLSX multi-aba)
+- `src/preprocessing/intercoder_reliability.py` (Cohen's Kappa ≥ 0,75)
+- Config: `.env`, `config/queries.yaml`, `config/doca_codebook.yaml`
 - **Âncora metodológica**: Alonso, A. et al. "Análise de Eventos de Protesto:
   decisões metodológicas na organização do BEP 2013-2016." *Plural*, v. 31.2,
   2024. DOI: 10.11606/issn.2176-8099.pcso.2024.233335.
@@ -76,12 +76,12 @@ Dilma) com periodização em 5 fases e 8 variáveis (5 OP + 3 OD), escala 0–3.
    pipeline DoCA quando houver credenciais.
 
 ## Incorporação dos artefatos
-- `docs/artefatos-incorporacao.md` — inventário e parecer sobre a pasta `artefatos/`
+- `docs/artefatos-incorporacao.md` — inventário e parecer sobre a pasta `docs/artefatos/`
   (produtos do Projeto claude.ai): o que foi incorporado, superado ou reservado para
   a consolidação do artigo, e a decisão pendente de periodização.
 
 ## Relatório metodológico
-- `metodologia/relatorio-metodologico.md` — relatório acadêmico descritivo de todas
+- `docs/methodology/relatorio-metodologico.md` — relatório acadêmico descritivo de todas
   as etapas metodológicas do projeto (abordagem teórica, coleta de dados, pipeline,
   bancos, insights).
 

@@ -22,7 +22,7 @@ face** — exigem recursos substanciais de conhecimento, trabalho, dinheiro e co
 - **`bancos/`** — reforça a regra já vigente no projeto de tratar NEPAC e Mass
   Mobilization como **fontes independentes não somáveis**, cada uma com sua cadeia de
   decisões próprias, em vez de mesclá-las em um "banco maior".
-- **`metodologia/relatorio-metodologico.md` §7** — argumento para declarar as decisões de
+- **`docs/methodology/relatorio-metodologico.md` §7** — argumento para declarar as decisões de
   processamento como parte das limitações.
 
 ## Por que importa aqui especificamente

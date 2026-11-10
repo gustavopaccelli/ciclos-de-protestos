@@ -114,7 +114,7 @@ desfecho), o desenho incorpora **três fases não-canônicas**, teoricamente fun
 A fronteira **Junho 2013 → Impeachment Dilma** foi redefinida: Junho encerra-se em 2013 (ciclo de
 eclosão); a articulação do impeachment inicia-se após o 2º turno de 26/10/2014. A periodização é
 documentada e versionada (`docs/periodizacao-articulacao.md`, `docs/periodizacao-revisao.md`),
-com preservação das versões anteriores (`data/cycle_phases_v2_prearticulacao.csv`).
+com preservação das versões anteriores (`data/processed/cycle_phases/cycle_phases_v2_prearticulacao.csv`).
 
 ### 3.3 Quadro de hipóteses
 
@@ -137,18 +137,18 @@ agregação direta.
 Foi projetado um pipeline em quatro passos (`src/` + `bancos/03_aep_br/`) para a construção do banco
 `protest_events` a partir do **Acervo Folha de S.Paulo**:
 
-1. **`01_scraper.py`** — raspagem via **Playwright** (navegador headless Chromium). Realiza login
+1. **`src/data/scraper.py`** — raspagem via **Playwright** (navegador headless Chromium). Realiza login
    no Acervo, itera termos de busca × janelas temporais definidas em `config/queries.yaml`, salva
    cada artigo como JSON e mantém **estado incremental** (permite interromper e retomar). Os
    seletores CSS são centralizados para manutenção, dado que o Acervo é uma aplicação dinâmica
    (React) sujeita a mudanças de layout.
-2. **`02_doca_coder.py`** — codificação assistida por IA via **API Anthropic** com *structured
+2. **`src/preprocessing/coder.py`** — codificação assistida por IA via **API Anthropic** com *structured
    outputs* (JSON validado por esquema), *prompt caching* do system prompt e **UUID5
    determinístico** por evento (deduplicação estável). Aplica os critérios de elegibilidade e o
    codebook.
-3. **`03_build_dataset.py`** — normalização contra os dicionários do codebook, *clustering* para
+3. **`src/preprocessing/build_dataset.py`** — normalização contra os dicionários do codebook, *clustering* para
    evento canônico (deduplicação entre fontes) e exportação CSV/XLSX multi-aba.
-4. **`04_intercoder_reliability.py`** — aferição de confiabilidade inter-codificadores por
+4. **`src/preprocessing/intercoder_reliability.py`** — aferição de confiabilidade inter-codificadores por
    **Cohen's Kappa** (limiar ≥ 0,75; Krippendorff, 2004).
 
 **Organização do scrap.** A busca replica o protocolo BEP: palavras-chave validadas
@@ -226,11 +226,11 @@ governança de dados e rastreabilidade:
 - **Preservação de fontes:** arquivos originais (`.docx`, `.xlsx`, `.pdf`) mantidos sem alteração;
   conversões (para CSV/Markdown, datas ISO) documentadas; nenhuma imputação silenciosa.
 - **Incorporação de artefatos:** os produtos das sessões de trabalho do pesquisador (pasta
-  `artefatos/`) foram revistos item a item, com parecer explícito de incorporação, superação ou
+  `docs/artefatos/`) foram revistos item a item, com parecer explícito de incorporação, superação ou
   reserva (`docs/artefatos-incorporacao.md`).
 - **Segurança:** credenciais (`.env`) nunca versionadas; verificação sistemática da ausência de
   segredos nos commits.
-- **Bibliografia:** `artigo/referencias-abnt.md` reúne ~90 referências em norma ABNT, com
+- **Bibliografia:** `docs/artigo/referencias-abnt.md` reúne as referências em norma ABNT (95 sobrenomes distintos, conforme `src/analysis/check_bib.py`), com
   verificação de fontes e marcação de itens a confirmar.
 
 ---
@@ -278,8 +278,8 @@ A articulação teórico-empírica produziu um conjunto de achados analíticos, 
 - **Execução do pipeline** pendente de credenciais e validação de seletores (Frente B, piloto aguardando credenciais).
 - **Scores das fases de articulação** e valores de `traducao_institucional` foram derivados
   analiticamente (a partir das versões dos artefatos e da tese) e comportam revisão do pesquisador.
-  Desde 2026-08-22 toda alteração de codificação exige linha em `codebook/historico-codificacao.csv`,
-  e `codebook/valida_cycle_phases.py` recusa escore alterado sem registro correspondente.
+  Desde 2026-08-22 toda alteração de codificação exige linha em `docs/codebook/historico-codificacao.csv`,
+  e `src/preprocessing/valida_cycle_phases.py` recusa escore alterado sem registro correspondente.
 - **Não coleta de dados primários originais**: as interpretações ancoram-se em fontes secundárias
   sistematizadas; a contribuição é conceitual e metodológica.
 - **Agenda:** consolidação do artigo em preprint (Frente C); análise de triangulação dos bancos e
@@ -295,9 +295,9 @@ A articulação teórico-empírica produziu um conjunto de achados analíticos, 
 | 2026-06-10 | Consolidação no repositório; periodização v2 validada; reconstrução do pipeline PEA |
 | 2026-06-16 | Incorporação do Protocolo BEP-CEBRAP (Alonso et al., 2024); quadro de hipóteses |
 | 2026-07-03 | Enriquecimento bibliográfico; validação da cronologia; integração MPEDS |
-| 2026-07-04 | Inclusão das Diretas Já no estudo de caso (4 ciclos); incorporação dos bancos NEPAC e Mass Mobilization; incorporação da pasta `artefatos/` (sementes, referências, valências); periodização v3 (fases de articulação, latência, `traducao_institucional`) fundamentada na tese |
+| 2026-07-04 | Inclusão das Diretas Já no estudo de caso (4 ciclos); incorporação dos bancos NEPAC e Mass Mobilization; incorporação da pasta `docs/artefatos/` (sementes, referências, valências); periodização v3 (fases de articulação, latência, `traducao_institucional`) fundamentada na tese |
 
 ---
 
 *Documento vivo — atualizar a cada nova etapa metodológica relevante. Referências completas em
-`artigo/referencias-abnt.md`.*
+`docs/artigo/referencias-abnt.md`.*

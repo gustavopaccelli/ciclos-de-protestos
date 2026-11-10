@@ -68,7 +68,7 @@ blocos:
     #
     # A escala passa a medir SÓ magnitude. Direção, valência e controle do canal
     # efetivo viram variáveis próprias. Toda recodificação decorrente está em
-    # codebook/historico-codificacao.csv.
+    # docs/codebook/historico-codificacao.csv.
     # -----------------------------------------------------------------------
     traducao_institucional:
       descricao: "Magnitude da conversão da mobilização em resultado institucional, por qualquer canal. NÃO julga o canal — isso é traducao_direcao."

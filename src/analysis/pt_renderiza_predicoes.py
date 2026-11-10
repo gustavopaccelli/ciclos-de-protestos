@@ -4,7 +4,7 @@ Fonte de verdade: process-tracing/dados/predicoes.csv.
 Derivado: a seção "Predições registradas" de cada ciclos/c*/dossie.md, entre os
 marcadores PREDICOES:INICIO e PREDICOES:FIM.
 
-Mesmo padrão que artigo/referencias.bib -> referencias-abnt.md: edite o CSV,
+Mesmo padrão que docs/artigo/referencias.bib -> referencias-abnt.md: edite o CSV,
 nunca a tabela renderizada — ela é sobrescrita a cada execução.
 
 Uso:

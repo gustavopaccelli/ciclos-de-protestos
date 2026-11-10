@@ -1,9 +1,9 @@
 # Referências (ABNT) — estudo de caso e seção teórica
 
 > **Este arquivo é a SAÍDA FORMATADA, não a fonte.** A bibliografia canônica e
-> máquina-legível é [`artigo/referencias.bib`](referencias.bib) (116 entradas, biblatex/abntex2).
+> máquina-legível é [`docs/artigo/referencias.bib`](referencias.bib) (130 entradas, biblatex/abntex2).
 > Ao acrescentar ou corrigir uma referência, edite o `.bib` **primeiro** e reflita aqui.
-> `python artigo/check_bib.py` confere a paridade entre os dois arquivos.
+> `python src/analysis/check_bib.py` confere a paridade entre os dois arquivos.
 
 Abaixo estão todas as referências utilizadas no artigo, formatadas em ABNT, em ordem alfabética.
 

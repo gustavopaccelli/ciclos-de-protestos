@@ -52,7 +52,7 @@ empírica âncora extraída dos casos analisados em Costa (2024).
 > construção: todos produziram resultado institucional, inclusive Junho de 2013, que o
 > projeto trata como o ciclo sem resultado definido. Qualquer ato institucional contava como
 > corroboração. A revisão troca a VD por uma grandeza com variação observada e dá à cláusula
-> da DOS um refutador próprio. Registro em `codebook/historico-codificacao.csv`.
+> da DOS um refutador próprio. Registro em `docs/codebook/historico-codificacao.csv`.
 
 | Dimensão | Proposição |
 |---|---|

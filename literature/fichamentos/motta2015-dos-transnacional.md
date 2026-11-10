@@ -39,4 +39,4 @@ Conclui pela necessidade de considerar as várias dimensões das estruturas de o
 - **H2.1** (hegemonia discursiva) e **H2.3** (ressonância cultural) — precedente empírico.
 - **`artigo/secoes/02-dos-secao-teorica.md`** — permite ancorar a seção de DOS em caso
   latino-americano, não só europeu/norte-americano.
-- **`codebook/cycle_phases_codebook.yaml`** — cotejo das variáveis `od_*`.
+- **`docs/codebook/cycle_phases_codebook.yaml`** — cotejo das variáveis `od_*`.

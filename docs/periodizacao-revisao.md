@@ -118,5 +118,5 @@ de EOP+DOS), que exige incluir a fase formativa no ciclo. Alternativa
 - Verificar na Folha/Datafolha as datas exatas dos atos de out/2013 (greve dos
   professores RJ, 07/10 e 15/10) antes de fixar o limite declínio→desfecho de J13.
 - A periodização v2, se validada, deve ser regravada em
-  `codebook/cycle_phases_codebook.yaml` (nota de periodização) e o CSV v1
+  `docs/codebook/cycle_phases_codebook.yaml` (nota de periodização) e o CSV v1
   substituído.

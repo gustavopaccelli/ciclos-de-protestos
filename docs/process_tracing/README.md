@@ -20,7 +20,7 @@ evidências-semente (4 verificadas, 3 pendentes, 1 com divergência aberta em fo
 | `docs/cronologia-validada.md` | datas-chave validadas | referencia, não reescreve |
 | `experiments/` | memorandos exploratórios de 2026-06 | herda a prática de predições registradas |
 | `data/processed/cycle_phases/cycle_phases.csv` | escores ordinais por fase | fornece FK; não altera |
-| `artefatos/tese/` | tese de Costa (2024) | eleva sua base de secundária para primária |
+| `docs/artefatos/tese/` | tese de Costa (2024) | eleva sua base de secundária para primária |
 
 ## Ancoragem na tese
 
@@ -80,7 +80,7 @@ python process-tracing/scripts/gera_planilha_fontes.py     # CSV -> xlsx
 **Dois artefatos são derivados e não devem ser editados à mão:** a seção de predições dos
 dossiês (vem de `dados/predicoes.csv`) e `fontes/fontes-de-dados.xlsx` (vem de
 `fontes/fontes-de-dados.csv`). É o mesmo padrão que o repositório já usa em
-`artigo/referencias.bib` → `referencias-abnt.md`. `renderiza_predicoes.py --check` acusa
+`docs/artigo/referencias.bib` → `referencias-abnt.md`. `renderiza_predicoes.py --check` acusa
 dessincronia.
 
 Dependências: `pandas`, `pyyaml` (já em `requirements.txt`). Os extratores usam

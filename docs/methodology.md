@@ -223,7 +223,7 @@ repository/
 ├── docs/                # Documentação completa
 │   ├── codebook.md      # Este arquivo (variáveis)
 │   ├── methodology.md   # Este documento (procedimentos)
-│   ├── artefatos/       # Documentos de pesquisa
+│   ├── docs/artefatos/       # Documentos de pesquisa
 │   ├── experiments/     # Protocolos por ciclo
 │   └── process_tracing/ # Documentação de process tracing
 └── outputs/

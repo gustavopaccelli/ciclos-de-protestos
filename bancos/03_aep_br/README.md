@@ -4,7 +4,7 @@ Este é o banco de eventos de protesto construído pelo projeto a partir da impr
 
 | Pasta | Conteúdo |
 |---|---|
-| [`codebook/`](codebook/) | `codebook_aep_br.md` (para leitura) e `codebook_aep_br.yaml` (especificação para o pipeline), versão 1.0 |
+| [`docs/codebook/`](docs/codebook/) | `codebook_aep_br.md` (para leitura) e `codebook_aep_br.yaml` (especificação para o pipeline), versão 1.0 |
 | [`fontes/`](fontes/) | `fontes_aep_br.csv`, com veículos, períodos, tipo de acesso e prioridade |
 | [`sementes/`](sementes/) | eventos codificados à mão: 59 de Diretas Já (1983–84) e 15 de Fora Collor (1992) |
 | [`coleta/`](coleta/) | saída do scraper do Acervo Folha (`acervo_protestos.json`, `folha_acervo/`) e `metadata_folha.json` |

@@ -16,12 +16,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-BASE = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parents[1]  # src/
 STEPS = {
-    "scrape": ["01_scraper.py"],
-    "code": ["02_doca_coder.py"],
-    "build": ["03_build_dataset.py"],
-    "kappa": ["04_intercoder_reliability.py"],
+    "scrape": ["data/scraper.py"],
+    "code": ["preprocessing/coder.py"],
+    "build": ["preprocessing/build_dataset.py"],
+    "kappa": ["preprocessing/intercoder_reliability.py"],
 }
 
 # Passos executados por `--step all`. `kappa` fica de fora porque depende de
