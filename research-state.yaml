@@ -15,12 +15,12 @@ project:
     sobre o tema serão incorporados depois. As hipóteses são instrumentos de teste
     construídos antes do teste: relações encontradas por inspeção do corpus já codificado
     estão assinaladas como ajuste intra-amostra e datadas em
-    codebook/historico-codificacao.csv, e não devem ser lidas como corroboração.
+    docs/codebook/historico-codificacao.csv, e não devem ser lidas como corroboração.
   started: "2026-04-01"   # início real do projeto (sessões anteriores); repo desde 2026-06-10
   domain: "sociologia política — TPP / movimentos sociais / análise de conjuntura"
   method: >
-    Comparação qualitativa de casos + codificação ordinal cycle_phases (8 variáveis,
-    escala 0-3, 5 fases) + process tracing analítico; PEA via Acervo Folha (Protocolo
+    Comparação qualitativa de casos + codificação ordinal cycle_phases (9 variáveis,
+    escala 0-3, 6 fases por ciclo) + process tracing analítico; PEA via Acervo Folha (Protocolo
     BEP-CEBRAP — Alonso et al. 2024, Plural 31.2).
   pi: "Gustavo Paccelli Costa (tese UFJF 2024 como fonte primária)"
 
@@ -31,8 +31,8 @@ components:
     status: "seções redigidas; estudo de caso alinhado a 4 ciclos (Diretas Já incluída em 2026-07-04, subseções 4.1-4.6); falta consolidação final, diagrama/stepper, abstract e revisão"
   cycle_phases:
     descricao: "Dataset fase×ciclo com scores 0-3 validados (2026-06-05)"
-    local: "data/cycle_phases.csv + codebook/cycle_phases_codebook.yaml"
-    status: "periodização v3 validada em 2026-07-04 (24 fases): fases de articulação em Diretas Já, Fora Collor e Impeachment; radicalização mantida em J13; latência no Impeachment; variável traducao_institucional. Base: tese Costa 2024. Backup v2 em data/cycle_phases_v2_prearticulacao.csv"
+    local: "data/processed/cycle_phases/cycle_phases.csv + docs/codebook/cycle_phases_codebook.yaml"
+    status: "periodização v3 validada em 2026-07-04 (24 fases): fases de articulação em Diretas Já, Fora Collor e Impeachment; radicalização mantida em J13; latência no Impeachment; variável traducao_institucional. Base: tese Costa 2024. Backup v2 em data/processed/cycle_phases/cycle_phases_v2_prearticulacao.csv"
   bancos_externos:
     descricao: "Bancos de dados de terceiros incorporados (fontes independentes, não somáveis)"
     local: "bancos/"
@@ -62,19 +62,19 @@ components:
     status: "E1 concluída (data/triangulacao/e1_cruzamento_mm_nepac/, produtos/e1-triangulacao/); E2 e E3 em stand-by desde 2026-10-21."
   metodologia:
     descricao: "Relatório metodológico acadêmico das etapas da pesquisa"
-    local: "metodologia/relatorio-metodologico.md"
+    local: "docs/methodology/relatorio-metodologico.md"
     status: "Criado em 2026-07-04: abordagem teórico-metodológica, prospecção/coleta (pipeline, bancos, sementes), governança, insights, cronologia. Documento vivo."
   bibliografia:
     descricao: "Bibliografia canônica máquina-legível + fichamentos analíticos"
-    local: "artigo/referencias.bib; literature/fichamentos/; literature/survey.md"
+    local: "docs/artigo/referencias.bib; literature/fichamentos/; literature/survey.md"
     status: >
-      Criada em 2026-07-18: referencias.bib com 116 entradas (biblatex/abntex2), unificando
+      Criada em 2026-07-18: referencias.bib com 130 entradas (biblatex/abntex2), unificando
       a lista ABNT (~99), o .bib dos artefatos (37) e 16 obras do levantamento — AEP
       automatizada/codificação por LLM (Haunss, Halterman & Keith, Lorenzini, Hoffmann,
       GLOCON) e DOS pós-2015 (Motta, Cammaerts, Wahlström & Törnberg, Li, Caiani, Meyer &
       Staggenborg). 10 fichamentos. referencias-abnt.md passa a ser saída formatada, não
-      fonte. PENDÊNCIA: 26 entradas marcadas VERIFICAR (metadados por confirmar) e obras
-      fichadas apenas por abstract — ver docs/tarefas.md V1/V2.
+      fonte. PENDÊNCIA: nenhuma entrada marcada VERIFICAR em 2026-11-10 (checklist em
+      literature/verificacao-bibliografica.md); obras fichadas apenas por abstract — ver docs/tarefas.md V1/V2.
   quadro_hipoteses:
     descricao: "14 hipóteses em 3 famílias (H1 institucional, H2 discursiva, H3 integrada)"
     local: "docs/quadro-hipoteses.md (quadro completo); docs/projeto.md (síntese)"
@@ -132,7 +132,7 @@ outer_loop:
   last_reflection: >
     2026-06-10: PIVOT — abandono do framework bootstrap da sessão (matrizes
     qualitativas próprias) em favor do desenho já consolidado do pesquisador
-    (codebook cycle_phases, periodização 5 fases, 14 hipóteses, artigo do
+    (codebook cycle_phases, periodização de 6 fases por ciclo, 14 hipóteses, artigo do
     triângulo, pipeline PEA), trazido via documentos das sessões claude.ai.
     Os memorandos C1-C4 da sessão ficam como material exploratório de apoio
     (justificativas de scores e fontes verificadas) em experiments/.
@@ -142,7 +142,7 @@ workspace:
   findings: "findings.md"
   log: "research-log.md"
   artigo: "artigo/"
-  codebook: "codebook/"
+  codebook: "docs/codebook/"
   data: "data/"
   literature_dir: "literature/"
   experiments_dir: "experiments/"

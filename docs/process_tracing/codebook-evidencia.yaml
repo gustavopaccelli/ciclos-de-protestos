@@ -111,7 +111,7 @@ dimensoes_conjuntura:
     descricao: "Correlação entre atores: quem detém que recurso, aliança e veto."
   articulacao_estrutura_conjuntura:
     descricao: "Como determinantes de longa duração se manifestam no tempo curto."
-fonte_na_tese_dimensoes: "METODOLOGIA, citando JOSÉ DE SOUZA (1986, p. 9). Entrada em artigo/referencias.bib: josedesouza1986conjuntura"
+fonte_na_tese_dimensoes: "METODOLOGIA, citando JOSÉ DE SOUZA (1986, p. 9). Entrada em docs/artigo/referencias.bib: josedesouza1986conjuntura"
 
 # ---------------------------------------------------------------------------
 # MECANISMOS — Tilly & Tarrow (2015); McAdam et al. (2004); Christiansen (2009)

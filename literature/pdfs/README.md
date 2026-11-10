@@ -19,21 +19,21 @@ O registro abaixo mantém a lacuna visível em vez de silenciosa.
 
 ## Checklist de metadados
 
-`literature/verificacao-bibliografica.md` lista as 32 entradas do `.bib` cujos metadados
-estão incompletos ou não foram conferidos em fonte primária. É gerado por
-`artigo/lista_verificacao.py`; ao completar uma entrada, remova a nota `VERIFICAR` do `.bib`
+`literature/verificacao-bibliografica.md` lista as entradas do `.bib` cujos metadados
+estão incompletos ou não foram conferidos em fonte primária (hoje, nenhuma). É gerado por
+`src/analysis/lista_verificacao.py`; ao completar uma entrada, remova a nota `VERIFICAR` do `.bib`
 e regenere — ela sai da lista sozinha.
 
 ## Convenção de nomes
 
 `sobrenome-ano-palavra-chave.pdf`, em minúsculas e sem acento — por exemplo
 `holdo-2019-cooptation.pdf`. O nome deve corresponder à chave da entrada em
-`artigo/referencias.bib` de forma reconhecível.
+`docs/artigo/referencias.bib` de forma reconhecível.
 
 ## Materiais de replicação
 
 CHENOWETH e ULFELDER (2017) publicaram os dados e scripts em
 `github.com/ulfelder/nonviolent-uprisings-replication` (três scripts em R e dois datasets).
 É a base empírica do Quadro 3 da tese de Costa (2024), que ancora a bateria de indicadores do
-T-1 estrutural em `process-tracing/dados/series_estruturais.csv`. Candidato natural para a
+T-1 estrutural em `docs/process_tracing/dados/series_estruturais.csv`. Candidato natural para a
 etapa de incorporação de repositórios.

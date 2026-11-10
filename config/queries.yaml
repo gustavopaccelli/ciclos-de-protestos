@@ -2,7 +2,7 @@
 # Usado por src/data/scraper.py
 #
 # O conjunto abaixo reproduz as palavras-chave validadas pelo BEP-CEBRAP
-# (docs/aep-protocol-bep.md §3.1). Antes desta revisão, queries.yaml trazia um
+# (docs/aep-protocol-bep.md §3.1). Antes desta revisão, config/queries.yaml trazia um
 # conjunto próprio que omitia os termos de enquadramento negativo (baderna,
 # vândalos, depredação, black bloc) — justamente os que capturam a cobertura
 # hostil, decisiva para a análise de DOS e para o Bloco V (repressão).

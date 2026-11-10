@@ -7,9 +7,9 @@ Checa:
      traducao_institucional = 0. Mesma regra para valência e controle.
   4. Periodização: 6 fases por ciclo, sem lacuna nem sobreposição.
   5. Trilha de auditoria: toda mudança de escore em relação à versão em git
-     precisa de linha correspondente em codebook/historico-codificacao.csv.
+     precisa de linha correspondente em docs/codebook/historico-codificacao.csv.
 
-Uso: python codebook/valida_cycle_phases.py [--estrito]
+Uso: python src/preprocessing/valida_cycle_phases.py [--estrito]
 """
 
 import argparse
@@ -119,7 +119,7 @@ def checa_periodizacao(df):
 def checa_trilha(df):
     secao("5. Trilha de auditoria")
     if not HISTORICO.exists():
-        erros.append("codebook/historico-codificacao.csv ausente")
+        erros.append("docs/codebook/historico-codificacao.csv ausente")
         return
     hist = pd.read_csv(HISTORICO, dtype=str)
     print(f"  {len(hist)} registros em historico-codificacao.csv")

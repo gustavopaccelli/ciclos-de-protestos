@@ -12,7 +12,7 @@ Versão canônica unificada de todos os eventos de protesto após triangulação
 - Resolução de conflitos de datas/localizações
 - Inclusão de metadados de confiabilidade
 
-Esperado conter:
+Ainda não gerado: a pasta está vazia. Esperado conter:
 - `protestos_brasil_1985-2024_harmonizado.csv` (ou similar)
 - `dicionário_variáveis_harmonizado.md`
 - `log_triangulacao.json` (discrepâncias resolvidas)
@@ -21,8 +21,8 @@ Esperado conter:
 Dados específicos de fases de cada ciclo de protesto.
 
 Esperado conter:
-- `cycle_phases.csv`: Fases (pré-articulação, articulação, auge, desarticulação) com datas
-- `cycle_phases_v2_prearticulacao.csv`: Versão com fase de pré-articulação expandida
+- `cycle_phases.csv`: 24 fases, 6 por ciclo (emergência, expansão, pico, declínio e desfecho; articulação em todos os ciclos exceto Junho de 2013; radicalização só em Junho de 2013; latência só no Impeachment), com datas
+- `cycle_phases_v2_prearticulacao.csv`: backup da periodização v2
 - Documentação de critérios de delimitação de fases
 
 ## Fluxo

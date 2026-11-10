@@ -34,5 +34,5 @@ mobilizado; a existência de contramobilização não é variável explícita �
 
 ## Onde entra no projeto
 - **H3.4** e **H3.5** — fundamentação teórica adicional.
-- **`codebook/cycle_phases_codebook.yaml`** — questão aberta: faria sentido uma variável de
+- **`docs/codebook/cycle_phases_codebook.yaml`** — questão aberta: faria sentido uma variável de
   contramobilização no nível da fase? Registrar como decisão pendente, não implementar agora.

@@ -24,7 +24,7 @@ demonstrado sobre um grande corpus jornalístico alemão.
 - **`docs/aep-protocol-bep.md` §12** — referência de desenho, ao lado de Halterman & Keith.
 - **`src/` + `bancos/03_aep_br/`** — argumento para separar triagem e codificação em duas passagens; hoje
   estão fundidas (defeito conhecido, ainda não corrigido).
-- **`metodologia/relatorio-metodologico.md` §4.1** — legitima metodologicamente a opção por
+- **`docs/methodology/relatorio-metodologico.md` §4.1** — legitima metodologicamente a opção por
   codificação assistida por LLM, hoje sustentada apenas por Alonso et al. (2024, p. 320).
 
 ## Ressalva

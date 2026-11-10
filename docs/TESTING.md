@@ -8,7 +8,7 @@
 | `src/analysis/check_bib.py`, `varre_citacoes.py` | Rodam e leem `docs/artigo/referencias.bib` |
 | `src/preprocessing/valida_cycle_phases.py` | 0 erros, 0 avisos |
 | `src/preprocessing/pt_valida_registro.py` | Nenhum problema encontrado |
-| `bancos/03_aep_br/codebook/codebook_aep_br.yaml` | YAML válido; 50 variáveis; todos os vocabulários referenciados existem |
+| `bancos/03_aep_br/codebook/codebook_aep_br.yaml` | YAML válido; 53 variáveis; todos os vocabulários referenciados existem |
 | `src/data/check_schema_coverage.py` | OK: 53 variáveis (44 pedidas ao modelo, 9 atribuídas pelo pipeline), enums alinhados, regra de público e as 6 decisões no prompt |
 | `src/preprocessing/coder.py` | Teste offline com cliente falso: o evento de exemplo (semente das Diretas Já) valida no schema; ciclo, fase, evento_id e modelo_versao são preenchidos; recusa vira pendência. **Não foi feita nenhuma chamada real à API** |
 | `build_dataset.py`, `intercoder_reliability.py`, `init_doca_database.py` | Rodam sobre o exemplo: 2 extrações viram 1 evento canônico; kappa com acordo total; tabela SQLite com 54 colunas e CHECK dos vocabulários |

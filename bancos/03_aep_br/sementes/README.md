@@ -1,7 +1,7 @@
 # Sementes do banco `protest_events` — ciclos pré-2011
 
 Dados de eventos de protesto **codificados manualmente** pelo pesquisador (sessões
-claude.ai), extraídos de `artefatos/fases_ciclos/` e convertidos para CSV em 2026-07-04.
+claude.ai), extraídos de `docs/artefatos/fases_ciclos/` e convertidos para CSV em 2026-07-04.
 
 Cobrem os **dois ciclos mais antigos** — Diretas Já (1983-84) e Fora Collor (1992) —
 justamente os que os bancos externos não alcançam bem: o Mass Mobilization começa em
@@ -31,7 +31,7 @@ trabalhista, estudantil, cívico/partidário etc.), ancorado em Mische (2008).
 
 ## Proveniência e status
 
-- Convertidos fielmente dos `.xlsx` originais em `artefatos/fases_ciclos/` (preservados).
+- Convertidos fielmente dos `.xlsx` originais em `docs/artefatos/fases_ciclos/` (preservados).
 - `doca_status` indica o estágio de codificação DoCA de cada semente.
 - São **dados do próprio projeto** (não banco de terceiros) — não confundir com
   `bancos/`. Alimentam diretamente o `protest_events` do pipeline.

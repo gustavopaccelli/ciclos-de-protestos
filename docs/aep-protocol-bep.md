@@ -151,7 +151,7 @@ O campo `event_id` no schema é um UUID5 determinístico calculado sobre `(sourc
 ## 5. Estrutura de variáveis — 5 blocos BEP mapeados ao schema DoCA
 
 O BEP organiza variáveis em 5 blocos. A tabela abaixo mapeia cada bloco ao campo
-correspondente no `event_schema` de `doca_codebook.yaml`.
+correspondente no `event_schema` de `config/doca_codebook.yaml`.
 
 ### Bloco I — Identificação do evento
 
@@ -354,7 +354,7 @@ O pipeline `protest_events` opera em 5 passagens sequenciais. Cada passagem tem 
 
 | Item | Descrição |
 |---|---|
-| Entrada | Palavras-chave de `queries.yaml`; período de busca |
+| Entrada | Palavras-chave de `config/queries.yaml`; período de busca |
 | Processamento | Login no Acervo Folha; busca incremental por data; captura de HTML/texto da notícia |
 | Saída | Um JSON por matéria em `bancos/03_aep_br/coleta/folha_acervo/` com `{url, date_hint, title, text, search_term, date_range}` |
 
@@ -418,7 +418,7 @@ projeto. Ela operacionaliza dois trabalhos de referência:
 
 > Nota de status: referências incorporadas ao repositório a partir de levantamento
 > bibliográfico (2026-07-18) e **ainda não verificadas quanto a volume/página/DOI**. Ver
-> `literature/fichamentos/` e a marcação em `artigo/referencias.bib`.
+> `literature/fichamentos/` e a marcação em `docs/artigo/referencias.bib`.
 
 ### 12.1 Estágio 1 — Preparação do codebook para leitura por máquina
 

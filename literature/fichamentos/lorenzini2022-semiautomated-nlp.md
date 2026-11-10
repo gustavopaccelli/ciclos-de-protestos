@@ -26,7 +26,7 @@ formas, atores e temas, resultando em **30.000 eventos únicos em 30 países eur
 - **`docs/aep-protocol-bep.md` §12.4 e §12.6** — tipologia de erro e registro de execução.
 - **`docs/fontes-alternativas.md`** — o argumento de viés de fonte única sustenta a busca
   por fontes múltiplas na Hemeroteca Digital para Diretas Já e Fora Collor.
-- **`metodologia/relatorio-metodologico.md` §7 (limitações)** — o viés de cobertura
+- **`docs/methodology/relatorio-metodologico.md` §7 (limitações)** — o viés de cobertura
   jornalística precisa ser declarado, não apenas mitigado.
 
 ## Tensão produtiva com o desenho atual

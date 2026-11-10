@@ -81,6 +81,6 @@ Este banco é **complementar** ao pipeline AEP próprio (`src/` + `bancos/03_aep
 - Análise de repertórios, alvos e bases sociais como evidência para as hipóteses H1–H3 (`docs/quadro-hipoteses.md`).
 - Referência metodológica comparada: a definição de evento de Tatagiba & Galvão (Tilly 1978; Olzak 1989) dialoga diretamente com o Protocolo BEP-CEBRAP (Alonso et al. 2024) já adotado — ambas usam a Folha como fonte e o evento como unidade.
 
-**Referência ABNT** (já incorporada em `artigo/referencias-abnt.md` — Tatagiba 2014, 2018; Tatagiba, Trindade & Teixeira 2015): a citação específica deste banco deve ser:
+**Referência ABNT** (já incorporada em `docs/artigo/referencias-abnt.md` — Tatagiba 2014, 2018; Tatagiba, Trindade & Teixeira 2015): a citação específica deste banco deve ser:
 
 > TATAGIBA, Luciana; GALVÃO, Andreia. **Os protestos no Brasil em tempos de crise (2011-2016): banco de dados e livro de código.** Campinas: NEPAC/CEMARX, UNICAMP, 2019. Disponível em: https://nepac.ifch.unicamp.br/banco-de-dados.
