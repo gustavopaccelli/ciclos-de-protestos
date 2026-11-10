@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triangulação MM × NEPAC</title>
+<meta name="description" content="Cruzamento das séries de eventos do Mass Mobilization e do NEPAC com as fases dos ciclos de protesto no Brasil (tarefa E1).">
+<link rel="stylesheet" href="../estilo.css">
+<style>
+  :root { --mm: #2f5f8f; --nepac: #b5591c; --faixa: rgba(138, 59, 18, .08); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --mm: #7fb0e0; --nepac: #f0a06a; --faixa: rgba(240, 160, 106, .10); } }
+  :root[data-theme="dark"] { --mm: #7fb0e0; --nepac: #f0a06a; --faixa: rgba(240, 160, 106, .10); }
+  .controles { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin: 1em 0; font-family: var(--sans); font-size: .85rem; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .seg button { font: inherit; padding: 6px 14px; border: 0; background: var(--card); color: var(--fg); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+  select { font: inherit; padding: 5px 8px; background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; max-width: 100%; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 1em 0; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; font-family: var(--sans); }
+  .tile .num { font-size: 1.8rem; font-weight: 700; line-height: 1.1; }
+  .tile .rot { font-size: .8rem; color: var(--muted); }
+  .mm { color: var(--mm); } .nepac { color: var(--nepac); }
+  svg { display: block; width: 100%; height: auto; font-family: var(--sans); }
+  .grafico { min-width: 600px; }
+  svg text { fill: var(--fg); font-size: 11px; }
+  svg .muted { fill: var(--muted); }
+  svg .eixo { stroke: var(--line); }
+  table.dados { border-collapse: collapse; font-family: var(--sans); font-size: .85rem; width: 100%; }
+  .dados th, .dados td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .dados td.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .dados tr.destaque td { font-weight: 700; }
+  .rho { display: inline-block; width: 120px; height: 10px; background: var(--line); position: relative; vertical-align: middle; border-radius: 2px; }
+  .rho span { position: absolute; top: 0; height: 10px; background: var(--fg); border-radius: 2px; }
+  .rho::after { content: ""; position: absolute; left: 50%; top: -2px; height: 14px; border-left: 1px solid var(--muted); }
+  .legenda { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--sans); font-size: .8rem; color: var(--muted); align-items: center; }
+  .sw { display: inline-block; width: 14px; height: 12px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+  .v0 { background: var(--s0); } .v1 { background: var(--s1); } .v2 { background: var(--s2); } .v3 { background: var(--s3); }
+  ol.passos li { margin-bottom: .4em; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker"><a href="../">Produtos</a> · Frente E · Tarefa E1</p>
+  <h1>Frequência de protestos e fases dos ciclos: triangulação entre Mass Mobilization e NEPAC</h1>
+  <p class="meta">Gustavo Paccelli Costa · UFJF · dados gerados em <span id="gerado"></span></p>
+
+  <h2>Resumo</h2>
+  <p>Este relatório cruza duas séries independentes de eventos de protesto no Brasil com a periodização em fases dos ciclos de protesto do projeto (versão 3) e com a codificação ordinal de estruturas de oportunidades políticas (EOP) e discursivas (DOS) de cada fase. As fontes são o <strong class="mm">Mass Mobilization</strong> (Clark &amp; Regan, v16; imprensa internacional, 1990–2020) e o banco do <strong class="nepac">NEPAC/UNICAMP</strong> (Tatagiba &amp; Galvão, 2019; Folha de S.Paulo, 2011–2016). As fontes são comparadas e nunca somadas: cada cálculo é feito separadamente para cada uma.</p>
+  <ul id="resumo"></ul>
+  <p class="nota">Leitura exploratória. A frequência de eventos registrados pela imprensa é uma das dimensões de um ciclo, ao lado do tamanho, da visibilidade e dos repertórios. As correlações com EOP e DOS foram calculadas sobre fases cuja codificação o pesquisador já conhecia; equivalem a ajuste intra-amostra e não corroboram hipóteses.</p>
+
+  <h2>Taxa de eventos por fase</h2>
+  <p>Eventos por 30 dias cobertos pela fonte, com intervalo de confiança exato de 95%. Fases fora da cobertura aparecem como NA (não como zero); fases com menos de 50% dos dias cobertos aparecem esmaecidas e não entram nos testes. Ao lado de cada barra, o escore da variável selecionada.</p>
+  <div class="controles">
+    <span class="seg" role="group" aria-label="Fonte" id="fonteTaxa"></span>
+    <label>Variável ao lado: <select id="varTaxa"></select></label>
+  </div>
+  <div class="legenda"><span><span class="sw v0"></span>0</span><span><span class="sw v1"></span>1</span><span><span class="sw v2"></span>2</span><span><span class="sw v3"></span>3</span><span>· fase "pico" em negrito</span></div>
+  <div class="scroll"><div id="graficoTaxa" class="grafico"></div></div>
+
+  <h2>Concentração: dentro e fora das fases</h2>
+  <p>Taxa de eventos nos dias que pertencem a alguma fase de ciclo, comparada à taxa nos demais dias, dentro da cobertura de cada fonte.</p>
+  <div class="tiles" id="tiles"></div>
+
+  <h2>A fase "pico" tem a maior frequência?</h2>
+  <div class="scroll"><table class="dados" id="picos"></table></div>
+
+  <h2>Associação entre frequência e EOP/DOS</h2>
+  <p>Correlação de Spearman entre a taxa de eventos e cada variável ordinal, sobre as fases elegíveis de cada fonte. O valor p vem de permutação; o q corrige para as nove comparações (Benjamini-Hochberg). Em negrito, q &lt; 0,05.</p>
+  <div class="controles"><span class="seg" role="group" aria-label="Fonte" id="fonteAssoc"></span></div>
+  <div class="scroll"><table class="dados" id="assoc"></table></div>
+  <details>
+    <summary class="sans">Mesma análise dentro de cada ciclo (permutação exata)</summary>
+    <p class="meta">Com 5 ou 6 fases por ciclo, o menor p possível é cerca de 0,003 (1/720 ou 1/120 ordenações); sem correção para comparações múltiplas. Células vazias: a variável não varia dentro do ciclo.</p>
+    <div class="scroll"><table class="dados" id="intra"></table></div>
+  </details>
+
+  <h2>Séries mensais na sobreposição das fontes</h2>
+  <p>Eventos por mês entre <span id="perMensal"></span>, em painéis separados (escalas diferentes). As faixas sombreadas são as fases dos ciclos Junho de 2013 e Impeachment; os pontos marcam os meses acima do percentil 90 nas duas fontes.</p>
+  <div class="scroll"><div id="graficoMensal" class="grafico"></div></div>
+  <div class="scroll"><table class="dados" id="conv"></table></div>
+
+  <h2>Método, passo a passo</h2>
+  <ol class="passos">
+    <li><strong>Eventos.</strong> MM: linhas com <code>protest = 1</code>, datadas pelo início (ano, mês, dia). NEPAC: um evento por <code>Codigo_evento</code> (o banco registra uma linha por cidade), datado pela data de início mais antiga entre as linhas do evento.</li>
+    <li><strong>Cobertura.</strong> MM de 01/01/1990 a 31/12/2020; NEPAC de 01/01/2011 até a última data observada no banco. Fora da cobertura, a contagem é NA.</li>
+    <li><strong>Atribuição de fase</strong> pela data de início, com a periodização v3 (<code>data/processed/cycle_phases/cycle_phases.csv</code>) e a mesma função do pipeline AEP-BR (<code>src/analysis/atribui_ciclo.py</code>).</li>
+    <li><strong>Taxa</strong> = eventos ÷ dias cobertos × 30, com IC exato de Poisson (Garwood, 1936). Só entram nos testes fases com pelo menos 50% dos dias cobertos.</li>
+    <li><strong>Associação</strong>: Spearman com postos médios para empates; p bicaudal por 10.000 permutações com semente fixa; q de Benjamini e Hochberg (1995) dentro de cada fonte. Dentro de cada ciclo, permutação exata.</li>
+    <li><strong>Convergência</strong>: Spearman entre as contagens mensais das duas fontes na sobreposição, com e sem junho de 2013.</li>
+  </ol>
+  <p class="meta">Script: <code>src/analysis/e1_cruzamento_series.py</code> (só biblioteca padrão do Python). Resultados: <code>data/triangulacao/e1_cruzamento_mm_nepac/dados/</code>.</p>
+
+  <h2>Reconstrução e conferência</h2>
+  <p>A primeira versão desta análise (07/10/2026) teve os resultados registrados no diário de pesquisa, mas o script e o painel não foram versionados e se perderam. Esta versão foi reimplementada a partir das decisões de método registradas. A tabela compara os números do registro original com os da reconstrução, sem ajuste de parâmetros para fazê-los coincidir.</p>
+  <div class="scroll"><table class="dados" id="comparacao"></table></div>
+
+  <h2>Limitações</h2>
+  <div class="nota">
+    <p>As duas fontes têm critérios de seleção distintos: o MM usa imprensa internacional e tende a registrar eventos de maior repercussão; o NEPAC usa a Folha de S.Paulo. Os números de fases elegíveis são pequenos (18 no MM, 11 no NEPAC), o que limita o poder dos testes e torna os coeficientes sensíveis a uma ou duas fases. As variáveis de EOP e DOS foram codificadas por um único pesquisador, sem teste de confiabilidade intercodificador, e conhecendo a trajetória dos ciclos. A frequência não mede tamanho nem intensidade dos eventos; essas dimensões ficam para a tarefa E2. As Diretas Já não são cobertas por nenhuma das duas fontes.</p>
+  </div>
+
+  <h2>Referências</h2>
+  <ul class="meta">
+    <li>BENJAMINI, Y.; HOCHBERG, Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society: Series B</em>, v. 57, n. 1, p. 289–300, 1995.</li>
+    <li>CLARK, D.; REGAN, P. <em>Mass Mobilization Protest Data</em>, versão 16. Harvard Dataverse.</li>
+    <li>GARWOOD, F. Fiducial limits for the Poisson distribution. <em>Biometrika</em>, v. 28, n. 3/4, p. 437–442, 1936.</li>
+    <li>TATAGIBA, L.; GALVÃO, A. (coord.). <em>Os protestos no Brasil em tempos de crise (2011-2016)</em>. Banco de dados. NEPAC/CEMARX, UNICAMP, 2019.</li>
+    <li>COSTA, G. P. <em>Estruturas de mobilização e oportunidades políticas: análise dos ciclos de protestos no Brasil contemporâneo</em>. Tese (Doutorado), UFJF, 2024.</li>
+  </ul>
+
+  <h2>Como citar</h2>
+  <pre>COSTA, Gustavo Paccelli. Frequência de protestos e fases dos ciclos: triangulação entre Mass Mobilization e NEPAC. Relatório interativo, projeto Ciclos de Protesto no Brasil, 2026.</pre>
+</main>
+<script>
+const D = /*DADOS*/null;
+const CICLOS = {diretas_ja:"Diretas Já", fora_collor:"Fora Collor", junho_2013:"Junho de 2013", impeachment_dilma:"Impeachment Dilma"};
+const FASES = {articulacao:"Articulação",emergencia:"Emergência",expansao:"Expansão",pico:"Pico",latencia:"Latência",radicalizacao:"Radicalização",declinio:"Declínio",desfecho:"Desfecho"};
+const VARS = {op_abertura_institucional:"Abertura institucional",op_divisao_elites:"Divisão das elites",op_aliados_influentes:"Aliados influentes",op_crise_legitimidade:"Crise de legitimidade",op_repressao:"Repressão",traducao_institucional:"Tradução institucional",od_visibilidade_midia:"Visibilidade midiática",od_ressonancia_discursiva:"Ressonância discursiva",od_legitimidade_narrativa:"Legitimidade narrativa"};
+const COR = {MM:"var(--mm)", NEPAC:"var(--nepac)"};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num = (x, d=2) => x === null || x === undefined ? "NA" : Number(x).toLocaleString("pt-BR", {minimumFractionDigits:d, maximumFractionDigits:d});
+const pv = x => x === null ? "NA" : x < 0.001 ? "< 0,001" : num(x, 3);
+const fmtD = d => d.split("-").reverse().join("/");
+const mesTxt = m => { const [a, b] = m.split("-"); return ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+b-1] + "/" + a; };
+document.getElementById("gerado").textContent = fmtD(D.meta.gerado_em);
+
+function seg(id, ini, cb) {
+  const el = document.getElementById(id);
+  el.innerHTML = ["MM","NEPAC"].map(f => `<button data-f="${f}" aria-pressed="${f===ini}">${f}</button>`).join("");
+  el.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return;
+    el.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); cb(b.dataset.f); });
+}
+
+// ---------- resumo (gerado dos dados) ----------
+(() => {
+  const b = Object.fromEntries(D.linha_de_base.map(x => [x.fonte, x]));
+  const c = D.convergencia;
+  const sig = D.associacao.filter(a => a.q_bh !== null && a.q_bh < 0.05);
+  const pk = f => D.picos.filter(p => p.fonte === f);
+  const li = [
+    `<strong>Concentração:</strong> nos dias de fase de ciclo, a taxa de eventos é ${num(b.MM.razao,1)} vezes a dos demais dias no MM e ${num(b.NEPAC.razao,1)} vezes no NEPAC.`,
+    `<strong>Convergência:</strong> as duas séries mensais variam juntas (ρ = ${num(c[0].rho)}, p = ${pv(c[0].p_perm)}, ${c[0].n_meses} meses); sem junho de 2013, ρ = ${num(c[1].rho)} (p = ${pv(c[1].p_perm)}).`,
+    `<strong>Pico:</strong> a fase "pico" tem a maior taxa em ${pk("MM").filter(p => p.pico_e_maximo).length} de ${pk("MM").length} ciclos no MM e em ${pk("NEPAC").filter(p => p.pico_e_maximo).length} de ${pk("NEPAC").length} no NEPAC.`,
+    `<strong>EOP e DOS:</strong> após a correção para comparações múltiplas, ${sig.length ? sig.map(a => `${VARS[a.variavel].toLowerCase()} no ${a.fonte} (ρ = ${num(a.rho)}, q = ${pv(a.q_bh)})`).join("; ") : "nenhuma variável"} acompanha a frequência de eventos.`
+  ];
+  document.getElementById("resumo").innerHTML = li.map(x => `<li>${x}</li>`).join("");
+})();
+
+// ---------- taxa por fase ----------
+let fonteT = "MM", varT = "op_repressao";
+const selV = document.getElementById("varTaxa");
+selV.innerHTML = D.variaveis.map(v => `<option value="${v}"${v===varT?" selected":""}>${VARS[v]}</option>`).join("");
+selV.addEventListener("change", () => { varT = selV.value; taxa(); });
+seg("fonteTaxa", fonteT, f => { fonteT = f; taxa(); });
+
+function taxa() {
+  const rows = D.fases.filter(f => f.fonte === fonteT);
+  const max = Math.max(...rows.filter(r => r.ic_sup !== null && r.elegivel).map(r => r.ic_sup));
+  const W = 720, rot = 170, sc = 26, x0 = rot + sc + 8, larg = W - x0 - 60, h = 22;
+  let y = 8, s = "";
+  let ciclo = null;
+  rows.forEach(r => {
+    if (r.cycle !== ciclo) { ciclo = r.cycle; y += 14; s += `<text x="0" y="${y}" style="font-weight:700;font-size:12px;fill:var(--accent)">${CICLOS[ciclo]}</text>`; y += 8; }
+    const pico = r.phase === "pico";
+    s += `<text x="0" y="${y + 15}" ${pico ? 'style="font-weight:700"' : ""}>${esc(r.phase_id)} · ${FASES[r.phase] || esc(r.phase)}</text>`;
+    const v = r[varT];
+    s += `<rect x="${rot}" y="${y + 3}" width="${sc}" height="${h - 6}" rx="2" class="v${v}" style="fill:var(--s${v === "NA" ? 0 : v})"><title>${VARS[varT]}: ${v}</title></rect>`;
+    s += `<text x="${rot + sc / 2}" y="${y + 15}" text-anchor="middle" style="font-size:10px;fill:var(--s${v === "NA" || v < 2 ? 0 : v}-fg)">${v}</text>`;
+    if (r.taxa_30d === null) {
+      s += `<text x="${x0}" y="${y + 15}" class="muted">NA · fora da cobertura</text>`;
+    } else {
+      const k = x => Math.min(larg, x / max * larg);
+      const op = r.elegivel ? 1 : .3;
+      s += `<g opacity="${op}"><rect x="${x0}" y="${y + 4}" width="${Math.max(1, k(r.taxa_30d))}" height="${h - 8}" rx="2" fill="${COR[fonteT]}"><title>${esc(r.phase_id)}: ${r.n_eventos} eventos em ${r.dias_cobertos} dias; ${num(r.taxa_30d)} por 30 dias (IC 95%: ${num(r.ic_inf)}–${num(r.ic_sup)})</title></rect>`;
+      s += `<line x1="${x0 + k(r.ic_inf)}" x2="${x0 + k(r.ic_sup)}" y1="${y + h / 2}" y2="${y + h / 2}" stroke="var(--fg)" stroke-width="1"/>`;
+      s += `<text x="${x0 + k(r.ic_sup) + 6}" y="${y + 15}" class="muted">${num(r.taxa_30d, 1)}${r.elegivel ? "" : " · cobertura " + Math.round(r.cobertura * 100) + "%"}</text></g>`;
+    }
+    y += h;
+  });
+  document.getElementById("graficoTaxa").innerHTML = `<svg viewBox="0 0 ${W} ${y + 8}" role="img" aria-label="Taxa de eventos por fase, fonte ${fonteT}">${s}</svg>`;
+}
+taxa();
+
+// ---------- linha de base ----------
+document.getElementById("tiles").innerHTML = D.linha_de_base.map(b => `
+  <div class="tile"><div class="rot">${b.fonte}: razão dentro/fora</div><div class="num ${b.fonte.toLowerCase()}">${num(b.razao, 2)}×</div>
+  <div class="rot">${num(b.taxa_dentro_30d, 1)} eventos/30 dias nas fases (${b.eventos_dentro} eventos) · ${num(b.taxa_fora_30d, 1)} fora (${b.eventos_fora} eventos)</div></div>`).join("");
+
+// ---------- picos ----------
+document.getElementById("picos").innerHTML = `<thead><tr><th>Fonte</th><th>Ciclo</th><th>Fase com maior taxa</th><th class="n">Taxa máx.</th><th class="n">Taxa no pico</th><th>Pico é o máximo?</th></tr></thead><tbody>` +
+  D.picos.map(p => `<tr><td>${p.fonte}</td><td>${CICLOS[p.ciclo]}</td><td>${esc(p.fase_maior_taxa)}</td><td class="n">${num(p.taxa_maior,1)}</td><td class="n">${num(p.taxa_pico,1)}</td><td>${p.pico_e_maximo ? "sim" : "não"}</td></tr>`).join("") + `</tbody>`;
+
+// ---------- associação ----------
+const barra = r => r === null ? "" : `<span class="rho" aria-hidden="true"><span style="left:${r < 0 ? 50 + r * 50 : 50}%;width:${Math.abs(r) * 50}%"></span></span>`;
+function assoc(f) {
+  document.getElementById("assoc").innerHTML = `<thead><tr><th>Variável</th><th class="n">n</th><th class="n">ρ</th><th></th><th class="n">p</th><th class="n">q (BH)</th></tr></thead><tbody>` +
+    D.associacao.filter(a => a.fonte === f).map(a => `<tr class="${a.q_bh !== null && a.q_bh < 0.05 ? "destaque" : ""}"><td>${VARS[a.variavel]}</td><td class="n">${a.n_fases}</td><td class="n">${num(a.rho)}</td><td>${barra(a.rho)}</td><td class="n">${pv(a.p_perm)}</td><td class="n">${pv(a.q_bh)}</td></tr>`).join("") + `</tbody>`;
+}
+seg("fonteAssoc", "NEPAC", assoc); assoc("NEPAC");
+const grupos = [...new Set(D.intraciclo.map(i => i.fonte + "|" + i.ciclo))];
+document.getElementById("intra").innerHTML = `<thead><tr><th>Variável</th>${grupos.map(g => { const [f, c] = g.split("|"); return `<th>${f}<br>${CICLOS[c]}</th>`; }).join("")}</tr></thead><tbody>` +
+  D.variaveis.map(v => `<tr><td>${VARS[v]}</td>${grupos.map(g => { const [f, c] = g.split("|"); const i = D.intraciclo.find(x => x.fonte === f && x.ciclo === c && x.variavel === v);
+    return `<td class="n">${i.rho === null ? "" : `ρ ${num(i.rho)}<br><span class="meta">p ${pv(i.p_exato)}</span>`}</td>`; }).join("")}</tr>`).join("") + `</tbody>`;
+
+// ---------- séries mensais ----------
+(() => {
+  const M = D.mensal, n = M.length, W = 720, esq = 40, dir = 10, ph = 120, gap = 34;
+  const x = i => esq + (i + .5) * (W - esq - dir) / n, bw = (W - esq - dir) / n * .75;
+  const comuns = new Set(D.meses_pico_comuns);
+  const idx = Object.fromEntries(M.map((m, i) => [m.ano_mes, i]));
+  const faixas = D.fases.filter(f => f.fonte === "NEPAC" && (f.cycle === "junho_2013" || f.cycle === "impeachment_dilma")).map(f => {
+    const a = f.date_start.slice(0, 7), b = f.date_end.slice(0, 7);
+    if (!(a in idx) && !(b in idx)) return "";
+    const i0 = idx[a] ?? 0, i1 = idx[b] ?? n - 1;
+    return [i0, i1];
+  }).filter(Boolean);
+  let s = "";
+  ["MM", "NEPAC"].forEach((f, k) => {
+    const top = 14 + k * (ph + gap), max = Math.max(...M.map(m => m[f]));
+    faixas.forEach(([i0, i1]) => s += `<rect x="${x(i0) - bw / 1.5}" y="${top}" width="${x(i1) - x(i0) + bw * 1.33}" height="${ph}" fill="var(--faixa)"/>`);
+    s += `<text x="0" y="${top - 4}" style="font-weight:700;fill:${COR[f]}">${f}</text><text x="${esq - 4}" y="${top + 8}" text-anchor="end" class="muted">${max}</text><text x="${esq - 4}" y="${top + ph}" text-anchor="end" class="muted">0</text>`;
+    s += `<line x1="${esq}" x2="${W - dir}" y1="${top + ph}" y2="${top + ph}" class="eixo"/>`;
+    M.forEach((m, i) => {
+      const hh = m[f] / max * ph;
+      s += `<rect x="${x(i) - bw / 2}" y="${top + ph - hh}" width="${bw}" height="${Math.max(hh, 0)}" fill="${COR[f]}"><title>${mesTxt(m.ano_mes)}: ${m[f]} eventos (${f})</title></rect>`;
+      if (comuns.has(m.ano_mes)) s += `<circle cx="${x(i)}" cy="${top + ph - hh - 6}" r="3" fill="var(--fg)"/>`;
+    });
+  });
+  const base = 14 + 2 * (ph + gap) - gap + 14;
+  M.forEach((m, i) => { if (m.ano_mes.endsWith("-01")) s += `<text x="${x(i)}" y="${base}" text-anchor="middle" class="muted">${m.ano_mes.slice(0, 4)}</text>`; });
+  document.getElementById("graficoMensal").innerHTML = `<svg viewBox="0 0 ${W} ${base + 6}" role="img" aria-label="Eventos por mês, MM e NEPAC, em painéis separados">${s}</svg>`;
+  document.getElementById("perMensal").textContent = `${mesTxt(M[0].ano_mes)} e ${mesTxt(M[n - 1].ano_mes)}`;
+  document.getElementById("conv").innerHTML = `<thead><tr><th>Recorte</th><th class="n">Meses</th><th class="n">ρ</th><th class="n">p</th><th>Meses de pico comuns</th></tr></thead><tbody>` +
+    D.convergencia.map(c => `<tr><td>${c.recorte}</td><td class="n">${c.n_meses}</td><td class="n">${num(c.rho)}</td><td class="n">${pv(c.p_perm)}</td><td>${c.meses_pico_comuns.split(";").filter(Boolean).map(mesTxt).join(", ")}</td></tr>`).join("") + `</tbody>`;
+})();
+
+// ---------- comparação com o registro original ----------
+const NOMES_CMP = {razao_dentro_fora_MM:"Razão dentro/fora, MM", razao_dentro_fora_NEPAC:"Razão dentro/fora, NEPAC", rho_mensal:"ρ mensal MM × NEPAC", p_mensal:"p do ρ mensal", rho_repressao_NEPAC:"ρ repressão × taxa, NEPAC", q_repressao_NEPAC:"q da repressão, NEPAC"};
+document.getElementById("comparacao").innerHTML = `<thead><tr><th>Medida</th><th class="n">Registro de 07/10/2026</th><th class="n">Reconstrução</th></tr></thead><tbody>` +
+  D.meta.comparacao_log.map(c => `<tr><td>${NOMES_CMP[c.medida]}</td><td class="n">${String(c.log_2026_10_07).replace(".", ",")}</td><td class="n">${String(c.reconstrucao).replace(".", ",")}</td></tr>`).join("") + `</tbody>`;
+</script>
+</body>
+</html>

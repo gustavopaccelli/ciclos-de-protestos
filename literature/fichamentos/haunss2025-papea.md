@@ -13,7 +13,7 @@ demonstrado sobre um grande corpus jornalístico alemão.
 ## Conceito/método aproveitável
 1. **Modularidade por tarefa.** O pipeline separa as tarefas em módulos independentes em
    vez de pedir tudo em uma chamada. Isso é diretamente relevante: nosso
-   `02_doca_coder.py` faz triagem e codificação **em uma única passagem**, contrariando o
+   `src/preprocessing/coder.py` faz triagem e codificação **em uma única passagem**, contrariando o
    §11 do nosso próprio protocolo, que as descreve como Passagens 2 e 3 distintas.
 2. **Fine-tuning como caminho de melhoria**, não apenas prompt engineering — incorporado
    como estágio 5 da escalada do protocolo §12.5.
@@ -24,7 +24,7 @@ demonstrado sobre um grande corpus jornalístico alemão.
 - **`docs/aep-protocol-bep.md` §12** — referência de desenho, ao lado de Halterman & Keith.
 - **`src/` + `bancos/03_aep_br/`** — argumento para separar triagem e codificação em duas passagens; hoje
   estão fundidas (defeito conhecido, ainda não corrigido).
-- **`metodologia/relatorio-metodologico.md` §4.1** — legitima metodologicamente a opção por
+- **`docs/methodology/relatorio-metodologico.md` §4.1** — legitima metodologicamente a opção por
   codificação assistida por LLM, hoje sustentada apenas por Alonso et al. (2024, p. 320).
 
 ## Ressalva

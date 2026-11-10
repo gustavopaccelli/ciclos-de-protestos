@@ -559,3 +559,36 @@ real segue pendente (D1) — exige assinatura.**
   - cobertura mínima de 50% dos dias da fase para entrar nos testes;
   - Spearman com permutação e correção de Benjamini-Hochberg, mais um teste dentro de cada ciclo.
 - **Pendência bibliográfica:** incluir no `.bib` Benjamini e Hochberg (1995), Garwood (1936) e os datasets do MM e do NEPAC.
+
+## 2026-10-13 — E1 reconstruída e pasta `produtos/`
+
+- **Perda:** os arquivos da E1 (script, CSVs, painel, relatório) nunca entraram no git — o `.gitignore` bloqueia `data/triangulacao/**` e o commit do PR #12 levou só o README. A sessão que os gerou não está mais acessível.
+- **Reconstrução:** `src/analysis/e1_cruzamento_series.py` (só biblioteca padrão), reimplementado a partir das decisões de método de 2026-10-07. Defaults explicitados: NEPAC datado pelo início mais antigo de cada `Codigo_evento`; cobertura do NEPAC de 01/2011 até a última data observada (31/08/2016); 10.000 permutações com semente fixa; meses de pico comuns = acima do percentil 90 nas duas fontes. Os resultados agora são versionados em `data/triangulacao/e1_cruzamento_mm_nepac/dados/`.
+- **Conferência com o registro original (sem ajuste de parâmetros):**
+
+  | Medida | 2026-10-07 | Reconstrução |
+  |---|---|---|
+  | Razão dentro/fora, MM | 3,2 | 3,31 |
+  | Razão dentro/fora, NEPAC | 1,5 | 1,55 |
+  | ρ mensal MM × NEPAC | 0,37 (p = 0,003) | 0,366 (p ≈ 0,002) |
+  | ρ repressão × taxa, NEPAC | 0,94 (q = 0,001) | 0,941 (q ≈ 0,001) |
+
+  A diferença na razão do MM não pode ser rastreada sem o script original; as conclusões qualitativas do registro se mantêm.
+- **Produtos:** nova pasta `produtos/` (publicada via GitHub Pages) com `mapa-fases/` e `e1-triangulacao/`; a segunda absorve o antigo `relatorio_metodologico.md`.
+
+## 2026-10-21 — Reorganização em torno do banco AEP-BR
+
+- **Decisão do usuário:** Frentes C e E em stand-by; foco na construção do banco próprio (Frente B).
+- **B7 concluída:** o pipeline do PR #9 (`coleta_acervo.py`, `run_doca_pipeline.py`, `load_acervo_to_doca.py`, `PIPELINE_DOCA.md`, workflow `scraper_acervo.yml`) e o `TUTORIAL.md` desatualizado foram arquivados em `bancos/03_aep_br/arquivo-morto/pr9/`.
+- **Etapas reunidas em `bancos/03_aep_br/`:** `coleta/` (bruto, fora do git), `codificacao/`, `banco/` e `validacao/` (versionados). Antes, as extrações iam para `data/interim/` e o banco para `data/processed/harmonizado/`, ambos bloqueados pelo `.gitignore`. Só os caminhos em `src/paths.py` e nos três scripts mudaram.
+- **Defeito corrigido:** `src/analysis/run_pipeline.py` chamava `01_scraper.py`, `02_doca_coder.py` etc., que não existiam mais; agora chama os scripts reais e grava o kappa em `validacao/`. Referências antigas atualizadas em `config/` e nos documentos de protocolo.
+- **Documentação única do processo:** `bancos/03_aep_br/README.md`.
+- **Próximo:** B9 → B6 (piloto 2013) → B8; B4 localmente.
+
+## 2026-11-10 — Revisão do repositório
+
+- **Branch paralelo incorporado:** `claude/awesome-tesla-zlvxkc` (outra sessão, sem PR) corrigia contagens e caminhos em 49 arquivos e conflitava com o PR #13 em 17. Foi integrado por merge, mantendo a estrutura atual (E1 reconstruída, pipeline do PR #9 arquivado, etapas do AEP-BR); suas edições em arquivos já arquivados foram descartadas.
+- **Caminhos quebrados corrigidos:** referências aos antigos `process-tracing/scripts/*.py` (agora `src/data/pt_*.py`, `src/analysis/pt_renderiza_predicoes.py`, `src/preprocessing/pt_valida_registro.py`) em docs, dossiês, CSV de fontes (xlsx regenerado) e mensagens dos scripts; três caminhos em `docs/tarefas.md`.
+- **Fonte de verdade fora de sincronia:** o dossiê C1 tinha o caminho das sementes corrigido à mão, mas `docs/process_tracing/dados/predicoes.csv` ainda dizia `data/diretas_ja/`; o `--check` acusava. Corrigido no CSV e regenerado.
+- **`varre_citacoes.py`:** a lista de alvos apontava para pastas que não existem mais; resultado da varredura idêntico.
+- **CI:** `.github/workflows/checks.yml` roda os validadores e confere que a E1 reproduz os CSVs versionados.

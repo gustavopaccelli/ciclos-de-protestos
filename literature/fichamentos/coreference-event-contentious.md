@@ -16,7 +16,7 @@ eventos não havia quantificado a contribuição dessa etapa.
 níveis de deduplicação (artigo → evento codificado → evento canônico) e delega a
 canonização a "editor humano ou algoritmo futuro". O algoritmo continuava não existindo.
 
-A implementação atual em `03_build_dataset.py` (2026-07-18) usa um critério determinístico
+A implementação atual em `src/preprocessing/build_dataset.py` (2026-07-18) usa um critério determinístico
 e auditável — mesma data + mesma localidade (cidade+UF) + mesma demanda principal — com
 limites declarados: **não trata contiguidade geográfica nem sobreposição parcial de datas**.
 Esta literatura indica que o problema é maior do que o critério resolve, e que o custo de

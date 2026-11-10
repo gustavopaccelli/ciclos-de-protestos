@@ -1,7 +1,7 @@
 # Dados complementares — Diretas Já (1983–1984)
 
 Dados incorporados em 2026-07-14 a partir dos arquivos enviados pelo pesquisador
-(`artefatos/Cronologia_Diretas_Ja.xlsx` e `artefatos/Manifestacoes_e_Dados_Diretas_Ja.xlsx`).
+(`docs/artefatos/Cronologia_Diretas_Ja.xlsx` e `docs/artefatos/Manifestacoes_e_Dados_Diretas_Ja.xlsx`).
 Complementam a codificação da campanha das Diretas Já.
 
 ## Arquivos

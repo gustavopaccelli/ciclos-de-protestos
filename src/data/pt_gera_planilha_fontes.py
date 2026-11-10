@@ -2,7 +2,7 @@
 
 xlsx é binário: o git não versiona diferença legível dele. Por isso a fonte de
 verdade é fontes/fontes-de-dados.csv, versionável e diffável, e o .xlsx é
-derivado — mesmo padrão de artigo/referencias.bib -> referencias-abnt.md.
+derivado — mesmo padrão de docs/artigo/referencias.bib -> referencias-abnt.md.
 
 NÃO edite o .xlsx: a próxima execução sobrescreve.
 
@@ -63,7 +63,7 @@ def monta(linhas: list[dict]) -> Workbook:
                 "projeto Ciclos de Protesto no Brasil")
     ws["A1"].font = Font(bold=True, size=13)
     ws["A2"] = ("ARQUIVO DERIVADO — gerado de fontes/fontes-de-dados.csv por "
-                "scripts/gera_planilha_fontes.py. Não edite aqui: a próxima geração "
+                "src/data/pt_gera_planilha_fontes.py. Não edite aqui: a próxima geração "
                 "sobrescreve. Nível 1 = ato oficial primário · 2 = registro "
                 "institucional · 3 = imprensa (só corroboração) · 4 = literatura. "
                 "Ver fontes/hierarquia-fontes.md.")

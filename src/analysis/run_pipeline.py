@@ -1,11 +1,11 @@
 """Orquestrador da pipeline PEA.
 
-Uso:
-  python run_pipeline.py --step scrape            # coleta (horas-dias; retomável)
-  python run_pipeline.py --step code --batch 100  # codificação em lotes
-  python run_pipeline.py --step build             # dataset final CSV/XLSX
-  python run_pipeline.py --step kappa --manual amostra.csv   # confiabilidade
-  python run_pipeline.py --step all
+Uso (a partir da raiz):
+  python src/analysis/run_pipeline.py --step scrape            # coleta (horas-dias; retomável)
+  python src/analysis/run_pipeline.py --step code --batch 100  # codificação em lotes
+  python src/analysis/run_pipeline.py --step build             # dataset final CSV/XLSX
+  python src/analysis/run_pipeline.py --step kappa --manual bancos/03_aep_br/validacao/amostra_manual.csv
+  python src/analysis/run_pipeline.py --step all
 
 `all` roda scrape → code → build. A aferição de kappa (Passagem 5 do
 protocolo) exige uma amostra codificada à mão e por isso é sempre explícita.
@@ -14,14 +14,18 @@ protocolo) exige uma amostra codificada à mão e por isso é sempre explícita.
 import argparse
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
-BASE = Path(__file__).resolve().parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import paths  # noqa: E402
+
+SRC = Path(__file__).resolve().parents[1]
 STEPS = {
-    "scrape": ["01_scraper.py"],
-    "code": ["02_doca_coder.py"],
-    "build": ["03_build_dataset.py"],
-    "kappa": ["04_intercoder_reliability.py"],
+    "scrape": SRC / "data" / "scraper.py",
+    "code": SRC / "preprocessing" / "coder.py",
+    "build": SRC / "preprocessing" / "build_dataset.py",
+    "kappa": SRC / "preprocessing" / "intercoder_reliability.py",
 }
 
 # Passos executados por `--step all`. `kappa` fica de fora porque depende de
@@ -42,11 +46,13 @@ def main() -> None:
 
     order = ALL_STEPS if args.step == "all" else [args.step]
     for step in order:
-        cmd = [sys.executable, str(BASE / STEPS[step][0])]
+        cmd = [sys.executable, str(STEPS[step])]
         if step == "code" and args.batch:
             cmd += ["--batch", str(args.batch)]
         if step == "kappa":
-            cmd += [args.manual]
+            out = paths.AEP_VALIDACAO / f"kappa_{date.today().isoformat()}.csv"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            cmd += [args.manual, "--out", str(out)]
         print(f"\n=== {step} ===")
         subprocess.run(cmd, check=True)
 

@@ -4,7 +4,7 @@ Pesquisa: EOP e oportunidades discursivas em quatro ciclos de protesto brasileir
 Última atualização: **2026-07-18** (levantamento AEP automatizada + DOS pós-2015).
 Atualização anterior: 2026-06-10 (bootstrap).
 
-> **Fonte canônica da bibliografia:** [`artigo/referencias.bib`](../artigo/referencias.bib).
+> **Fonte canônica da bibliografia:** [`docs/artigo/referencias.bib`](../docs/artigo/referencias.bib).
 > **Fichamentos por obra:** [`literature/fichamentos/`](fichamentos/).
 > Este survey é o mapa temático; o `.bib` é o registro bibliográfico.
 
@@ -87,7 +87,7 @@ Atualização anterior: 2026-06-10 (bootstrap).
 
 Levantamento feito nas bases Consensus e Firecrawl. Identificou duas ausências inteiras no
 repositório. Fichamentos individuais em [`fichamentos/`](fichamentos/); metadados completos
-(e o que falta neles) em `artigo/referencias.bib`.
+(e o que falta neles) em `docs/artigo/referencias.bib`.
 
 ### 7.1 AEP automatizada e codificação por LLM — lacuna crítica
 

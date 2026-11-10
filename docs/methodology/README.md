@@ -1,4 +1,4 @@
-# metodologia/
+# docs/methodology/
 
 Documentação metodológica do projeto em formato de relatório acadêmico-científico.
 
@@ -8,5 +8,5 @@ Documentação metodológica do projeto em formato de relatório acadêmico-cien
   repositório, insights produzidos, limitações e cronologia das etapas.
 
 Documento vivo — atualizar a cada nova etapa metodológica relevante. Complementa (não substitui)
-`docs/aep-protocol-bep.md` (protocolo do pipeline), `codebook/` (livros de código) e
+`docs/aep-protocol-bep.md` (protocolo do pipeline), `docs/codebook/` (livros de código) e
 `research-log.md` (linha do tempo de decisões).

@@ -4,7 +4,7 @@ Fonte de verdade: process-tracing/dados/predicoes.csv.
 Derivado: a seção "Predições registradas" de cada ciclos/c*/dossie.md, entre os
 marcadores PREDICOES:INICIO e PREDICOES:FIM.
 
-Mesmo padrão que artigo/referencias.bib -> referencias-abnt.md: edite o CSV,
+Mesmo padrão que docs/artigo/referencias.bib -> referencias-abnt.md: edite o CSV,
 nunca a tabela renderizada — ela é sobrescrita a cada execução.
 
 Uso:
@@ -23,7 +23,7 @@ import pandas as pd
 
 BASE = paths.PROCESS_TRACING
 CSV = BASE / "dados" / "predicoes.csv"
-INICIO = "<!-- PREDICOES:INICIO — gerado por scripts/renderiza_predicoes.py, não editar à mão -->"
+INICIO = "<!-- PREDICOES:INICIO — gerado por src/analysis/pt_renderiza_predicoes.py, não editar à mão -->"
 FIM = "<!-- PREDICOES:FIM -->"
 
 DOSSIES = {

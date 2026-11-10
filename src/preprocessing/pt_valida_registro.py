@@ -14,7 +14,7 @@ Roda sem rede. Checa o que um parecerista checaria:
   7. Predições: uma por par ciclo x hipótese, nenhuma testável sem
      o_que_refutaria, e nenhuma evidência coletada sem predição prévia.
 
-Uso: python process-tracing/scripts/valida_registro.py [--estrito]
+Uso: python src/preprocessing/pt_valida_registro.py [--estrito]
      --estrito faz o script sair com código 1 se houver qualquer erro.
 """
 

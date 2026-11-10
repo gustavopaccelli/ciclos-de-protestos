@@ -21,7 +21,7 @@ delas. A natureza e o grau das oportunidades de mediação variam conforme a **l
 protesto** empregada.
 
 ## Por que importa para o nosso achado sobre mídia
-O `metodologia/relatorio-metodologico.md` §6 registra como insight do projeto a distinção
+O `docs/methodology/relatorio-metodologico.md` §6 registra como insight do projeto a distinção
 entre **mídia como gatekeeper** e **mídia como produtora ativa de frames**. Cammaerts
 oferece o vocabulário conceitual já consolidado para essa distinção — e acrescenta um
 terceiro termo que nosso quadro não tem: a mídia como **infraestrutura material** da ação,

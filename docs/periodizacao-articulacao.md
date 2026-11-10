@@ -5,7 +5,7 @@
 > 2013 (após a violência policial de 13/06 e o confronto black bloc de 17/06 — confirmado na
 > tese, §3.3.3); (3) fase de latência adotada no Impeachment; (4) variável
 > `traducao_institucional` incorporada. Dataset: `data/processed/cycle_phases/cycle_phases.csv` (24 fases);
-> backup da v2 em `data/cycle_phases_v2_prearticulacao.csv`.
+> backup da v2 em `data/processed/cycle_phases/cycle_phases_v2_prearticulacao.csv`.
 
 
 Data: 2026-07-04. Fonte primária: **Costa (2024), Tese de Doutorado** (UFJF), seções 2.2.1,

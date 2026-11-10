@@ -1,11 +1,12 @@
 """intercoder_reliability.py — Confiabilidade intercodificadores (AEP-BR).
 
 Passagem 5 do protocolo (docs/aep-protocol-bep.md §11). Compara a codificação
-automática (data/interim/) com a codificação manual de uma amostra e
+automática (bancos/03_aep_br/codificacao/) com a codificação manual de uma amostra e
 calcula Cohen's Kappa por variável.
 
 Uso:
-  python src/preprocessing/intercoder_reliability.py amostra_manual.csv [--out relatorio.csv]
+  python src/preprocessing/intercoder_reliability.py bancos/03_aep_br/validacao/amostra_manual.csv \
+      --out bancos/03_aep_br/validacao/kappa_<data>.csv
 
 O CSV manual deve conter evento_id e ao menos uma das variáveis categóricas
 listadas em CATEGORICAL (lidas do codebook AEP-BR). Variáveis ausentes do CSV
@@ -28,7 +29,7 @@ import aep_codebook as cb  # noqa: E402
 import pandas as pd
 from sklearn.metrics import cohen_kappa_score
 
-CODED_DIR = paths.INTERIM
+CODED_DIR = paths.AEP_CODIFICACAO
 KAPPA_MIN = cb.limiar_kappa()
 
 # Variáveis categóricas aferidas: todas as de vocabulário fechado e as booleanas,
@@ -84,7 +85,7 @@ def load_auto() -> pd.DataFrame:
     for path in CODED_DIR.glob("*.json"):
         rows.extend(json.loads(path.read_text()).get("eventos", []))
     if not rows:
-        raise SystemExit("Nenhum evento codificado em data/interim/")
+        raise SystemExit("Nenhum evento codificado em bancos/03_aep_br/codificacao/")
     return pd.DataFrame(rows).set_index("evento_id")
 
 

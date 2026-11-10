@@ -1,4 +1,4 @@
-"""01_scraper.py — Coleta de artigos do Acervo Folha via Playwright.
+"""scraper.py — Coleta de artigos do Acervo Folha via Playwright.
 
 Passagem 1 do protocolo (docs/aep-protocol-bep.md §11). Faz login, itera
 termos de busca × janelas temporais (config/queries.yaml), salva cada artigo
@@ -8,10 +8,10 @@ Os seletores CSS ficam em config/selectors.yaml — editáveis sem tocar em
 Python. O Acervo é uma aplicação React e muda de layout sem aviso.
 
 MODOS DE USO
-  python 01_scraper.py --diagnose --headed   # PRIMEIRO PASSO: valida seletores
-  python 01_scraper.py --dry-run             # lista o que coletaria, sem baixar
-  python 01_scraper.py --limit 20            # coleta no máximo 20 artigos
-  python 01_scraper.py                       # coleta completa
+  python src/data/scraper.py --diagnose --headed   # PRIMEIRO PASSO: valida seletores
+  python src/data/scraper.py --dry-run             # lista o que coletaria, sem baixar
+  python src/data/scraper.py --limit 20            # coleta no máximo 20 artigos
+  python src/data/scraper.py                       # coleta completa
 
 Comece SEMPRE por --diagnose: sem seletores validados a coleta retorna zero.
 """
@@ -150,7 +150,7 @@ def login(page) -> None:
     if not (campo_email and campo_senha and botao):
         raise SystemExit(
             "Formulário de login não encontrado — seletores desatualizados.\n"
-            "Rode: python 01_scraper.py --diagnose --headed"
+            "Rode: python src/data/scraper.py --diagnose --headed"
         )
 
     campo_email.fill(email)
@@ -163,7 +163,7 @@ def login(page) -> None:
             "Login não confirmado. Causas prováveis: credencial incorreta, "
             "captcha, assinatura expirada, ou o marcador 'logged_in_marker' "
             "em config/selectors.yaml está desatualizado.\n"
-            "Rode: python 01_scraper.py --diagnose --headed"
+            "Rode: python src/data/scraper.py --diagnose --headed"
         )
     print("[login] confirmado")
 

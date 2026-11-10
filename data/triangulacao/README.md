@@ -17,7 +17,7 @@ Outputs de análises de séries temporais e agregações por período, região o
 
 ### `e1_cruzamento_mm_nepac/`
 Tarefa E1: cruzamento das séries MM e NEPAC com as fases dos ciclos e as variáveis de EOP e DOS.
-Contém o painel `painel_e1.html`, o `relatorio_metodologico.md`, o script e os CSVs em `dados/`.
+Contém os CSVs em `dados/`; o script é `src/analysis/e1_cruzamento_series.py` e o painel com o relatório metodológico é `produtos/e1-triangulacao/`. Reconstruído em 2026-10-13 (ver README da pasta).
 
 ### `discrepancias/`
 Registros de eventos com conflitos entre bases (datas diferentes, locais ambíguos, tamanhos discrepantes).
